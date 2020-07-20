@@ -1,0 +1,74 @@
+/* purchase/order_details/index.wxss */
+
+.box_title {
+  margin-left: 40rpx;
+  margin-bottom: 20rpx;
+  margin-top: 20rpx;
+  color: black;
+  font-size: 40rpx;
+  display: flex;
+  text-align: center;
+}
+
+.margin {
+  margin-top: 50rpx;
+}
+
+.btn {
+  margin-bottom: 50rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.order_process {
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 10rpx 10rpx 20rpx 10rpx;
+  background-color: #fff;
+  margin-top: 30rpx;
+  }
+  .process_wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  }
+  .process {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  }
+  .process_icon {
+  width: 40rpx;
+  height: 40rpx;
+  }
+  .process_line {
+  background: #eff3f6;
+  flex: 1;
+  height: 5rpx;
+  }
+  .process_name {
+  font-size: 24rpx;
+  }
+
+
+
+
+
+

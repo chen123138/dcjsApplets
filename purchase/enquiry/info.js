@@ -59,8 +59,8 @@ Page({
       console.log(info)
 
       //
-      if (info.project_enquiry_approve_ids.length > 0) {
-        util.rpcRead(1005, api.EngineerApprove, info.project_enquiry_approve_ids, []).then(function(res) {
+      if (info.approve_ids.length > 0) {
+        util.rpcRead(1005, api.EngineerApprove, info.approve_ids, []).then(function(res) {
           that.setData({
             approval2: res
           })
@@ -83,8 +83,8 @@ Page({
         })
       }
       //可见
-      if (info.project_enquiry_visible_ids.length > 0) {
-        util.rpcRead(1005, api.EngineerEnquiryVisible, info.project_enquiry_visible_ids, []).then(function(res) {
+      if (info.visible_ids.length > 0) {
+        util.rpcRead(1005, api.EngineerVisible, info.visible_ids, []).then(function(res) {
           that.setData({
             approval4: res
           })

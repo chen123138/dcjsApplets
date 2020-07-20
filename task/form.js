@@ -281,7 +281,7 @@ Page({
         let project_id = this.data.task.project_id
         if (project_id){
             wx.navigateTo({
-                url: './select/user?id='+project_id
+                url: '/select/user?project_id='+project_id
             });
         }else{
             util.showText('请选择项目')

@@ -1,65 +1,66 @@
 var app = getApp()
-var api = require('../utils/api.js')
-var util = require('../utils/util.js')
+var api = require('../../utils/api.js')
+var util = require('../../utils/util.js')
 
 Page({
-
+    
     /**
      * 页面的初始数据
      */
     data: {
-        list: []
+        list: [],
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {},
+    onLoad: function(options) {
+        this.getList();
+    },
     getList: function() {
         wx.showLoading({
             title: '加载中...',
         });
         let params = [
-            ["user_id.id", "=", app.globalData.uid]
+			"|",
+            ["create_uid", "=", app.globalData.uid],
+            "&",
+            ["visible_ids.project_purchase_id", "!=", ''],
+            ["visible_ids.user_id.id", "=", app.globalData.uid]
+            
         ]
         let fields = []
         let that = this;
-        util.rpcList(1000, api.EngineerApprove, params, fields, 10, 'id DESC').then(function(res) {
-            that.setData({
-                list: res.records
-            })
+        util.rpcList(1000, api.EngineerPurchase, params, fields, 10, 'id DESC').then(function(res) {
+          that.setData({
+            list: res.records
+          })
             console.log(res)
             wx.hideLoading();
         })
     },
 
-    // 点击事件 请购界面
-    bindItemTapPurchase: function(e) {
-        // console.log(e)
+    // 点击事件
+    bindItemTap: function (e) {
+      // console.log(e)
         wx.navigateTo({
-            url: '/purchase/request/info?id=' + e.currentTarget.dataset.id + '&pid=' + JSON.stringify(e.currentTarget.dataset.pid)
+          url: 'info?id=' + e.currentTarget.dataset.id + '&pid=' + JSON.stringify(e.currentTarget.dataset.pid)
         })
     },
-    //点击事件 询价界面
-    bindItemTapEnquiry: function(e) {
-        // console.log(e)
-        wx.navigateTo({
-            url: '/purchase/enquiry/info?id=' + e.currentTarget.dataset.id
-        })
-        console.log(e)
-    },
+
+    
 
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {},
+    onReady: function() {
+    },
 
     /**
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-        this.getList();
     },
 
     /**

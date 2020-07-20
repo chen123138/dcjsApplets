@@ -1,0 +1,119 @@
+<view class="details_container">
+	<block wx:for="{{list}}" wx:key="item">
+		<!-- 供应商信息 -->
+		<view class='box_title'>
+			<image src="/images/基础信息.png"></image>基础信息
+		</view>
+		<view class="box">
+			<view class="box_items">请购编号: {{item.code}} </view>
+			<view class="box_items">请购时间: {{item.create_date}} </view>
+			<view class="box_items">请购项目: {{item.project_id[1]}} </view>
+			<view class="box_items">请购人员: {{item.create_uid[1]}} </view>
+			<!-- 请购方式 -->
+			<view class="box_items" wx:if="{{item.buy_mode == 1}}">采购状态：委托采购</view>
+			<view class="box_items" wx:if="{{item.buy_mode == 2}}">采购状态：现场采购</view>
+			<!-- 请购状态 -->
+			<!-- <view class="box_items">{{item.state}}</view> -->
+			<view class="box_items" wx:if="{{item.state=='0'}}">请购状态: 起稿中</view>
+					<view class="box_items" wx:if="{{item.state=='1'}}">请购状态: 审批中</view>
+					<view class="box_items" wx:if="{{item.state=='2'}}">请购状态: 询价单</view>
+			<view class="box_items">收货信息: </view>
+			<view class="box_items" style="margin-left: 40rpx; font-size: 30rpx; ">{{item.receive_address}} {{item.receive_phone}} {{item.receive_user}}</view>
+			<view class="box_items">备注: {{item.remarks}}</view>
+		</view>
+	</block>
+	<view class='box_title'>
+		<image src="/images/材料.png"></image>材料明细
+	</view>
+	<block wx:for="{{purchase}}" wx:key="item">
+		<!-- 材料明细 -->
+		<view class='box'>
+
+			<view class='box_items'>
+				<view class="product">
+					<view class="product_title">
+						<view class="left_title">
+							<!--  -->
+							<text>{{item.project_product_id[1]}}</text>
+						</view>
+						<view class="right_title">
+							<!-- 系统 -->
+							<text>系统: {{item.project_system_id[1]}}</text>
+							<!--品牌  -->
+							<text>品牌: {{item.brand}}</text>
+							<!-- 规格 -->
+							<text>规格: {{item.type}}</text>
+						</view>
+					</view>
+					<view class="product_main">
+						<!-- 到货时间 -->
+						<view class="input">到货时间: {{item.date}}</view>
+						<!-- 数量 -->
+						<view class="input">数量: {{item.number}} {{item.uom_id[1]}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</block>
+	<!-- 审批流程 -->
+	<view class='box_title'>
+		<image src="/images/审批流程.png"></image>审批流程
+	</view>
+	<block wx:for="{{approval}}" wx:key="item">
+		<view class='box new'>
+			<view class='box_items'>
+				<!-- 进度条 -->
+				<view class='approval_container'>
+					<!-- <image class="fj" src="/images/发起流程线.png"></image> -->
+					<image class="xt" src="/images/icon/流程箭头.png"></image>
+					<view class='square'>
+						<image src='/images/maner.png'></image>
+					</view>
+					<view class='approval_name'>
+						<view class='name'>
+							{{item.user_id[1]}}
+							<view class='img' wx:if="{{item.state == '1'}}">
+								<image src='/images/adopt.png'></image>
+							</view>
+							<view class='img' wx:if="{{item.state == '2'}}">
+								<image src='/images/reject.png'></image>
+							</view>
+						</view>
+					</view>
+					<view class='mean'>
+						<view class='state_name' wx:if="{{item.state == '0'}}">未审核</view>
+						<view class='state_name' wx:if="{{item.state == '1'}}">已通过</view>
+						<view class='state_name' wx:if="{{item.state == '2'}}">已驳回</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</block>
+	<!-- 抄送 -->
+	<view class='box_title'>
+		<image src="/images/抄送.png"></image>抄送
+	</view>
+	<block wx:for="{{copy}}" wx:key="item">
+	  <view class='box new'>
+		<view class='box_items'>
+			<view class='approval_container'>
+				<view class='square'>
+					<image src='/images/maner.png'></image>
+				</view>
+				<view class='approval_name'>
+					<view class='name'>
+						{{item.user_id[1]}}
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	</block>
+	
+	<!-- 提交按钮 -->
+	<view class="buttons" wx:if="{{!(state == '-1')}}"> 
+		<button size="mini" wx:if="{{(approvalState == 2 || approvalState == 3)}}" type="primary" bindtap="goAgree">同意</button>
+		<button size="mini" type="warn" wx:if="{{(approvalState == 2 || approvalState == 3)}}"  bindtap="goReject">驳回</button>
+		<button size="mini" wx:if="{{(approvalState == 1 || approvalState == 3)}}" type="warn" bindtap="goCancel">取消</button>
+	</view>
+</view>

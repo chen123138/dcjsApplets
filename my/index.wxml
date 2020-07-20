@@ -14,44 +14,17 @@
 				<!-- 职位 -->
 				<text class="name">现场经理</text>
 			</view>
-
 		</view>
-
 	</view>
 
 	<view class="container2">
 		<view class="body">
-			<view class="button" bindtap="goPlan">采购计划</view>
-			<view class="button" bindtap="goRequestBuy">采购申请</view>
-			<view class="button" bindtap="goOrder">采购订单</view>
-			<view class="button" bindtap="goList">任务工单</view>
-			<view class="button">材料变更</view>
-			<view class="button" bindtap="goApprove">审批</view>
-		</view>
-	</view>
-
-	<view class="container3" style="margin-top: 40rpx;">
-		<view class="item">
-			<view class="item-title">
-				<image src="http://qncdn.cwcoolboy.xyz/images/个人中心 - 中.png"></image>个人中心
-			</view>
-			<image src="/images/icon/next.png"></image>
-		</view>
-	</view>
-	<view class="container3">
-		<view class="item">
-			<view class="item-title">
-				<image src="http://qncdn.cwcoolboy.xyz/images/收 藏.png"></image>收藏
-			</view>
-			<image src="../images/icon/next.png"></image>
-		</view>
-	</view>
-	<view class="container3">
-		<view class="item">
-			<view class="item-title">
-				<image src="http://qncdn.cwcoolboy.xyz/images/设 置.png"></image>设置
-			</view>
-			<image src="../images/icon/next.png"></image>
+			<view class="button" bindtap="request">采购申请</view>
+			<view class="button" bindtap="order">采购订单</view>
+			<view class="button" bindtap="task">任务工单</view>
+			<view class="button" bindtap="approve">审批记录</view>
+            <view class="button">采购计划</view>
+            <view class="button">材料变更</view>
 		</view>
 	</view>
 </view>

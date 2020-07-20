@@ -31,15 +31,14 @@ module.exports = {
   // 请购
   EngineerPurchase: 'eng.project.purchase',
   EngineerPurchaseProduct: 'eng.project.purchase.product',
-  EngineerPurchaseVisible: "eng.project.enquiry.visible",
   // 询价
-  EngineerEnquiry: "eng.project.enquiry",
-  EngineerEnquiryProduct: "eng.project.enquiry.product",
-  EngineerEnquiryVisible: "eng.project.enquiry.visible",
+  EngineerEnquiry: 'eng.project.enquiry',
+  EngineerEnquiryProduct: 'eng.project.enquiry.product',
   // 订单
   EngineerOrder: 'eng.project.order',
   EngineerOrderProduct: 'eng.project.order.product',
   // 审批
-  EngineerApprove: 'eng.approve'
+  EngineerApprove: 'eng.approve',
+  EngineerVisible: 'eng.visible'
   //
 };

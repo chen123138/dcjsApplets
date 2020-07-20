@@ -1,5 +1,7 @@
-var api = require('../../utils/api.js')
-var util = require('../../utils/util.js')
+var app = getApp()
+var api = require('../utils/api.js')
+var util = require('../utils/util.js')
+
 
 Page({
 
@@ -15,20 +17,19 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let id = parseInt(options.id)
-        console.log(options.id)
+        let project_id = parseInt(options.project_id)
         this.setData({
-            project_id: id
+            project_id: project_id
         });
-        this.getList(id)
+        this.getList(project_id)
     },
 
-    getList: function (id) {
+    getList: function (project_id) {
         wx.showLoading({
             title: '加载中...',
         });
         let params = ["", [
-            ['project_id', '=', id]
+            ['project_id', '=', project_id]
         ]];
         let that = this;
         util.rpcName(1006, api.EngineerUser, params).then(function (res) {            
