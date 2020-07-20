@@ -1,0 +1,6 @@
+.wrapper {
+  margin: 0 40rpx;
+}
+.container {
+  height: 100%;
+}

@@ -1,0 +1,14 @@
+<!--page/guide/index.wxml-->
+
+<view class="container">
+  <scroll-view>
+  <!-- 指导书列表 -->
+    <block wx:for="{{list}}" wx:key="item">
+            <view class="list-item" data-id="{{item.id}}" bindtap="bindItemTap">
+                <view class="item-wrap">
+                    <view class="name">{{item.name}}</view>
+                </view>
+            </view>
+        </block>
+  </scroll-view>
+</view>

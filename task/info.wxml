@@ -1,0 +1,162 @@
+<!--answer.wxml-->
+<view class="container">
+    <view>
+        <view class="title-wrapper"> 
+            <text class="name">{{detail.name}}</text>
+            <text class="code">{{detail.code}}</text>
+        </view>
+
+        <view class="space"></view>
+
+        <view class="wrapper">
+            <label class="label">类别</label>
+            <view class="value" wx:if="{{detail.cate==1}}">任务</view>
+            <view class="value" wx:elif="{{detail.cate==2}}">零星</view>
+        </view>
+
+        <view class="wrapper">
+            <label class="label">成员</label>
+            <view class="value">
+                <view wx:for="{{user_ids}}" wx:key="item" wx:for-index="key" style="float: left;">
+                    <i wx:if="{{key!=0}}">,</i>{{item.project_user_id[1]}}             
+                </view>
+            </view>
+        </view>
+
+        <view class="wrapper">
+            <label class="label">时间</label>
+            <view class="value">{{detail.date}}</view>
+        </view>
+
+        <view class="wrapper">
+            <label class="label">状态</label>
+            <view class="value" wx:if="{{detail.state==1}}">指派中</view>
+            <view class="value" wx:elif="{{detail.state==2}}">进行中</view>
+            <view class="value" wx:elif="{{detail.state==3}}">验收中</view>
+            <view class="value" wx:elif="{{detail.state==4}}">已完成</view>
+            <view class="value" wx:elif="{{detail.state==0}}">已取消</view>
+        </view>
+
+        <view class="wrapper">
+            <label class="label">创建</label>
+            <view class="value">{{detail.create_uid[1]}}</view>
+        </view>
+
+        <view class="wrapper">
+            <label class="label">部位
+            {{user_ids[0]['project_user_id'][0]}}
+            {{detail.state}}
+            {{pid}}
+            </label>
+            <view class="value">{{detail.position}}</view>
+        </view>
+        <!-- 零星内容 -->
+        <view wx:if="{{detail.cate=='2'}}">
+            <view class="wrapper">
+                <label class="label">内容</label>
+                <view class="value"></view>
+            </view>
+            <view class="content-wrapper">
+                {{detail.content}}
+            </view>
+        
+            <view class="wrapper" wx:if="{{(user_ids[0]['project_user_id'][0]==pid && detail.state==2) || (detail.create_uid[0]==uid && detail.state==3)}}">
+                <label class="label">核量<i style="color:red">*</i></label>
+                <view class="value">{{detail.uom_id[1]}}</view>
+                <view class="value">
+                    <input type="number" data-tag="number" data-index="0" bindblur='bindInputChange' value="{{detail.number}}"/>
+                </view>
+            </view>
+
+            <view class="wrapper" wx:else>
+                <label class="label">数量</label>
+                <view class="value">{{detail.uom_id[1]}}</view>
+                <view class="value">{{detail.number}}</view>
+            </view>
+        </view>
+        <!-- 材料集合 -->
+        <view wx-if="{{detail.cate==1 && product!=''}}">
+            <view class='wrapper'>
+                <view wx:for="{{product}}" wx:key="item">
+                    <view class='tab {{currentData == index ? "tabBorer" : ""}}' data-current="{{index}}" bindtap='checkCurrent'>
+                        材料{{index+1}}
+                    </view>
+                </view>
+            </view>
+
+            <swiper current="{{currentData}}" class='swiper' style="height:132px;" duration="300" bindchange="bindchange">
+                <swiper-item wx:for="{{product}}" wx:key="item">
+                    <view class="content-wrapper">
+                        {{item.name}}
+                    </view>
+
+                    <view class="wrapper" wx:if="{{(user_ids[0]['project_user_id'][0]==pid && detail.state==2) || (detail.create_uid[0]==uid && detail.state==3)}}">
+                        <label class="label">核量<i style="color:red">*</i></label>
+                        <view class="value">{{item.uom_id[1]}}</view>
+                        <view class="value">
+                            <input type="number" data-tag="number" data-index="{{index}}" bindblur='bindInputChange' value="{{item.number}}"/>
+                        </view>
+                    </view>
+                    
+                    <view class="wrapper" wx:else>
+                        <label class="label">数量</label>
+                        <view class="value">{{item.uom_id[1]}}</view>
+                        <view class="value">{{item.number}}</view>
+                    </view>
+                    
+                    <view class="wrapper">
+                        <label class="label">指导</label>
+                        <label class="value" bindtap='getGuideInfo' data-id="{{item.guide_id[0]}}" style="color: royalblue;">[查看]</label>
+                        <view class="value">{{item.guide_id[1]}}</view>
+                    </view>
+                </swiper-item>
+            </swiper>
+        </view>
+        
+        <view wx:if="{{detail.state==3 || detail.state==4}}">
+            <view class="space"></view>
+            <view class="wrapper">
+                <label class="label">日志</label>
+                <view class="value"></view>
+            </view>
+            <view class="content-wrapper">
+                {{detail.logs}}
+            </view>
+        </view>
+
+        <!-- action -->
+        <form wx:if="{{user_ids[0]['project_user_id'][0]==pid || detail.create_uid[0]==uid}}" catchsubmit="formSubmit" catchreset="formReset">
+            <!-- 自检属性 -->
+            <view wx:if="{{user_ids[0]['project_user_id'][0]==pid && detail.state==2}}">
+                <view class="space"></view>
+                <view class="wrapper">
+                    <label class="label">日志<i style="color:red">*</i></label>
+                    <view class="value"></view>
+                </view>
+                <view class="content-wrapper">
+                    <textarea name="logs" placeholder="请输入" style="height: 5em;"/>
+                </view>
+            </view>
+            <!-- 验收属性 -->
+            <view wx:if="{{detail.create_uid[0]==uid && detail.state==3}}">
+                <view class="space"></view>
+                <view class="wrapper">
+                    <label class="label">规则<i style="color:red">*</i></label>
+                    <view class="arrow"></view>
+                    <picker bindchange="bindPickerChange" data-tag="divide" value="{{divide}}" range="{{divides}}" range-key='1'>
+                        <view class="value">{{divides[divide][1]}}</view>
+                    </picker>
+                </view>
+            </view>
+            
+            <view style="padding: 10 .9375rem;background-color: #fff;padding-top:30px;padding-bottom: 30px; margin: 0 40rpx; display: flex; justify-content: space-evenly;">
+                <button wx:if="{{user_ids[0]['project_user_id'][0]==pid && detail.state==1}}"  type="primary" size="mini" formType="submit">确认</button>
+                <button wx:elif="{{user_ids[0]['project_user_id'][0]==pid && detail.state==2}}" type="primary" size="mini" formType="submit">自检</button>
+                <button wx:elif="{{detail.create_uid[0]==uid && detail.state==3}}" type="primary" size="mini" formType="submit">验收</button>
+                
+                <button wx:if="{{detail.create_uid[0]==uid && (detail.state==1 || detail.state==2)}}" size="mini" type="warn" bindtap='bindCancel' >取消</button>
+            </view>
+        </form>
+    </view>
+</view>
+

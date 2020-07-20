@@ -1,0 +1,57 @@
+<!--user/index/index.wxml-->
+<view class="all">
+	<view class="menu"></view>
+	<view class="container1">
+		<!-- 信息展示 -->
+		<view class="header">
+			<view class="userinfo">
+				<open-data type="userAvatarUrl" class="userinfo-avatar"></open-data>
+				<open-data type="userNickName" class="userinfo-nickname"></open-data>
+			</view>
+			<!-- 公司 -->
+			<view class="companyImg">
+				<image src="/images/dachang.png" class="img"></image>
+				<!-- 职位 -->
+				<text class="name">现场经理</text>
+			</view>
+
+		</view>
+
+	</view>
+
+	<view class="container2">
+		<view class="body">
+			<view class="button" bindtap="goPlan">采购计划</view>
+			<view class="button" bindtap="goRequestBuy">采购申请</view>
+			<view class="button" bindtap="goOrder">采购订单</view>
+			<view class="button" bindtap="goList">任务工单</view>
+			<view class="button">材料变更</view>
+			<view class="button" bindtap="goApprove">审批</view>
+		</view>
+	</view>
+
+	<view class="container3" style="margin-top: 40rpx;">
+		<view class="item">
+			<view class="item-title">
+				<image src="http://qncdn.cwcoolboy.xyz/images/个人中心 - 中.png"></image>个人中心
+			</view>
+			<image src="/images/icon/next.png"></image>
+		</view>
+	</view>
+	<view class="container3">
+		<view class="item">
+			<view class="item-title">
+				<image src="http://qncdn.cwcoolboy.xyz/images/收 藏.png"></image>收藏
+			</view>
+			<image src="../images/icon/next.png"></image>
+		</view>
+	</view>
+	<view class="container3">
+		<view class="item">
+			<view class="item-title">
+				<image src="http://qncdn.cwcoolboy.xyz/images/设 置.png"></image>设置
+			</view>
+			<image src="../images/icon/next.png"></image>
+		</view>
+	</view>
+</view>

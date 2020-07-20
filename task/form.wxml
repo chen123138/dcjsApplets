@@ -1,0 +1,124 @@
+<view class="container">
+<view class="menu"></view>
+    <form catchsubmit="formSubmit">
+        <view class="wrapper">
+            <view class="label">类别</view>
+            <view class="value">
+                <radio-group class="radio-group" bindchange="bindRadioChange">
+                    <label class="radio" wx:for="{{cates}}" wx:key="item">
+                        <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.lable}}
+                    </label>
+                </radio-group>
+            </view>
+        </view>
+
+        <view class="wrapper">
+            <label class="label">项目</label>
+            <view class="arrow"></view>
+            <picker bindchange="bindPickerChange" data-tag="project" value="{{project}}" range="{{projects}}" range-key='1'>
+                <view class="value">{{projects[project][1]}}</view>
+            </picker>
+        </view>
+
+        <view class="wrapper">
+            <label class="label">成员</label>
+            <view class="arrow"></view>
+            <view bindtap="bindUsersTap" class="value">
+                {{users.length>0?users:'请选择'}}
+            </view>
+        </view>
+
+        <!-- TODO 时间合并为一个 -->
+        <view class="wrapper">
+            <label class="label">时间</label>            
+            <view class="value">
+                <view style="float: left;">
+                    <picker bindchange="bindPickerChange" mode="date" value="{{task.stt_date}}" data-tag="start" start="{{now_date}}">
+                        {{task.stt_date?task.stt_date:'预计开始'}}
+                    </picker>
+                </view>
+                <view style="float: left;padding-left: 5px;padding-right: 5px;"> ~ </view>                
+                <view style="float: left;">
+                    <picker bindchange="bindPickerChange" mode="date" value="{{task.end_date}}" data-tag="stop" start="{{now_date}}">
+                        {{task.end_date?task.end_date:'预计结束'}}
+                    </picker>
+                </view>
+            </view>
+        </view>
+        <!-- TODO 时间合并为一个 -->
+
+        <view class="wrapper">
+            <label class="label">部位</label>
+            <view class="value">
+                <input type="text" placeholder='请输入' data-tag="position" bindblur='bindInputChange' />
+            </view>
+        </view>
+
+        <view class="wrapper" wx:if="{{task.cate==1}}">
+            <label class="label">内容</label>
+            <view class="arrow"></view>
+            <picker bindchange="addNewWorker" value="{{product}}" data-tag="product" range="{{products}}" range-key='1'>
+                <view class="value">请添加</view>
+            </picker>
+        </view>
+
+        <view class="space" wx:if="{{task.cate==1}}"></view>
+        <view class='wrapper' wx:if="{{task.cate==1 && product_ids.length>0}}">
+            <view wx:for="{{product_ids}}" wx:key="item">
+                <view class='tab {{currentData == index ? "tabBorer" : ""}}' data-current="{{index}}" bindtap='checkCurrent'>
+                    材料{{index+1}}
+                </view>
+            </view>
+        </view>
+
+        <swiper wx:if="{{task.cate==1 && product_ids.length>0}}" current="{{currentData}}" class='swiper' style="height:175px;" duration="300" bindchange="bindchange">
+            <swiper-item wx:for="{{product_ids}}" wx:key="item">
+                <view class="content-wrapper">
+                    {{item.product?item.product:''}}
+                </view>
+
+                <view class="wrapper">
+                    <label class="label">数量</label>
+                    <view class="value">{{item.uom?item.uom:''}}</view>
+                    <view class="value">
+                        <input type="number" placeholder='请输入' data-tag="number" data-index="{{index}}" bindblur='bindInputGroupChange'/>
+                    </view>
+                </view>
+
+                <view class="wrapper">
+                    <label class="label">指导</label>
+                    <view class="arrow"></view>
+                    <picker bindchange="bindPickerGroupChange" data-tag="guide" data-index="{{index}}" range="{{guides}}" range-key='1'>
+                        <view class="value">{{item.guide?item.guide:'请选择'}}</view>
+                    </picker>
+                </view>
+
+                <view class="wrapper">
+                    <label class="label">操作</label>
+                    <view style="color:red;" class="value" data-index="{{index}}" bindtap='deleteWorker'>删除</view>
+                </view>
+            </swiper-item>
+        </swiper>
+
+        <view wx-if="{{task.cate==2}}">
+            <view class="wrapper">
+                <label class="label">内容</label>
+            </view>
+            <view class="content-wrapper">
+                <textarea data-tag="content" placeholder="请输入" style="height: 10em;" bindblur='bindInputChange'/>
+            </view>
+            <view class="space"></view>
+            <view class="wrapper">
+                <label class="label">计量</label>
+                <view class="value">{{uom?uom:''}}</view>
+                <view class="value">
+                    <input type="number" placeholder='请输入' data-tag="number" bindblur='bindInputChange'/>
+                </view>
+            </view>
+        </view>
+
+        <view style="height: 100rpx; width: 100%; diplay: flex; justfy-content: center; align-items: center;">
+            <button class="btn" size="mini" type="primary" formType="submit">提交</button>
+        </view>
+    </form>
+</view>

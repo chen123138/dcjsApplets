@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "page/load",
+    "page/auth",
+	
+    "guide/list",
+    "guide/info",
+	
+    "task/todo",
+    "task/list",
+    "task/info",
+	
+    "my/index"
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarTitleText": "达昌技术",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#42a5f5",
+    "enablePullDownRefresh": false
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#626567",
+    "selectedColor": "#0767c8",
+    "backgroundColor": "#FBFBFB",
+    "borderStyle": "white",
+    "list": [
+      {
+        "text": "待办",
+        "iconPath": "/images/todo.png",
+        "pagePath": "task/todo",
+        "selectedIconPath": "/images/todo_focus.png"
+      },
+      {
+        "text": "文库",
+        "iconPath": "/images/guide.png",
+        "pagePath": "guide/list",
+        "selectedIconPath": "/images/guide_focus.png"
+      },
+      {
+        "text": "我的",
+        "iconPath": "/images/my.png",
+        "pagePath": "my/index",
+        "selectedIconPath": "/images/my-focus.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}
