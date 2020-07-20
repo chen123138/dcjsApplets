@@ -24,15 +24,22 @@ module.exports = {
   EngineerUser: 'eng.project.user',
   EngineerSystem: 'eng.project.system',
   EngineerProduct: 'eng.project.product',
+  // 任务
   EngineerTask: 'eng.project.task',
   EngineerTaskUser: 'eng.project.task.user',
   EngineerTaskProduct: 'eng.project.task.product',
+  // 请购
   EngineerPurchase: 'eng.project.purchase',
   EngineerPurchaseProduct: 'eng.project.purchase.product',
-  EngineerflowRecord: 'eng.project.flow.record',
-  EngineerHouse: "eng.project.house",
-  EngineerFlowRecord: "eng.project.flow.record",
+  EngineerPurchaseVisible: "eng.project.enquiry.visible",
+  // 询价
+  EngineerEnquiry: "eng.project.enquiry",
+  EngineerEnquiryProduct: "eng.project.enquiry.product",
+  EngineerEnquiryVisible: "eng.project.enquiry.visible",
+  // 订单
   EngineerOrder: 'eng.project.order',
-  EngineerOrderProduct: 'eng.project.order.product'
+  EngineerOrderProduct: 'eng.project.order.product',
+  // 审批
+  EngineerApprove: 'eng.approve'
   //
 };

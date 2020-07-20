@@ -1,0 +1,97 @@
+<!--enquiry/index.wxml-->
+<!--purchase/list_detaial/index.wxml-->
+<view  class="details_container">
+  
+ <block  wx:for="{{approval}}" wx:key="item" >
+    <!-- 询价信息 -->
+    <view   class='box_title'>询价信息</view>
+    <view wx:for="{{approval}}" wx:key="item" class="box">
+     <view class="box_items">询价编号: {{item.code}} </view>
+      <view class="box_items">询价时间: {{item.create_date}} </view>
+      <view class="box_items">询价项目: {{item.project_id[1]}} </view>
+     <!--  <view class="box_items">请购人员: 乐二维 </view> -->
+      <view class="box_items" >询价人员: {{item.receive_user}} </view>
+      <view class="box_items">联系方式：{{item.receive_phone}}</view>
+      <!-- 请购方式 -->
+      <view class="box_items" wx:if="{{item.mode == 1}}">采购状态：委托采购</view>
+      <view class="box_items" wx:if="{{item.mode == 2}}">采购状态：现场采购</view>
+      <!-- 请购状态 -->
+<!--       <view class="box_items">状态:{{}} </view> -->
+      <view class="box_items">联系地址: </view>
+      <view class="box_items" style="margin-left: 50rpx">{{item.receive_address}}</view>
+      <view class="box_items" wx:if="{{item.remarks==false}}">备注: 无</view>
+      <view class="box_items" wx:else>备注: {{item.remarks}}</view>
+    </view>
+
+  </block>
+  
+   <view >
+            <view class='wrapper'>
+                <view wx:for="{{approval3}}" wx:key="item">
+                    <view class='tab {{currentData == index ? "tabBorer" : ""}}' data-current="{{index}}" bindtap='checkCurrent'>
+                        材料{{index+1}}
+                    </view>
+                </view>
+            </view>
+
+                
+            <swiper current="{{currentData}}" class='swiper' style="height:132px;" duration="300" bindchange="bindchange">
+                <swiper-item wx:for="{{approval3}}" wx:key="item">
+
+                <!-- 材料名称 -->
+                    <view class="content-wrapper">
+                        {{item.project_system_id[1]}}-{{item.project_product_id[1]}}-{{item.brand}}
+                    </view>
+
+                    <view class="wrapper" wx:if="{{(user_ids[0]['project_user_id'][0]==pid && detail.state==2) || (detail.create_uid[0]==uid && detail.state==3)}}">
+                        <label class="label">核量<i style="color:red">*</i></label>
+                        <view class="value">{{item.uom_id[1]}}</view>
+                        <view class="value">
+                            <input type="number" data-tag="number" data-index="{{index}}" bindblur='bindInputChange' value="{{item.number}}"/>
+                        </view>
+                    </view>
+                    
+                    <view class="wrapper" wx:else>
+                        <label class="label">数量</label>
+                        <view class="value">{{item.uom_id[1]}}</view>
+                        <view class="value">{{item.number}}</view>
+                    </view>
+                    
+                    <view class="wrapper">
+                        <label class="label">指导</label>
+                        <label class="value" bindtap='getGuideInfo' data-id="{{item.guide_id[0]}}" style="color: royalblue;">[查看]</label>
+                        <view class="value">{{item.guide_id[1]}}</view>
+                    </view>
+                </swiper-item>
+            </swiper>
+        </view>
+
+ 
+    <!-- 审批状态 -->
+    <view   class='box_title'>审批状态</view>
+    <view wx:for="{{approval2}}" wx:key="item" class="box">
+     <view class="box_items">审批人员: {{item.user_id[1]}}-{{item.write_uid[1]}}
+
+     </view>
+
+      <view class="box_items" wx:if="{{item.state=='0'}}">审批状态: 未审
+
+    <button wx:if="{{item.act_button=='Y'}}" size="mini" style="float:right" type="primary" bindtap="ApprovalConfirm">确定</button>
+    <button wx:if="{{item.act_button=='Y'}}" size="mini" style="float:right" type="warm" bindtap="ApprovalReject" >驳回</button>
+</view>
+
+    <view class="box_items" wx:if="{{item.state=='1'}}">审批状态: 通过 </view>
+    <view class="box_items" wx:if="{{item.state=='2'}}">审批状态: 驳回 </view>
+
+    </view>
+
+<!--     可见抄送 -->  
+    <view   class='box_title'>抄送</view>
+    <view wx:for="{{approval4}}" wx:key="item" class="box">
+     <view class="box_items">抄送人员: {{item.user_id[1]}}-{{item.write_uid[1]}}</view>
+    </view>
+<!--     按钮 -->
+<view class="Btn" id="button1">
+    <button type="default" bindtap="cancel">取消订单</button>
+</view>
+</view>
