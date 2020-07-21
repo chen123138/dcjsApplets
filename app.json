@@ -56,9 +56,5 @@
     "request": 10000,
     "downloadFile": 10000
   },
-  "debug": true,
-  "useExtendedLib": {
-    "kbone": true,
-    "weui": true
-  }
+  "debug": true
 }

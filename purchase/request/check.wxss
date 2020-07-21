@@ -137,9 +137,10 @@ color:  #919a9f;
 .product {
   margin-top: 0;
 }
-picker {
+.picker {
   margin-left: 30rpx;
-  margin-bottom: 30rpx
+  margin-bottom: 30rpx;
+  display: flex;
 }
 
 .brand {

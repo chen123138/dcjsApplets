@@ -2,7 +2,7 @@
 /* .container {
     height: 1500rpx;
 } */
-
+/* 
 .worker-click{
     height: 120rpx;
     width: 120rpx;
@@ -21,7 +21,7 @@
     max-width: 80rpx;
     color: #fff;
     text-align: center;
-    /* background-color: blue; */
+
   }
   .worker-click navigator image {
     width: 80rpx;
@@ -32,4 +32,4 @@
     margin-left: 25rpx!important;
   }
 
-
+ */

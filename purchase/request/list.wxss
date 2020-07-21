@@ -6,7 +6,7 @@
     height: 1500rpx;
 } */
 
-.worker-click{
+/* .worker-click{
   height: 120rpx;
   width: 120rpx;
   background-color: #42a5f5;
@@ -24,7 +24,6 @@
   max-width: 80rpx;
   color: #fff;
   text-align: center;
-  /* background-color: blue; */
 }
 .worker-click navigator image {
   width: 80rpx;
@@ -33,4 +32,4 @@
 
 .row_title {
   margin-left: 25rpx!important;
-}
+} */

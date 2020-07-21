@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "mp-searchbar": "/miniprogram_npm/weui-miniprogram/searchbar/searchbar"
+    "SearchBar": "/components/searchBox/index"
   },
   "navigationBarTitleText": "添加材料"
 }

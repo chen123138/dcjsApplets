@@ -70,7 +70,7 @@ Page({
     let params = [
       ["id", "=", m]
     ]
-    let fields = ["project_id", "number", "system_id",  "product_id", "brand", "type", "uom_id","remarks"]
+    let fields = ["project_id", "number", "project_system_id",  "product_id", "brand", "type", "uom_id","remarks"]
     let that = this;
     util.rpcList(1000, api.EngineerProduct, params, fields, 1000, '').then(function (res) {
       console.log("res",res)
@@ -121,7 +121,7 @@ Page({
   // 提交信息
   Submit: function() {
     console.log("data", this.data.list)
-    let listData = this.data.list.slice()
+    let listData = this.data.list
     let product = {}
     let productLists = []
     for (let i = 0; i < listData.length; i++) {
@@ -131,12 +131,13 @@ Page({
       product.pack = listData[i].uom_id[1]
       product.project_id = listData[i].project_id[0]
       product.project_product_id = listData[i].id
-      product.project_system_id = listData[i].system_id[0]
+      product.project_system_id = listData[i].project_system_id[0]
       product.remarks = listData[i].remarks
       product.sn = i+1
       product.type = listData[i].type
       product.uom_id = listData[i].uom_id[0]
-      productLists.push([0, "virtual_" + i, product])
+      console.log("product", product)
+      productLists = [0, "virtual_" + i, product]
     }
     console.log("productLists", productLists)
     console.log("listData", listData)

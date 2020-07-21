@@ -1,16 +1,15 @@
 <!--purchase/list/index.wxml-->
-<view class="list_container">
-<view class="menu"></view>
+<view class="page_bg">
 	<view class="worker-click">
 		<navigator url='/select/project'><image src='/images/add.png'></image></navigator>
 	</view>
 	<scroll-view wx:if="{{list.length}}" scroll-y="true" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
 		<block wx:for="{{list}}" wx:key="item">
-			<view class="row" data-id="{{item.id}}" data-pid="{{item.project_purchase_product_ids}}" bindtap="bindItemTap">
-				<view class="row_title">
+			<view class="diy_item" data-id="{{item.id}}" data-pid="{{item.project_purchase_product_ids}}" bindtap="bindItemTap">
+				<view class="diy_item_title item_space">
 					<view>{{item.display_name}}</view>
 				</view>
-				<view class="row_body">
+				<view class="diy_item_body">
 					<view class="row_number" wx:if="{{item.buy_mode==1}}">委托采购</view>
           <view class="row_number" wx:if="{{item.buy_mode==2}}">现场采购</view>
 
