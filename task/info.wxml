@@ -1,55 +1,38 @@
 <!--answer.wxml-->
-<view class="container">
+<view  class="details_container">
     <view>
         <view class="title-wrapper"> 
             <text class="name">{{detail.name}}</text>
             <text class="code">{{detail.code}}</text>
         </view>
+ <block>
+        <view class='box_title'>
+			<image src="/images/基础信息.png"></image>基础信息
+		</view>
 
-        <view class="space"></view>
+    <view class="box">
+            <view class="box_items" wx:if="{{detail.cate==1}}">类别:任务 </view>
+            <view class="box_items" wx:if="{{detail.cate==2}}">类别:零星 </view>
+            <view class="box_items">时间：{{detail.date}}</view>
 
-        <view class="wrapper">
-            <label class="label">类别</label>
-            <view class="value" wx:if="{{detail.cate==1}}">任务</view>
-            <view class="value" wx:elif="{{detail.cate==2}}">零星</view>
-        </view>
+            <!-- 状态信息 -->
+            <view class="box_items" wx:if="{{detail.state==1}}">状态：指派中</view>
+            <view class="box_items" wx:elif="{{detail.state==2}}">状态：进行中</view>
+            <view class="box_items" wx:elif="{{detail.state==3}}">状态：验收中</view>
+            <view class="box_items" wx:elif="{{detail.state==4}}">状态：已完成</view>
+            <view class="box_items" wx:elif="{{detail.state==0}}">状态：已取消</view>
 
-        <view class="wrapper">
-            <label class="label">成员</label>
-            <view class="value">
-                <view wx:for="{{user_ids}}" wx:key="item" wx:for-index="key" style="float: left;">
-                    <i wx:if="{{key!=0}}">,</i>{{item.project_user_id[1]}}             
-                </view>
-            </view>
-        </view>
-
-        <view class="wrapper">
-            <label class="label">时间</label>
-            <view class="value">{{detail.date}}</view>
-        </view>
-
-        <view class="wrapper">
-            <label class="label">状态</label>
-            <view class="value" wx:if="{{detail.state==1}}">指派中</view>
-            <view class="value" wx:elif="{{detail.state==2}}">进行中</view>
-            <view class="value" wx:elif="{{detail.state==3}}">验收中</view>
-            <view class="value" wx:elif="{{detail.state==4}}">已完成</view>
-            <view class="value" wx:elif="{{detail.state==0}}">已取消</view>
-        </view>
-
-        <view class="wrapper">
-            <label class="label">创建</label>
-            <view class="value">{{detail.create_uid[1]}}</view>
-        </view>
-
-        <view class="wrapper">
-            <label class="label">部位
+        <view class="box_items">创建：{{detail.create_uid[1]}}</view>
+        <view class="box_items">部位：
             {{user_ids[0]['project_user_id'][0]}}
             {{detail.state}}
             {{pid}}
-            </label>
-            <view class="value">{{detail.position}}</view>
+            -{{detail.position}}
         </view>
+
+    </view>
+</block>
+
         <!-- 零星内容 -->
         <view wx:if="{{detail.cate=='2'}}">
             <view class="wrapper">
@@ -74,7 +57,7 @@
                 <view class="value">{{detail.number}}</view>
             </view>
         </view>
-        <!-- 材料集合 -->
+        <!-- 材料集合 --><!-- 
         <view wx-if="{{detail.cate==1 && product!=''}}">
             <view class='wrapper'>
                 <view wx:for="{{product}}" wx:key="item">
@@ -122,7 +105,52 @@
             <view class="content-wrapper">
                 {{detail.logs}}
             </view>
-        </view>
+        </view> -->
+    <view class='box_title'>
+		<image src="/images/材料.png"></image>材料明细
+	</view>
+
+	<block wx:for="{{product}}" wx:key="item">
+		<!-- 材料明细 -->
+		<view class='box'>
+
+			<view class='box_items'>
+				<view class="product">
+					<view class="product_title">
+						<view class="left_title">
+							<!--  -->
+							<text>{{item.project_product_id[1]}}</text>
+						</view>
+						<view class="right_title">
+							<!-- 系统 -->
+							<text>系统: {{item.project_system_id[1]}}</text>
+						</view>
+					</view>
+
+                    <view class="right_title">
+                        <label class="label">指导</label>
+                        <label class="value" bindtap='getGuideInfo' data-id="{{item.guide_id[0]}}" style="color: royalblue;">[查看]</label>
+                        <view class="value">{{item.guide_id[1]}}</view>
+                    </view>
+
+                    <view wx:if="{{detail.state==3 || detail.state==4}}">
+                        <view class="space"></view>
+                        <view class="wrapper">
+                            <label class="label">日志</label>
+                            <view class="value"></view>
+                        </view>
+                        <view class="content-wrapper">
+                            {{detail.logs}}
+                        </view>
+                        </view>
+                    </view>
+                    <view class="product_main">
+						<!-- 数量 -->
+						<view class="input">数量: {{item.number}} {{item.uom_id[1]}}</view>
+					</view>
+			</view>
+		</view>
+	</block>
 
         <!-- action -->
         <form wx:if="{{user_ids[0]['project_user_id'][0]==pid || detail.create_uid[0]==uid}}" catchsubmit="formSubmit" catchreset="formReset">
@@ -149,12 +177,12 @@
                 </view>
             </view>
             
-            <view style="padding: 10 .9375rem;background-color: #fff;padding-top:30px;padding-bottom: 30px; margin: 0 40rpx; display: flex; justify-content: space-evenly;">
-                <button wx:if="{{user_ids[0]['project_user_id'][0]==pid && detail.state==1}}"  type="primary" size="mini" formType="submit">确认</button>
-                <button wx:elif="{{user_ids[0]['project_user_id'][0]==pid && detail.state==2}}" type="primary" size="mini" formType="submit">自检</button>
-                <button wx:elif="{{detail.create_uid[0]==uid && detail.state==3}}" type="primary" size="mini" formType="submit">验收</button>
+            <view class="button-sp-area">
+                <button class="weui-btn weui-btn_mini weui-btn_primary" wx:if="{{user_ids[0]['project_user_id'][0]==pid && detail.state==1}}"  type="primary" size="mini" formType="submit">确认</button>
+                <button class="weui-btn weui-btn_mini weui-btn_primary" wx:elif="{{user_ids[0]['project_user_id'][0]==pid && detail.state==2}}" type="primary" size="mini" formType="submit">自检</button>
+                <button class="weui-btn weui-btn_mini weui-btn_primary" wx:elif="{{detail.create_uid[0]==uid && detail.state==3}}" type="primary" size="mini" formType="submit">验收</button>
                 
-                <button wx:if="{{detail.create_uid[0]==uid && (detail.state==1 || detail.state==2)}}" size="mini" type="warn" bindtap='bindCancel' >取消</button>
+                <button class="weui-btn weui-btn_mini weui-btn_primary" wx:if="{{detail.create_uid[0]==uid && (detail.state==1 || detail.state==2)}}" size="mini" type="warn" bindtap='bindCancel' >取消</button>
             </view>
         </form>
     </view>

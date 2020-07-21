@@ -1,6 +1,10 @@
 {
   "usingComponents": {
+<<<<<<< HEAD
     "SearchBar": "/components/searchBox/index"
+=======
+
+>>>>>>> 0c9e7959171a08de1406fc5d0376c470cc02e093
   },
   "navigationBarTitleText": "添加材料"
 }

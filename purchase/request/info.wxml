@@ -13,15 +13,17 @@
 			<view class="box_items" wx:if="{{item.buy_mode == 1}}">采购状态：委托采购</view>
 			<view class="box_items" wx:if="{{item.buy_mode == 2}}">采购状态：现场采购</view>
 			<!-- 请购状态 -->
-			<!-- <view class="box_items">{{item.state}}</view> -->
+
 			<view class="box_items" wx:if="{{item.state=='0'}}">请购状态: 起稿中</view>
 					<view class="box_items" wx:if="{{item.state=='1'}}">请购状态: 审批中</view>
 					<view class="box_items" wx:if="{{item.state=='2'}}">请购状态: 询价单</view>
 			<view class="box_items">收货信息: </view>
 			<view class="box_items" style="margin-left: 40rpx; font-size: 30rpx; ">{{item.receive_address}} {{item.receive_phone}} {{item.receive_user}}</view>
-			<view class="box_items">备注: {{item.remarks}}</view>
+        <view class="box_items" wx:if="{{item.remarks==false}}">备注: 无</view>
+        <view class="box_items" wx:else>备注: {{item.remarks}}</view>
 		</view>
 	</block>
+	
 	<view class='box_title'>
 		<image src="/images/材料.png"></image>材料明细
 	</view>

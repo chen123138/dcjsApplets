@@ -7,6 +7,7 @@ Page({
   /**
    * 页面的初始数据
    */
+  
   data: {
     product_id: "",
     list: [],
@@ -56,7 +57,7 @@ Page({
         console.log("info：", info)
         that.setData({
           list: res.records,
-          state: res.records[0].state
+          //state: res.records[0].state
         })
         console.log(typeof that.data.state)
         
