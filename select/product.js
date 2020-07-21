@@ -32,7 +32,7 @@ Page({
       product_list: this.unique(this.data.product_list)
     })
     wx.navigateTo({
-      url: '../application/index'
+      url: '/purchase/request/check'
     })
   },
   checkboxChange(e) {

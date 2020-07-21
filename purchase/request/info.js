@@ -54,13 +54,13 @@ Page({
     util.rpcList(1000, api.EngineerPurchase, params, fields, 1, 'id DESC').then(
       function (res) {
         let info = res.records[0]
+        console.log("info：", info)
         that.setData({
           list: res.records,
           //state: res.records[0].state
         })
         console.log(typeof that.data.state)
-
-        // 取创建人列表
+        
         if (info.project_purchase_product_ids.length > 0) {
           util.rpcRead(1005, api.EngineerPurchaseProduct, info.project_purchase_product_ids, []).then(function (res) {
             var createdId = res[0].create_uid[0]
