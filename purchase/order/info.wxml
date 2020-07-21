@@ -16,7 +16,9 @@
 	</view>
 
 	<!-- 供应商信息 -->
-	<view class='box_title margin'>项目编号: {{order_list[0].code}}</view>
+	<view class='box_title'>
+		<image src="/images/基础信息.png"></image>项目编号: {{order_list[0].code}}
+	</view>
 	<view class="box">
 		<view class="box_items">所属项目: {{order_list[0].project_id[1]}}</view>
 		<view class="box_items">收货人员：{{order_list[0].receive_user}}</view>
@@ -25,7 +27,9 @@
 		<view class="box_items">供应商：{{order_list[0].partner_id[1]}}</view>
 		<view class="box_items">订单人员：{{order_list[0].user_id[1]}}</view>
 	</view>
-	<view class='box_title'>材料信息</view>
+  	<view class='box_title'>
+		<image src="/images/材料.png"></image>材料信息
+	</view>
 	<block wx:for="{{project_order_product_list}}" wx:key="item">
 		<view class="box">
 			<view class="box_items">系统: {{item.project_system_id[1]}}</view>
@@ -38,9 +42,13 @@
 			<view class="box_items">时间: {{item.date}}</view>
 			<view class="box_items">单价: {{item.price}}</view>
 			<view class="box_items">小计: {{item.subtotal}}</view>
-			<view class="box_items">备注: {{item.remarks}}</view>
+			<view class="box_items" wx:if="{{item.remarks==false}}">备注: 无</view>
+			<view class="box_items" wx:else >备注：{{item.remarks}}</view>
 		</view>
 	</block>
-	<button class="btn" type="primary" bindtap="goPay">确认</button>
+	<view class="buttons">	
+		<button size="mini" type="primary" bindtap="goPay">确认</button>
+	</view>
+
 	<!-- <button class="btn" type="primary" wx:if="{{i(sCreated == 1 || order_list[0].code == 1)}}" bindtap="goPay">确认</button> -->
 </view>

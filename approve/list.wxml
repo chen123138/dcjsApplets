@@ -1,9 +1,6 @@
 <!--purchase/list/index.wxml-->
 <view class="list_container">
     <view class="menu"></view>
-    <!-- 	<view class="worker-click">
-		<navigator url='../project/index'><image src='../../images/icon/加号.png'></image></navigator>
-	</view> -->
     <scroll-view wx:if="{{list.length}}" scroll-y="true" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
         <block wx:for="{{list}}" wx:key="item">
 
@@ -12,12 +9,7 @@
                     <view>{{item.display_name}}</view>
                 </view>
                 <view class="row_body">
-
-
                     <view class="row_state" wx:if="{{item.flow_type_id[0]==1}}">请购流程</view>
-                    <view class="row_state" wx:elif="{{item.flow_type_id[0]==2}}">询价流程</view>
-
-
                     <view class="row_time">{{item.create_date}}</view>
                 </view>
             </view>
@@ -27,12 +19,7 @@
                     <view>{{item.display_name}}</view>
                 </view>
                 <view class="row_body">
-
-
-                    <view class="row_state" wx:if="{{item.flow_type_id[0]==1}}">请购流程</view>
-                    <view class="row_state" wx:elif="{{item.flow_type_id[0]==2}}">询价流程</view>
-
-
+                    <view class="row_state" wx:if="{{item.flow_type_id[0]==2}}">询价流程</view>
                     <view class="row_time">{{item.create_date}}</view>
                 </view>
             </view>

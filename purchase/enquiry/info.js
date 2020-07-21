@@ -9,12 +9,10 @@ Page({
    */
   data: {
     product_id: "",
-    list: [],
-    approval: [],
-    approval2: [],
-    approval3: [],
-    approval4: [],
-    approval5: []
+    approval: [],    //询价信息
+    approval_state: [],  //状态
+    approval_product: [], //材料
+    approval_visible: [],  //抄送
   },
 
   /**
@@ -62,7 +60,7 @@ Page({
       if (info.approve_ids.length > 0) {
         util.rpcRead(1005, api.EngineerApprove, info.approve_ids, []).then(function(res) {
           that.setData({
-            approval2: res
+            approval_state: res
           })
 
           console.log("审批状态：")
@@ -74,7 +72,7 @@ Page({
       if (info.project_enquiry_product_ids.length > 0) {
         util.rpcRead(1005, api.EngineerEnquiryProduct, info.project_enquiry_product_ids, []).then(function(res) {
           that.setData({
-            approval3: res
+            approval_product: res
           })
 
           console.log("材料信息：")
@@ -86,7 +84,7 @@ Page({
       if (info.visible_ids.length > 0) {
         util.rpcRead(1005, api.EngineerVisible, info.visible_ids, []).then(function(res) {
           that.setData({
-            approval4: res
+            approval_visible: res
           })
 
           console.log("可见抄送：")
@@ -97,13 +95,6 @@ Page({
 
 
     })
-
-
-
-
-
-
-
     wx.hideLoading();
   },
   //获取当前滑块的index
