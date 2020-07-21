@@ -1,47 +1,18 @@
-var app = getApp()
-var api = require('../utils/api.js')
-var util = require('../utils/util.js')
-
+// ceshi/ceshi.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    projectList: []
+
   },
-
-
-
-  // 选择材料
-  goApplication: function(e) {
-    console.log("传递项目id：")
-    console.log(e.currentTarget.dataset.id)
-    console.log("传递项目名：")
-    console.log(e.currentTarget.dataset.name)
-
-    wx.navigateTo({
-      url: './product?projectName=' + e.currentTarget.dataset.name + '&projectId=' + e.currentTarget.dataset.id,
-    })
-  },
-
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getProjectList()
-  },
 
-  getProjectList: function() {
-    var that = this
-    util.rpcList(1000, api.EngineerProject, [], [], 100, '').then(function(res) {
-      console.log("项目列表：")
-      console.log(res)
-      that.setData({
-        projectList: res.records
-      })
-    })
   },
 
   /**

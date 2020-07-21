@@ -10,7 +10,11 @@
     "task/list",
     "task/info",
 	
-    "my/index"
+    "my/index",
+
+    "select/product",
+    "select/project",
+    "select/user"
 
   ],
   "window": {
@@ -52,5 +56,9 @@
     "request": 10000,
     "downloadFile": 10000
   },
-  "debug": true
+  "debug": true,
+  "useExtendedLib": {
+    "kbone": true,
+    "weui": true
+  }
 }

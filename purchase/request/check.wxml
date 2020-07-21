@@ -1,0 +1,83 @@
+<!--application/index.wxml-->
+<view class="container">
+  <form catchsubmit="formSubmit">
+    <view class="container2-title">项目信息</view>
+    <view class="wrapper">
+      <view class="label">请购项目： {{project_name}}</view>
+    </view>
+    <view class="wrapper">
+      <view class="label">采购方式</view>
+      <view class="value">
+        <radio-group class="radio-group" bindchange="bindRadioChange">
+          <label class="radio" wx:for="{{cates}}" wx:key="item">
+            <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.lable}}
+          </label>
+        </radio-group>
+      </view>
+    </view>
+
+    <!-- 收货信息 -->
+    <view class="container2-title">收货信息</view>
+    <view class="wrapper">
+      <view class="label">
+        <text>收货人：</text>
+        <input bindinput="user"></input>
+      </view>
+    </view>
+    <view class="wrapper">
+      <view class="label">
+        <text>联系电话：</text>
+        <input bindinput="phone"></input>
+      </view>
+    </view>
+    <view class="wrapper">
+      <view class="label">
+        <text>收货地址：</text>
+        <input bindinput="house"></input>
+      </view>
+    </view>
+
+    <view class="container2-title">材料详情</view>
+    <view class="product_container">
+      <block wx:for="{{list}}" wx:key="item.index">
+        <view class="product">
+          <image class="cancel" bindtap="cancel" data-index="{{index}}" src="http://qncdn.cwcoolboy.xyz/images/取消.png"></image>
+          <view class="product_title">
+            <view class="left_title">
+              <!-- 产品 -->
+              <text>{{item.product_id[1]}}</text>
+            </view>
+            <view class="right_title">
+              <!-- 系统 -->
+              <text>{{item.system_id[1]}}</text>
+              <!--品牌  -->
+              <view class='brand'>
+                <text>{{item.brand}}</text>
+                <text>{{item.type}}</text>
+              </view>
+
+            </view>
+          </view>
+          <view class="product_main">
+            <!-- 数量 -->
+            <view class="input">数量:
+              <input type='number' data-index="{{index}}" bindblur='bindBlur'></input>{{item.uom_id[1]}}
+            </view>
+            <!-- 到货时间 -->
+            <picker mode="date" value="{{date}}" data-index="{{index}}" start="2020-07-02" end="2020-12-31" bindchange="bindDateChangeDate">
+              <view class="picker">
+                <text>到货时间：{{item.date}}</text>
+              </view>
+            </picker>
+          </view>
+        </view>
+
+      </block>
+    </view>
+
+    <view class="btnContainer">
+      <!-- <button type="warn" size="mini" bindtap="Save">保存</button> -->
+      <button type="primary" size="mini" bindtap='Submit'>提交</button>
+    </view>
+  </form>
+</view>

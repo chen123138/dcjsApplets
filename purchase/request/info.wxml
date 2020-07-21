@@ -28,7 +28,6 @@
 	<block wx:for="{{purchase}}" wx:key="item">
 		<!-- 材料明细 -->
 		<view class='box'>
-
 			<view class='box_items'>
 				<view class="product">
 					<view class="product_title">
@@ -65,7 +64,7 @@
 				<!-- 进度条 -->
 				<view class='approval_container'>
 					<!-- <image class="fj" src="/images/发起流程线.png"></image> -->
-					<image class="xt" src="/images/icon/流程箭头.png"></image>
+					<image class="xt" src="/images/流程箭头.png"></image>
 					<view class='square'>
 						<image src='/images/maner.png'></image>
 					</view>
