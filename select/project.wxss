@@ -1,11 +1,10 @@
 /* requestBuy/project/index.wxss */
 
-.project_container {
+/* .project_container {
   margin: 0 40rpx;
 }
 
 .project_title {
-  /* background-color: red; */
   font-size: larger;
   height: 140rpx;
   width: 300rpx;
@@ -19,7 +18,6 @@
 }
 .project_main {
   height: 150rpx;
-  /* width: 100%; */
   background-color: rgb(202, 168, 168);
   border-radius: 20rpx;
   margin-top: 20rpx;
@@ -35,6 +33,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: aliceblue;
-}
+} */
+
 
 

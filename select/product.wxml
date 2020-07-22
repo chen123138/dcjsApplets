@@ -1,34 +1,36 @@
 <!--page/material/material.wxml-->
 <!-- 搜索框 -->
-<view class="searchBar">
-	<SearchBar id="SearchBar" addflag="{{addflag}}" addimg="{{addimg}}" bind:addhandle="addhandle" searchstr="{{searchstr}}" bind:searchList="searchList" bind:endsearchList="endsearchList" bind:cancelsearch="cancelsearch" bind:activity_clear="activity_clear"></SearchBar>
-	<!-- <SearchBar>
+<view class="container">
+	<view class="searchBar">
+		<SearchBar id="SearchBar" addflag="{{addflag}}" addimg="{{addimg}}" bind:addhandle="addhandle" searchstr="{{searchstr}}" bind:searchList="searchList" bind:endsearchList="endsearchList" bind:cancelsearch="cancelsearch" bind:activity_clear="activity_clear"></SearchBar>
+		<!-- <SearchBar>
   </SearchBar> -->
-</view>
-
-<view class="select">
-	<block wx:for="{{system_name}}" wx:key="item">
-		<view class="btn {{currentSelectTripType == 'noActive' ? 'active' : ' '}}" bindtap='selectSystem' data-name='{{item.name}}'>{{item.name}}</view>
-	</block>
-</view>
-<view class="container searchMenu">
-	<checkbox-group bindchange="checkboxChange">
-		<label wx:for="{{list}}" wx:key="item">
-			<view class="list-item" data-id="{{item.id}}" bindtap="bindItemTap">
-				<view class="item-wrap">
-					<checkbox value="{{item.id}}" checked="{{item.checked}}" />
-					<view class="nameList">
-						<view class="name">{{item.product_id[1]}}</view>
-						<view class="name">{{item.brand}}</view>
-						<view class="name">{{item.type}}</view>
-					</view>
-
-				</view>
-			</view>
-		</label>
-		<view class="button">
-			<button class="btns" bindtap="goApplication">确定</button>
+	</view>
+	<view class="select_box">
+		<view class="select">
+			<block wx:for="{{system_name}}" wx:key="item">
+				<view class="btn {{currentSelectTripName == item.name?'select_system':'' }}" bindtap='selectSystem' data-name='{{item.name}}'>{{item.name}}</view>
+			</block>
 		</view>
-
-	</checkbox-group>
+		<view class="search_menu">
+			<checkbox-group bindchange="checkboxChange">
+				<label wx:for="{{list}}" wx:key="item">
+					<view class="project_item padding" data-id="{{item.id}}" bindtap="bindItemTap">
+						<view class="item_wrap">
+							<checkbox value="{{item.id}}" checked="{{item.checked}}" />
+							<view class="nameList padding">
+								<view class="name">{{item.product_id[1]}}</view>
+								<view class="name">{{item.brand}}</view>
+								<view class="name">{{item.type}}</view>
+							</view>
+						</view>
+					</view>
+					<view class="space"></view>
+				</label>
+				<view class="button">
+					<button class="btns" bindtap="goApplication">确定</button>
+				</view>
+			</checkbox-group>
+		</view>
+	</view>
 </view>

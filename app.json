@@ -2,20 +2,16 @@
   "pages": [
     "page/load",
     "page/auth",
-	
     "guide/list",
     "guide/info",
-	
     "task/todo",
     "task/list",
     "task/info",
-	
     "my/index",
-
     "select/product",
     "select/project",
     "select/user"
-
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

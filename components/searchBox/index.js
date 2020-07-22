@@ -1,7 +1,4 @@
 
-// 本组件为搜索组件
-// 需要传入addflag   值为true / false （搜索框右侧部分）
-// 若显示搜索框右侧部分   需传入右侧图标url以及addhandle函数
 
 Component({
 

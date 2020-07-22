@@ -1,6 +1,6 @@
-<view class="container">
+<view class="container padding">
     <view class="wrapper" style="text-align: center;">
-        {{info['system_id'][1]}} {{info['name']}}
+        {{info['system_id'][1]}} {{ info['name']}}
     </view>
     <view class="content-wrapper">
         <rich-text class='content' nodes="{{info['content']}}"></rich-text>

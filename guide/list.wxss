@@ -1,6 +1,6 @@
 /* page/guide/index.wxss */
 
-.container {
+/* .container {
   height: 100vh;
   width: 100vw;
   background-color: #ededed;
@@ -17,4 +17,4 @@
 
 .name {
   margin: 0!important;
-}
+} */

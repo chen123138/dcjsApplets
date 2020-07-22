@@ -6,10 +6,10 @@ var util = require('../utils/util.js')
 Page({
   data: {
     list: [],
-    addflag: false,  //判断是否显示搜索框右侧部分
+    addflag: false, 
     addimg: '../../images/icon/加号.png',
     searchstr: '',
-    currentSelectTripType: 'noActive',
+    currentSelectTripName: '',
     project_name: "",
     project_id: '',
     product_list: [],
@@ -157,7 +157,7 @@ Page({
     console.log("选择系统：")
     console.log(e.currentTarget.dataset.name)
     this.setData({
-      currentSelectTripType: "active"
+      currentSelectTripName: e.currentTarget.dataset.name
     })
 
     this.getList(this.data.project_name, e.currentTarget.dataset.name)
