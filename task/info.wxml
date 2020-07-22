@@ -1,35 +1,38 @@
 <!--answer.wxml-->
-<view  class="details_container">
+<view  class="container">
     <view>
-        <view class="title-wrapper"> 
-            <text class="name">{{detail.name}}</text>
-            <text class="code">{{detail.code}}</text>
+        <view class="info_code,padding"> 
+            <text >{{detail.name}}</text>
+            <text class="info_product_code">{{detail.code}}</text>
         </view>
+<view class="space"></view>
  <block>
-        <view class='box_title'>
+<!--         <view class='box_title'>
 			<image src="/images/基础信息.png"></image>基础信息
-		</view>
+		</view> -->
 
-    <view class="box">
-            <view class="box_items" wx:if="{{detail.cate==1}}">类别:任务 </view>
-            <view class="box_items" wx:if="{{detail.cate==2}}">类别:零星 </view>
-            <view class="box_items">时间：{{detail.date}}</view>
+    <view class="info_receive padding">
+        <view class="into_left" wx:if="{{detail.cate==1}}">类别:任务</view>
+        <view class="into_left" wx:if="{{detail.cate==2}}">类别:零星</view>
+        <view class="into_right" wx:if="{{detail.state==1}}">状态：指派中</view>
+        <view class="into_right" wx:elif="{{detail.state==2}}">状态：进行中</view>
+        <view class="into_right" wx:elif="{{detail.state==3}}">状态：验收中</view>
+        <view class="into_right" wx:elif="{{detail.state==4}}">状态：已完成</view>
+        <view class="into_right" wx:elif="{{detail.state==0}}">状态：已取消</view>
+    </view>	
 
-            <!-- 状态信息 -->
-            <view class="box_items" wx:if="{{detail.state==1}}">状态：指派中</view>
-            <view class="box_items" wx:elif="{{detail.state==2}}">状态：进行中</view>
-            <view class="box_items" wx:elif="{{detail.state==3}}">状态：验收中</view>
-            <view class="box_items" wx:elif="{{detail.state==4}}">状态：已完成</view>
-            <view class="box_items" wx:elif="{{detail.state==0}}">状态：已取消</view>
+    <view class="info_receive padding">
+        <view class="into_left">{{detail.date}}</view>
+        <view class="into_right">创建人：{{detail.create_uid[1]}}</view>
+    </view>  
 
-        <view class="box_items">创建：{{detail.create_uid[1]}}</view>
-        <view class="box_items">部位：
+    <view class="info_receive padding">
+        <view class="into_left">部位：
             {{user_ids[0]['project_user_id'][0]}}
             {{detail.state}}
             {{pid}}
-            -{{detail.position}}
         </view>
-
+        <view class="into_right">{{detail.position}}</view>
     </view>
 </block>
 
@@ -106,32 +109,28 @@
                 {{detail.logs}}
             </view>
         </view> -->
-    <view class='box_title'>
-		<image src="/images/材料.png"></image>材料明细
+ 	<view class='info_padding1'>材料明细
 	</view>
 
 	<block wx:for="{{product}}" wx:key="item">
 		<!-- 材料明细 -->
-		<view class='box'>
+		<view class="info_product_code,padding">
+        <text>{{item.project_product_id[1]}}</text>
+<!--         <text>{{item.project_system_id[1]}}</text> -->
+        </view>
 
-			<view class='box_items'>
+		<view class="info_product_code padding">
+			<label class="label info_left">指导:</label>
+            <label class="value" bindtap='getGuideInfo' data-id="{{item.guide_id[0]}}" style="color: royalblue;">[查看]</label>
+            <view class="value info_left">{{item.guide_id[1]}}</view>
+            <view class="info_right">数量: {{item.number}} {{item.uom_id[1]}}</view>
+
+		</view>
+          
+              
+        <view>
+			<view class="info_product_code padding">
 				<view class="product">
-					<view class="product_title">
-						<view class="left_title">
-							<!--  -->
-							<text>{{item.project_product_id[1]}}</text>
-						</view>
-						<view class="right_title">
-							<!-- 系统 -->
-							<text>系统: {{item.project_system_id[1]}}</text>
-						</view>
-					</view>
-
-                    <view class="right_title">
-                        <label class="label">指导</label>
-                        <label class="value" bindtap='getGuideInfo' data-id="{{item.guide_id[0]}}" style="color: royalblue;">[查看]</label>
-                        <view class="value">{{item.guide_id[1]}}</view>
-                    </view>
 
                     <view wx:if="{{detail.state==3 || detail.state==4}}">
                         <view class="space"></view>
@@ -144,10 +143,7 @@
                         </view>
                         </view>
                     </view>
-                    <view class="product_main">
-						<!-- 数量 -->
-						<view class="input">数量: {{item.number}} {{item.uom_id[1]}}</view>
-					</view>
+
 			</view>
 		</view>
 	</block>

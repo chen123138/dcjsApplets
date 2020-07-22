@@ -259,3 +259,54 @@ button {
 
     .button-sp-area{padding-top:15px;text-align:center}.weui-btn_mini{margin-right:4px}
     
+    .info_code{
+      font-size: 48rpx;
+      background-color: #ffffff;
+    }
+    .info_product_code{
+      font-size: 32rpx;
+      background-color: #ffffff;
+    }
+    .info_receive{
+      display:flex;
+      background-color: #ffffff;
+      justify-content: space-between;
+    }
+    .info_enquiry{
+      background-color: #ffffff;
+    }
+    .info_padding1{
+      font-size: 36rpx;
+      padding:0 .75em;
+    
+    }
+    .info_enquiry image{
+      height: 50rpx;
+      width: 50rpx;
+      margin-right: 20rpx;
+    }
+    .info_enquiry_padding{
+      font-size: 32rpx;
+      padding: 0 48rpx;
+    
+    }
+    .info_padding{
+      padding: 0 54rpx;
+    
+    }
+    
+    .info_product{
+      font-size: 40rpx;
+      background-color: #ffffff;
+    
+    }
+    
+    .info_left{
+    flex-wrap: nowrap;
+    float: left;
+    }
+    .info_right{
+      flex-wrap: nowrap;
+      float: right;
+    }
+    
