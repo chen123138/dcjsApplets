@@ -1,12 +1,8 @@
-/* purchase/list/index.wxss */
+/* purchase/list/index.wxss  */
 
 /**index.wxss**/
 
-/* .container {
-    height: 1500rpx;
-} */
-
-/* .worker-click{
+ .worker-click{
   height: 120rpx;
   width: 120rpx;
   background-color: #42a5f5;
@@ -29,7 +25,3 @@
   width: 80rpx;
   height: 80rpx
 }
-
-.row_title {
-  margin-left: 25rpx!important;
-} */

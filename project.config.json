@@ -29,7 +29,7 @@
 		"bundle": true,
 		"useIsolateContext": true,
 		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false,
+		"userConfirmedUseCompilerModuleSwitch": true,
 		"packNpmManually": false,
 		"packNpmRelationList": []
 	},

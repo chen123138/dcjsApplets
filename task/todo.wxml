@@ -1,23 +1,22 @@
-
-<view class="page_bg">
+<view class="container">
 	<scroll-view wx:if="{{list.length}}" scroll-y="true" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
 		<block wx:for="{{list}}" wx:key="item">
-			<view class="diy_item" data-id="{{item.id}}" bindtap="bindItemTap">
-				<view class="diy_item_title item_space">
+			<view class="list_item" data-id="{{item.id}}" bindtap="bindItemTap">
+				<view class="list_item_title">
 					<view>{{item.name}}</view>
 				</view>
-				<view class="diy_item_body">
-          <view class="row_number">{{item.code}}</view>
-
+                <view class="space"></view>
+				<view class="list_item_body">
+					<view class="row_number">{{item.code}}</view>
 					<view class="row_state" wx:if="{{item.state==1}}">指派中</view>
-                    <view class="row_state" wx:elif="{{item.state==2}}">进行中</view>
-                    <view class="row_state" wx:elif="{{item.state==3}}">验收中</view>
-                    <view class="row_state" wx:elif="{{item.state==4}}">已完成</view>
-                    <view class="row_state" wx:elif="{{item.state==0}}">已取消</view>
-
+					<view class="row_state" wx:elif="{{item.state==2}}">进行中</view>
+					<view class="row_state" wx:elif="{{item.state==3}}">验收中</view>
+					<view class="row_state" wx:elif="{{item.state==4}}">已完成</view>
+					<view class="row_state" wx:elif="{{item.state==0}}">已取消</view>
 					<view class="row_time">{{item.end_date}}</view>
 				</view>
 			</view>
+            <view class="space"></view>
 		</block>
 	</scroll-view>
 

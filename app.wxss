@@ -1,33 +1,38 @@
 @import '/style/weui.wxss';
 
-.page_bg {
-  height: 100vh;
-  width: 100%;
+.container {
   background-color: #ededed;
+  width: 100%;
+  height: 100%;
 }
 
-.diy_item {
+.list_item {
   height: 100%;
   width: auto;
-  margin: 20rpx 0;
   background-color: #ffffff;
-  padding: 30rpx 0;
+  padding: 32rpx 0;
 }
 
-.diy_item_title {
-  margin-left: 50rpx;
+.list_item_title {
+  margin-left: 32rpx;
   font-size: 34rpx;
 }
 
-.diy_item_body {
+.list_item_body {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   font-size: 32rpx;
   color: #8c8c8c;
+  margin: 0 32rpx;
 }
 
-.item_space {
-  margin-bottom: 30rpx;
+.space {
+  height: 20rpx;
+  width: 100%;
+}
+
+.padding {
+  padding: 0 32rpx;
 }
 
 
