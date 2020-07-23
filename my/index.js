@@ -50,5 +50,11 @@ Page({
         wx.navigateTo({
             url: '/approve/list',
         })
-    }
+    },
+    enquiry: function() {
+        wx.navigateTo({
+            url: '/purchase/enquiry/list',
+        })
+    },
+
 })

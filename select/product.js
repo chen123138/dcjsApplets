@@ -6,7 +6,7 @@ var util = require('../utils/util.js')
 Page({
   data: {
     list: [],
-    addflag: false, 
+    addflag: false,
     addimg: '../../images/icon/加号.png',
     searchstr: '',
     currentSelectTripName: '',
@@ -18,19 +18,14 @@ Page({
   },
 
 
-// 数组去重
+  // 数组去重
   unique: function (arr) {
     return Array.from(new Set(arr))
   },
 
   // 转向确认界面
   goApplication: function () {
-    this.setData({
-      product_list: this.data.product_list.concat(this.data.product_list1)
-    })
-    this.setData({
-      product_list: this.unique(this.data.product_list)
-    })
+    
     wx.navigateTo({
       url: '/purchase/request/check'
     })
@@ -41,8 +36,15 @@ Page({
       product_list1: e.detail.value
     })
     console.log(this.data.product_list)
-    console.log(this.data.list)
-
+    // console.log(this.data.list)
+    this.setData({
+      product_list: this.data.product_list.concat(this.data.product_list1)
+    })
+    console.log("list1",this.data.product_list)
+    this.setData({
+      product_list: this.unique(this.data.product_list)
+    })
+    console.log("list2",this.data.product_list)
   },
 
   // 搜索列表函数
@@ -68,7 +70,7 @@ Page({
   },
 
   // 获取系统列表
-  getSystemList: function() {
+  getSystemList: function () {
     var that = this;
     let params = [
       ["project_id", "=", that.data.project_id]
@@ -93,7 +95,7 @@ Page({
     })
 
     console.log('项目名:' + this.data.project_name)
-    console.log('项目id:'+this.data.project_id)
+    console.log('项目id:' + this.data.project_id)
     wx.showLoading({
       title: '加载中...',
     });

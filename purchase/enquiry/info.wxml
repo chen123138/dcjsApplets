@@ -20,10 +20,6 @@
 		<view wx:for="{{approval}}" wx:key="item" class="info_receive padding">
 			<view class="weui-cell__bd" wx:if="{{item.remarks==false}}">备注: 无</view>
 			<view class="weui-cell__bd" wx:else>{{item.remarks}}</view>
-
-			<!-- 采购方式 -->
-			<!--         <view class="weui-cell__bd" wx:if="{{item.buy_mode == 1}}">采购状态：委托采购</view>
-        <view class="weui-cell__bd" wx:if="{{item.buy_mode == 2}}">采购状态：现场采购</view> -->
 		</view>
 
 
@@ -41,12 +37,6 @@
 		<view class="space1"></view>
 
 		<block wx:for="{{approval_state}}" wx:key="item">
-			<!-- 		<view class="weui-cells weui-cells_after-title info_padding">
-			<view class="weui-cell weui-cell_example"> -->
-			<!-- 进度条 -->
-			<!-- 					<view class='weui-cell__hd'>
-						<image src='/images/weibiaoti--.png' style="margin-right: 16px;vertical-align: middle;width:20px; height: 40px;"></image>
-					</view> -->
 			<view class='approval_container'>
 
 

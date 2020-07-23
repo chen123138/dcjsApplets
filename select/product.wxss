@@ -2,96 +2,11 @@
 
 .searchBar {
   position: fixed;
-  width: 100%;
   top: 0;
+  width: 100%;
   z-index: 11;
 }
-/* .searchMenu {
-  margin-top: 100rpx;
-  margin-left: 220rpx;
-  margin-bottom: 110rpx;
-}
 
-.item-wrap {
-  display: flex;
-  align-items: center;
-}
-
-.nameList {
-  display: flex;
-  flex-direction: column;
-  margin-left: 20rpx;
-}
-
-
-.select {
-  position: fixed;
-  top: 100rpx;
-  left: 0;
-  z-index: 10;
-  padding-left: 20rpx;
-}
-
-.active {
-  background-color: #0094c8;
-  color: #ffffff!important;
-  font-size: 32rpx!important; 
-  width: 220rpx; 
-  padding: 20rpx 0;
-}
-
-.btn {
-  font-size: 30rpx; 
-  width: 220rpx; 
-  padding: 10% 0;
-  color: black;
-  padding-left: 0;
-  font-weight: 300;
-  line-height: 30rpx;
-}
-
-.select {
-  height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-.name {
-  font-size: 32rpx;
-}
-
-.project-item {
-  height: auto;
-  width: 100%;
-  background-color: #ffffff!important;
-  padding: 20rpx;
-  border-radius: 20rpx;
-  box-shadow:2px 2px 3px #aaaaaa;
-}
-
-.button {
-  height: 110rpx;
-  width: 530rpx;
-  background-color: #ffffff;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.btns {
-  background-color: rgb(26,173,25);
-  margin-top: 20rpx;
-  height: 60rpx;
-  width: 292rpx;
-  padding: 0;
-  line-height: 60rpx;
-  color: #ffffff
-}
- */
 
  .select_box {
    position: relative;
@@ -108,15 +23,19 @@
    flex-direction: column;
    justify-content: space-around;
  }
-
+ 
+ .btn {
+  padding: 20rpx 0 20rpx 20rpx;
+  background-color: #ffffff;
+}
  .select_system {
-   border: 1px solid blue;
+   background-color: #ededed;
  }
 
  .search_menu {
    position: absolute;
    margin-left: 300rpx;
-
+   /* width: 100%; */
  }
 
  .project_item {
@@ -129,9 +48,38 @@
   display: flex;
   /* justify-content: center; */
   align-items: center;
+  position: relative;
  }
 
- .btn {
-  padding: 20rpx 0 20rpx 20rpx;
-  background-color: #ffffff;
+ .button .btns {
+   position: fixed;
+   bottom: 0;
+   right: 50%;
+   transform: translateX(50%);
+   background-color: #42a5f5;
+ }
+
+ /* 选择框的修改 */
+ checkbox .wx-checkbox-input {
+  /* border: 1px solid red; */
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0rpx;
+  height: 50rpx;
+  width: 50rpx;
 }
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: #00b26a;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  color: #ffffff;
+}
+
+.name_list {
+  padding-right: 50rpx;
+}
+
+

@@ -23,8 +23,9 @@
 			<view class="button" bindtap="order">采购订单</view>
 			<view class="button" bindtap="task">任务工单</view>
 			<view class="button" bindtap="approve">审批记录</view>
-            <view class="button">采购计划</view>
-            <view class="button">材料变更</view>
+			<view class="button">采购计划</view>
+			<view class="button">材料变更</view>
+			<view class="button" bindtap="enquiry">询价</view>
 		</view>
 	</view>
 </view>

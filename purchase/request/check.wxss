@@ -1,153 +1,58 @@
-/* application/index.wxss */
 
-.container {
-  height: 100%;
-  width: 100%;
+.check_title {
+  font-size: 54rpx;
 }
 
-.container2-title {
-  height: 80rpx;
-  line-height: 80rpx;
-  padding-left: 30rpx
-}
-.container3-title {
-  height: 80rpx;
-  line-height: 80rpx;
-  padding-left: 30rpx;
-  display: flex;
-  align-items: center;
-}
-
-.status {
-  float: right;
-}
-
-.place {
-  height: 180rpx;
-  width: 100%;
+.check_container {
   background-color: #ffffff;
 }
 
-.place-text {
-  margin-left: 30rpx;
-  height: 100rpx;
-}
-.main {
-  display: flex;
-  align-items: center;
-}
-
-.Receipt {
-  display: flex;
-}
-
-.product {
-  height: auto;
-  width: auto;
-  background-color: #ffffff;
-  margin: 20rpx;
-  border-radius: 20rpx;
-  position: relative;
-}
-
-.product_title {
-color:  #919a9f;
-
-} 
-
-.left_title {
+.check_label {
   font-size: 40rpx;
-  color: #919a9f;
-  margin-left: 30rpx;
-  margin-bottom: 10rpx;
 }
 
-.right_title {
-  font-size: 32rpx;
-  margin-left: 30rpx;
+.check_body {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
 }
 
-.right_title  text {
-  margin-bottom: 10rpx;
-}
-
-.product_main {
-  color: #919a9f;
-  height: 50%;
-  width: 100%;
-}
-
-.product_main .input {
-  display: flex;
-  margin-left: 30rpx;
-}
-
-.product_main .input input {
-  margin-bottom: 10rpx;
-  margin-left: 20rpx;
-  border-bottom: 1px solid #c0c1c2;
-  width: 200rpx;
-  text-align:center;
-
-}
-
-.product_container {
-  width: 100%;
-  height: 100%;
-  margin-bottom: 110rpx;
-  padding-bottom: 20rpx;
-}
-
-.btnContainer {
-  width: 100%;
-  height: 100rpx;
+.Receipt_box {
   background-color: #ffffff;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.btnContainer buttonSubmit {
-  line-height: 100rpx;
-  text-align: center;
-}
-
-.cancel {
-  height: 60rpx;
-  width: 60rpx;
-  position: absolute;
-  top: 10rpx;
-  right: 10rpx;
-  color: #ffffff;
 }
 
 .label {
   display: flex;
 }
 
-.wrapper {
-  margin: 20rpx;
-  margin-top: 0;
-  width: auto;
+.product {
+  background-color: #ffffff;
 }
 
-.product {
-  margin-top: 0;
+.input {
+  display: flex;
 }
+
 .picker {
-  margin-left: 30rpx;
-  margin-bottom: 30rpx;
   display: flex;
 }
 
 .brand {
   display: flex;
+  justify-content: space-between;
 }
 
-.brand text {
-  margin-right: 100rpx
+.Receipt_box_item {
+  display: flex;
+  justify-content: space-between;
 }
 
+.btnContainer {
+  width: 100%;
+  position: relative;
+}
+.check_button {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  background-color: #42a5f5;
+}

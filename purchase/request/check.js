@@ -54,7 +54,7 @@ Page({
     var prevPage = pages[pages.length - 2];
     Page.setData({
       // 传递的材料列表
-      product_ids: prevPage.data.product_list1.map(Number),
+      product_ids: prevPage.data.product_list.map(Number),
       // 传递的项目名
       project_name: prevPage.data.project_name,
       project_id: prevPage.data.project_id,
@@ -70,7 +70,8 @@ Page({
     let params = [
       ["id", "=", m]
     ]
-    let fields = ["project_id", "number", "project_system_id",  "product_id", "brand", "type", "uom_id","remarks"]
+    // let fields = ["project_id", "number", "project_system_id",  "product_id", "brand", "type", "uom_id","remarks"]
+    let fields = []
     let that = this;
     util.rpcList(1000, api.EngineerProduct, params, fields, 1000, '').then(function (res) {
       console.log("res",res)
@@ -149,7 +150,7 @@ Page({
       receive_phone: this.data.phone,
       receive_user: this.data.user,
       project_purchase_product_ids: productLists,
-      state: "1"
+      state: "1",
     }
     console.log("这是params：",params)
     util.rpcCreate(1002, api.EngineerPurchase, [params]).then(function (res) {
