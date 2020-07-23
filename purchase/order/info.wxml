@@ -2,7 +2,7 @@
 
 <!-- 进度条 -->
 
-<view class="details_container">
+<view class="container">
 
 	<view class='order_process'>
 		<view class='process_wrap' wx:for="{{processData}}" wx:key="item">
@@ -14,39 +14,64 @@
 			<text class='process_name'>{{item.name}}</text>
 		</view>
 	</view>
-
+	<view class="space"></view>
 	<!-- 供应商信息 -->
-	<view class='box_title'>
-		<image src="/images/基础信息.png"></image>项目编号: {{order_list[0].code}}
-	</view>
-	<view class="box">
-		<view class="box_items">所属项目: {{order_list[0].project_id[1]}}</view>
-		<view class="box_items">收货人员：{{order_list[0].receive_user}}</view>
-		<view class="box_items">联系电话：{{order_list[0].receive_phone}}</view>
-		<view class="box_items">收货地址：{{order_list[0].receive_address}}</view>
-		<view class="box_items">供应商：{{order_list[0].partner_id[1]}}</view>
-		<view class="box_items">订单人员：{{order_list[0].user_id[1]}}</view>
-	</view>
-  	<view class='box_title'>
-		<image src="/images/材料.png"></image>材料信息
-	</view>
-	<block wx:for="{{project_order_product_list}}" wx:key="item">
-		<view class="box">
-			<view class="box_items">系统: {{item.project_system_id[1]}}</view>
-			<view class="box_items">材料: {{item.project_product_id[1]}}</view>
-			<view class="box_items">品牌: {{item.brand}}</view>
-			<view class="box_items">型号: {{item.type}}</view>
-			<view class="box_items">数量: {{item.number}}</view>
-			<view class="box_items">单位: {{item.uom_id}}</view>
-			<view class="box_items">包装: {{item.pack}}</view>
-			<view class="box_items">时间: {{item.date}}</view>
-			<view class="box_items">单价: {{item.price}}</view>
-			<view class="box_items">小计: {{item.subtotal}}</view>
-			<view class="box_items" wx:if="{{item.remarks==false}}">备注: 无</view>
-			<view class="box_items" wx:else >备注：{{item.remarks}}</view>
+	<block>
+		<view class="info_code,padding">项目编号: {{order_list[0].code}}</view>
+		<view style="float:right;padding: 0 32rpx;" wx:if="{{order_list[0].buy_mode == 1}}">委托采购</view>
+		<view style="float:right;padding: 0 32rpx;" wx:if="{{order_list[0].buy_mode == 2}}">现场采购</view>
+		<view class="info_product_code,padding">项目名称：{{order_list[0].name}}</view>
+	</block>
+	<block>
+		<view class="info_receive padding">
+			<!-- 			<view class="box_items">所属项目: {{order_list[0].project_id[1]}}</view> -->
+			<view class="info_left">收货人员：{{order_list[0].receive_user}}</view>
+			<view class="info_right">联系电话：{{order_list[0].receive_phone}}</view>
+		</view>
+		<view class="info_receive padding">
+			<view class="info_left">供应商：{{order_list[0].partner_id[1]}}</view>
+			<view class="info_right">订单人员：{{order_list[0].user_id[1]}}</view>
+		</view>
+		<view class="info_receive padding">
+			<view class="box_items">收货地址：{{order_list[0].receive_address}}</view>
+
 		</view>
 	</block>
-	<view class="buttons">	
+<view class="space"></view>
+	<view class='info_padding1'>材料信息</view>
+<view class="space"></view>
+
+	<block wx:for="{{project_order_product_list}}" wx:key="item">
+		<!-- 系统材料 -->
+		<view class="info_receive padding">
+			<text>{{item.project_system_id[1]}}-{{item.project_product_id[1]}}</text>
+		</view>
+		<!-- 品牌型号 -->
+		<view class="info_receive padding">
+			<text>{{item.brand}}</text>
+			<text>{{item.type}}</text>
+		</view>
+		<!-- 数量 单位 -->
+		<view class="info_receive padding">
+			<text>{{item.number}}</text>
+			<text>{{item.uom_id}}</text>
+			<text>{{item.pack}}</text>
+		</view>
+		<!-- 时间 单价 -->
+		<view class="info_receive padding">
+			<text>{{item.date}}</text>
+			<text>{{item.price}}</text>
+		</view>
+		<!-- 小计 备注 -->
+		<view class="info_receive padding">
+			<text>{{item.subtotal}}</text>
+			<text class="box_items" wx:if="{{item.remarks==false}}">备注: 无</text>
+			<text class="box_items" wx:else>备注：{{item.remarks}}</text>
+		</view>
+		<view class="space"></view>
+	</block>
+
+	<view class="buttons">
 		<button size="mini" type="primary" bindtap="goPay">确认</button>
 	</view>
 

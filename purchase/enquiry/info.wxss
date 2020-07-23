@@ -1,5 +1,33 @@
 
 
+<<<<<<< HEAD
+=======
+.approval_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  position: relative;
+}
+
+
+.approval_name {
+  margin-right: 60rpx;
+  height: auto;
+  display: flex;
+}
+
+
+.approval_name .name {
+  padding: 15rpx 20rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid burlywood;
+  position: relative;
+}
+
+
+>>>>>>> f3eb98f758e4cc97e679c323ff733e5407fc8bea
 .button_mini{
   width: auto;
   padding: 0 0.75em;
