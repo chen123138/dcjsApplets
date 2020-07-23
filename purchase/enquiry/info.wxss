@@ -217,7 +217,7 @@
   font-size: 25rpx;
   position: absolute;
   top: 20rpx;
-  right: 30rpx;
+  right: -30rpx;
 }
 
 .fj {
@@ -243,24 +243,31 @@
   text-align: center;
   margin-top: 100rpx;
 }
+.button_mini{
+  width: auto;
+  padding: 0 0.75em;
+  line-height: 1;
+  font-size: 14px;
+  background-color: #ffffff;
+}
 .info_code{
   font-size: 54rpx;
   background-color: #ffffff;
 }
 .info_product_code{
-  font-size: 48rpx;
+  font-size: 40rpx;
   background-color: #ffffff;
 }
 .info_receive{
   display:flex;
   background-color: #ffffff;
   justify-content: space-between;
+  line-height:2em;
 }
 .info_enquiry{
   background-color: #ffffff;
 }
 .info_padding1{
-  font-size: 36rpx;
   padding:0 .75em;
 
 }
@@ -292,4 +299,67 @@ float: left;
 .info_right{
   flex-wrap: nowrap;
   float: right;
+}
+
+.state_name{
+  color: #919a9f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.progess-bar{
+  height: 70rpx;
+}
+
+.ball{
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  margin-left: 20px;
+}
+
+.progress{
+  width: 2px;
+  height: 30rpx;
+  margin-left: 29px;
+}
+
+.detail{
+  margin-left: 40px;
+  width: 100%;
+  float:left;
+  color: #212121;
+  position: relative;
+  top: -20px;
+  left: 5px;
+}
+
+.flow-detail{
+  margin: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flow-detail-name{
+  margin: 2px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.active{
+  background-color: #FF5722
+}
+
+.negative{
+  background-color: #9F9F9F
+}
+.space1{
+  background-color: #ffffff;
+  height: 20rpx;
+  width: 100%;
+
 }
