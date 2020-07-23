@@ -78,7 +78,11 @@ Page({
                     util.rpcRead(1005, api.EngineerTaskProduct, info.project_task_product_ids, []).then(function(res) {
                         that.setData({
                             product: res
-                        });
+                        })
+                        console.log("材料")
+                        console.log(res)
+                        ;
+
                     });
                 }
                 if (info.state > 2) {

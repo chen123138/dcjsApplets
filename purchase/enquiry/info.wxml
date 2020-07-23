@@ -5,18 +5,22 @@
 		<view class="info_code,padding">{{item.code}}</view>
 		<view style="float:right;padding: 0 32rpx;" wx:if="{{item.buy_mode == 1}}">委托采购</view>
 		<view style="float:right;padding: 0 32rpx;" wx:if="{{item.buy_mode == 2}}">现场采购</view>
-		<view class="info_product_code,padding">{{item.display_name}}</view>
+		<view class="float:right;info_product_code,padding">{{item.display_name}}</view>
 		<!-- 询价信息 -->
 	</block>
+
 	<view class="space"></view>
 	<block>
+		<view class="space1"></view>
 		<view wx:for="{{approval}}" wx:key="item" class="info_receive padding">
-			<view class="into_left">{{item.receive_user}}</view>
-			<view class="into_right">{{item.receive_phone}}</view>
+			<view class="info_left">{{item.receive_user}}</view>
+			<view class="info_right">{{item.receive_phone}}</view>
 		</view>
+		<view class="space1"></view>
 		<view wx:for="{{approval}}" wx:key="item" class="info_receive padding">
 			<view class="weui-uploader__title">{{item.receive_address}}</view>
 		</view>
+		<view class="space1"></view>
 		<view wx:for="{{approval}}" wx:key="item" class="info_receive padding">
 			<view class="weui-cell__bd" wx:if="{{item.remarks==false}}">备注: 无</view>
 			<view class="weui-cell__bd" wx:else>{{item.remarks}}</view>
@@ -25,7 +29,6 @@
 			<!--         <view class="weui-cell__bd" wx:if="{{item.buy_mode == 1}}">采购状态：委托采购</view>
         <view class="weui-cell__bd" wx:if="{{item.buy_mode == 2}}">采购状态：现场采购</view> -->
 		</view>
-
 
 	</block>
 
@@ -36,20 +39,14 @@
 
 	<view class='info_padding1'>审批流程</view>
 
+	<view class="space"></view>
 	<view class="info_enquiry padding">
+		<view class="space1"></view>
 		<view class="info_enquiry_padding">直接上级</view>
 		<view class="space1"></view>
 
 		<block wx:for="{{approval_state}}" wx:key="item">
-			<!-- 		<view class="weui-cells weui-cells_after-title info_padding">
-			<view class="weui-cell weui-cell_example"> -->
-			<!-- 进度条 -->
-			<!-- 					<view class='weui-cell__hd'>
-						<image src='/images/weibiaoti--.png' style="margin-right: 16px;vertical-align: middle;width:20px; height: 40px;"></image>
-					</view> -->
 			<view class='approval_container'>
-
-
 
 				<!-- 					流程线 -->
 				<view class="progess-bar">
@@ -103,21 +100,7 @@
 
 			</view>
 
-			<!-- 			<view class="weui-cells weui-cells_after-title info_padding">
-				<view class="weui-cell weui-cell_example">
-					<view class='approval_container'>
-						<view class='weui-cell__hd'>
-							<image src='/images/maner.png' style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
-						</view>
-						<view class="weui-cell__bd">
-							<view class='name'>{{item.user_id[1]}}</view>
-						</view>
-						<view class="mean">
-							<view class="state_name">已抄送{{item.create_date}}</view>
-						</view>
-					</view>
-				</view>
-			</view> -->
+
 
 		</block>
 
@@ -128,11 +111,10 @@
 	</view>
 
 	<view class="space"></view>
+	<view class="space"></view>
 
-
-	<view class='info_padding1'>材料明细
-	</view>
-
+	<view class='info_padding1'>材料明细</view>
+	<view class="space"></view>
 
 	<block wx:for="{{approval_product}}" wx:key="item">
 		<!-- 材料明细 -->

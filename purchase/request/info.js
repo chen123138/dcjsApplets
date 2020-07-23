@@ -59,6 +59,8 @@ Page({
           list: res.records,
           //state: res.records[0].state
         })
+        console.log("请购")
+        console.log(list)
         console.log(typeof that.data.state)
         
         if (info.project_purchase_product_ids.length > 0) {
