@@ -121,7 +121,7 @@
 	<view class='info_padding1'>材料明细</view>
 	<view class="space"></view>
 
-	<block wx:for="{{product}}" wx:key="item">
+	<block wx:for="{{purchase}}" wx:key="item">
 		<!-- 材料明细 -->
 
 		<view class="info_receive padding">
@@ -141,7 +141,7 @@
 		</view>
 		<view class="info_receive padding">
 			<!-- 所属 -->
-			<view>{{item.partner_id[1]}}</view>
+			<!-- <view>{{item.partner_id[1]}}</view> -->
 			<!-- 评论 -->
 			<view>{{item.remarks}}</view>
 		</view>

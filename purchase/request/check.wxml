@@ -53,7 +53,7 @@
 		<view class="padding">材料详情</view>
 		<block wx:for="{{list}}" wx:key="item.index">
 			<view class="product padding">
-				<!-- <image class="cancel" bindtap="cancel" data-index="{{index}}" src="http://qncdn.cwcoolboy.xyz/images/取消.png"></image> -->
+				<image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
 				<view class="product_title">
 					<view class="left_title">
 						<!-- 产品 -->

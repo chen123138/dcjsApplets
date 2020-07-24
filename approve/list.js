@@ -14,7 +14,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {},
+    onLoad: function() {},
     getList: function() {
         wx.showLoading({
             title: '加载中...',
@@ -35,10 +35,11 @@ Page({
 
     // 点击事件 请购界面
     bindItemTapPurchase: function(e) {
-        // console.log(e)
+        console.log(e)
         wx.navigateTo({
-            url: '/purchase/request/info?id=' + e.currentTarget.dataset.id + '&pid=' + JSON.stringify(e.currentTarget.dataset.pid)
+            url: '/purchase/request/info?id=' + e.currentTarget.dataset.id
         })
+
     },
     //点击事件 询价界面
     bindItemTapEnquiry: function(e) {

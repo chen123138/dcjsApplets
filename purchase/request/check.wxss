@@ -25,6 +25,15 @@
 
 .product {
   background-color: #ffffff;
+  position: relative;
+}
+
+.cancel {
+  position: absolute;
+  height: 50rpx;
+  width: 50rpx;
+  right: 0;
+  top: 0;
 }
 
 .input {
