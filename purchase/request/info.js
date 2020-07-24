@@ -31,7 +31,7 @@ Page({
     // 页面传值
     // console.log(options)
     this.setData({
-      product_id: options.id,
+      product_id: options.id
     })
     // console.log("用户id", this.data.uid)
     console.log("项目id", this.data.product_id)
@@ -59,8 +59,7 @@ Page({
           list: res.records,
           //state: res.records[0].state
         })
-        console.log("请购")
-        console.log(list)
+        console.log("list",that.data.list)
         console.log(typeof that.data.state)
         
         if (info.project_purchase_product_ids.length > 0) {
@@ -69,6 +68,7 @@ Page({
             that.setData({
               purchase: res
             })
+            console.log("材料列表：",res)
             if (that.data.uid == createdId) {
               var arr = that.data.approvalState
               arr = arr + 1

@@ -70,11 +70,11 @@ Page({
     let params = [
       ["id", "=", m]
     ]
-    let fields = ["project_id", "number", "project_system_id",  "product_id", "brand", "type", "uom_id","remarks"]
+    let fields = ["project_id", "number", "project_system_id", "product_id", "brand", "type", "uom_id", "remarks"]
     // let fields = []
     let that = this;
     util.rpcList(1000, api.EngineerProduct, params, fields, 1000, '').then(function (res) {
-      console.log("res",res)
+      console.log("res", res)
       that.setData({
         list: that.data.list.concat(res.records)
       })
@@ -82,20 +82,20 @@ Page({
     });
   },
   // 选择材料数量
-  bindBlur: function(e) {
+  bindBlur: function (e) {
     let list = this.data.list
     if (e.detail.value > list[e.currentTarget.dataset.index].number) {
       util.showText('数量溢出，实际库存为' + list[e.currentTarget.dataset.index].number + '，请重试')
-    }else {
+    } else {
       list[e.currentTarget.dataset.index].number = Number(e.detail.value)
       this.setData({
         list: list
       })
-      console.log("改变数量",this.data.list)
+      console.log("改变数量", this.data.list)
     }
   },
   // 选择到货时间
-  bindDateChangeDate: function(e) {
+  bindDateChangeDate: function (e) {
     let list = this.data.list
     list[e.currentTarget.dataset.index].date = e.detail.value
     this.setData({
@@ -103,8 +103,26 @@ Page({
     })
     console.log("改变时间", this.data.list)
   },
+  // 选择品牌
+  bindBlurBrand: function (e) {
+    let list = this.data.list
+    list[e.currentTarget.dataset.index].brand = e.detail.value
+    this.setData({
+      list: list
+    })
+    console.log("品牌", this.data.list)
+  },
+  // 选择品牌类型
+  bindBlurType: function (e) {
+    let list = this.data.list
+      list[e.currentTarget.dataset.index].type = e.detail.value
+      this.setData({
+        list: list
+      })
+      console.log("类型", this.data.list)
+  },
   // 选择收货信息
-  user: function(e) {
+  user: function (e) {
     this.setData({
       user: e.detail.value
     })
@@ -119,26 +137,31 @@ Page({
       house: e.detail.value
     })
   },
+  remarks: function (e) {
+    this.setData({
+      remarks: e.detail.value
+    })
+  },
   // 提交信息
-  Submit: function() {
+  Submit: function () {
     console.log("data", this.data.list)
     let listData = this.data.list
     let product = {}
     let productLists = []
     for (let i = 0; i < listData.length; i++) {
-      product.brand = listData[i].brand
+      product.brand = listData[i].brand.toString()
       product.date = listData[i].date
       product.number = listData[i].number
       product.pack = listData[i].uom_id[1]
       product.project_id = listData[i].project_id[0]
       product.project_product_id = listData[i].id
       product.project_system_id = listData[i].project_system_id[0]
-      product.remarks = listData[i].remarks
-      product.sn = i+1
-      product.type = listData[i].type
+      product.remarks = listData[i].remarks.toString()
+      product.sn = i + 1
+      product.type = listData[i].type.toString()
       product.uom_id = listData[i].uom_id[0]
       console.log("product", product)
-      productLists = [0, "virtual_" + i, product]
+      productLists.push([0, "virtual_" + i, product])
     }
     console.log("productLists", productLists)
     console.log("listData", listData)
@@ -151,17 +174,19 @@ Page({
       receive_user: this.data.user,
       project_purchase_product_ids: productLists,
       state: "1",
+      user_id: app.globalData.uid,
+      remarks: this.data.remarks
     }
-    console.log("这是params：",params)
+    console.log("这是params：", params)
     util.rpcCreate(1002, api.EngineerPurchase, [params]).then(function (res) {
       console.log(res)
       wx.showToast({
         title: '提交成功'
-    });
-    setTimeout(function () {
+      });
+      setTimeout(function () {
         wx.navigateTo({ url: './list' });
-    }, 500);
+      }, 500);
     })
   },
-  
+
 })

@@ -1,4 +1,3 @@
-
 .check_title {
   font-size: 54rpx;
 }
@@ -26,6 +25,15 @@
 
 .product {
   background-color: #ffffff;
+  position: relative;
+}
+
+.cancel {
+  position: absolute;
+  height: 50rpx;
+  width: 50rpx;
+  right: 0;
+  top: 0;
 }
 
 .input {
@@ -34,6 +42,9 @@
 
 .picker {
   display: flex;
+  color: #838383;
+  border-bottom: 1px solid #c0c1c2;
+  width: 250rpx;
 }
 
 .brand {
@@ -50,9 +61,16 @@
   width: 100%;
   position: relative;
 }
+
 .check_button {
   position: absolute;
   transform: translateX(-50%);
   left: 50%;
   background-color: #42a5f5;
+}
+
+.Underscore {
+  border-bottom: 1px solid #c0c1c2;
+  margin-bottom: 10rpx;
+  width: 200rpx;
 }

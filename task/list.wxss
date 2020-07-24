@@ -28,3 +28,15 @@
   bottom: 0;
   margin: auto;
 }
+
+.no_list {
+  position: relative;
+  width: 100vw;
+}
+
+.image {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

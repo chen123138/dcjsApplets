@@ -2,7 +2,7 @@
 <view class="container">
 	<scroll-view wx:if="{{list.length}}" scroll-y="true" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
 		<block wx:for="{{list}}" wx:key="item">
-			<view wx:if="{{item.flow_type_id[0]==1}}" class="list_item" data-id="{{item.id}}" data-pid="{{item.project_purchase_product_ids}}" bindtap="bindItemTapPurchase">
+			<view wx:if="{{item.flow_type_id[0]==1}}" class="list_item" data-id="{{item.project_purchase_id[0]}}" data-pid="{{item.project_purchase_product_ids}}" bindtap="bindItemTapPurchase">
 				<view class="list_item_title" WX:if="{{item.act_button=='Y'}}">
 					<view>{{item.display_name}}</view>
 				</view>
