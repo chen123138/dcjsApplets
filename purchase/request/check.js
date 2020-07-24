@@ -184,8 +184,11 @@ Page({
         title: '提交成功'
       });
       setTimeout(function () {
-        wx.navigateTo({ url: './list' });
+        wx.switchTab({
+          url: './list'
+        })
       }, 500);
+
     })
   },
 
