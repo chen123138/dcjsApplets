@@ -10,7 +10,8 @@
     "my/index",
     "select/product",
     "select/project",
-    "select/user"
+    "select/user",
+    "purchase/order/receive"
   ],
   "window": {
     "backgroundTextStyle": "light",
