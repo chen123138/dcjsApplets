@@ -2,10 +2,19 @@
 
 	<block wx:for="{{list}}" wx:key="item">
 		<!-- 供应商信息 -->
-		<view class="info_code,padding">{{item.code}}</view>
-		<view style="float:right;padding: 0 32rpx;" wx:if="{{item.buy_mode == 1}}">委托采购</view>
-		<view style="float:right;padding: 0 32rpx;" wx:if="{{item.buy_mode == 2}}">现场采购</view>
-		<view class="info_product_code,padding">{{item.project_id[1]}}</view>
+		<view class="info_code,padding">
+			<view>{{item.code}}</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='0'}}">起稿中</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='1'}}">审批中</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='2'}}">询价单</view>
+
+		</view>
+		<view class="info_product_code,padding">			
+			<view >{{item.project_id[1]}}</view>
+			<view style="float:right;font-size: 32rpx;" wx:if="{{item.buy_mode == 1}}">委托采购</view>
+			<view style="float:right;font-size: 32rpx;" wx:if="{{item.buy_mode == 2}}">现场采购</view>
+
+		</view>
 	</block>
 
 	<view class="space"></view>
@@ -20,9 +29,7 @@
 
 		<view class="info_receive padding">
 			<!-- 请购状态 -->
-			<view wx:if="{{item.state=='0'}}">起稿中</view>
-			<view wx:if="{{item.state=='1'}}">审批中</view>
-			<view wx:if="{{item.state=='2'}}">询价单</view>
+
 			<view>{{item.receive_phone}} {{item.receive_user}}</view>
 		</view>
 		<view class="info_receive padding">

@@ -2,11 +2,14 @@
 <!--purchase/list_detaial/index.wxml-->
 <view class="container">
 	<block wx:for="{{approval}}" wx:key="item">
-		<view class="info_code,padding">{{item.code}}</view>
-		<view style="float:right;padding: 0 32rpx;" wx:if="{{item.buy_mode == 1}}">委托采购</view>
-		<view style="float:right;padding: 0 32rpx;" wx:if="{{item.buy_mode == 2}}">现场采购</view>
-		<view class="float:right;info_product_code,padding">{{item.display_name}}</view>
-		<!-- 询价信息 -->
+		<view class="info_code padding">
+			<view >{{item.code}}</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{item.buy_mode == 1}}">委托采购</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{item.buy_mode == 2}}">现场采购</view>
+		</view>
+		<view >
+			<view class="float:right;info_product_code,padding">{{item.display_name}}</view>
+		</view>
 	</block>
 
 	<view class="space"></view>

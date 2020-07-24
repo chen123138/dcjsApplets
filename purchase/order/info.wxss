@@ -59,6 +59,9 @@
 .info_code {
   font-size: 54rpx;
   background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .info_product_code {
