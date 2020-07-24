@@ -73,10 +73,10 @@ Page({
   getSystemList: function () {
     var that = this;
     let params = [
-      ["project_id", "=", that.data.project_id]
-
+      ["project_id", "=", that.data.project_name]
     ]
-    util.rpcList(1000, api.EngineerSystem, [], [], 1000, '').then(function (res) {
+    console.log(that.data.project_id)
+    util.rpcList(1000, api.EngineerSystem, params, [], 1000, '').then(function (res) {
       console.log("项目对应下的系统：")
       console.log(res.records)
       that.setData({
