@@ -41,15 +41,15 @@
 
 		<!-- 零星内容 -->
 		<view wx:if="{{detail.cate=='2'}}">
-			<view class="wrapper">
+			<view class="info_receive padding">
 				<label class="label">内容</label>
 				<view class="value"></view>
 			</view>
-			<view class="content-wrapper">
+			<view class="info_receive padding">
 				{{detail.content}}
 			</view>
 
-			<view class="wrapper" wx:if="{{(user_ids[0]['project_user_id'][0]==pid && detail.state==2) || (detail.create_uid[0]==uid && detail.state==3)}}">
+			<view class="info_receive padding" wx:if="{{(user_ids[0]['project_user_id'][0]==pid && detail.state==2) || (detail.create_uid[0]==uid && detail.state==3)}}">
 				<label class="label">核量<i style="color:red">*</i></label>
 				<view class="value">{{detail.uom_id[1]}}</view>
 				<view class="value">
@@ -57,7 +57,7 @@
 				</view>
 			</view>
 
-			<view class="wrapper" wx:else>
+			<view class="info_receive padding" wx:else>
 				<label class="label">数量</label>
 				<view class="value">{{detail.uom_id[1]}}</view>
 				<view class="value">{{detail.number}}</view>

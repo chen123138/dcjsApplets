@@ -3,12 +3,16 @@
 <view class="container">
 	<block wx:for="{{approval}}" wx:key="item">
 		<view class="info_code padding">
-			<view >{{item.code}}</view>
+			<view>{{item.code}}</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='-1'}}">已取消</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='0'}}">起稿中</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='1'}}">审批中</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='2'}}">询价单</view>
+		</view>
+		<view class="info_product_code,padding">
+			<view>{{item.display_name}}</view>
 			<view style="float:right; font-size: 32rpx;" wx:if="{{item.buy_mode == 1}}">委托采购</view>
 			<view style="float:right; font-size: 32rpx;" wx:if="{{item.buy_mode == 2}}">现场采购</view>
-		</view>
-		<view >
-			<view class="float:right;info_product_code,padding">{{item.display_name}}</view>
 		</view>
 	</block>
 

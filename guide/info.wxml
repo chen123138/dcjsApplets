@@ -1,6 +1,7 @@
 <view class="page padding">
 
-	<view class="wrapper" style="text-align: center;">
+	<view class="space"></view>
+	<view class="wrapper" style="text-align: center;font-size: 48rpx;">
 		{{info['system_id'][1]}} {{ info['name']}}
 	</view>
 	<view class="space"></view>
