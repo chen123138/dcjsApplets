@@ -1,0 +1,13 @@
+<!--purchase/pay/index.wxml-->
+<view class="container">
+	<view class="menu"></view>
+  <!-- 发货操作 -->
+  <view class="payContatiner">
+    <text class="payTitle">请输入快递信息：</text>
+		<view class="pay">
+			<view>快递单号：<input type="number" bindinput="tracking" style="width: 100%"></input> </view>
+			<view>物流费用：<input placeholder="请输入金额" bindinput="trackingMent"  style="width: 200rpx;" type="number"></input>元</view>
+    </view> 
+    <button class="great" type="primary" bindtap="bindtracking"  size="mini">确认</button>
+  </view>
+</view>
