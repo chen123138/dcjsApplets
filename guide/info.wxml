@@ -1,8 +1,11 @@
-<view class="container padding">
-    <view class="wrapper" style="text-align: center;">
-        {{info['system_id'][1]}} {{ info['name']}}
-    </view>
-    <view class="content-wrapper">
-        <rich-text class='content' nodes="{{info['content']}}"></rich-text>
-    </view>
+<view class="page padding">
+
+	<view class="wrapper" style="text-align: center;">
+		{{info['system_id'][1]}} {{ info['name']}}
+	</view>
+	<view class="space"></view>
+	<view class="content-wrapper">
+		<rich-text class='content' nodes="{{info['content']}}"></rich-text>
+	</view>
+	<view class="space"></view>
 </view>

@@ -2,7 +2,6 @@
   width: 100%;
   height: 100%;
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   position: relative;
 }
@@ -12,6 +11,7 @@
   height: auto;
   display: flex;
 }
+
 .approval_name .name {
   padding: 15rpx 20rpx;
   border-radius: 10rpx;
@@ -19,65 +19,74 @@
   position: relative;
 }
 
-.button_mini{
+.button_mini {
   width: auto;
   padding: 0 0.75em;
   line-height: 1;
   font-size: 14px;
   background-color: #ffffff;
 }
-.info_code{
+
+.info_code {
   font-size: 54rpx;
   background-color: #ffffff;
 }
-.info_product_code{
+
+.info_product_code {
   font-size: 40rpx;
   background-color: #ffffff;
 }
-.info_receive{
-  display:flex;
+
+.info_receive {
+  display: flex;
   background-color: #ffffff;
   justify-content: space-between;
-  line-height:2em;
+  line-height: 2em;
 }
-.info_enquiry{
+
+.info_enquiry {
   background-color: #ffffff;
 }
-.info_padding1{
-  padding:0 .75em;
+
+.info_padding1 {
+  padding: 0 .75em;
 
 }
-.info_enquiry image{
+
+.info_enquiry image {
   height: 50rpx;
   width: 50rpx;
   margin-right: 20rpx;
 }
-.info_enquiry_padding{
+
+.info_enquiry_padding {
   font-size: 32rpx;
   padding: 0 48rpx;
 
 }
-.info_padding{
+
+.info_padding {
   padding: 0 54rpx;
 
 }
 
-.info_product{
+.info_product {
   font-size: 40rpx;
   background-color: #ffffff;
 
 }
 
-.info_left{
-flex-wrap: nowrap;
-float: left;
+.info_left {
+  flex-wrap: nowrap;
+  float: left;
 }
-.info_right{
+
+.info_right {
   flex-wrap: nowrap;
   float: right;
 }
 
-.state_name{
+.state_name {
   color: #919a9f;
   display: flex;
   justify-content: space-between;
@@ -85,40 +94,41 @@ float: left;
 }
 
 
-.progess-bar{
+.progess-bar {
   height: 70rpx;
 }
 
-.ball{
+.ball {
   width: 20px;
   height: 20px;
   border-radius: 10px;
   margin-left: 20px;
 }
 
-.progress{
+.progress {
   width: 2px;
   height: 30rpx;
   margin-left: 29px;
 }
 
-.detail{
+.detail {
   margin-left: 40px;
   width: 100%;
-  float:left;
+  float: left;
   color: #212121;
   position: relative;
   top: -20px;
   left: 5px;
 }
 
-.flow-detail{
+.flow-detail {
   margin: 2px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.flow-detail-name{
+
+.flow-detail-name {
   margin: 2px;
   width: 100%;
   display: flex;
@@ -126,14 +136,15 @@ float: left;
   align-items: center;
 }
 
-.active{
+.active {
   background-color: #FF5722
 }
 
-.negative{
+.negative {
   background-color: #9F9F9F
 }
-.space1{
+
+.space1 {
   background-color: #ffffff;
   height: 20rpx;
   width: 100%;

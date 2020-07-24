@@ -1,22 +1,5 @@
 /* purchase/order_details/index.wxss */
 
-.box_title {
-  margin-left: 40rpx;
-  margin-bottom: 20rpx;
-  margin-top: 20rpx;
-  color: black;
-  font-size: 40rpx;
-  display: flex;
-  text-align: center;
-}
-
-.margin {
-  margin-top: 50rpx;
-}
-
-.btn {
-  margin-bottom: 50rpx;
-}
 
 .order_process {
   display: flex;
@@ -24,256 +7,43 @@
   padding: 10rpx 10rpx 20rpx 10rpx;
   background-color: #fff;
   margin-top: 0rpx;
-  }
-  .process_wrap {
+}
+
+.process_wrap {
   display: flex;
   flex-direction: column;
   flex: 1;
   align-items: center;
-  }
-  .process {
+}
+
+.process {
   display: flex;
   align-items: center;
   width: 100%;
-  }
-  .process_icon {
+}
+
+.process_icon {
   width: 40rpx;
   height: 40rpx;
-  }
-  .process_line {
+}
+
+.process_line {
   background: #eff3f6;
   flex: 1;
   height: 5rpx;
-  }
-  .process_name {
+}
+
+.process_name {
   font-size: 24rpx;
-  }
-
-
-/**index.wxss**/
-
-/* .container {
-    height: 1500rpx;
-} */
-
-.worker-click{
-  height: 120rpx;
-  width: 120rpx;
-  background-color: #42a5f5;
-  border-radius: 100%;
-  position: fixed;
-  bottom: 150rpx;
-  right: 20rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9;
-}
-.worker-click navigator{
-  font-size: 32rpx;
-  max-width: 80rpx;
-  color: #fff;
-  text-align: center;
-  /* background-color: blue; */
-}
-.worker-click navigator image {
-  width: 80rpx;
-  height: 80rpx
-}
-
-.row_title {
-  margin-left: 25rpx!important;
-}
-
-.title-wrapper {
-  position: relative;
-  padding: .7rem .7rem .2rem;
-  word-break: break-all;
-  background-color: #fff;
-}
-
-.title-wrapper .name {
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 1.8;
-  display: block;
-  overflow: hidden;
-  box-sizing: border-box;
-  width: 100%;
-  height: auto;
-  margin: 0;
-  padding: 0;
-  resize: none;
-  -webkit-transition: height .3s ease-in-out;
-  transition: height .3s ease-in-out;
-  word-wrap: break-word;
-  word-break: break-all;
-  color: #212121;
-  border: none;
 }
 
 
-.product {
-  height: auto;
-  width: auto;
-  background-color: #fff;
-  /* margin: 20rpx; */
-  border-radius: 20rpx;
-  position: relative;
-}
-
-.product_title {
-  color: #919a9f;
-}
-
-.left_title {
-  font-size: 40rpx;
-  color: #919a9f;
-  /* margin-left: 40rpx; */
-  margin-bottom: 10rpx;
-}
-
-.right_title {
-  font-size: 32rpx;
-  /* margin-left: 80rpx; */
-  display: flex;
-  flex-direction: column;
-}
-
-.right_title  text {
-  margin-bottom: 10rpx;
-}
-
-.product_main {
-  color: #919a9f;
-  height: 50%;
-  width: 100%;
-}
-
-.product_main .input {
-  display: flex;
-  /* margin-left: 80rpx; */
-}
-
-.product_main .input input {
-  margin-bottom: 10rpx;
-  margin-left: 20rpx;
-}
-
-.product_container {
-  width: 100%;
-  height: 100%;
-  margin-bottom: 110rpx;
-  padding-bottom: 20rpx;
-}
-
-.btnContainer {
-  width: 100%;
-  height: 100rpx;
-  background-color: #fff;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.btnContainer button {
-  background-color: #40e0d0;
-  color: #fff;
-}
-
-
-.box_title image {
-  height: 50rpx;
-  width: 50rpx;
-  margin-right: 20rpx;
-}
-
-.box {
-  margin-top: 10rpx;
-  padding-left: 40rpx;
-}
-
-.approval_container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  position: relative;
-}
 
 .box_items {
   padding-top: 5rpx;
   margin-bottom: 5rpx;
 }
 
-.new {
-  padding: 0;
-  height: 160rpx;
-}
-
-.square image {
-  height: 80rpx;
-  width: 80rpx;
-  border-radius: 50%;
-  margin-left: 40rpx;
-  margin-right: 30rpx;
-}
-
-.img image{
-  height: 30rpx;
-  width: 30rpx;
-  border-radius: 50%;
-  position: absolute;
-  top: -15rpx;
-  right: -15rpx;
-}
-
-
-.approval_name {
-  margin-right: 60rpx;
-  height: auto;
-  display: flex;
-}
-
-.new .box_items {
-  width: 100%;
-  height: 100%;
-}
-
-.new view {
-  margin-bottom: 0
-}
-
-.approval_name .name {
-  padding: 15rpx 20rpx;
-  border-radius: 10rpx;
-  border: 1rpx solid burlywood;
-  position: relative;
-}
-
-.mean {
-  font-size: 25rpx;
-  position: absolute;
-  top: 20rpx;
-  right: 30rpx;
-}
-
-.fj {
-  position: absolute;
-  height: 40rpx;
-  width: 40rpx;
-  bottom: -10rpx;
-}
-.xt {
-  position: absolute;
-  height: 150rpx;
-  width: 20rpx;
-  left: 10rpx;
-  top: 0;
-}
 
 .buttons {
   width: 100%;
@@ -285,65 +55,67 @@
   margin-top: 100rpx;
 }
 
-.button_mini{
-  width: auto;
-  padding: 0 0.75em;
-  line-height: 1;
-  font-size: 14px;
-  background-color: #ffffff;
-}
-.info_code{
+
+.info_code {
   font-size: 54rpx;
   background-color: #ffffff;
 }
-.info_product_code{
+
+.info_product_code {
   font-size: 40rpx;
   background-color: #ffffff;
 }
-.info_receive{
-  display:flex;
+
+.info_receive {
+  display: flex;
   background-color: #ffffff;
   justify-content: space-between;
-  line-height:2em;
+  line-height: 2em;
 }
-.info_enquiry{
+
+.info_enquiry {
   background-color: #ffffff;
 }
-.info_padding1{
-  padding:0 .75em;
+
+.info_padding1 {
+  padding: 0 .75em;
 
 }
-.info_enquiry image{
+
+.info_enquiry image {
   height: 50rpx;
   width: 50rpx;
   margin-right: 20rpx;
 }
-.info_enquiry_padding{
+
+.info_enquiry_padding {
   font-size: 32rpx;
   padding: 0 48rpx;
 
 }
-.info_padding{
+
+.info_padding {
   padding: 0 54rpx;
 
 }
 
-.info_product{
+.info_product {
   font-size: 40rpx;
   background-color: #ffffff;
 
 }
 
-.info_left{
-flex-wrap: nowrap;
-float: left;
+.info_left {
+  flex-wrap: nowrap;
+  float: left;
 }
-.info_right{
+
+.info_right {
   flex-wrap: nowrap;
   float: right;
 }
 
-.state_name{
+.state_name {
   color: #919a9f;
   display: flex;
   justify-content: space-between;
@@ -351,40 +123,41 @@ float: left;
 }
 
 
-.progess-bar{
+.progess-bar {
   height: 70rpx;
 }
 
-.ball{
+.ball {
   width: 20px;
   height: 20px;
   border-radius: 10px;
   margin-left: 20px;
 }
 
-.progress{
+.progress {
   width: 2px;
   height: 30rpx;
   margin-left: 29px;
 }
 
-.detail{
+.detail {
   margin-left: 40px;
   width: 100%;
-  float:left;
+  float: left;
   color: #212121;
   position: relative;
   top: -20px;
   left: 5px;
 }
 
-.flow-detail{
+.flow-detail {
   margin: 2px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.flow-detail-name{
+
+.flow-detail-name {
   margin: 2px;
   width: 100%;
   display: flex;
@@ -392,21 +165,17 @@ float: left;
   align-items: center;
 }
 
-.active{
+.active {
   background-color: #FF5722
 }
 
-.negative{
+.negative {
   background-color: #9F9F9F
 }
-.space1{
+
+.space1 {
   background-color: #ffffff;
   height: 20rpx;
   width: 100%;
 
 }
-
-
-
-
-
