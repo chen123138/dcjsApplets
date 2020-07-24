@@ -57,15 +57,15 @@
 			<text>{{item.brand}}</text>
 			<text>{{item.type}}</text>
 		</view>
-		<!-- 时间 单价 数量单位-->
+		<!-- 时间  数量单位-->
 		<view class="info_receive padding">
 			<text>{{item.date}}</text>
-			<text>{{item.price}}</text>
+
 			<text>{{item.number}}{{item.pack}}</text>
 		</view>
-		<!-- 小计 备注 -->
+		<!-- 单价 备注 -->
 		<view class="info_receive padding">
-			<text>{{item.subtotal}}</text>
+			<text>{{item.price}}</text>
 			<text class="box_items" wx:if="{{item.remarks==false}}">备注: 无</text>
 			<text class="box_items" wx:else>备注：{{item.remarks}}</text>
 		</view>
