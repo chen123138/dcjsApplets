@@ -22,11 +22,22 @@
 .button_mini {
   width: auto;
   padding: 0 0.75em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   line-height: 1;
   font-size: 14px;
   background-color: #ffffff;
 }
-
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 60rpx;
+  justify-content: space-around;
+  text-align: center;
+  margin-top: 100rpx;
+}
 .info_code {
   font-size: 54rpx;
   background-color: #ffffff;

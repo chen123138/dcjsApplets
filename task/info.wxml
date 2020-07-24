@@ -23,12 +23,12 @@
 
 			<view class="info_receive padding">
 				<view class="into_left">{{detail.date}}</view>
-				<view class="into_right">{{detail.create_uid[1]}}</view>
+				<view class="into_right">{{detail.project_unit_id[1]}}</view>
 			</view>
 
 			<view class="info_receive padding">
 				<view class="into_left">
-					{{detail.project_unit_id[1]}}
+					{{detail.create_uid[1]}}
 				</view>
 				<view class="into_right">{{detail.position}}</view>
 			</view>
@@ -57,68 +57,8 @@
 			{{detail.content}}
 		</view>
 
-		<!-- <view class="info_receive padding" wx:if="{{(user_ids[0]['project_user_id'][0]==pid && detail.state==2) || (detail.create_uid[0]==uid && detail.state==3)}}">
-				<label class="label">核量<i style="color:red">*</i></label>
-				<view class="value">{{detail.uom_id[1]}}</view>
-				<view class="value">
-					<input type="number" data-tag="number" data-index="0" bindblur='bindInputChange' value="{{detail.number}}" />
-				</view>
-			</view>
 
-			<view class="info_receive padding" wx:else>
-				<view class="value">{{detail.number}}{{detail.uom_id[1]}}</view>
-			</view>
-		</view> -->
-		<!-- 材料集合 -->
-		<!-- 
-        <view wx-if="{{detail.cate==1 && product!=''}}">
-            <view class='wrapper'>
-                <view wx:for="{{product}}" wx:key="item">
-                    <view class='tab {{currentData == index ? "tabBorer" : ""}}' data-current="{{index}}" bindtap='checkCurrent'>
-                        材料{{index+1}}
-                    </view>
-                </view>
-            </view>
 
-            <swiper current="{{currentData}}" class='swiper' style="height:132px;" duration="300" bindchange="bindchange">
-                <swiper-item wx:for="{{product}}" wx:key="item">
-                    <view class="content-wrapper">
-                        {{item.name}}
-                    </view>
-
-                    <view class="wrapper" wx:if="{{(user_ids[0]['project_user_id'][0]==pid && detail.state==2) || (detail.create_uid[0]==uid && detail.state==3)}}">
-                        <label class="label">核量<i style="color:red">*</i></label>
-                        <view class="value">{{item.uom_id[1]}}</view>
-                        <view class="value">
-                            <input type="number" data-tag="number" data-index="{{index}}" bindblur='bindInputChange' value="{{item.number}}"/>
-                        </view>
-                    </view>
-                    
-                    <view class="wrapper" wx:else>
-                        <label class="label">数量</label>
-                        <view class="value">{{item.uom_id[1]}}</view>
-                        <view class="value">{{item.number}}</view>
-                    </view>
-                    
-                    <view class="wrapper">
-                        <label class="label">指导</label>
-                        <label class="value" bindtap='getGuideInfo' data-id="{{item.guide_id[0]}}" style="color: royalblue;">[查看]</label>
-                        <view class="value">{{item.guide_id[1]}}</view>
-                    </view>
-                </swiper-item>
-            </swiper>
-        </view>
-        
-        <view wx:if="{{detail.state==3 || detail.state==4}}">
-            <view class="space"></view>
-            <view class="wrapper">
-                <label class="label">日志</label>
-                <view class="value"></view>
-            </view>
-            <view class="content-wrapper">
-                {{detail.logs}}
-            </view>
-        </view> -->
 		<view class="space"></view>
 		<view class='info_padding1' wx:if="{{detail.cate=='1'}}">材料明细</view>
 		<view class="space"></view>

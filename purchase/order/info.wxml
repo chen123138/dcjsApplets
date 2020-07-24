@@ -43,8 +43,9 @@
 
 		</view>
 	</block>
+	
 	<view class="space"></view>
-	<view class='info_padding1'>材料信息</view>
+	<view class='info_padding1'>材料明细</view>
 	<view class="space"></view>
 
 	<block wx:for="{{project_order_product_list}}" wx:key="item">
@@ -60,12 +61,11 @@
 		<!-- 时间  数量单位-->
 		<view class="info_receive padding">
 			<text>{{item.date}}</text>
-
-			<text>{{item.number}}{{item.pack}}</text>
+			<text>{{item.number}}X{{item.number}}{{item.pack}}=￥{{item.price}}</text>
 		</view>
 		<!-- 单价 备注 -->
 		<view class="info_receive padding">
-			<text>{{item.price}}</text>
+
 			<text class="box_items" wx:if="{{item.remarks==false}}">备注: 无</text>
 			<text class="box_items" wx:else>备注：{{item.remarks}}</text>
 		</view>
