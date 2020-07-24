@@ -9,7 +9,7 @@ Page({
      */
     data: {
         // 项目编号
-        order_list: [],
+        order_info: [],
         project_order_product_ids: [],
         project_order_product_list: [],
         isCreated: 0,
@@ -61,13 +61,13 @@ Page({
         Page.setData({
             // 传递的订单信息
             order_index: prevPage.data.order_index,
-            order_list: prevPage.data.order_list[prevPage.data.order_index],
+            order_info: prevPage.data.order_list[prevPage.data.order_index],
             project_order_product_ids: prevPage.data.project_order_product_ids,
         });
         console.log("当前点击index", this.data.order_index)
-        console.log("当前的订单信息", this.data.order_list)
+        console.log("当前的订单信息", this.data.order_info)
         // 判断当前用户是否为创建用户
-        if (this.data.order_list.user_id[0] == app.globalData.uid) {
+        if (this.data.order_info.user_id[0] == app.globalData.uid) {
             this.setData({
                 isCreated: 1
             })

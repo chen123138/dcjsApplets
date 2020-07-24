@@ -20,7 +20,7 @@
 		</block>
 	</scroll-view>
 
-	<view wx:elif="{{list.length==0 && isload}}" class="no-list">
+	<view wx:elif="{{list.length==0 && isload}}"style="height: 100vh;" class="no-list">
 		<image src="/images/no-todo.png" style="width:109px;height:139px"></image>
 	</view>
 </view>
