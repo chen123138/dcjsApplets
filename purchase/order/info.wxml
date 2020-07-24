@@ -17,10 +17,16 @@
 	<view class="space"></view>
 	<!-- 供应商信息 -->
 	<block>
-		<view class="info_code,padding">{{order_list[0].code}}</view>
-		<view style="float:right;padding: 0 32rpx;" wx:if="{{order_list[0].buy_mode == 1}}">委托采购</view>
-		<view style="float:right;padding: 0 32rpx;" wx:if="{{order_list[0].buy_mode == 2}}">现场采购</view>
-		<view class="info_product_code,padding">{{order_list[0].name}}</view>
+		<view class="info_code,padding">
+			<view >{{order_list[0].code}}</view>
+			<view style="float:right;font-size: 32rpx;" wx:if="{{order_list[0].buy_mode == 1}}">委托采购</view>
+			<view style="float:right;font-size: 32rpx;" wx:if="{{order_list[0].buy_mode == 2}}">现场采购</view>
+		</view>
+		<view class="info_product_code,padding">
+			<view >{{order_list[0].name}}</view>
+		</view>
+
+
 	</block>
 	<block>
 		<view class="info_receive padding">
