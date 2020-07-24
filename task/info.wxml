@@ -138,10 +138,10 @@
             </view>
             
             <view class="buttons">
-                <button  wx:if="{{user_ids[0]['project_user_id'][0]==pid && detail.state==1}}"  type="primary" size="mini" formType="submit">确认</button>
-                <button  wx:elif="{{user_ids[0]['project_user_id'][0]==pid && detail.state==2}}" type="primary" size="mini" formType="submit">自检</button>
-                <button wx:elif="{{detail.create_uid[0]==uid && detail.state==3}}" type="primary" size="mini" formType="submit">验收</button>
-                <button  wx:if="{{detail.create_uid[0]==uid && (detail.state==1 || detail.state==2)}}" size="mini" type="warn" bindtap='bindCancel' >取消</button>
+                <button  wx:if="{{user_ids[0]['project_user_id'][0]==pid && detail.state==1}}"  type="primary"  formType="submit">确认</button>
+                <button  wx:elif="{{user_ids[0]['project_user_id'][0]==pid && detail.state==2}}" type="primary"  formType="submit">自检</button>
+                <button wx:elif="{{detail.create_uid[0]==uid && detail.state==3}}" type="primary"  formType="submit">验收</button>
+                <button  wx:if="{{detail.create_uid[0]==uid && (detail.state==1 || detail.state==2)}}"  type="warn" bindtap='bindCancel' >取消</button>
             </view>
         </form>
     </view>
