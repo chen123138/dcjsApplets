@@ -122,19 +122,25 @@ Page({
   },
 
   // 审核通过
-  goAgree: function () {
-    util.rpcWrite(1002, api.EngineerFlowRecord, [this.data.approvalId], { 'state': '1' }).then(function (res) {
+  ApprovalConfirm: function () {
+    util.rpcWrite(1002, api.EngineerApprove, [this.data.approvalId], { 'state': '1' }).then(function (res) {
       console.log(res)
+      wx.showToast({
+        title: '审核通过'
+      });
     })
   },
   // 审核驳回
-  goReject: function () {
-    util.rpcWrite(1002, api.EngineerFlowRecord, [this.data.approvalId], { 'state': '2' }).then(function (res) {
+  ApprovalReject: function () {
+    util.rpcWrite(1002, api.EngineerApprove, [this.data.approvalId], { 'state': '2' }).then(function (res) {
       console.log(res)
+      wx.showToast({
+        title: '审核驳回'
+      });
     })
   },
   // 请购人员取消
-  goCancel: function () {
+  cancel: function () {
     console.log("取消")
     util.rpcWrite(1002, api.EngineerPurchase, [this.data.product_id], { 'state': '-1' }).then(function (res) {
       console.log(res)
