@@ -108,9 +108,9 @@
 		</block>
 
 		<!-- 取消按钮 -->
-		<view class="button-sp-area padding" wx:if="{{!(item.state == '-1')}}">
+		<!-- <view class="buttons" wx:if="{{!(item.state == '-1')}}">
 			<button class="button_mini" size="mini" style="float:right" type="warn" bindtap="cancel">取消订单</button>
-		</view>
+		</view> -->
 	</view>
 
 	<view class="space"></view>
@@ -146,5 +146,8 @@
 		<view class="space"></view>
 	</block>
 
+	<view class="buttons" wx:if="{{!(item.state == '-1')}}">
+		<button style="display:flex" size="mini" type="warn" bindtap="cancel">取消</button>
+	</view>
 
 </view>
