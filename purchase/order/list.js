@@ -92,7 +92,8 @@ Page({
     */
     getList: function() {
         let params = []
-        let fields = ["code", "create_date", "name", "state", "project_order_product_ids", "user_id"]
+        // let fields = ["code", "create_date", "name", "state", "project_order_product_ids", "user_id"]
+        let fields = []
         let that = this
         util.rpcList(1006, api.EngineerOrder, params, fields, 80, '').then(function(res) {
             console.log("订单列表：", res)

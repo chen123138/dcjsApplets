@@ -17,23 +17,22 @@
 	<view class="space"></view>
 	<!-- 供应商信息 -->
 	<block>
-		<view class="info_code,padding">项目编号: {{order_list[0].code}}</view>
-		<view style="float:right;padding: 0 32rpx;" wx:if="{{order_list[0].buy_mode == 1}}">委托采购</view>
-		<view style="float:right;padding: 0 32rpx;" wx:if="{{order_list[0].buy_mode == 2}}">现场采购</view>
-		<view class="info_product_code,padding">项目名称：{{order_list[0].name}}</view>
+		<view class="info_code,padding">项目编号: {{order_info.code}}</view>
+		<view style="float:right;padding: 0 32rpx;" wx:if="{{order_info.buy_mode == 1}}">委托采购</view>
+		<view style="float:right;padding: 0 32rpx;" wx:if="{{order_info.buy_mode == 2}}">现场采购</view>
+		<view class="info_product_code,padding">项目名称：{{order_info.name}}</view>
 	</block>
 	<block>
 		<view class="info_receive padding">
-			<!-- 			<view class="box_items">所属项目: {{order_list[0].project_id[1]}}</view> -->
-			<view class="info_left">收货人员：{{order_list[0].receive_user}}</view>
-			<view class="info_right">联系电话：{{order_list[0].receive_phone}}</view>
+			<view class="info_left">收货人员：{{order_info.receive_user}}</view>
+			<view class="info_right">联系电话：{{order_info.receive_phone}}</view>
 		</view>
 		<view class="info_receive padding">
-			<view class="info_left">供应商：{{order_list[0].partner_id[1]}}</view>
-			<view class="info_right">订单人员：{{order_list[0].user_id[1]}}</view>
+			<view class="info_left">供应商：{{order_info.partner_id[1]}}</view>
+			<view class="info_right">订单人员：{{order_info.user_id[1]}}</view>
 		</view>
 		<view class="info_receive padding">
-			<view class="box_items">收货地址：{{order_list[0].receive_address}}</view>
+			<view class="box_items">收货地址：{{order_info.receive_address}}</view>
 
 		</view>
 	</block>

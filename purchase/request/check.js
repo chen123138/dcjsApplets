@@ -70,8 +70,8 @@ Page({
     let params = [
       ["id", "=", m]
     ]
-    // let fields = ["project_id", "number", "project_system_id",  "product_id", "brand", "type", "uom_id","remarks"]
-    let fields = []
+    let fields = ["project_id", "number", "project_system_id",  "product_id", "brand", "type", "uom_id","remarks"]
+    // let fields = []
     let that = this;
     util.rpcList(1000, api.EngineerProduct, params, fields, 1000, '').then(function (res) {
       console.log("res",res)
