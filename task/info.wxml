@@ -17,13 +17,6 @@
 		</view> -->
 
 			<view class="info_receive padding">
-				<!-- <view class="into_left" wx:if="{{detail.cate==1}}">任务</view>
-				<view class="into_left" wx:if="{{detail.cate==2}}">零星</view> 
-				<view class="into_right" wx:if="{{detail.state==1}}">指派中</view>
-				<view class="into_right" wx:elif="{{detail.state==2}}">进行中</view>
-				<view class="into_right" wx:elif="{{detail.state==3}}">验收中</view>
-				<view class="into_right" wx:elif="{{detail.state==4}}">已完成</view>
-				<view class="into_right" wx:elif="{{detail.state==0}}">已取消</view>-->
 			</view>
 
 			<view class="info_receive padding">
@@ -33,7 +26,7 @@
 
 			<view class="info_receive padding">
 				<view class="into_left">
-					UTIL-{{}}
+					{{detail.project_unit_id[1]}}-
 					{{user_ids[0]['project_user_id'][0]}}
 
 				</view>

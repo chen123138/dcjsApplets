@@ -66,7 +66,9 @@ Page({
                 that.setData({
                     pid: pid,
                     detail: info
-                });
+                })
+                console.log("信息")
+                console.log(info);
                 if (info.project_task_user_ids.length > 0) {
                     util.rpcRead(1005, api.EngineerTaskUser, info.project_task_user_ids, []).then(function(res) {
                         that.setData({

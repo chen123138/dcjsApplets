@@ -37,9 +37,9 @@
 
 		</view>
 	</block>
-<view class="space"></view>
+	<view class="space"></view>
 	<view class='info_padding1'>材料信息</view>
-<view class="space"></view>
+	<view class="space"></view>
 
 	<block wx:for="{{project_order_product_list}}" wx:key="item">
 		<!-- 系统材料 -->
