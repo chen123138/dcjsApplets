@@ -1,15 +1,20 @@
 <!--answer.wxml-->
 <view class="container">
 	<view>
-		<view class="info_code,padding">
-			<view class="info_code,padding">{{detail.code}}</view>
-			<view class="info_code_name" wx:if="{{detail.state==1}}">指派中</view>
-			<view class="info_code_name" wx:elif="{{detail.state==2}}">进行中</view>
-			<view class="info_code_name" wx:elif="{{detail.state==3}}">验收中</view>
-			<view class="info_code_name" wx:elif="{{detail.state==4}}">已完成</view>
-			<view class="info_code_name" wx:elif="{{detail.state==0}}">已取消</view>
-			<text class="info_product_code,padding">{{detail.name}}</text>
-		</view>
+		<block>
+			<view class="info_code,padding">
+				<view>{{detail.code}}</view>
+				<view class="info_code_name" wx:if="{{detail.state==1}}">指派中</view>
+				<view class="info_code_name" wx:elif="{{detail.state==2}}">进行中</view>
+				<view class="info_code_name" wx:elif="{{detail.state==3}}">验收中</view>
+				<view class="info_code_name" wx:elif="{{detail.state==4}}">已完成</view>
+				<view class="info_code_name" wx:elif="{{detail.state==0}}">已取消</view>
+			</view>
+			<view class="info_product_code,padding">
+				<text >{{detail.name}}</text>
+			</view>
+		</block>
+
 		<view class="space"></view>
 		<block>
 			<!--         <view class='box_title'>
@@ -111,25 +116,29 @@
 		<view class="space"></view>
 		<view class='info_padding1'>材料明细</view>
 		<view class="space"></view>
-        
+
 		<block wx:for="{{product}}" wx:key="item">
 			<!-- 材料明细 -->
 			<view class="info_product_code,padding">
 				<text>{{item.project_system_id[1]}}-{{item.project_product_id[1]}}</text>
 			</view>
-
-			<view class="info_product_code padding">
-				<label class="label info_left"></label>
-				<label class="value" bindtap='getGuideInfo' data-id="{{item.guide_id[0]}}" style="color: royalblue;">[查看]</label>
-				<view class="value info_left">{{item.guide_id[1]}}</view>
-				<view class="info_right"> {{item.number}} {{item.uom_id[1]}}</view>
-
-			</view>
+			<!-- 规格 型号 -->
 			<view class="info_receive padding">
 				<view>规格</view>
 
 				<view>型号</view>
 			</view>
+
+			<view class="info_receive padding">
+				<view> {{item.number}} {{item.uom_id[1]}}</view>
+				<view class="info_receive">
+					<view style="float:right">{{item.guide_id[1]}}</view>
+					<label bindtap='getGuideInfo' data-id="{{item.guide_id[0]}}" style="color: royalblue;"> [查看]</label>
+				</view>
+
+
+			</view>
+
 
 			<view>
 				<view class="info_product_code padding">

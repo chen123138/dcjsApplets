@@ -23,7 +23,7 @@
 			<view style="float:right;font-size: 32rpx;" wx:if="{{order_list[0].buy_mode == 2}}">现场采购</view>
 		</view>
 		<view class="info_product_code,padding">
-			<view >{{order_list[0].name}}</view>
+			<view>{{order_list[0].name}}</view>
 		</view>
 
 
