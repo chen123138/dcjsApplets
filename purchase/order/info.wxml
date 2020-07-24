@@ -57,16 +57,11 @@
 			<text>{{item.brand}}</text>
 			<text>{{item.type}}</text>
 		</view>
-		<!-- 数量 单位 -->
-		<view class="info_receive padding">
-			<text>{{item.number}}</text>
-			<text>{{item.uom_id}}</text>
-			<text>{{item.pack}}</text>
-		</view>
-		<!-- 时间 单价 -->
+		<!-- 时间 单价 数量单位-->
 		<view class="info_receive padding">
 			<text>{{item.date}}</text>
 			<text>{{item.price}}</text>
+			<text>{{item.number}}{{item.pack}}</text>
 		</view>
 		<!-- 小计 备注 -->
 		<view class="info_receive padding">
