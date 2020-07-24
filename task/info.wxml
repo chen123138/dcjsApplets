@@ -176,7 +176,7 @@
                 </view>
             </view>
             
-            <view class="button-sp-area">
+            <view class="buttons">
                 <button class="weui-btn weui-btn_mini weui-btn_primary" wx:if="{{user_ids[0]['project_user_id'][0]==pid && detail.state==1}}"  type="primary" size="mini" formType="submit">确认</button>
                 <button class="weui-btn weui-btn_mini weui-btn_primary" wx:elif="{{user_ids[0]['project_user_id'][0]==pid && detail.state==2}}" type="primary" size="mini" formType="submit">自检</button>
                 <button class="weui-btn weui-btn_mini weui-btn_primary" wx:elif="{{detail.create_uid[0]==uid && detail.state==3}}" type="primary" size="mini" formType="submit">验收</button>
