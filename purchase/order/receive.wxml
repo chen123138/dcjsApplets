@@ -1,0 +1,15 @@
+<!--purchase/order/receive.wxml-->
+<!-- 签收操作 -->
+
+  <view class="container">
+	<view class="menu"></view>
+  <!-- 发货操作 -->
+  <view class="payContatiner">
+    <text class="payTitle">请输入签收信息：</text>
+		<view class="pay">
+			<view>签收数量：<input type="number" bindblur="signer_number" style="width: 180rpx"></input> </view>
+			<view>签收截图：<input bindtap="payImage" style="border: 1px solid #afc8ba;"> </input> </view> 
+    </view> 
+    <button class="great" type="primary" bindtap="bindtracking" size="mini">确认</button>
+  </view>
+</view>

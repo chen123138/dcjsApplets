@@ -119,7 +119,7 @@ Page({
   cancel: function(e) {
     let that = this
     wx.showModal({
-      title: '提示',
+      title: '是否取消？',
 
 
       success: function(res) {
