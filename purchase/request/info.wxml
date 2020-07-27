@@ -4,6 +4,7 @@
 		<!-- 供应商信息 -->
 		<view class="info_code,padding">
 			<view>{{item.code}}</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='-1'}}">已取消</view>
 			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='0'}}">起稿中</view>
 			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='1'}}">审批中</view>
 			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='2'}}">询价单</view>
@@ -17,30 +18,24 @@
 		</view>
 	</block>
 
-	<view class="space"></view>
-
-	<block wx:for="{{list}}" wx:key="item">
+<view class="space"></view>
+	<block>
 		<view class="space1"></view>
-		<view class="info_receive padding">
-			<!-- 时间 人员 -->
-			<view class="info_left">{{item.create_date}}</view>
+		<view wx:for="{{list}}" wx:key="item" class="info_receive padding">
+			<view class="info_left">{{item.receive_user}}</view>
 			<view class="info_right">{{item.receive_phone}}</view>
 		</view>
+		<view class="space1"></view>
+		<view wx:for="{{list}}" wx:key="item" class="info_receive padding">
+			<view class="weui-uploader__title">{{item.receive_address}}</view>
+		</view>
+		<view class="space1"></view>
+		<view wx:for="{{list}}" wx:key="item" class="info_receive padding">
+			<view class="weui-cell__bd" wx:if="{{item.remarks==false}}">备注: 无</view>
+			<view class="weui-cell__bd" wx:else>{{item.remarks}}</view>
+		</view>
 
-		<view class="info_receive padding">
-			<!-- 请购状态 -->
-
-			<view>{{item.receive_phone}} {{item.receive_user}}</view>
-		</view>
-		<view class="info_receive padding">
-			<view class="box_items" style="margin-left: 40rpx; font-size: 30rpx; ">{{item.receive_address}} </view>
-		</view>
-		<view class="info_receive padding">
-			<view class="box_items" wx:if="{{item.remarks==false}}">备注: 无</view>
-			<view class="box_items" wx:else>备注: {{item.remarks}}</view>
-		</view>
 	</block>
-
 
 	<!-- 审批流程 -->
 	<view class='info_padding1'>审批流程</view>
@@ -109,9 +104,9 @@
 		</block>
 
 
-		<view class="button-sp-area padding" wx:if="{{!(item.state == '-1')}}">
+<!-- 		<view class="button-sp-area padding" wx:if="{{!(item.state == '-1')}}">
 			<button class="button_mini" size="mini" style="float:right" type="warn" bindtap="cancel">取消订单</button>
-		</view>
+		</view> -->
 	</view>
 
 	<view class="space"></view>
@@ -148,5 +143,8 @@
 		<view class="space"></view>
 	</block>
 
+	<view class="buttons" wx:if="{{!(item.state == '-1')}}">
+		<button  type="warn" bindtap="cancel">取消</button>
+	</view>
 
 </view>

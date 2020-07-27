@@ -50,16 +50,16 @@
 					<view class="info_receive padding" wx:else>
 						<view class="value">{{detail.number}}{{detail.uom_id[1]}}</view>
 					</view>
+
 				</view>
 			</view>
+			<view class="info_receive padding">
+				{{detail.content}}
+			</view>
 		</view>
-		<view class="info_receive padding">
-			{{detail.content}}
-		</view>
 
 
 
-		<view class="space"></view>
 		<view class='info_padding1' wx:if="{{detail.cate=='1'}}">材料明细</view>
 		<view class="space"></view>
 
@@ -76,19 +76,17 @@
 				<text >{{item.type}}</text>
 			</view>
 			<view class="info_receive padding">
-				<view>{{item.date}}</view>
+				<view>{{item.create_date}}</view>
 				<!-- 数量 -->
 				<view>{{item.number}} {{item.uom_id[1]}}</view>
 			</view>
 
 			<view class="info_receive padding">
-				<view> {{item.number}} {{item.uom_id[1]}}</view>
+				<!-- <view> {{item.number}} {{item.uom_id[1]}}</view> -->
 				<view class="info_receive">
 					<view style="float:right">{{item.guide_id[1]}}</view>
 					<label bindtap='getGuideInfo' data-id="{{item.guide_id[0]}}" style="color: royalblue;"> [查看]</label>
 				</view>
-
-
 			</view>
 
 
@@ -110,7 +108,9 @@
 
 				</view>
 			</view>
+			<view class="space"></view>
 		</block>
+
 
 		<!-- action -->
 		<form wx:if="{{user_ids[0]['project_user_id'][0]==pid || detail.create_uid[0]==uid}}" catchsubmit="formSubmit" catchreset="formReset">

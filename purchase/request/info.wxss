@@ -29,6 +29,15 @@
   align-items: center;
 }
 
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 60rpx;
+  justify-content: space-around;
+  text-align: center;
+  margin-top: 100rpx;
+}
 
 .info_product_code {
   font-size: 40rpx;
