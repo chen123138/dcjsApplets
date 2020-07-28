@@ -14,7 +14,8 @@ Page({
     project_id: '',
     product_list: [],
     product_list1: [],
-    system_name: ""
+    system_name: "",
+    mean: ''
   },
 
 
@@ -25,10 +26,20 @@ Page({
 
   // 转向确认界面
   goApplication: function () {
-    
-    wx.navigateTo({
-      url: '/purchase/request/check'
-    })
+
+    // 转向不同页面
+    switch (this.data.mean) {
+      case "purchase":
+        wx.navigateTo({
+          url: '/purchase/request/check'
+        })
+        break;
+      case "task":
+        wx.navigateTo({
+          url: '/task/form'
+        })
+        break;
+    }
   },
   checkboxChange(e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail.value)
@@ -40,22 +51,43 @@ Page({
     this.setData({
       product_list: this.data.product_list.concat(this.data.product_list1)
     })
-    console.log("list1",this.data.product_list)
+    console.log("list1", this.data.product_list)
     this.setData({
       product_list: this.unique(this.data.product_list)
     })
-    console.log("list2",this.data.product_list)
+    console.log("list2", this.data.product_list)
   },
 
-  // 搜索列表函数
-  getList: function (project, system) {
+
+  getListTask: function (project, system) {
     let params = [
       "&",
       ["product_id", "like", this.data.searchstr],
       "&",
       ["system_id", "like", system],
-      ["project_id", "like", project]
+      ["project_id", "like", project],
+      ["stock", ">", 0],
 
+
+    ]
+    let fields = []
+    let that = this;
+    util.rpcList(1000, api.EngineerProduct, params, fields, 1000, '').then(function (res) {
+      that.setData({
+        list: res.records
+      })
+      wx.hideLoading();
+      console.log(that.data.list)
+
+    });
+  },
+  getListPurchase: function (project, system) {
+    let params = [
+      "&",
+      ["product_id", "like", this.data.searchstr],
+      "&",
+      ["system_id", "like", system],
+      ["project_id", "like", project],
     ]
     let fields = []
     let that = this;
@@ -87,20 +119,28 @@ Page({
 
   onLoad(options) {
     // 上一页传递的项目名
-    console.log("上一页传递的数据：")
-    console.log(options)
+    console.log("上一页传递的数据：", options)
     this.setData({
       project_name: this.options.projectName,
-      project_id: this.options.projectId
+      project_id: this.options.projectId,
+      mean: this.options.mean
     })
 
     console.log('项目名:' + this.data.project_name)
     console.log('项目id:' + this.data.project_id)
+    console.log('项目来源:' + this.data.mean)
     wx.showLoading({
       title: '加载中...',
     });
 
-    this.getList(this.data.project_name, "综合布线系统")
+    switch(this.data.mean) {
+      case "task":
+        this.getListTask(this.data.project_name, "综合布线系统")
+        break;
+      case "purchase":
+        this.getListPurchase(this.data.project_name, "综合布线系统")
+        break;
+    }
 
 
   },
@@ -125,7 +165,14 @@ Page({
       searchstr: e.detail.value
     })
     console.log(this.data.searchstr)
-    this.getList()
+    switch(this.data.mean) {
+      case "task":
+        this.getListTask()
+        break;
+      case "purchase":
+        this.getListPurchase()
+        break;
+    }
 
   },
   //搜索回调
@@ -133,7 +180,14 @@ Page({
     wx.showLoading({
       title: '加载中...',
     });
-    this.getList()
+    switch(this.data.mean) {
+      case "task":
+        this.getListTask()
+        break;
+      case "purchase":
+        this.getListPurchase()
+        break;
+    }
     // wx.hideLoading();
 
   },
@@ -163,6 +217,14 @@ Page({
     })
 
     this.getList(this.data.project_name, e.currentTarget.dataset.name)
+    switch(this.data.mean) {
+      case "task":
+        this.getListTask(this.data.project_name, e.currentTarget.dataset.name)
+        break;
+      case "purchase":
+        this.getListPurchase(this.data.project_name, e.currentTarget.dataset.name)
+        break;
+    }
   }
 
 })

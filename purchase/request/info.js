@@ -123,20 +123,24 @@ Page({
 
   // 审核通过
   ApprovalConfirm: function () {
+    let that = this
     util.rpcWrite(1002, api.EngineerApprove, [this.data.approvalId], { 'state': '1' }).then(function (res) {
       console.log(res)
       wx.showToast({
         title: '审核通过'
       });
+      that.getList()
     })
   },
   // 审核驳回
   ApprovalReject: function () {
+    let that = this
     util.rpcWrite(1002, api.EngineerApprove, [this.data.approvalId], { 'state': '2' }).then(function (res) {
       console.log(res)
       wx.showToast({
         title: '审核驳回'
       });
+      that.getList()
     })
   },
   // 请购人员取消
@@ -166,6 +170,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
   },
 
   /**

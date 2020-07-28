@@ -2,7 +2,7 @@
 	<view class="menu">
 	</view>
 	<view wx:if="{{role}}" class="worker-click">
-		<navigator url='/task/form'>
+		<navigator url="/select/project?mean=task">
 			<image src='/images/add.png'></image>
 		</navigator>
 	</view>
@@ -19,7 +19,7 @@
 					<view class="row_state" wx:elif="{{item.state==2}}">进行中</view>
 					<view class="row_state" wx:elif="{{item.state==3}}">验收中</view>
 					<view class="row_state" wx:elif="{{item.state==4}}">已完成</view>
-					<view class="row_state" wx:elif="{{item.state==0}}">已取消</view>
+					<view class="row_state" wx:elif="{{item.state==-1}}">已取消</view>
 					<view class="row_time">{{item.end_date}}</view>
 				</view>
 			</view>

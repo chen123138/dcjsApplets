@@ -84,15 +84,11 @@ Page({
   // 选择材料数量
   bindBlur: function (e) {
     let list = this.data.list
-    if (e.detail.value > list[e.currentTarget.dataset.index].number) {
-      util.showText('数量溢出，实际库存为' + list[e.currentTarget.dataset.index].number + '，请重试')
-    } else {
       list[e.currentTarget.dataset.index].number = Number(e.detail.value)
       this.setData({
         list: list
       })
       console.log("改变数量", this.data.list)
-    }
   },
   // 选择到货时间
   bindDateChangeDate: function (e) {
@@ -184,7 +180,7 @@ Page({
         title: '提交成功'
       });
       setTimeout(function () {
-        wx.switchTab({
+        wx.redirectTo({
           url: './list'
         })
       }, 500);

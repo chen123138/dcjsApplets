@@ -8,14 +8,37 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    order_info_id: '',
+    // 付款信息
+    payment_images: '',
+    payment: '',
+    // 快递信息
+    trackingMent: '',
+    tracking: '',
+    // 签收信息
+    signer_images: '',
+    signer_time: '',
+    signer_number: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中...',
+    });
+    var pages = getCurrentPages();
+    var Page = pages[pages.length - 1];//当前页
+    var prevPage = pages[pages.length - 2];
+    Page.setData({
+      // 传递的订单信息
+      order_info_id: prevPage.data.order_info.id
+    });
+    console.log("项目id", this.data.order_info_id)
 
+    // 判断当前用户是否为创建用户
+    wx.hideLoading();
   },
 
   /**
@@ -85,6 +108,13 @@ Page({
     })
   },
 
+  signer_number: function (e) {
+    this.setData({
+      signer_number: e.detail.value
+    })
+    console.log(this.data.signer_number)
+  },
+
   payment: function (e) {
     this.setData({
       payment: e.detail.value
@@ -109,22 +139,21 @@ Page({
       }
     })
   },
-  signer_number: function (e) {
+  bindDateChangeDate: function (e) {
     this.setData({
-      signer_number: e.detail.value
+      signer_time: e.detail.value
     })
-    console.log(this.data.signer_number)
+    console.log("改变时间", this.data.signer_time)
   },
   bindtracking: function () {
-    util.rpcWrite(1002, api.EngineerOrder, [this.data.order_list_id], { 'signer_images': this.data.signer_images, 'signer_number': this.data.signer_number,'state':'3' } ).then(function (res) {
-      console.log("是否成功", res)
+    util.rpcWrite(1002, api.EngineerOrder, [this.data.order_info_id], { 'signer_images': this.data.signer_images, 'signer_time': this.data.signer_time, 'signer_number': this.data.signer_number}).then(function (res) {
       console.log("是否成功", res)
       if (res) {
       wx.showToast({
-        title: '已签收'
+        title: '签收成功'
       });
-      wx.navigateTo({
-        url: './list',
+      wx.navigateBack({
+        delta: 1
       })
     }else {
       wx.showToast({

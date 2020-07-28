@@ -215,20 +215,21 @@ Page({
                 title: '提交成功'
             });
             setTimeout(function () {
-                wx.switchTab({ url: '/todo/list' });
+                wx.switchTab({ url: './todo' });
             }, 500);
         });
     },
     bindCancel(e){
         let detail = this.data.detail
+        console.log(detail)
         // 待确认、待自检模式下
         if (detail.state=='1' || detail.state=='2'){
-            util.rpcWrite(1002, api.EngineerTask, [this.data.id], {'state':'0'}).then(function(res) {
+            util.rpcWrite(1002, api.EngineerTask, [this.data.id], {'state':'-1'}).then(function(res) {
                 wx.showToast({
                     title: '取消成功'
                 });
                 setTimeout(function () {
-                    wx.switchTab({ url: '/todo/list' });
+                    wx.switchTab({ url: './todo' });
                 }, 500);
             });
         }else{

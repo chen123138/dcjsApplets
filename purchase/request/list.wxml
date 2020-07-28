@@ -1,7 +1,7 @@
 <!--purchase/list/index.wxml-->
 <view class="container">
 	<view class="worker-click">
-		<navigator url='/select/project'><image src='/images/add.png'></image></navigator>
+		<navigator url='/select/project?mean=purchase'><image src='/images/add.png'></image></navigator>
 	</view>
 	<scroll-view wx:if="{{list.length}}" scroll-y="true" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
 		<block wx:for="{{list}}" wx:key="item">
@@ -18,6 +18,7 @@
 					<view class="row_state" wx:if="{{item.state=='0'}}">起稿中</view>
 					<view class="row_state" wx:if="{{item.state=='1'}}">审批中</view>
 					<view class="row_state" wx:if="{{item.state=='2'}}">询价单</view>
+					<view class="row_state" wx:if="{{item.state=='3'}}">已驳回</view>
 
 					<view class="row_time">{{item.create_date}}</view>
 				</view>

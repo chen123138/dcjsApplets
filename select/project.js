@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    projectList: []
+    projectList: [],
+    mean: ''
   },
 
 
@@ -21,7 +22,7 @@ Page({
     console.log(e.currentTarget.dataset.name)
 
     wx.navigateTo({
-      url: './product?projectName=' + e.currentTarget.dataset.name + '&projectId=' + e.currentTarget.dataset.id,
+      url: './product?projectName=' + e.currentTarget.dataset.name + '&projectId=' + e.currentTarget.dataset.id + '&mean=' + this.data.mean,
     })
   },
 
@@ -30,7 +31,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     this.getProjectList()
+    this.setData({
+      mean: options.mean
+    })
   },
 
   getProjectList: function() {

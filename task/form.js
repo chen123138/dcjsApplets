@@ -3,7 +3,6 @@ var api = require('../utils/api.js')
 var util = require('../utils/util.js')
 
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -16,8 +15,8 @@ Page({
             { lable: '任务', value: '1', checked: 'true' },
             { lable: '零星', value: '2' },
         ],
-        projects: [],
-        project: 0,
+        projectName: '',
+        projectId: '',
         users: "",
         user_ids: [],
         products: [],
@@ -25,120 +24,37 @@ Page({
         product_ids: [],
         // 
         task: {
-            cate:"1"
+            cate: "1"
         },
-        currentData: 0
+        currentData: 0,
+        // 请求所有材料合集
+        list: [],
+        guides: []
     },
 
-    //获取当前滑块的index
-    bindchange: function (e) {
-        console.log('标签滑块，携带value值为：', e.detail.current)
-        const that = this;
-        that.setData({
-            currentData: e.detail.current
-        })
-    },
-    
-    //点击切换，滑块index赋值
-    checkCurrent: function (e) {
-        console.log('滑块标签，携带value值为：', e.target.dataset.current)        
-        const that = this;
-        if (that.data.currentData === e.target.dataset.current) {
-            return false;
-        } else {
-            that.setData({
-                currentData: e.target.dataset.current
-            })
-        }
-    },
 
-    /**新增*/
-    addNewWorker: function(e) {
-        console.log('新增标签，携带value值为：', e.detail.value)
-        let index = this.data.index
-        let value = e.detail.value
-        let task = this.data.task
-        if (value == 0) return false
-        // 
-        let products = this.data.products
-        let product = products[value]
-        let that = this
-        util.post(api.ProductStock, "100", { "product_id": product[0] }).then(res => {
-            if (res) {
-                let stock = res.stock
-                let uom = res.uom
-                if (!stock) {
-                    util.showText('数量溢出，实际库存为' + stock + uom + '，请重试')
-                    return false
-                } else {
-                    that.getGuideList(res.system_id);
-                    let product_ids = {                        
-                        uom: uom,
-                        stock: stock,
-                        product: product[1],
-                        number: 0,
-                        guide_id: 0,
-                        uom_id: res.uom_id,                        
-                        project_id: task.project_id,
-                        project_product_id: product[0]
-                    }
-                    that.setData({
-                        index: index+1,
-                        product_ids: this.data.product_ids.concat(product_ids)
-                    });                    
-                }
-            } else {
-                util.showError('服务异常')
-            }
-        });
-    },
-
-    /****删除*/
-    deleteWorker: function(e) {
-        let that = this
-        let index = e.target.dataset.index //数组下标
-        let arrayLength = that.data.product_ids.length //数组长度
-        let newArray = []
-        if (arrayLength > 1) {
-            // 数组长度>1 才能删除
-            for (let i = 0; i < arrayLength; i++) {
-                if (i !== index) {
-                    newArray.push(that.data.product_ids[i])
-                }else{
-                    console.log(that.data.product_ids[i])
-                }
-            }
-            that.setData({
-                product_ids: newArray
-            })
-        } else {
-            wx.showToast({
-                icon: 'none',
-                title: '必须保留一个内容',
-            })
-        }
-    },
 
     // 获取输入框信息
-    bindInputChange: function(e) {
+    bindInputChange: function (e) {
         let tag = e.target.dataset.tag;
         let value = e.detail.value;
-        if (value==0) return false
-        let task=this.data.task
+        if (value == 0) return false
+        let task = this.data.task
         task[tag] = value
         this.setData({
             task: task
         });
+        console.log(this.data.task)
     },
-    bindInputGroupChange: function(e) {
+    bindInputGroupChange: function (e) {
         let tag = e.target.dataset.tag;
         let index = e.target.dataset.index;
         let value = e.detail.value;
-        let product_ids=this.data.product_ids
-        if (value==0) return false; 
+        let product_ids = this.data.product_ids
+        if (value == 0) return false;
         if (tag == "number") {
-            value = parseFloat(value)            
-            if (this.data.task.cate === '1'){
+            value = parseFloat(value)
+            if (this.data.task.cate === '1') {
                 let product = product_ids[index]
                 let stock = product['stock']
                 if (value > stock) {
@@ -154,68 +70,57 @@ Page({
     },
 
     // 监听页面加载
-    onLoad: function(options) {
-        console.log('onLoad');
-        this.init()
-    },
-    // 
-    init: function(){
-        let task = {}
-        task['cate'] = '1'
-        this.setData({
+    onLoad: function (options) {
+        // this.init()
+        // 设置数据
+        var pages = getCurrentPages();
+        var Page = pages[pages.length - 1];//当前页
+        var prevPage = pages[pages.length - 2];
+        let task = this.data.task
+        task['project_id'] = prevPage.data.project_id
+        Page.setData({
+            // 传递的材料列表
+            product_list: prevPage.data.product_list.map(Number),
+            // 传递的项目名
+            projectName: prevPage.data.project_name,
+            projectId: prevPage.data.project_id,
             task: task
         });
-        this.getProjectList()
+        
+        console.log("传递的材料列表", this.data.product_list)
+        console.log("传递的项目名", this.data.projectName)
+        console.log("传递的项目id", this.data.projectId)
+        console.log("task", this.data.task)
+
+        // 请求材料
+        for (var i = 0; i < this.data.product_list.length; i++) {
+
+            this.getList(Number(this.data.product_list[i]))
+        }
+        // 请求指导书
+        this.getGuideList()
     },
-    // 项目
-    getProjectList: function() {
-        let params = []
-        let that = this;
-        util.rpcName(1006, api.EngineerProject, params).then(function(res) {
-            var re = [
-                [0, "请选择"]
-            ]
-            console.log(re.concat(res))
-            that.setData({
-                projects: re.concat(res)
-            });
-        });
-    },
-    // 材料
-    getProductList: function() {
-        let params = ["", [
-            ['stock', '>', 0],
-            ['project_id', '=', this.data.task.project_id]
-        ]]
-        let that = this;
-        util.rpcName(1006, api.EngineerProduct, params).then(function(res) {
-            let re = [
-                [0, "请选择"]
-            ];
-            that.setData({
-                products: re.concat(res)
-            });
-        });
-    },
+
     // 指导
-    getGuideList: function(system_id) {
+    getGuideList: function () {
         let params = [];
         let that = this;
-        util.rpcName(1006, api.EngineerGuide, params).then(function(res) {
+        util.rpcName(1006, api.EngineerGuide, params).then(function (res) {
             let re = [
-                [0, "请选择"]
+                [0, "请选择指导书"]
             ];
             that.setData({
                 guides: re.concat(res)
             });
+            console.log("指导书列表:",that.data.guides)
         });
     },
     // 类别
     bindRadioChange: function (e) {
-        let task = {}
+        let task = this.data.task
         let uom = ''
         task['cate'] = e.detail.value
-        if(task['cate']=='2'){
+        if (task['cate'] == '2') {
             uom = '小时'
             task['uom_id'] = 6
         }
@@ -223,28 +128,16 @@ Page({
             uom: uom,
             task: task
         });
+        console.log(this.data.task)
     },
     // 基础
-    bindPickerChange(e){
+    bindPickerChange(e) {
         let tag = e.target.dataset.tag
         let value = e.detail.value
         if (value == 0) return false
-        console.log(tag+'选项改变，携带值为', value)
+        console.log(tag + '选项改变，携带值为', value)
         let task = this.data.task
         switch (tag) {
-            case "project":
-                this.setData({
-                    project: value
-                });
-                task['project_id'] = this.data.projects[value][0];
-                // 重置
-                this.setData({
-                    users:'',
-                    user_ids:[],
-                    product_ids: []
-                });
-                this.getProductList()
-                break;
             case "start":
                 task['stt_date'] = value
                 break;
@@ -256,14 +149,16 @@ Page({
         this.setData({
             task: task
         });
+        console.log('task改变', this.data.task)
     },
     // 组模式
-    bindPickerGroupChange(e){
+    bindPickerGroupChange(e) {
         let tag = e.target.dataset.tag
+        console.log(tag)
         let index = e.target.dataset.index
         let value = e.detail.value
         if (value == 0) return false
-        console.log(tag+'选项改变，携带值为', value)
+        // console.log(tag + '选项改变，携带值为', value)
         switch (tag) {
             case "guide":
                 let guide = this.data.guides[value]
@@ -273,26 +168,30 @@ Page({
                 this.setData({
                     product_ids: product_ids
                 });
+                console.log(this.data.product_ids)
                 break;
         }
+        console.log(tag + '选项改变，携带值为', value)
     },
     bindUsersTap(e) {
-        // 人员选择 + e.currentTarget.dataset.id
-        let project_id = this.data.task.project_id
-        if (project_id){
+        if (this.data.projectId) {
             wx.navigateTo({
-                url: '/select/user?project_id='+project_id
+                url: '/select/user?project_id=' + this.data.projectId
             });
-        }else{
+        } else {
             util.showText('请选择项目')
             return false
         }
     },
+
     formSubmit(e) {
         let task = this.data.task
         let user_ids = this.data.user_ids
         let product_ids = this.data.product_ids
-        console.log(task,user_ids)
+        console.log("task:",task)
+        console.log("user_ids:",user_ids)
+        console.log("product_ids:",product_ids)
+
         //
         if (!task.hasOwnProperty('project_id') || task['project_id'] == 0) {
             util.showText('请选择项目')
@@ -324,14 +223,20 @@ Page({
                     // console.log(item);
                     let tmp = {}
                     Object.assign(tmp, item);
-                    delete tmp['uom']
+                    tmp['project_id'] = tmp['project_id'][0]
+                    tmp['uom_id'] = tmp['uom_id'][0]
+                    tmp.project_product_id = tmp['id']
+                    tmp['project_system_id'] = tmp['project_system_id'][0]
+                    delete tmp['brand']
                     delete tmp['guide']
                     delete tmp['stock']
                     delete tmp['product']
-                    // console.log(tmp)
+                    delete tmp['product_id']
+                    delete tmp['type']
                     worker_ids[index] = [0, "virtual_2" + index, tmp]
                 }
                 task['project_task_product_ids']=worker_ids
+                console.log("task",task)
             }
         }
         if (task['cate'] == '2') {
@@ -344,7 +249,7 @@ Page({
                 return false;
             }
         }
-        // 
+        
         console.log(task);
         wx.showLoading({
             title: '加载中...',
@@ -358,7 +263,7 @@ Page({
             // that.init();
             setTimeout(function () {
                 wx.redirectTo({
-                    url: '../info/index?id=' + res
+                    url: './list'
                 })
             }, 500);
         });
@@ -367,49 +272,89 @@ Page({
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {
+    onReady: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function() {
-        
+    onShow: function () {
+
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function() {
+    onHide: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function() {
+    onUnload: function () {
 
     },
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function() {
+    onPullDownRefresh: function () {
 
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    onReachBottom: function () {
 
     },
 
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function() {
+    onShareAppMessage: function () {
 
-    }
+    },
+    // 选择材料信息
+    // 请求材料接口
+    getList: function (m) {
+        let params = [
+            ["id", "=", m]
+        ]
+        let fields = ["project_id","product_id", "number", "project_system_id","brand", "type", "uom_id","stock"]
+        // let fields = []
+        let that = this;
+        util.rpcList(1000, api.EngineerProduct, params, fields, 1000, '').then(function (res) {
+            console.log("res", res)
+            that.setData({
+                product_ids: that.data.product_ids.concat(res.records)
+            })
+            wx.hideLoading();
+        });
+    },
+    // 选择材料数量
+    bindBlur: function (e) {
+        let product_ids = this.data.product_ids
+        if (e.detail.value > product_ids[e.currentTarget.dataset.index].number) {
+            util.showText('数量溢出，实际库存为' + product_ids[e.currentTarget.dataset.index].number + '，请重试')
+        } else {
+            product_ids[e.currentTarget.dataset.index].number = Number(e.detail.value)
+            this.setData({
+                product_ids: product_ids
+            })
+            console.log("改变数量", this.data.product_ids)
+        }
+    },
+    
+    // 取消按钮
+    cancel: function (index) {
+        console.log(index.currentTarget.dataset.index)
+        var arr = this.data.product_ids
+        arr.splice(index.currentTarget.dataset.index, 1)
+        this.setData({
+            product_ids: arr
+        })
+    },
 })

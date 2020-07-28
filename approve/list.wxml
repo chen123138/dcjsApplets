@@ -6,7 +6,7 @@
 				<view class="list_item_title" WX:if="{{item.act_button=='Y'}}">
 					<view>{{item.display_name}}</view>
 				</view>
-                <view class="space"></view>
+				<view class="space"></view>
 				<view class="list_item_body">
 					<view class="row_state" wx:if="{{item.flow_type_id[0]==1}}">请购流程</view>
 					<view class="row_time">{{item.create_date}}</view>
@@ -17,13 +17,13 @@
 				<view class="list_item_title">
 					<view>{{item.display_name}}</view>
 				</view>
-                <view class="space"></view>
+				<view class="space"></view>
 				<view class="list_item_body">
 					<view class="row_state" wx:if="{{item.flow_type_id[0]==2}}">询价流程</view>
 					<view class="row_time">{{item.create_date}}</view>
 				</view>
 			</view>
-            <view class="space"></view>
+			<view class="space"></view>
 
 		</block>
 	</scroll-view>

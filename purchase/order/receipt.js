@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    order_list_id: '',
+    order_info_id: '',
     // 付款信息
     payment_images: '',
     payment: '',
@@ -133,14 +133,15 @@ Page({
     console.log(this.data.trackingMent)
   },
   bindtracking: function () {
-    util.rpcWrite(1002, api.EngineerOrder, [this.data.order_list_id], { 'logistic_freight': this.data.trackingMent, 'logistic_number': this.data.tracking, 'state': '2'}).then(function (res) {
+
+    util.rpcWrite(1002, api.EngineerOrder, [this.data.order_info_id], { 'logistic_freight': this.data.trackingMent, 'logistic_number': this.data.tracking}).then(function (res) {
       console.log("是否成功", res)
       if (res) {
       wx.showToast({
-        title: '已发货'
+        title: '发货成功'
       });
-      wx.navigateTo({
-        url: './list',
+      wx.navigateBack({
+        delta: 1
       })
     }else {
       wx.showToast({

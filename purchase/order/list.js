@@ -28,12 +28,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function() {
-        wx.showLoading({
-            title: '加载中...',
-        });
-        // 获取订单列表
-        this.getList();
-        wx.hideLoading();
 
     },
 
@@ -48,14 +42,19 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-
+        wx.showLoading({
+            title: '加载中...',
+        });
+        // 获取订单列表
+        this.getList();
+        wx.hideLoading();
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
     onHide: function() {
-
+        
     },
 
     /**

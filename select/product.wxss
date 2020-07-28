@@ -8,66 +8,70 @@
 }
 
 
- .select_box {
-   position: relative;
-   top: 120rpx;
-   display: flex;
- }
+.select_box {
+  position: relative;
+  top: 120rpx;
+  display: flex;
+}
 
- .select {
-   width: auto;
-   position: fixed;
-   height: 1000rpx;
-   top: 150rpx;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-around;
- }
- 
- .btn {
+.select {
+  width: auto;
+  position: fixed;
+  height: 1000rpx;
+  top: 150rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 30rpx;
+}
+
+.btn {
   padding: 20rpx 0 20rpx 20rpx;
   background-color: #ffffff;
 }
- .select_system {
-   background-color: #ededed;
- }
 
- .search_menu {
-   position: absolute;
-   margin-left: 300rpx;
-   /* width: 100%; */
- }
+.select_system {
+  background-color: #ededed;
+}
 
- .project_item {
-   width: 100%;
-   height: auto;
-   background-color: #ffffff;
- }
+.search_menu {
+  position: absolute;
+  margin-right: 0;
+  right: 0;
+  width: 470rpx;
+  top: 20rpx;
+}
 
- .item_wrap {
+.project_item {
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
+}
+
+.item_wrap {
   display: flex;
   /* justify-content: center; */
   align-items: center;
   position: relative;
- }
+}
 
- .button .btns {
-   position: fixed;
-   bottom: 0;
-   right: 50%;
-   transform: translateX(50%);
-   background-color: #42a5f5;
- }
+.button .btns {
+  position: fixed;
+  bottom: 0;
+  right: 50%;
+  transform: translateX(50%);
+  background-color: #42a5f5;
+}
 
- /* 选择框的修改 */
- checkbox .wx-checkbox-input {
+/* 选择框的修改 */
+checkbox .wx-checkbox-input {
   /* border: 1px solid red; */
   border: none;
   position: absolute;
   top: 0;
   right: 0rpx;
-  height: 50rpx;
-  width: 50rpx;
+  height: 30rpx;
+  width: 30rpx;
 }
 
 checkbox .wx-checkbox-input.wx-checkbox-input-checked {
@@ -79,7 +83,11 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 }
 
 .name_list {
-  padding-right: 50rpx;
+  padding-right: 32rpx;
+  width: 100%;
 }
 
-
+.brand {
+  display: flex;
+  justify-content: space-between;
+}

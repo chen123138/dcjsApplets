@@ -146,8 +146,8 @@ Page({
                 wx.showToast({
                     title: '已确认订单信息，待发货'
                 });
-                wx.reLanch({
-                    url: './list'
+                wx.navigateBack({
+                    delta: 1
                   })
             } else {
                 wx.showToast({
@@ -157,6 +157,7 @@ Page({
         })
     },
     goSend: function () {
+
         wx.navigateTo({
             url: './receipt',
         })
