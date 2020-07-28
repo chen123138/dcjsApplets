@@ -63,8 +63,8 @@
 							<view style="color:red;" wx:if="{{item.state == '2'}}">已驳回{{item.create_date}}</view>
 
 							<view>
-								<button class="buttons_mini" size="mini" style="line-height: 1;" wx:if="{{(item.state == '0')&&(item.act_button=='Y')}}" type="primary" bindtap="ApprovalConfirm">同意</button>
-								<button class="buttons_mini" size="mini" style="line-height: 1;" type="warn" wx:if="{{(item.state == '0')&&(item.act_button=='Y') }}" bindtap="ApprovalReject">驳回</button>
+								<button class="buttons_mini" size="mini" style="line-height: 1;" wx:if="{{(item.state == '0')&&(item.act_button=='Y')}}" type="primary" data-id="{{item.id}}" bindtap="ApprovalConfirm">同意</button>
+								<button class="buttons_mini" size="mini" style="line-height: 1;" type="warn" data-id="{{item.id}}" wx:if="{{(item.state == '0')&&(item.act_button=='Y') }}" bindtap="ApprovalReject">驳回</button>
 							</view>
 						</view>
 
