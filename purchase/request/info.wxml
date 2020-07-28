@@ -143,7 +143,7 @@
 		<view class="space"></view>
 	</block>
 
-	<view class="buttons" wx:if="{{!(item.state == '-1')}}">
+	<view class="buttons" wx:if="{{approvalState == 3}}">
 		<button  type="warn" bindtap="cancel">取消</button>
 	</view>
 
