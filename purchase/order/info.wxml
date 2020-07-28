@@ -3,7 +3,7 @@
 <!-- 进度条 -->
 
 <view class="container">
-
+<view class="space1"></view>
 	<view class='order_process'>
 		<view class='process_wrap' wx:for="{{processData}}" wx:key="item">
 			<view class='process'>
