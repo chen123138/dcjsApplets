@@ -29,14 +29,15 @@
   font-size: 14px;
   background-color: #ffffff;
 }
+
 .buttons {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 60rpx;
+  margin-bottom: 30rpx;
   justify-content: space-around;
   text-align: center;
-  margin-top: 100rpx;
+  margin-top: 30rpx;
 }
 .info_code {
   font-size: 54rpx;

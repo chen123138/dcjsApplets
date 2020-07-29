@@ -42,21 +42,14 @@ Page({
     })
 
     let that = this
-    let params = [
-      ["id", "=", that.data.product_id]
-    ]
     let fields = []
 
-    util.rpcRead(1005, api.EngineerEnquiry, [that.data.product_id], []).then(function (res) {
-
+    util.rpcRead(1000, api.EngineerEnquiry, [that.data.product_id], fields, 10, 'id DESC').then(function (res) {
       let info = res[0]
       that.setData({
         approval: res
       })
-      console.log("询价：")
-      console.log(info)
-
-      //
+      console.log("询价：", that.data.approval)
       if (info.approve_ids.length > 0) {
         util.rpcRead(1005, api.EngineerApprove, info.approve_ids, []).then(function (res) {
           that.setData({
@@ -120,8 +113,7 @@ Page({
     let that = this
     wx.showModal({
       title: '是否取消？',
-
-
+      
       success: function (res) {
         if (res.confirm) { //这里是点击了确定以后
           console.log('用户点击确定')
@@ -201,6 +193,24 @@ Page({
           console.log('用户点击取消')
 
         }
+      }
+    })
+  },
+
+  // 提交按钮
+  submit: function () {
+    let that = this
+    let params = [this.data.approval[0].id]
+    console.log(this.data.approval[0].id)
+    util.rpcWrite(1002, api.EngineerEnquiry, params, {
+      'state': '1'
+    }).then(function (res) {
+      console.log("提交：", res)
+      if (res) {
+        wx.showToast({
+          title: '提交成功'
+        });
+        that.gitList()
       }
     })
   },

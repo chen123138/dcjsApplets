@@ -3,7 +3,7 @@
 <!-- 进度条 -->
 
 <view class="container">
-<view class="space1"></view>
+	<view class="space1"></view>
 	<view class='order_process'>
 		<view class='process_wrap' wx:for="{{processData}}" wx:key="item">
 			<view class='process'>
@@ -47,7 +47,6 @@
 	<view class="space"></view>
 	<view class='info_padding1'>材料明细</view>
 	<view class="space"></view>
-
 	<block wx:for="{{project_order_product_list}}" wx:key="item">
 		<!-- 系统材料 -->
 		<view class="info_receive padding">
@@ -60,20 +59,74 @@
 		</view>
 		<!-- 时间  数量单位-->
 		<view class="info_receive padding">
-			<text>{{item.date}}</text>
 			<text>{{item.number}}X{{item.number}}{{item.pack}}=￥{{item.price}}</text>
 		</view>
 		<!-- 单价 备注 -->
 		<view class="info_receive padding">
-
 			<text class="box_items" wx:if="{{item.remarks==false}}">备注: 无</text>
 			<text class="box_items" wx:else>备注：{{item.remarks}}</text>
 		</view>
 		<view class="space"></view>
 	</block>
 
+	<view class="space"></view>
+	<view class='info_padding1' wx:if="{{order_info.state == '2'}}">发货信息</view>
+	<view class="space"></view>
+	<view class="info_receive padding" wx:if="{{order_info.state == '2'}}" >
+		<text>已发货</text>
+	</view>
+	<view class="info_receive padding" wx:if="{{order_info.state == '2'}}">
+		<text>{{order_info.logistic_number}}</text>
+		<text>{{order_info.logistic_freight}}</text>
+	</view>
+	<view class="info_receive padding" wx:if="{{order_info.state == '2'}}">
+		<text>{{order_info.logistic_time}}</text>
+	</view>
+
+	<!-- 弹出框 -->
+
+	<!-- 发货 -->
+	<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+	<view class="modal-dialog" wx:if="{{showModal1}}">
+		<view class="modal-title"> 发货信息 </view>
+		<view class="modal-content">
+			<view class="modal-input">
+				<input placeholder-class="input-holder" bindinput="tracking" class="input" placeholder="物流单号"></input>
+			</view>
+			<view class="modal-input">
+				<input placeholder-class="input-holder" type="number" bindinput="trackingMent" class="input" placeholder="物流费用"></input>
+			</view>
+		</view>
+		<view class="modal-footer">
+			<view class="btn-cancel" bindtap="onCancel" data - status="cancel"> 取消 </view>
+			<view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定
+			</view>
+		</view>
+	</view>
+<!-- 发货 -->
+
+<!-- 收货 -->
+	<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+	<view class="modal-dialog" wx:if="{{showModal2}}">
+		<view class="modal-title"> 收货信息 </view>
+		<view class="modal-content">
+			<view class="modal-input">
+				<input placeholder-class="input-holder" type="number" bindblur="signer_number" class="input" placeholder="签收数量"></input>
+			</view>
+			<view class="modal-input">
+				<input placeholder-class="input-holder"  bindtap="signer_images" class="input" placeholder="签收截图"></input>
+			</view>
+		</view>
+		<view class="modal-footer">
+			<view class="btn-cancel" bindtap="onCancel" data - status="cancel"> 取消 </view>
+			<view class="btn-confirm" bindtap="bindtracking" data-status="confirm">确定
+			</view>
+		</view>
+	</view>
+<!-- 收货 -->
+
 	<view class="buttons">
-		<button size="mini" type="primary" wx:if="{{order_info.state == '0'}}" bindtap="goConfirm">确认</button>
+		<button class="btn" type="primary" wx:if="{{order_info.state == '0'}}" bindtap="goConfirm">确认</button>
 		<button class="btn" type="primary" wx:if="{{order_info.state == '1'}}" bindtap="goSend">发货</button>
 		<button class="btn" type="primary" wx:if="{{order_info.state == '2'}}" bindtap="goReceive">收货</button>
 	</view>

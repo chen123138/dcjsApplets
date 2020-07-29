@@ -127,8 +127,11 @@
 		<view class="space"></view>
 	</block>
 
-	<view class="buttons" wx:if="{{!(item.state == '-1')}}">
+	<view class="buttons" wx:if="{{approval[0].state !== '2' && approval[0].state !== '-1'}}">
 		<button  type="warn" bindtap="cancel">取消</button>
+	</view>
+	<view class="buttons" wx:if="{{approval[0].state == '0'}}">
+		<button  type="warn" bindtap="submit">提交</button>
 	</view>
 
 </view>

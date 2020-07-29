@@ -16,12 +16,9 @@ Page({
 
 
     goDetails: function(e) {
-        // console.log(e.currentTarget.dataset.index)
+        console.log(e.currentTarget.dataset.id)
         wx.navigateTo({
-            url: 'info'
-        })
-        this.setData({
-            order_index: e.currentTarget.dataset.index
+            url: './info?id='+e.currentTarget.dataset.id
         })
     },
     /**
