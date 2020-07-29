@@ -26,7 +26,7 @@
 			<view class="space"></view>
 			<view class="arrow padding">
 				<view bindtap="bindUsersTap" class="arrow_main" style="color: #94918f">
-					{{users.length>0?users:'请选择施工人员'}}
+					{{users.length>0?users:'请选择人员'}}
 				</view>
 				<!-- TODO 时间合并为一个 -->
 				<view class="arrow_main">
@@ -64,7 +64,7 @@
 		<view class="padding" wx-if="{{task.cate==1}}">材料信息</view>
 		<view class="space" wx:if="{{task.cate==1}}"></view>
 		<view class='arrow_main' wx:if="{{task.cate==1 && product_ids.length>0}}">
-			<block wx:for="{{product_ids}}" wx:key="item.index">
+			<block wx:for="{{product_ids}}" wx:key="item">
 				<view class="product padding">
 					<image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
 					<view class="product_title">
