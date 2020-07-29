@@ -18,9 +18,9 @@
 					<view class="row_number" wx:if="{{item.buy_mode==2}}">现场采购</view>
 
 					<view class="row_state" wx:if="{{item.state=='-1'}}">已取消</view>
-					<view class="row_state" wx:if="{{item.state=='0'}}">起稿中</view>
+					<view class="row_state" wx:if="{{item.state=='0'}}">询价中</view>
 					<view class="row_state" wx:if="{{item.state=='1'}}">审批中</view>
-					<view class="row_state" wx:if="{{item.state=='2'}}">询价单</view>
+					<view class="row_state" wx:if="{{item.state=='2'}}">订货单</view>
 
 					<view class="row_time">{{item.create_date}}</view>
 				</view>
