@@ -19,8 +19,8 @@
 							<view class="name_list padding">
 								<view class="name">{{item.product_id[1]}}</view>
 								<view class="brand">
-									<view class="name">{{item.brand}}</view>
-									<view class="name">{{item.type}}</view>
+									<view class="name">{{item.brand==false?'暂无品牌':item.brand}}</view>
+									<view class="name">{{item.type==false?'暂无型号':item.type}}</view>
 								</view>
 								<view class="name">{{item.stock}} {{item.uom_id[1]}}</view>
 							</view>

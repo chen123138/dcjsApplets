@@ -162,7 +162,7 @@ function rpcCreate(id, model, data = [], context2 = {}) {
     return post(url, id, params)
 }
 
-function rpcWrite(id, model, domain = [], data = []) {
+function rpcWrite(id, model, domain = [], data = {}) {
     let context = getContext()
     let params = {
         "args": [

@@ -216,7 +216,6 @@ Page({
       currentSelectTripName: e.currentTarget.dataset.name
     })
 
-    this.getList(this.data.project_name, e.currentTarget.dataset.name)
     switch(this.data.mean) {
       case "task":
         this.getListTask(this.data.project_name, e.currentTarget.dataset.name)
