@@ -35,23 +35,20 @@
 
 	</block>
 
-	<view class="space"></view>
+	<view wx:if="{{approval[0].state == '1' || approval[0].state == '2'}}" class="space"></view>
 
 
 	<!-- 审批状态 -->
 
-	<view class='info_padding1'>审批流程</view>
-
-	<view class="space"></view>
-	<view class="info_enquiry padding">
+	<view class='info_padding1' wx:if="{{approval[0].state == '1' || approval[0].state == '2'}}">审批流程</view>
+	<view class="space" wx:if="{{approval[0].state == '1' || approval[0].state == '2'}}"></view>
+	<view wx:if="{{approval[0].state == '1' || approval[0].state == '2'}}" class="info_enquiry padding">
 		<view class="space1"></view>
 		<view class="info_enquiry_padding">直接上级</view>
 		<view class="space1"></view>
-
 		<block wx:for="{{approval_state}}" wx:key="item">
 			<view class='approval_container'>
-
-				<!-- 					流程线 -->
+				<!-- 流程线 -->
 				<view class="progess-bar">
 					<view class="ball active">
 					</view>
@@ -61,32 +58,26 @@
 							<view style="width:120rpx">{{item.user_id[1]}}</view>
 							<view style=" color:green;" wx:if="{{item.state == '1'}}">已通过{{item.create_date}}</view>
 							<view style="color:red;" wx:if="{{item.state == '2'}}">已驳回{{item.create_date}}</view>
-
 							<view>
 								<button class="buttons_mini" size="mini" style="line-height: 1;" wx:if="{{(item.state == '0')&&(item.act_button=='Y')}}" type="primary" data-id="{{item.id}}" bindtap="ApprovalConfirm">同意</button>
 								<button class="buttons_mini" size="mini" style="line-height: 1;" type="warn" data-id="{{item.id}}" wx:if="{{(item.state == '0')&&(item.act_button=='Y') }}" bindtap="ApprovalReject">驳回</button>
 							</view>
 						</view>
-
-
 					</view>
 					<view class="progress active"></view>
 				</view>
-
 			</view>
-
 		</block>
 
 		<!--     可见抄送 -->
 		<view class="space1"></view>
-
 		<view class="info_enquiry_padding">抄送人
 		</view>
 		<view class="space1"></view>
 
 		<block wx:for="{{approval_visible}}" wx:key="item">
 			<view class='approval_container'>
-				<!-- 					流程线 -->
+				<!--流程线 -->
 				<view class="progess-bar">
 					<view class="ball active"></view>
 					<view class="detail">
@@ -95,22 +86,12 @@
 							<view style="width:120rpx">{{item.user_id[1]}}</view>
 							<view class="state_name">{{item.create_date}}</view>
 						</view>
-
 					</view>
 					<view class="progress active">
 					</view>
 				</view>
-
 			</view>
-
-
-
 		</block>
-
-		<!-- 取消按钮 -->
-		<!-- <view class="buttons" wx:if="{{!(item.state == '-1')}}">
-			<button class="button_mini" size="mini" style="float:right" type="warn" bindtap="cancel">取消订单</button>
-		</view> -->
 	</view>
 
 	<view class="space"></view>
