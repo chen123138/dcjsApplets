@@ -45,7 +45,6 @@
             </view>
         </view>
 
-		<view class="space"></view>
         <!-- 零星工程 -->
         <view class="weui-cells__title" wx:if="{{detail.cate=='2'}}">零星工程</view>
         <view class="weui-cells weui-cells_after-title" wx:if="{{detail.cate=='2'}}">
@@ -80,10 +79,10 @@
                     <!-- 品牌&型号 -->
                     <view class="list_item_body">
                         <view style="float:left;">
-                            {{item.brand==undefined?' - ':item.brand}}
+                            {{item.brand==false?' - ':item.brand}}
                         </view>
                         <view style="float:right;">
-                            {{item.type==undefined?' - ':item.type}}
+                            {{item.type==false?' - ':item.type}}
                         </view>                 
                     </view>
                     <!-- 数量&单位 -->
