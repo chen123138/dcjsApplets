@@ -90,9 +90,9 @@ Page({
         // 更新数据
         let task = this.data.task
         task['project_id'] = project_id
-        task['project_name'] = project_name
         // 
         this.setData({
+            project_name: project_name,
             task: task
         });
         console.log("task", this.data.task)
