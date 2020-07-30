@@ -12,8 +12,7 @@ Page({
     currentSelectTripName: '',
     project_name: "",
     project_id: '',
-    product_list: [],
-    product_list1: [],
+    ids:[],
     system_name: "",
     mean: ''
   },
@@ -42,20 +41,16 @@ Page({
     }
   },
   checkboxChange(e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+    //   
+    console.log('checkbox发生change事件，携带value值为：', e.detail)
+    // 
+    let ids = this.data.ids.concat(e.detail.value)
+    ids = Array.from(new Set(ids))
+    // console.log(ids)
     this.setData({
-      product_list1: e.detail.value
+        ids: ids
     })
-    console.log(this.data.product_list)
-    // console.log(this.data.list)
-    this.setData({
-      product_list: this.data.product_list.concat(this.data.product_list1)
-    })
-    console.log("list1", this.data.product_list)
-    this.setData({
-      product_list: this.unique(this.data.product_list)
-    })
-    console.log("list2", this.data.product_list)
+    console.log("ids", this.data.ids)
   },
 
 

@@ -1,14 +1,16 @@
 <view class="container">
 	<form catchsubmit="formSubmit">
-        <view class="weui-cells__title">施工任务</view>
+        <view class="weui-cells__title">零星任务</view>
         <view class="weui-cells weui-cells_after-title">
             <!--  -->
-            <view class="weui-cell">
+            <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
                 <view class="weui-cell__bd">
                     <view class="weui-label">所属项目</view>
                 </view>
                 <view class="weui-cell__ft">
-                    {{projectName}}
+                    <picker bindchange="bindPickerChange" data-tag="project" value="{{project}}" range="{{projects}}" range-key='1'>
+                        <view class="weui-select" style="width:auto;">{{project?projects[project][1]:'请选择'}}</view>
+                    </picker>
                 </view>
             </view>
             <!--  -->
@@ -62,43 +64,31 @@
                     </view> 
                 </view>
             </view>
-        </view>
-        <!--  -->
-        <view class="weui-cells__title">施工材料</view>
-        <block wx:for="{{product_ids}}" wx:key="item">
-            <view class="list_item">
-                <image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
-                <!-- 系统&材料 -->
-                <view class="list_item_title">{{item.project_system_id[1]}}-{{item.name}}</view>
-                <!-- 品牌&型号 -->
-                <view class="list_item_body">
-                    <view style="float:left;">
-                        {{item.brand==false?' - ':item.brand}}
-                    </view>
-                    <view style="float:right;">
-                        {{item.type==false?' - ':item.type}}
-                    </view>                 
+            <!--  -->
+            <view class="weui-cell weui-cell_active weui-cell_input weui-cell_input-after">
+                <view class="weui-cell__bd">
+                    <view class="weui-label">所需时间</view>
                 </view>
-                <!-- 数量&单位 -->
-                <view class="list_item_body">
-                    <view style="float:left;">
-                        <view style="display: flex;">
-                            <input style="width: 50px;text-align:center;border-bottom:1px solid #c0c1c2;" type='number' class="Underscore" data-index="{{index}}" bindblur='bindBlur'/>
-                            {{item.uom_id[1]}}
-                        </view>
-                    </view>
-                    <view style="color: royalblue;float:right;">
-                        <picker bindchange="bindPickerGroupChange" data-tag="guide" data-index="{{index}}" range="{{guides}}" range-key='1'>
-                            <view class="value">{{item.guide?item.guide:'请选择'}}</view>
-                        </picker>
+                <view class="weui-cell__ft">
+                    <view class="weui-input" style="width:auto;">
+                        <input type="digit" placeholder="请输入" data-tag="position" bindblur='bindInputChange'/>小时
                     </view>
                 </view>
             </view>
+            <!-- 零星说明 -->
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_active">
+                    <view class="weui-cell__bd">
+                        <textarea class="weui-textarea" placeholder="请输入零星内容" style="height: 3.3em" data-tag="content" bindblur='bindInputChange'/>
+                        <view class="weui-textarea-counter">200</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+		<view class="button-sp-area cell">
             <view class="space"></view>
-        </block>
-        <view class="button-sp-area cell">
-            <view class="space"></view>
-			<button class="btn" type="primary" formType="submit">提交</button>
+			<button class="weui-btn weui-btn_primary" type="primary" formType="submit">提交</button>
 		</view>
 	</form>
 </view>

@@ -8,15 +8,8 @@ Page({
      */
     data: {
         // 默认值
-        date: util.formatDate(new Date()),
+        now_date: util.formatDate(new Date()),
         index: 0,
-        // 数据项
-        cates: [
-            { lable: '任务', value: '1', checked: 'true' },
-            { lable: '零星', value: '2' },
-        ],
-        projectName: '',
-        projectId: '',
         users: "",
         user_ids: [],
         products: [],
@@ -26,14 +19,27 @@ Page({
         task: {
             cate: "1"
         },
-        currentData: 0,
         // 请求所有材料合集
         list: [],
-        guides: []
+        guides: [],
+        units: [],
+        unit: 0
     },
-
-
-
+    // 单位工程
+    getProjectUnit: function () {
+        let params = ["", [
+            ['project_id', '=', this.data.task.project_id]
+        ]]
+        let that = this;
+        util.rpcName(1006, api.EngineerUnit, params).then(function (res) {
+            let re = [
+                [0, "请选择"]
+            ];
+            that.setData({
+                units: re.concat(res)
+            });
+        });
+    },
     // 获取输入框信息
     bindInputChange: function (e) {
         let tag = e.target.dataset.tag;
@@ -71,71 +77,64 @@ Page({
 
     // 监听页面加载
     onLoad: function (options) {
-        // this.init()
-        // 设置数据
+        // TODO
         var pages = getCurrentPages();
-        var Page = pages[pages.length - 1];//当前页
         var prevPage = pages[pages.length - 2];
+        // 
+        let data = prevPage.data
+        let project_id = data.project_id;
+        let project_name = data.project_name;
+        let product_ids = data.ids.map(Number);
+        // 
+        console.log("获取上一页Ids", product_ids)
+        // 更新数据
         let task = this.data.task
-        task['project_id'] = prevPage.data.project_id
-        Page.setData({
-            // 传递的材料列表
-            product_list: prevPage.data.product_list.map(Number),
-            // 传递的项目名
-            projectName: prevPage.data.project_name,
-            projectId: prevPage.data.project_id,
+        task['project_id'] = project_id
+        task['project_name'] = project_name
+        // 
+        this.setData({
             task: task
         });
-        
-        console.log("传递的材料列表", this.data.product_list)
-        console.log("传递的项目名", this.data.projectName)
-        console.log("传递的项目id", this.data.projectId)
         console.log("task", this.data.task)
-
-        // 请求材料
-        for (var i = 0; i < this.data.product_list.length; i++) {
-
-            this.getList(Number(this.data.product_list[i]))
-        }
-        // 请求指导书
+        // 获取材料列表
+        this.getList(product_ids)
+        // 获取文库列表
         this.getGuideList()
     },
-
+    // 材料
+    getList: function (ids) {
+        // 
+        let fields = ["project_id","name", "number", "project_system_id","brand", "type", "uom_id","stock"]
+        let that = this;
+        util.rpcRead(1000, api.EngineerProduct, ids, fields, 1000, '').then(function (res) {
+            console.log("res", res)
+            let product_ids = that.data.product_ids.concat(res)
+            that.setData({
+                product_ids: product_ids
+            })
+            wx.hideLoading();
+        });
+    },
     // 指导
     getGuideList: function () {
         let params = [];
         let that = this;
         util.rpcName(1006, api.EngineerGuide, params).then(function (res) {
             let re = [
-                [0, "请选择指导书"]
+                [0, "请选择"]
             ];
             that.setData({
                 guides: re.concat(res)
             });
-            console.log("指导书列表:",that.data.guides)
+            // console.log("指导书列表:",that.data.guides)
         });
     },
-    // 类别
-    bindRadioChange: function (e) {
-        let task = this.data.task
-        let uom = ''
-        task['cate'] = e.detail.value
-        if (task['cate'] == '2') {
-            uom = '小时'
-            task['uom_id'] = 6
-        }
-        this.setData({
-            uom: uom,
-            task: task
-        });
-        console.log(this.data.task)
-    },
-    // 基础
+    // 基础填充
     bindPickerChange(e) {
         let tag = e.target.dataset.tag
         let value = e.detail.value
         if (value == 0) return false
-        console.log(tag + '选项改变，携带值为', value)
+        // console.log(tag + '选项改变，携带值为', value)
         let task = this.data.task
         switch (tag) {
             case "start":
@@ -145,13 +144,12 @@ Page({
                 task['end_date'] = value
                 break;
         }
-        // 
         this.setData({
             task: task
         });
-        console.log('task改变', this.data.task)
+        // console.log('task改变', this.data.task)
     },
-    // 组模式
+    // 材料组内选择
     bindPickerGroupChange(e) {
         let tag = e.target.dataset.tag
         console.log(tag)
@@ -173,10 +171,12 @@ Page({
         }
         console.log(tag + '选项改变，携带值为', value)
     },
+    // 选人员
     bindUsersTap(e) {
-        if (this.data.projectId) {
+        let project_id = this.data.task.project_id
+        if (project_id) {
             wx.navigateTo({
-                url: '/select/user?project_id=' + this.data.projectId
+                url: '/select/user?project_id=' + project_id
             });
         } else {
             util.showText('请选择项目')
@@ -269,71 +269,7 @@ Page({
         });
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    },
-    // 选择材料信息
-    // 请求材料接口
-    getList: function (m) {
-        let params = [
-            ["id", "=", m]
-        ]
-        let fields = ["project_id","product_id", "number", "project_system_id","brand", "type", "uom_id","stock"]
-        // let fields = []
-        let that = this;
-        util.rpcList(1000, api.EngineerProduct, params, fields, 1000, '').then(function (res) {
-            console.log("res", res)
-            that.setData({
-                product_ids: that.data.product_ids.concat(res.records)
-            })
-            wx.hideLoading();
-        });
-    },
+    
     // 选择材料数量
     bindBlur: function (e) {
         let product_ids = this.data.product_ids
