@@ -48,4 +48,236 @@
   padding: 0 32rpx;
 }
 
+.product_cells_container {
+  padding: 32rpx;
+}
+
+
+/* 详情页css */
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 60rpx;
+  justify-content: space-around;
+  text-align: center;
+  margin-top: 100rpx;
+}
+
+.approval_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  position: relative;
+}
+
+.box_items {
+  padding-top: 5rpx;
+  margin-bottom: 5rpx;
+}
+
+
+.button_mini {
+  width: auto;
+  padding: 0 0.75em;
+  line-height: 1;
+  font-size: 14px;
+  background-color: #ffffff;
+}
+
+.info_code {
+  font-size: 54rpx;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.info_product_code {
+  font-size: 40rpx;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info_receive {
+  display: flex;
+  background-color: #ffffff;
+  justify-content: space-between;
+  line-height: 1.5em;
+}
+
+.info_enquiry {
+  background-color: #ffffff;
+}
+
+.info_padding1 {
+  padding: 0 .75em;
+
+}
+
+.info_enquiry image {
+  height: 50rpx;
+  width: 50rpx;
+  margin-right: 20rpx;
+}
+
+.info_enquiry_padding {
+  font-size: 32rpx;
+  padding: 0 32rpx;
+
+}
+
+.info_padding {
+  padding: 0 54rpx;
+
+}
+
+.info_product {
+  font-size: 40rpx;
+  background-color: #ffffff;
+
+}
+
+.info_left {
+  flex-wrap: nowrap;
+  float: left;
+}
+
+.info_right {
+  flex-wrap: nowrap;
+  float: right;
+}
+
+.state_name {
+  color: #919a9f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.progess-bar {
+  height: 70rpx;
+  width: 100%;
+}
+
+.ball {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 16rpx;
+  margin-left: 32rpx;
+}
+
+.progress {
+  width: 4rpx;
+  height: 40rpx;
+  margin-left: 46rpx;
+}
+
+.detail {
+  margin-left: 40px;
+
+  width: 100%;
+  float: left;
+  color: #212121;
+  position: relative;
+  top: -20px;
+  left: 5px;
+}
+
+.flow-detail {
+  margin: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flow-detail-name {
+  margin-right: 32rpx;
+  width: auto;
+  height: auto;
+}
+
+.active {
+  background-color: #FF5722
+}
+
+.negative {
+  background-color: #9F9F9F
+}
+
+
+.approval_user {
+  width:120rpx;
+  position: absolute;
+  left: 0;
+}
+
+.approval_create_green {
+  color:green;
+  position: absolute;
+  right: 116rpx;
+}
+
+.approval_create_grey{
+  color:rgb(163, 163, 163);
+  position: absolute;
+  right: 120rpx;
+}
+
+.approval_create_red {
+  color:red;
+  position: absolute;
+  right: 116rpx;
+}
+
+.buttons_mini {
+  position: absolute;
+  right: 116rpx;
+}
+
+/* 状态栏 */
+.order_process {
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 10rpx 10rpx 20rpx 10rpx;
+  background-color: #fff;
+  margin-top: 0rpx;
+}
+
+.process_wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+}
+
+.process {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.process_icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.process_line {
+  background: #eff3f6;
+  flex: 1;
+  height: 5rpx;
+}
+
+.process_name {
+  font-size: 24rpx;
+}
+
+
+
 

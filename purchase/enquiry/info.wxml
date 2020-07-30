@@ -1,6 +1,18 @@
 <!--enquiry/index.wxml-->
 <!--purchase/list_detaial/index.wxml-->
 <view class="container">
+	<!-- 状态栏 -->
+	<view class='order_process'>
+		<view class='process_wrap' wx:for="{{processData}}" wx:key="item">
+			<view class='process'>
+				<view class='process_line' style="background:{{item.start}}"></view>
+				<image class='process_icon' src="{{item.icon}}"></image>
+				<view class='process_line' style="background:{{item.end}}"></view>
+			</view>
+			<text class='process_name'>{{item.name}}</text>
+		</view>
+	</view>
+	<view class="space"></view>
 	<block wx:for="{{approval}}" wx:key="item">
 		<view class="info_code padding">
 			<view>{{item.code}}</view>
@@ -9,129 +21,128 @@
 			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='1'}}">审批中</view>
 			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='2'}}">询价单</view>
 		</view>
-		<view class="info_product_code,padding">
+		<view class="info_product_code padding">
 			<view>{{item.display_name}}</view>
 			<view style="float:right; font-size: 32rpx;" wx:if="{{item.buy_mode == 1}}">委托采购</view>
 			<view style="float:right; font-size: 32rpx;" wx:if="{{item.buy_mode == 2}}">现场采购</view>
 		</view>
 	</block>
 
-	<view class="space"></view>
-	<block>
-		<view class="space1"></view>
-		<view wx:for="{{approval}}" wx:key="item" class="info_receive padding">
-			<view class="info_left">{{item.receive_user}}</view>
-			<view class="info_right">{{item.receive_phone}}</view>
+	<!-- 收获信息 -->
+	<view>
+		<view class="weui-cells__title">收货信息</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">收货人</view>
+				<view class="weui-cell__ft">{{approval[0].receive_user}}</view>
+			</view>
+			<view class="weui-cell">
+				<view class="weui-cell__bd">收货电话</view>
+				<view class="weui-cell__ft">{{approval[0].receive_phone}}</view>
+			</view>
+			<view class="weui-cell">
+				<view class="weui-cell__bd">收货地址</view>
+				<view class="weui-cell__ft">{{approval[0].receive_address}}</view>
+			</view>
+			<view class="weui-cell">
+				<view class="weui-cell__bd">备注</view>
+				<view class="weui-cell__ft">{{approval[0].remarks}}</view>
+			</view>
 		</view>
-		<view class="space1"></view>
-		<view wx:for="{{approval}}" wx:key="item" class="info_receive padding">
-			<view class="weui-uploader__title">{{item.receive_address}}</view>
-		</view>
-		<view class="space1"></view>
-		<view wx:for="{{approval}}" wx:key="item" class="info_receive padding">
-			<view class="weui-cell__bd" wx:if="{{item.remarks==false}}">备注: 无</view>
-			<view class="weui-cell__bd" wx:else>{{item.remarks}}</view>
-		</view>
-
-	</block>
-
-	<view wx:if="{{approval[0].state == '1' || approval[0].state == '2'}}" class="space"></view>
+	</view>
 
 
 	<!-- 审批状态 -->
 
-	<view class='info_padding1' wx:if="{{approval[0].state == '1' || approval[0].state == '2'}}">审批流程</view>
-	<view class="space" wx:if="{{approval[0].state == '1' || approval[0].state == '2'}}"></view>
-	<view wx:if="{{approval[0].state == '1' || approval[0].state == '2'}}" class="info_enquiry padding">
-		<view class="space1"></view>
-		<view class="info_enquiry_padding">直接上级</view>
-		<view class="space1"></view>
-		<block wx:for="{{approval_state}}" wx:key="item">
-			<view class='approval_container'>
-				<!-- 流程线 -->
-				<view class="progess-bar">
-					<view class="ball active">
-					</view>
-					<view class="detail">
-						<!-- 名字 -->
-						<view class="flow-detail-name padding">
-							<view style="width:120rpx">{{item.user_id[1]}}</view>
-							<view style=" color:green;" wx:if="{{item.state == '1'}}">已通过{{item.create_date}}</view>
-							<view style="color:red;" wx:if="{{item.state == '2'}}">已驳回{{item.create_date}}</view>
-							<view>
-								<button class="buttons_mini" size="mini" style="line-height: 1;" wx:if="{{(item.state == '0')&&(item.act_button=='Y')}}" type="primary" data-id="{{item.id}}" bindtap="ApprovalConfirm">同意</button>
-								<button class="buttons_mini" size="mini" style="line-height: 1;" type="warn" data-id="{{item.id}}" wx:if="{{(item.state == '0')&&(item.act_button=='Y') }}" bindtap="ApprovalReject">驳回</button>
+	<!-- 审批流程 -->
+	<view>
+		<view class="weui-cells__title">审批流程</view>
+		<view class="info_enquiry ">
+			<view class="info_enquiry_padding">直接上级</view>
+			<view class="space"></view>
+			<block wx:for="{{approval_state}}" wx:key="item">
+				<view class='approval_container'>
+					<!-- 					流程线 -->
+					<view class="progess-bar">
+						<view class="ball active">
+						</view>
+						<view class="detail">
+							<!-- 名字 -->
+							<view class="flow-detail-name">
+								<view class="approval_user">{{item.user_id[1]}}</view>
+								<view class="approval_create_green" wx:if="{{item.state == '1'}}">已通过{{item.create_date}}</view>
+								<view class="approval_create_red" wx:if="{{item.state == '2'}}">已驳回{{item.create_date}}</view>
+								<view wx:if="{{(item.state == '0')}}">
+									<button class="buttons_mini" size="mini" style="line-height: 1;" wx:if="{{(item.state == '0')&&(item.act_button=='Y')}}" type="primary" bindtap="ApprovalConfirm">同意</button>
+									<button class="buttons_mini" size="mini" style="line-height: 1;" type="warn" wx:if="{{(item.state == '0')&&(item.act_button=='Y') }}" bindtap="ApprovalReject">驳回</button>
+								</view>
 							</view>
 						</view>
+						<view class="progress active"></view>
 					</view>
-					<view class="progress active"></view>
 				</view>
+			</block>
+			<!--     可见抄送 -->
+			<view class="info_enquiry_padding">抄送人
+
 			</view>
-		</block>
-
-		<!--     可见抄送 -->
-		<view class="space1"></view>
-		<view class="info_enquiry_padding">抄送人
-		</view>
-		<view class="space1"></view>
-
-		<block wx:for="{{approval_visible}}" wx:key="item">
-			<view class='approval_container'>
-				<!--流程线 -->
-				<view class="progess-bar">
-					<view class="ball active"></view>
-					<view class="detail">
-						<!-- 名字 -->
-						<view class="flow-detail-name padding">
-							<view style="width:120rpx">{{item.user_id[1]}}</view>
-							<view class="state_name">{{item.create_date}}</view>
+			<view class="space"></view>
+			<block wx:for="{{approval_visible}}" wx:key="item">
+				<view class='approval_container'>
+					<!-- 					流程线 -->
+					<view class="progess-bar">
+						<view class="ball active"></view>
+						<view class="detail">
+							<!-- 名字 -->
+							<view class="flow-detail-name ">
+								<view class="approval_user">{{item.user_id[1]}}</view>
+								<view class="approval_create_grey">{{item.create_date}}</view>
+							</view>
+						</view>
+						<view class="progress active">
 						</view>
 					</view>
-					<view class="progress active">
+				</view>
+
+			</block>
+
+		</view>
+	</view>
+
+	<!-- 材料明细 -->
+	<view>
+		<view class="weui-cells__title">材料明细</view>
+
+		<block wx:for="{{approval_product}}" wx:key="item">
+			<view class="weui-cells weui-cells_after-title">
+				<view class="product_cells_container">
+					<view class="info_receive">
+						<text>{{item.project_system_id[1]}}-{{item.project_product_id[1]}}</text>
+					</view>
+					<!--品牌  -->
+					<view class="info_receive ">
+						<text > {{item.brand}}</text>
+						<!-- 规格 -->
+						<text >{{item.type}}</text>
+					</view>
+					<view class="info_receive ">
+						<!-- 数量 -->
+						<view>{{item.number}} {{item.uom_id[1]}}</view>
+						<!-- 评论 -->
+						<view>{{item.remarks}}</view>
 					</view>
 				</view>
 			</view>
 		</block>
+		<view class="space"></view>
 	</view>
 
-	<view class="space"></view>
-	<view class="space"></view>
 
-	<view class='info_padding1'>材料明细</view>
-	<view class="space"></view>
-
-	<block wx:for="{{approval_product}}" wx:key="item">
-		<!-- 材料明细 -->
-
-		<view class="info_receive padding">
-			<text>{{item.project_system_id[1]}}-{{item.project_product_id[1]}}</text>
-		</view>
-		<!--品牌  -->
-		<view class="info_receive padding">
-			<text > {{item.brand}}</text>
-			<!-- 规格 -->
-			<text >{{item.type}}</text>
-		</view>
-		<!-- 到货时间 -->
-		<view class="info_receive padding">
-			<view>{{item.date}}</view>
-			<!-- 数量 -->
-			<view>{{item.number}} {{item.uom_id[1]}}</view>
-		</view>
-		<view class="info_receive padding">
-			<!-- 所属 -->
-			<view>{{item.partner_id[1]}}</view>
-			<!-- 评论 -->
-			<view>{{item.remarks}}</view>
-		</view>
-		<view class="space"></view>
-	</block>
-
-	<view class="buttons" wx:if="{{approval[0].state !== '2' && approval[0].state !== '-1'}}">
-		<button  type="warn" bindtap="cancel">取消</button>
+	<view class="buttons" wx:if="{{approval[0].state !== '2' && approval[0].state !== '3'}}">
+		<button type="warn" wx:if="{{approval[0].state !== '3'}}" bindtap="cancel">取消</button>
 	</view>
 	<view class="buttons" wx:if="{{approval[0].state == '0'}}">
-		<button  type="warn" bindtap="submit">提交</button>
+		<button type="warn" bindtap="submit">提交</button>
 	</view>
 
 </view>

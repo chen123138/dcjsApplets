@@ -1,6 +1,7 @@
 <!--answer.wxml-->
 <view class="container">
 	<view>
+        <!-- 进度条 -->
 		<block>
 			<view class="info_code padding">
 				<view>{{detail.code}}</view>
@@ -140,9 +141,7 @@
                 </view>
             </view>
 
-            <view class="button-sp-area cell">
-                <view class="space"></view>
-
+            <view class="buttons">
                 <button class="weui-btn weui-btn_primary" wx:if="{{user_ids[0]['project_user_id'][0]==pid && detail.state==1}}"  type="primary"  formType="submit">确认</button>
 
                 <button class="weui-btn weui-btn_primary" wx:elif="{{user_ids[0]['project_user_id'][0]==pid && detail.state==2}}" type="primary"  formType="submit">自检</button>
@@ -150,7 +149,6 @@
                 <button class="weui-btn weui-btn_primary" wx:elif="{{detail.create_uid[0]==uid && detail.state==3}}" type="primary"  formType="submit">验收</button>
                                 
                 <button class="weui-btn_warn" wx:if="{{detail.create_uid[0]==uid && (detail.state==1 || detail.state==2)}}" type="warn" bindtap='bindCancel'>取消</button>
-
             </view>
         </form>
     </view>

@@ -13,7 +13,27 @@ Page({
     approval_state: [],  //状态
     approval_product: [], //材料
     approval_visible: [],  //抄送
+    // 状态数据
+    processData: [{
+      name: '起稿中',
+      start: '#fff',
+      end: '#EFF3F6',
+      icon: '/images/process_1.png'
+    },
+    {
+      name: '审批中',
+      start: '#EFF3F6',
+      end: '#EFF3F6',
+      icon: '/images/process_1.png'
+    },
+    {
+      name: '询价单',
+      start: '#EFF3F6',
+      end: '#fff',
+      icon: '/images/process_1.png'
+    }],
   },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -26,6 +46,7 @@ Page({
     this.setData({
       product_id: parseInt(options.id),
     })
+    this.gitList()
     console.log(this.data.product_id)
   },
   getGuideInfo: function (e) {
@@ -50,12 +71,12 @@ Page({
         approval: res
       })
       console.log("询价：", that.data.approval)
+      that.setPeocessIcon()
       if (info.approve_ids.length > 0) {
         util.rpcRead(1005, api.EngineerApprove, info.approve_ids, []).then(function (res) {
           that.setData({
             approval_state: res
           })
-
           console.log("审批状态：")
           console.log(res)
 
@@ -113,7 +134,7 @@ Page({
     let that = this
     wx.showModal({
       title: '是否取消？',
-      
+
       success: function (res) {
         if (res.confirm) { //这里是点击了确定以后
           console.log('用户点击确定')
@@ -219,7 +240,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    // this.setPeocessIcon()
   },
 
   /**
@@ -227,41 +248,45 @@ Page({
    * 后
    */
   onShow: function () {
-    this.gitList()
+  },
+  //进度条的状态
+  setPeocessIcon: function () {
+    console.log("状态栏打印list", this.data.approval[0])
+    let state = Number(this.data.approval[0].state)
+    let processData = this.data.processData
+    let that = this
+    if (state == '-1') {
+      let processData = [{
+        name: '审批中',
+        start: '#ffffff',
+        end: '#ffffff',
+        icon: '/images/process_0.png'
+      }]
+      that.setData({
+        processData: processData
+      })
+    } else {
+      for (let index1 = 0; index1 <= state; index1++) {
+        if (index1 == 0) {
+          processData[index1].icon = '/images/process_2.png'
+        } else if (index1 == 3) {
+          processData[index1].icon = '/images/process_2.png'
+          processData[index1].start = '#0288d1'
+          processData[index1 - 1].end = '#0288d1'
+
+        } else {
+          processData[index1 - 1].end = '#0288d1'
+          processData[index1].icon = '/images/process_2.png'
+          processData[index1].start = '#0288d1'
+        }
+        for (let index2 = 0; index2 < index1; index2++) {
+          processData[index2].icon = '/images/process_3.png'
+        }
+      }
+      that.setData({
+        processData: processData
+      })
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

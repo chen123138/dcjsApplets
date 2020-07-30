@@ -21,6 +21,26 @@ Page({
     approvalState: 0,
     // 抄送列表
     copy: [],
+    // 状态数据
+    processData: [{
+      name: '起稿中',
+      start: '#fff',
+      end: '#EFF3F6',
+      icon: '/images/process_1.png'
+  },
+  {
+      name: '审批中',
+      start: '#EFF3F6',
+      end: '#EFF3F6',
+      icon: '/images/process_1.png'
+  },
+  {
+      name: '询价单',
+      start: '#EFF3F6',
+      end: '#fff',
+      icon: '/images/process_1.png'
+  }
+  ],
   },
 
   /**
@@ -37,7 +57,6 @@ Page({
     console.log("项目id", this.data.product_id)
 
     this.getList()
-
   },
 
   // 数据请求
@@ -56,9 +75,10 @@ Page({
         let info = res.records[0]
         console.log("info：", info)
         that.setData({
-          list: res.records,
+          list: info,
           //state: res.records[0].state
         })
+        that.setPeocessIcon()
         console.log("list",that.data.list)
         console.log(typeof that.data.state)
         
@@ -172,39 +192,43 @@ Page({
   onShow: function () {
 
   },
+  //进度条的状态
+  setPeocessIcon: function () {
+    console.log("状态栏打印list",this.data.list)
+    let state = Number(this.data.list.state)
+    let processData = this.data.processData
+    let that = this
+    if(state == '-1') {
+      let processData = [{
+          name: '已取消',
+          start: '#ffffff',
+          end: '#ffffff',
+          icon: '/images/process_0.png'
+      }]
+      that.setData({
+        processData: processData
+    })
+    }else{
+      for (let index1 = 0; index1 <= state; index1++) {
+        if (index1 == 0) {
+            processData[index1].icon = '/images/process_2.png'
+        } else if (index1 == 2) {
+            processData[index1].icon = '/images/process_2.png'
+            processData[index1].start = '#0288d1'
+            processData[index1 - 1].end = '#0288d1'
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+        } else {
+            processData[index1 - 1].end = '#0288d1'
+            processData[index1].icon = '/images/process_2.png'
+            processData[index1].start = '#0288d1'
+        }
+        for (let index2 = 0; index2 < index1; index2++) {
+            processData[index2].icon = '/images/process_3.png'
+        }
+    }
+    that.setData({
+        processData: processData
+    })
+    }
+},
 })

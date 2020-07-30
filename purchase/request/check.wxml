@@ -17,84 +17,88 @@
 
 			</view>
 		</view>
-		<view class="space"></view>
 
 
 		<!-- 收货信息 -->
-
-		<view class="Receipt_box padding">
-			<view class="space"></view>
-			<view class="Receipt_box_item">
-				<view class="label">
-					<!-- <text>收货人：</text> -->
-					<input style="width:250rpx; border-bottom:1px solid #c0c1c2;margin-bottom:10rpx;" placeholder="请填写收货人" bindinput="user"></input>
-				</view>
-				<view class="label">
-					<!-- <text>联系电话：</text> -->
-					<input style="width:250rpx; border-bottom:1px solid #c0c1c2;margin-bottom:10rpx;" type="number" placeholder="请填写联系电话" bindinput="phone"></input>
-				</view>
-			</view>
-
-			<view class="space"></view>
-			<view class="label">
-				<!-- <text>收货地址：</text> -->
-				<input style="width: 100%; border-bottom:1px solid #c0c1c2;margin-bottom:10rpx;" placeholder="请填写收货地址" bindinput="house"></input>
-			</view>
-			<view class="space"></view>
-			<view class="label">
-				<!-- <text>备注：</text> -->
-				<textarea style="height: 6em;" placeholder="备注信息" bindinput="remarks"></textarea>
-			</view>
-			<view class="space"></view>
-		</view>
-		<view class="space"></view>
-
-		<!-- 材料详情 -->
-		<view class="padding">材料详情</view>
-		<block wx:for="{{list}}" wx:key="item.index">
-			<view class="product padding">
-				<image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
-				<view class="product_title">
-					<view class="left_title">
-						<!-- 产品 -->
-						<text>{{item.project_system_id[1]}}-{{item.product_id[1]}}</text>
+		<view class="weui-cells__title">收货信息</view>
+		<view class="Receipt_box ">
+			<view class="weui-cells weui-cells_after-title">
+				<view class="weui-cell">
+					<view class="weui-cell__bd">
+						<input class="weui-input" bindinput="user" placeholder="请填写收货人" />
 					</view>
-					<view class="space"></view>
-					<view class="right_title">
-						<view class='brand'>
-							<!--品牌  -->
-							<view class="input">
-								<input placeholder="请填写品牌" data-index="{{index}}" class="Underscore" bindblur='bindBlurBrand'></input>
-							</view>
-							<!-- 类型 -->
-							<view class="input">
-								<input  placeholder="请填写规格" data-index="{{index}}" class="Underscore" bindblur='bindBlurType'></input>
+				</view>
+				<view class="weui-cell">
+					<view class="weui-cell__bd">
+						<input class="weui-input" bindinput="phone" type="number" placeholder="请填写联系电话" />
+					</view>
+				</view>
+				<view class="weui-cell">
+					<view class="weui-cell__bd">
+						<input class="weui-input" type="number" bindinput="house" placeholder="请填写收货地址" />
+					</view>
+				</view>
+				<view class="weui-cell">
+					<view class="weui-cell__bd">
+						<input class="weui-input" type="remarks" bindinput="phone" placeholder="备注信息" />
+					</view>
+				</view>
+				<view class="weui-cell">
+					<view class="weui-cell__bd">
+						<textarea class="weui-textarea" placeholder="备注信息" style="height: 3.3em" />
+						<view class="weui-textarea-counter">0/200</view>
+                </view>
+            </view>
+			</view>
+		</view>
+
+			<!-- 材料详情 -->
+			<view class="weui-cells__title">材料详情</view>
+			<block wx:for="{{list}}" wx:key="item.index">
+				<view class="product padding">
+					<image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
+					<view class="product_title">
+						<view class="left_title">
+							<!-- 产品 -->
+							<text>{{item.project_system_id[1]}}-{{item.product_id[1]}}</text>
+						</view>
+						<view class="space"></view>
+						<view class="right_title">
+							<view class='brand'>
+								<!--品牌  -->
+								<view class="input">
+									<input placeholder="填写品牌" data-index="{{index}}" style="  text-align: center;" class="Underscore" bindblur='bindBlurBrand'></input>
+								</view>
+								<!-- 类型 -->
+								<view class="input">
+									<input placeholder="填写规格" data-index="{{index}}" style="  text-align: center;" class="Underscore" bindblur='bindBlurType'></input>
+								</view>
 							</view>
 						</view>
+					</view>
+					<view class="space"></view>
+					<view class="product_main">
+						<!-- 数量 -->
+						<view class="input">
+							<input type='number' placeholder="输入数量" class="Underscore" style="  text-align: center;" data-index="{{index}}" bindblur='bindBlur'></input>{{item.uom_id[1]}}
+						</view>
+						<view class="space"></view>
+						<!-- 到货时间 -->
+						<picker mode="date" value="{{date}}" data-index="{{index}}" style="  text-align: center;"start="2020-07-02" end="2020-12-31" bindchange="bindDateChangeDate">
+							<view class="picker">
+							<text style="  text-align: center;">{{item.date == undefind?'请选择到货时间':item.date}}</text>
+								
+							</view>
+						</picker>
+						<view class="space"></view>
 					</view>
 				</view>
 				<view class="space"></view>
-				<view class="product_main">
-					<!-- 数量 -->
-					<view class="input">
-						<input type='number' placeholder="请输入数量" class="Underscore" style="  text-align: center;" data-index="{{index}}" bindblur='bindBlur'></input>{{item.uom_id[1]}}
-					</view>
-					<view class="space"></view>
-					<!-- 到货时间 -->
-					<picker mode="date" value="{{date}}" data-index="{{index}}" start="2020-07-02" end="2020-12-31" bindchange="bindDateChangeDate">
-						<view class="picker">
-							{{item.date == undefind?'请选择到货时间':item.date}}
-						</view>
-					</picker>
-					<view class="space"></view>
-				</view>
-			</view>
-			<view class="space"></view>
-		</block>
+			</block>
 
-		<view class="btnContainer">
-			<!-- <button type="warn" size="mini" bindtap="Save">保存</button> -->
-			<button class="check_button" bindtap='Submit'>提交</button>
-		</view>
+			<view class="btnContainer">
+				<!-- <button type="warn" size="mini" bindtap="Save">保存</button> -->
+				<button class="check_button" bindtap='Submit'>提交</button>
+			</view>
 	</form>
 </view>

@@ -17,113 +17,90 @@
 					</view>
 				</view>
 			</view>
-			<view class="space"></view>
-		</view>
-		<view class="space"></view>
-		<view class="padding">基本信息</view>
-		<view class="space"></view>
-		<view class="arrow_container">
-			<view class="space"></view>
-			<view class="arrow padding">
-				<view bindtap="bindUsersTap" class="arrow_main" style="color: #94918f">
-					{{users.length>0?users:'请选择人员'}}
-				</view>
-				<!-- TODO 时间合并为一个 -->
-				<view class="arrow_main">
-					<!-- <label class="label">时间</label>             -->
-					<view class="value" style="color: #94918f">
-						<view style="float: left;">
-							<picker bindchange="bindPickerChange" mode="date" value="{{task.stt_date}}" data-tag="start" start="{{now_date}}">
-								{{task.stt_date?task.stt_date:'预计开始'}}
-							</picker>
-						</view>
-						<view style="float: left;padding-left: 5px;padding-right: 5px;"> ~ </view>
-						<view style="float: left;">
-							<picker bindchange="bindPickerChange" mode="date" value="{{task.end_date}}" data-tag="stop" start="{{now_date}}">
-								{{task.end_date?task.end_date:'预计结束'}}
-							</picker>
-						</view>
-					</view>
-				</view>
-				<!-- TODO 时间合并为一个 -->
-			</view>
-			<view class="space"></view>
-			<view class="padding">
-				<view class="arrow_main">
-					<label class="label">部位</label>
-					<view class="value">
-						<input type="text" placeholder='请输入' data-tag="position" bindblur='bindInputChange' />
-					</view>
-				</view>
-			</view>
-			<view class="space"></view>
 		</view>
 
 		<!-- 材料信息 -->
-		<view class="space" wx-if="{{task.cate==1}}"></view>
-		<view class="padding" wx-if="{{task.cate==1}}">材料信息</view>
-		<view class="space" wx:if="{{task.cate==1}}"></view>
-		<view class='arrow_main' wx:if="{{task.cate==1 && product_ids.length>0}}">
-			<block wx:for="{{product_ids}}" wx:key="item">
-				<view class="product padding">
-					<image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
-					<view class="product_title">
-						<view class="left_title">
-							<!-- 产品 -->
-							<text>{{item.project_system_id[1]}}-{{item.product_id[1]}}</text>
+		<view>
+			<view class="weui-cells__title">基本信息</view>
+			<view class="arrow_container">
+				<view class="weui-cells weui-cells_after-title">
+					<view class="weui-cell">
+						<view class="weui-cell__bd">
+							<view bindtap="bindUsersTap" class="arrow_main" style="color: #94918f">
+								{{users.length>0?users:'请选择人员'}}
+							</view>
 						</view>
-						<view class="space"></view>
-						<view class="right_title">
-							<view class='brand'>
-								<!--品牌  -->
-								<view class="input">
-									<text>{{item.brand}}</text>
+					</view>
+					<view class="weui-cell">
+						<view class="weui-cell__bd">
+							<view class="value" style="color: #94918f">
+								<view style="float: left;">
+									<picker bindchange="bindPickerChange" mode="date" value="{{task.stt_date}}" data-tag="start" start="{{now_date}}">
+										{{task.stt_date?task.stt_date:'预计开始'}}
+									</picker>
 								</view>
-								<!-- 类型 -->
-								<view class="input">
-									<text>{{item.type}}</text>
+								<view style="float: left;padding-left: 5px;padding-right: 5px;"> ~ </view>
+								<view style="float: left;">
+									<picker bindchange="bindPickerChange" mode="date" value="{{task.end_date}}" data-tag="stop" start="{{now_date}}">
+										{{task.end_date?task.end_date:'预计结束'}}
+									</picker>
 								</view>
 							</view>
 						</view>
 					</view>
-					<view class="space"></view>
-					<view class="product_main">
-						<!-- 数量 -->
-						<view class="input">
-							<input type='number' placeholder="请输入数量" class="Underscore" data-index="{{index}}" bindblur='bindBlur'></input>{{item.uom_id[1]}}
+					<view class="weui-cell">
+						<view class="weui-cell__bd">
+							<input type="text" placeholder='请输入' data-tag="position" bindblur='bindInputChange' />
 						</view>
-						<view class="space"></view>
-						<view class="wrapper">
-							<view class="arrow"></view>
-							<picker bindchange="bindPickerGroupChange" data-tag="guide" data-index="{{index}}" range="{{guides}}" range-key='1'>
-								<view class="value">{{item.guide?item.guide:'请选择指导书'}}</view>
-							</picker>
+					</view>
+				</view>
+			</view>
+		</view>
+
+
+		<!-- 材料信息 -->
+		<view wx:if="{{task.cate==1}}">
+			<view class="weui-cells__title">材料明细</view>
+			<block wx:for="{{product_ids}}" wx:key="item">
+				<view class="weui-cells weui-cells_after-title">
+
+					<view class="product_cells_container">
+						<image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
+						<view class="product_title">
+							<view class="left_title">
+								<!-- 产品 -->
+								<text>{{item.project_system_id[1]}}-{{item.product_id[1]}}</text>
+							</view>
+							<view class="right_title">
+								<view class='brand'>
+									<!--品牌  -->
+									<view class="input">
+										<text>{{item.brand}}</text>
+									</view>
+									<!-- 类型 -->
+									<view class="input">
+										<text>{{item.type}}</text>
+									</view>
+								</view>
+							</view>
+						</view>
+						<view class="product_main">
+							<!-- 数量 -->
+							<view class="input">
+								<input type='number' placeholder="请输入数量" class="Underscore" data-index="{{index}}" bindblur='bindBlur'></input>{{item.uom_id[1]}}
+							</view>
+							<view class="wrapper">
+								<view class="arrow"></view>
+								<picker bindchange="bindPickerGroupChange" data-tag="guide" data-index="{{index}}" range="{{guides}}" range-key='1'>
+									<view class="value">{{item.guide?item.guide:'请选择指导书'}}</view>
+								</picker>
+							</view>
 						</view>
 					</view>
 				</view>
 				<view class="space"></view>
 			</block>
 		</view>
-
-		<view wx-if="{{task.cate==2}}">
-			<view class="arrow_container">
-				<view class="arrow_main padding">
-					<label class="label">内容</label>
-				</view>
-				<view class="arrow_main padding">
-					<textarea data-tag="content" placeholder="请输入" style="height: 3.5em;" bindblur='bindInputChange'>
-                    </textarea>
-				</view>
-				<view class="arrow_main padding">
-					<label class="label">计量</label>
-					<view class="value">{{uom?uom:''}}</view>
-					<view class="value">
-						<input type="number" placeholder='请输入' data-tag="number" bindblur='bindInputChange' />
-					</view>
-				</view>
-			</view>
-		</view>
-
 
 		<view class="btnContainer">
 			<button class="btn" type="primary" formType="submit">提交</button>

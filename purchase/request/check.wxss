@@ -41,10 +41,9 @@
 }
 
 .picker {
-  display: flex;
   color: #838383;
   border-bottom: 1px solid #c0c1c2;
-  width: 250rpx;
+  width: 300rpx;
 }
 
 .brand {
