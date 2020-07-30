@@ -17,7 +17,7 @@ Page({
     // 采购方式
     mode: "1",
     // 项目id
-    project_id: '',
+    project_id: 0,
     // 备注
     remarks: '',
     // 收货信息
@@ -48,39 +48,38 @@ Page({
     wx.showLoading({
       title: '加载中...',
     });
-    // 设置数据
+    // TODO
     var pages = getCurrentPages();
-    var Page = pages[pages.length - 1];//当前页
     var prevPage = pages[pages.length - 2];
-    Page.setData({
-      // 传递的材料列表
-      product_ids: prevPage.data.product_list.map(Number),
-      // 传递的项目名
-      project_name: prevPage.data.project_name,
-      project_id: prevPage.data.project_id,
+    // 
+    let data = prevPage.data
+    let project_id = data.project_id;
+    let project_name = data.project_name;
+    let product_ids = data.ids.map(Number);
+    // 
+    console.log("获取上一页Ids", product_ids)
+    // 更新数据
+    this.setData({
+        project_name: project_name,
+        project_id: project_id
     });
-    // 请求材料
-    for (var i = 0; i < this.data.product_ids.length; i++) {
-
-      this.getList(Number(this.data.product_ids[i]))
-    }
+    // 获取材料列表
+    this.getList(product_ids)
   },
-  // 请求材料接口
-  getList: function (m) {
-    let params = [
-      ["id", "=", m]
-    ]
-    let fields = ["project_id", "number", "project_system_id", "product_id", "brand", "type", "uom_id", "remarks"]
-    // let fields = []
-    let that = this;
-    util.rpcList(1000, api.EngineerProduct, params, fields, 1000, '').then(function (res) {
-      console.log("res", res)
-      that.setData({
-        list: that.data.list.concat(res.records)
-      })
-      wx.hideLoading();
-    });
-  },
+    // 材料
+    getList: function (ids) {
+        // 
+        let fields = ["project_id", "name", "number", "project_system_id", "brand", "type", "uom_id", "stock"]
+        let that = this;
+        util.rpcRead(1000, api.EngineerProduct, ids, fields, 1000, '').then(function (res) {
+            console.log("res", res)
+            let list = that.data.list.concat(res)
+            that.setData({
+                list: list
+            })
+            wx.hideLoading();
+        });
+    },
   // 选择材料数量
   bindBlur: function (e) {
     let list = this.data.list
@@ -145,16 +144,16 @@ Page({
     let product = {}
     let productLists = []
     for (let i = 0; i < listData.length; i++) {
-      product.brand = listData[i].brand.toString()
+      product.brand = listData[i].brand
       product.date = listData[i].date
       product.number = listData[i].number
       product.pack = listData[i].uom_id[1]
       product.project_id = listData[i].project_id[0]
       product.project_product_id = listData[i].id
       product.project_system_id = listData[i].project_system_id[0]
-      product.remarks = listData[i].remarks.toString()
+      product.remarks = listData[i].remarks
       product.sn = i + 1
-      product.type = listData[i].type.toString()
+      product.type = listData[i].type
       product.uom_id = listData[i].uom_id[0]
       console.log("product", product)
       productLists.push([0, "virtual_" + i, product])

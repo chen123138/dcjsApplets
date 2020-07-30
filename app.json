@@ -1,5 +1,5 @@
 {
-  "pages": [
+  "pages": [    
     "page/load",
     "page/auth",
     "guide/list",

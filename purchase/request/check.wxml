@@ -14,9 +14,9 @@
 						</radio-group>
 					</view>
 				</view>
-
 			</view>
 		</view>
+		<view class="space"></view>
 
 
 		<!-- 收货信息 -->
@@ -52,16 +52,15 @@
 			</view>
 		</view>
 
-			<!-- 材料详情 -->
-			<view class="weui-cells__title">材料详情</view>
-			<block wx:for="{{list}}" wx:key="item.index">
-				<view class="product padding">
-					<image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
-					<view class="product_title">
-						<view class="left_title">
-							<!-- 产品 -->
-							<text>{{item.project_system_id[1]}}-{{item.product_id[1]}}</text>
-						</view>
+		<!-- 材料详情 -->
+		<view class="padding">材料详情</view>
+		<block wx:for="{{list}}" wx:key="item.index">
+			<view class="product padding">
+				<image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
+				<view class="product_title">
+					<view class="left_title">
+						<!-- 产品 -->
+						<text>{{item.project_system_id[1]}}-{{item.name}}</text>
 						<view class="space"></view>
 						<view class="right_title">
 							<view class='brand'>
@@ -94,7 +93,8 @@
 					</view>
 				</view>
 				<view class="space"></view>
-			</block>
+			</view>
+		</block>
 
 			<view class="btnContainer">
 				<!-- <button type="warn" size="mini" bindtap="Save">保存</button> -->

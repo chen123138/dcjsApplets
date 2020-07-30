@@ -31,7 +31,7 @@
                     <view class="weui-cell__bd">施工时间</view>
                     <view class="weui-cell__ft">{{detail.date}}</view>
                 </view>
-                <view class="weui-cell">
+                <view class="weui-cell" wx:if="{{detail.project_unit_id}}">
                     <view class="weui-cell__bd">单位工程</view>
                     <view class="weui-cell__ft">{{detail.project_unit_id[1]}}</view>
                 </view>
@@ -46,16 +46,16 @@
             </view>
         </view>
 
-        <!-- 零星工程 -->
-        <view class="weui-cells__title" wx:if="{{detail.cate=='2'}}">零星工程</view>
+        <!-- 零星说明 -->
+        <view class="weui-cells__title" wx:if="{{detail.cate=='2'}}">零星说明</view>
         <view class="weui-cells weui-cells_after-title" wx:if="{{detail.cate=='2'}}">
-            <!-- 零星内容 -->
+            <!-- 零星说明 -->
             <view class="weui-cell">
                 <view class="weui-textarea">
                     {{detail.content}}
                 </view>
             </view>
-            <!-- 计量单位 -->
+            <!-- 计量单位：可写 -->
             <view class="weui-cell" wx:if="{{(user_ids[0]['project_user_id'][0]==pid && detail.state==2) || (detail.create_uid[0]==uid && detail.state==3)}}">
                 <view class="weui-cell__bd">核量<i style="color:red">*</i></view>
                 <view class="weui-cell__ft">
@@ -63,8 +63,8 @@
                     {{detail.uom_id[1]}}
                 </view>
             </view>
-
-            <view class="weui-cell">
+            <!-- 计量单位：只读 -->
+            <view class="weui-cell" wx:else>
                 <view class="weui-cell__bd">计量</view>
                 <view class="weui-cell__ft">{{detail.number}}{{detail.uom_id[1]}}</view>
             </view>

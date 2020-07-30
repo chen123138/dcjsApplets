@@ -13,9 +13,9 @@
 		<view class="search_menu">
 			<checkbox-group bindchange="checkboxChange">
 				<label wx:for="{{list}}" wx:key="item">
-					<view class="project_item" data-id="{{item.id}}" bindtap="bindItemTap">
+					<view class="project_item">
 						<view class="item_wrap">
-							<checkbox value="{{item.id}}" checked="{{item.checked}}" />
+							<checkbox value="{{item.id}}" checked="{{item.checked}}"/>
 							<view class="name_list padding">
 								<view class="name">{{item.product_id[1]}}</view>
 								<view class="brand">
