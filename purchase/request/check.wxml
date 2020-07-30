@@ -57,7 +57,7 @@
 				<view class="product_title">
 					<view class="left_title">
 						<!-- 产品 -->
-						<text>{{item.project_system_id[1]}}-{{item.product_id[1]}}</text>
+						<text>{{item.project_system_id[1]}}-{{item.name}}</text>
 					</view>
 					<view class="space"></view>
 					<view class="right_title">
