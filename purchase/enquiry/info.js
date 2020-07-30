@@ -71,7 +71,7 @@ Page({
         approval: res
       })
       console.log("询价：", that.data.approval)
-      that.setPeocessIcon()
+      // that.setPeocessIcon()
       if (info.approve_ids.length > 0) {
         util.rpcRead(1005, api.EngineerApprove, info.approve_ids, []).then(function (res) {
           that.setData({

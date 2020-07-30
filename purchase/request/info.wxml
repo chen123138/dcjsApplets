@@ -1,6 +1,6 @@
 <view class="container">
 	<!-- 状态栏 -->
-	<view class='order_process'>
+	<!-- <view class='order_process'>
 		<view class='process_wrap' wx:for="{{processData}}" wx:key="item">
 			<view class='process'>
 				<view class='process_line' style="background:{{item.start}}"></view>
@@ -10,7 +10,7 @@
 			<text class='process_name'>{{item.name}}</text>
 		</view>
 	</view>
-	<view class="space"></view>
+	<view class="space"></view> -->
 	<!-- 供应商信息 -->
 	<view class="info_code,padding">
 		<view>{{list.code}}</view>

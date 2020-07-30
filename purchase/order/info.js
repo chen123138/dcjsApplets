@@ -90,7 +90,7 @@ Page({
                 })
             }
             // state流程图
-            that.setPeocessIcon()
+            // that.setPeocessIcon()
             // 判断当前用户是否为创建用户
             if (that.data.order_info.user_id[0] == app.globalData.uid) {
                 this.setData({

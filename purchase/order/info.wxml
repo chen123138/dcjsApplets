@@ -2,7 +2,7 @@
 
 
 <view class="container">
-	<view class='order_process'>
+	<!-- <view class='order_process'>
 		<view class='process_wrap' wx:for="{{processData}}" wx:key="item">
 			<view class='process'>
 				<view class='process_line' style="background:{{item.start}}"></view>
@@ -12,7 +12,7 @@
 			<text class='process_name'>{{item.name}}</text>
 		</view>
 	</view>
-	<view class="space"></view>
+	<view class="space"></view> -->
 	<block>
 		<view class="info_code,padding">
 			<view>{{order_info.code}}</view>

@@ -22,25 +22,25 @@ Page({
     // 抄送列表
     copy: [],
     // 状态数据
-    processData: [{
-      name: '起稿中',
-      start: '#fff',
-      end: '#EFF3F6',
-      icon: '/images/process_1.png'
-  },
-  {
-      name: '审批中',
-      start: '#EFF3F6',
-      end: '#EFF3F6',
-      icon: '/images/process_1.png'
-  },
-  {
-      name: '询价单',
-      start: '#EFF3F6',
-      end: '#fff',
-      icon: '/images/process_1.png'
-  }
-  ],
+  //   processData: [{
+  //     name: '起稿中',
+  //     start: '#fff',
+  //     end: '#EFF3F6',
+  //     icon: '/images/process_1.png'
+  // },
+  // {
+  //     name: '审批中',
+  //     start: '#EFF3F6',
+  //     end: '#EFF3F6',
+  //     icon: '/images/process_1.png'
+  // },
+  // {
+  //     name: '询价单',
+  //     start: '#EFF3F6',
+  //     end: '#fff',
+  //     icon: '/images/process_1.png'
+  // }
+  // ],
   },
 
   /**
@@ -78,7 +78,7 @@ Page({
           list: info,
           //state: res.records[0].state
         })
-        that.setPeocessIcon()
+        // that.setPeocessIcon()
         console.log("list",that.data.list)
         console.log(typeof that.data.state)
         
