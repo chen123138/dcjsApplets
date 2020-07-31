@@ -7,7 +7,8 @@ Page({
      */
     data: {
         // 用户信息展示
-        canIUse: wx.canIUse('button.open-type.getUserInfo')
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        position: ""
     },
 
     /**
@@ -27,7 +28,10 @@ Page({
                 }
             }
         })
-
+        // 
+        this.setData({
+            position: app.globalData.role
+        });
     },
 
     // 跳转记录页面

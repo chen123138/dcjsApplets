@@ -25,10 +25,67 @@ Page({
         units: [],
         unit: 0
     },
+    // 监听页面加载
+    onLoad: function (options) {
+        // TODO
+        var pages = getCurrentPages();
+        var prevPage = pages[pages.length - 2];
+        // 
+        let data = prevPage.data
+        let project_id = parseInt(data.project_id);
+        let project_name = data.project_name;
+        let product_ids = data.ids.map(Number);
+        // 
+        // console.log("获取上一页Ids", product_ids)
+        // 更新数据
+        let task = this.data.task
+        task['project_id'] = project_id
+        // 
+        this.setData({
+            project_name: project_name,
+            task: task
+        });
+        // console.log("task", this.data.task)
+        // 获取工程
+        this.getProjectUnit()
+        // 获取材料
+        this.getList(product_ids)
+        // 获取文库
+        this.getGuideList()
+    },
+    // 材料
+    getList: function (ids) {
+        // 
+        let fields = ["project_id","name", "number", "project_system_id","brand", "type", "uom_id","stock"]
+        let that = this;
+        util.rpcRead(1000, api.EngineerProduct, ids, fields, 1000, '').then(function (res) {
+            console.log("res", res)
+            let product_ids = that.data.product_ids.concat(res)
+            that.setData({
+                product_ids: product_ids
+            })
+            wx.hideLoading();
+        });
+    },
+    // 指导
+    getGuideList: function () {
+        let params = [];
+        let that = this;
+        util.rpcName(1006, api.EngineerGuide, params).then(function (res) {
+            let re = [
+                [0, "请选择"]
+            ];
+            that.setData({
+                guides: re.concat(res)
+            });
+            // console.log("指导书列表:",that.data.guides)
+        });
+    },
     // 单位工程
     getProjectUnit: function () {
+        let project_id = this.data.task.project_id
         let params = ["", [
-            ['project_id', '=', this.data.task.project_id]
+            ['project_id', '=', project_id]
         ]]
         let that = this;
         util.rpcName(1006, api.EngineerUnit, params).then(function (res) {
@@ -72,61 +129,6 @@ Page({
         product_ids[index][tag] = value
         this.setData({
             product_ids: product_ids
-        });
-    },
-
-    // 监听页面加载
-    onLoad: function (options) {
-        // TODO
-        var pages = getCurrentPages();
-        var prevPage = pages[pages.length - 2];
-        // 
-        let data = prevPage.data
-        let project_id = data.project_id;
-        let project_name = data.project_name;
-        let product_ids = data.ids.map(Number);
-        // 
-        console.log("获取上一页Ids", product_ids)
-        // 更新数据
-        let task = this.data.task
-        task['project_id'] = project_id
-        // 
-        this.setData({
-            project_name: project_name,
-            task: task
-        });
-        console.log("task", this.data.task)
-        // 获取材料列表
-        this.getList(product_ids)
-        // 获取文库列表
-        this.getGuideList()
-    },
-    // 材料
-    getList: function (ids) {
-        // 
-        let fields = ["project_id","name", "number", "project_system_id","brand", "type", "uom_id","stock"]
-        let that = this;
-        util.rpcRead(1000, api.EngineerProduct, ids, fields, 1000, '').then(function (res) {
-            console.log("res", res)
-            let product_ids = that.data.product_ids.concat(res)
-            that.setData({
-                product_ids: product_ids
-            })
-            wx.hideLoading();
-        });
-    },
-    // 指导
-    getGuideList: function () {
-        let params = [];
-        let that = this;
-        util.rpcName(1006, api.EngineerGuide, params).then(function (res) {
-            let re = [
-                [0, "请选择"]
-            ];
-            that.setData({
-                guides: re.concat(res)
-            });
-            // console.log("指导书列表:",that.data.guides)
         });
     },
     // 基础填充

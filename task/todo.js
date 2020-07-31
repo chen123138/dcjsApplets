@@ -34,7 +34,7 @@ Page({
             "&",
             ["state", ">", "0"],
             ["state", "<", "3"],
-            ["project_task_user_ids.project_user_id.user_id.id", "=", app.globalData.uid]
+            ["project_task_user_ids.user_id.id", "=", app.globalData.uid]
         ]
         let fields = ["code", "name", "state", "end_date"]
         let that = this;

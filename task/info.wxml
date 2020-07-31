@@ -56,7 +56,7 @@
                 </view>
             </view>
             <!-- 计量单位：可写 -->
-            <view class="weui-cell" wx:if="{{(user_ids[0]['project_user_id'][0]==pid && detail.state==2) || (detail.create_uid[0]==uid && detail.state==3)}}">
+            <view class="weui-cell" wx:if="{{(user_ids[0]['user_id'][0]==uid && detail.state==2) || (detail.create_uid[0]==uid && detail.state==3)}}">
                 <view class="weui-cell__bd">核量<i style="color:red">*</i></view>
                 <view class="weui-cell__ft">
                     <input type="number" data-tag="number" data-index="0" bindblur='bindInputChange' value="{{detail.number}}"/>
@@ -65,7 +65,7 @@
             </view>
             <!-- 计量单位：只读 -->
             <view class="weui-cell" wx:else>
-                <view class="weui-cell__bd">计量</view>
+                <view class="weui-cell__bd">数量</view>
                 <view class="weui-cell__ft">{{detail.number}}{{detail.uom_id[1]}}</view>
             </view>
         </view>
@@ -88,13 +88,13 @@
                     </view>
                     <!-- 数量&单位 -->
                     <view class="list_item_body">
-                        <view style="float:left;" wx:if="{{(user_ids[0]['project_user_id'][0]==pid && detail.state==2) || (detail.create_uid[0]==uid && detail.state==3)}}">
+                        <view style="float:left;" wx:if="{{(user_ids[0]['user_id'][0]==uid && detail.state==2) || (detail.create_uid[0]==uid && detail.state==3)}}">
                             <view style="display: flex;">
                                 <i style="color:red">*</i>
-                                核量:<input type="number" style="width: 50px;text-align:center;border-bottom:1px solid #c0c1c2;" data-tag="number" data-index="{{index}}" bindblur='bindInputChange' value="{{item.number}}"/>{{item.uom_id[1]}}
+                                <input type="number" style="width: 50px;text-align:center;border-bottom:1px solid #c0c1c2;" data-tag="number" data-index="{{index}}" bindblur='bindInputChange' value="{{item.number}}"/>{{item.uom_id[1]}}
                             </view>
                         </view>
-                        <view style="float:left;" wx:else>计量{{item.number}}{{item.uom_id[1]}}</view>
+                        <view style="float:left;" wx:else>{{item.number}}{{item.uom_id[1]}}</view>
                         <view bindtap='getGuideInfo' data-id="{{item.guide_id[0]}}" style="color: royalblue;float:right;">
                             {{item.guide_id[1]}}
                         </view>
@@ -114,9 +114,9 @@
         </view>
 
 		<!-- action -->
-		<form wx:if="{{user_ids[0]['project_user_id'][0]==pid || detail.create_uid[0]==uid}}" catchsubmit="formSubmit" catchreset="formReset">
+		<form wx:if="{{user_ids[0]['user_id'][0]==uid || detail.create_uid[0]==uid}}" catchsubmit="formSubmit" catchreset="formReset">
 			<!-- 自检属性 -->
-			<view wx:if="{{user_ids[0]['project_user_id'][0]==pid && detail.state==2}}">
+			<view wx:if="{{user_ids[0]['user_id'][0]==uid && detail.state==2}}">
                 <view class="weui-cells__title"><i style="color:red">*</i>施工日志</view>
                 <view class="weui-cells weui-cells_after-title">
                     <view class="weui-cell weui-cell_active">
@@ -142,9 +142,9 @@
             </view>
 
             <view class="buttons">
-                <button class="weui-btn weui-btn_primary" wx:if="{{user_ids[0]['project_user_id'][0]==pid && detail.state==1}}"  type="primary"  formType="submit">确认</button>
+                <button class="weui-btn weui-btn_primary" wx:if="{{user_ids[0]['user_id'][0]==uid && detail.state==1}}"  type="primary"  formType="submit">确认</button>
 
-                <button class="weui-btn weui-btn_primary" wx:elif="{{user_ids[0]['project_user_id'][0]==pid && detail.state==2}}" type="primary"  formType="submit">自检</button>
+                <button class="weui-btn weui-btn_primary" wx:elif="{{user_ids[0]['user_id'][0]==uid && detail.state==2}}" type="primary"  formType="submit">自检</button>
 
                 <button class="weui-btn weui-btn_primary" wx:elif="{{detail.create_uid[0]==uid && detail.state==3}}" type="primary"  formType="submit">验收</button>
                                 

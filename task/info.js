@@ -6,7 +6,6 @@ Page({
     data: {
         id: 0,
         uid: app.globalData.uid,
-        pid: 0,
         detail: [],
         user_txt: '',
         user_ids: [],
@@ -21,24 +20,6 @@ Page({
         divide: 0,
         data: {}
     },
-    //获取当前滑块的index
-    bindchange: function(e) {
-        const that = this;
-        that.setData({
-            currentData: e.detail.current
-        })
-    },
-    //点击切换，滑块index赋值
-    checkCurrent: function(e) {
-        const that = this;
-        if (that.data.currentData === e.target.dataset.current) {
-            return false;
-        } else {
-            that.setData({
-                currentData: e.target.dataset.current
-            })
-        }
-    },
     onLoad: function(options) {
         this.setData({
             id: parseInt(options.id)
@@ -52,28 +33,18 @@ Page({
         let that = this;
         util.rpcRead(1001, api.EngineerTask, [this.data.id], []).then(function(res) {
             if (res) {
-                let pid = 0
+                // 
                 let info = res[0]
-                let project = info.project_id
-                let identity = app.globalData.identity
-                console.log(app.globalData)
-                console.log(identity)
-                console.log(project)
-                if (identity.hasOwnProperty(project[0])){
-                    pid = identity[project[0]]
-                }
-                console.log(pid)
                 that.setData({
-                    pid: pid,
                     detail: info
                 })
-                console.log("信息")
-                console.log(info);
+                // console.log(info);
                 if (info.project_task_user_ids.length > 0) {
                     util.rpcRead(1005, api.EngineerTaskUser, info.project_task_user_ids, []).then(function(res) {
                         that.setData({
                             user_ids: res
                         });
+                        console.log(res)
                     });
                 }
                 if(info.project_task_product_ids.length>0){
@@ -81,10 +52,6 @@ Page({
                         that.setData({
                             product: res
                         })
-                        console.log("材料")
-                        console.log(res)
-                        ;
-
                     });
                 }
                 if (info.state > 2) {
@@ -106,7 +73,7 @@ Page({
                             divides: re.concat(res)
                         });
                     });
-                }                
+                }               
             }
             wx.hideLoading();
         });
