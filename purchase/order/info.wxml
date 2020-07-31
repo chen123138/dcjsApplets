@@ -31,6 +31,10 @@
 		<view class="weui-cells__title">收货信息</view>
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
+				<view class="weui-cell__bd">供应商</view>
+				<view class="weui-cell__ft">{{order_info.partner_id[1]}}</view>
+			</view>
+			<view class="weui-cell">
 				<view class="weui-cell__bd">收货人</view>
 				<view class="weui-cell__ft">{{order_info.receive_user}}</view>
 			</view>
@@ -39,16 +43,12 @@
 				<view class="weui-cell__ft">{{order_info.receive_phone}}</view>
 			</view>
 			<view class="weui-cell">
-				<view class="weui-cell__bd">供应商</view>
-				<view class="weui-cell__ft">{{order_info.partner_id[1]}}</view>
+				<view class="weui-cell__bd">收货地址</view>
+				<view class="weui-cell__ft">{{order_info.receive_address}}</view>
 			</view>
 			<view class="weui-cell">
 				<view class="weui-cell__bd">采购员</view>
 				<view class="weui-cell__ft">{{order_info.user_id[1]}}</view>
-			</view>
-			<view class="weui-cell">
-				<view class="weui-cell__bd">收货地址</view>
-				<view class="weui-cell__ft">{{order_info.receive_address}}</view>
 			</view>
 		</view>
 	</view>
@@ -65,8 +65,8 @@
 					</view>
 					<!-- 品牌型号 -->
 					<view class="info_receive">
-						<text>{{item.brand}}</text>
-						<text>{{item.type}}</text>
+						<text>{{item.brand == false? "-": item.brand}}</text>
+						<text>{{item.type == false? "-": item.type}}</text>
 					</view>
 					<!-- 时间  数量单位-->
 					<view class="info_receive">
@@ -85,16 +85,16 @@
 		<view class="weui-cells__title">发货信息</view>
 		<view class="weui-cells weui-cells_after-title">
 			<view class="product_cells_container">
-			<view class="info_receive">
-				<text>已发货</text>
-			</view>
-			<view class="info_receive">
-				<text>{{order_info.logistic_number}}</text>
-				<text>{{order_info.logistic_freight}}</text>
-			</view>
-			<view class="info_receive">
-				<text>{{order_info.logistic_time}}</text>
-			</view>
+				<view class="info_receive">
+					<text>已发货</text>
+				</view>
+				<view class="info_receive">
+					<text>{{order_info.logistic_number}}</text>
+					<text>{{order_info.logistic_freight}}</text>
+				</view>
+				<view class="info_receive">
+					<text>{{order_info.logistic_time}}</text>
+				</view>
 			</view>
 		</view>
 	</view>

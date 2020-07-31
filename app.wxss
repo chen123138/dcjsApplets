@@ -24,6 +24,7 @@
   width: auto;
   background-color: #ffffff;
   padding: 32rpx 0;
+  position: relative;
 }
 
 .list_item_title {
@@ -314,6 +315,15 @@
   right: 0;
   bottom: 0;
   margin: auto;
+}
+
+/* 取消按钮 */
+.cancel {
+  position: absolute;
+  height: 50rpx;
+  width: 50rpx;
+  right: 10rpx;
+  top: 10rpx;
 }
 
 

@@ -116,6 +116,15 @@ Page({
       })
       console.log("类型", this.data.list)
   },
+  // 包装信息
+  bindBlurPiker: function (e) {
+    let list = this.data.list
+      list[e.currentTarget.dataset.index].piker = e.detail.value
+      this.setData({
+        list: list
+      })
+      console.log("包装", this.data.list)
+  },
   // 选择收货信息
   user: function (e) {
     this.setData({

@@ -12,7 +12,7 @@ Page({
     currentSelectTripName: '',
     project_name: "",
     project_id: '',
-    ids:[],
+    ids: [],
     system_name: "",
     mean: ''
   },
@@ -48,7 +48,7 @@ Page({
     ids = Array.from(new Set(ids))
     // console.log(ids)
     this.setData({
-        ids: ids
+      ids: ids
     })
     console.log("ids", this.data.ids)
   },
@@ -109,6 +109,14 @@ Page({
       that.setData({
         system_name: res.records
       })
+      switch (that.data.mean) {
+        case "task":
+          that.getListTask(that.data.project_name, that.data.system_name[0].name)
+          break;
+        case "purchase":
+          that.getListPurchase(that.data.project_name, that.data.system_name[0].name)
+          break;
+      }
     })
   },
 
@@ -127,21 +135,12 @@ Page({
     wx.showLoading({
       title: '加载中...',
     });
-
-    switch(this.data.mean) {
-      case "task":
-        this.getListTask(this.data.project_name, "综合布线系统")
-        break;
-      case "purchase":
-        this.getListPurchase(this.data.project_name, "综合布线系统")
-        break;
-    }
-
+    // 获取系统列表
+    this.getSystemList()
 
   },
   onShow() {
-    // 获取系统列表
-    this.getSystemList()
+
   },
 
   tap(e) {
@@ -160,7 +159,7 @@ Page({
       searchstr: e.detail.value
     })
     console.log(this.data.searchstr)
-    switch(this.data.mean) {
+    switch (this.data.mean) {
       case "task":
         this.getListTask()
         break;
@@ -175,7 +174,7 @@ Page({
     wx.showLoading({
       title: '加载中...',
     });
-    switch(this.data.mean) {
+    switch (this.data.mean) {
       case "task":
         this.getListTask()
         break;
@@ -211,7 +210,7 @@ Page({
       currentSelectTripName: e.currentTarget.dataset.name
     })
 
-    switch(this.data.mean) {
+    switch (this.data.mean) {
       case "task":
         this.getListTask(this.data.project_name, e.currentTarget.dataset.name)
         break;

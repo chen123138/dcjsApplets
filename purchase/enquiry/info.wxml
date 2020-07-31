@@ -75,15 +75,6 @@
 							<button size="mini" style="line-height: 1; padding: 16rpx;" type="warn" wx:if="{{(item.state == '0')&&(item.act_button=='Y') }}" bindtap="ApprovalReject">驳回</button>
 						</view>
 					</view>
-
-					<!-- <view class="progess-bar">
-						<view class="detail">
-							<view class="flow-detail-name">
-
-
-							</view>
-						</view>
-					</view> -->
 				</view>
 			</block>
 			<!--     可见抄送 -->
@@ -99,17 +90,6 @@
 						<view class="approval_name">{{item.user_id[1]}}</view>
 						<view class="approval_create_grey">{{item.create_date}}</view>
 					</view>
-					
-					<!-- <view class="progess-bar">
-						<view class="detail">
-							<view class="flow-detail-name ">
-								<view class="approval_user">{{item.user_id[1]}}</view>
-								<view class="approval_create_grey">{{item.create_date}}</view>
-							</view>
-						</view>
-						<view class="progress active">
-						</view>
-					</view> -->
 				</view>
 
 			</block>
@@ -129,9 +109,9 @@
 					</view>
 					<!--品牌  -->
 					<view class="info_receive ">
-						<text > {{item.brand}}</text>
+						<text>{{item.brand == false? "-": item.brand}}</text>
 						<!-- 规格 -->
-						<text >{{item.type}}</text>
+						<text>{{item.type == false? "-": item.type}}</text>
 					</view>
 					<view class="info_receive ">
 						<!-- 数量 -->

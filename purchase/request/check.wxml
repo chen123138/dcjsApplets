@@ -83,13 +83,21 @@
 								</view>
 							</view>
 						</view>
-					</view>
-					<view class="space"></view>
-					<view class="product_main">
-						<!-- 数量 -->
+						<view class="space"></view>
+						<view class="right_title">
+							<view class='brand'>
+								<!-- 数量 -->
 						<view class="input">
 							<input type='number' placeholder="数量" class="Underscore" style="  text-align: center;" data-index="{{index}}" bindblur='bindBlur'></input>{{item.uom_id[1]}}
 						</view>
+								<!-- 包装 -->
+						<view class="input">
+							<input type='number' placeholder="包装" class="Underscore" style="  text-align: center;" data-index="{{index}}" bindblur='bindBlurPiker'></input>
+						</view>
+							</view>
+						</view>
+					</view>
+					<view class="product_main">
 						<view class="space"></view>
 						<!-- 到货时间 -->
 						<picker mode="date" value="{{date}}" data-index="{{index}}" style="  text-align: center;"start="2020-07-02" end="2020-12-31" bindchange="bindDateChangeDate">

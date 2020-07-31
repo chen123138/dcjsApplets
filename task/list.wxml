@@ -2,7 +2,7 @@
 	<view class="menu">
 	</view>
 	<!-- 添加按钮 -->
-	<view wx:if="{{role}}" bindtap="worker_click" class="worker-click">
+	<view bindtap="worker_click" class="worker-click">
 			<image src='/images/add.png'></image>
 	</view>
 	<!-- 分类按钮-任务 -->
