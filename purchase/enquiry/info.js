@@ -14,6 +14,8 @@ Page({
     approval_product: [], //材料
     approval_visible: [],  //抄送
     // 状态数据
+    create: false,
+    enquiry: false,
     processData: [{
       name: '起稿中',
       start: '#fff',
@@ -40,7 +42,7 @@ Page({
    * 前
    */
   onLoad: function (options) {
-
+    console.log(app.globalData.uid)
     // 页面传值
     console.log(options)
     this.setData({
@@ -91,20 +93,31 @@ Page({
 
           console.log("材料信息：")
           console.log(res)
-
         })
       }
-      //可见
+      //抄送
       if (info.visible_ids.length > 0) {
         util.rpcRead(1005, api.EngineerVisible, info.visible_ids, []).then(function (res) {
           that.setData({
             approval_visible: res
           })
-
           console.log("可见抄送：")
           console.log(res)
 
         })
+      }
+      // 创建者
+      if(info.create_uid[0] == app.globalData.uid) {
+        that.setData({
+          create: true
+        })
+        console.log("是否是创建者：",that.data.create)
+      }
+      if(info.user_id[0] == app.globalData.uid){
+        that.setData({
+          enquiry: true
+        })
+        console.log("是否是询价员：",that.data.enquiry)
       }
 
 
