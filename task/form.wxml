@@ -67,7 +67,10 @@
         <view class="weui-cells__title">施工材料</view>
         <block wx:for="{{product_ids}}" wx:key="item">
             <view class="list_item">
+                <!--  -->
+                <view>
                 <image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
+                </view>
                 <!-- 系统&材料 -->
                 <view class="list_item_title">{{item.project_system_id[1]}}-{{item.name}}</view>
                 <!-- 品牌&型号 -->

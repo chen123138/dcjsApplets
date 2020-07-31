@@ -11,9 +11,7 @@ Page({
         list: [],
         page: 1,
         size: 10,
-        total: 1,
-        role: false,
-        isload: false
+        total: 1
     },
 
     /**
@@ -38,10 +36,9 @@ Page({
         util.rpcList(1000, api.EngineerTask, params, fields, 10, 'id DESC').then(function(res) {
             that.setData({
                 list: res.records,
-                total: res.length,
-                isload: true
+                total: res.length
             });
-            console.log(res)
+            // console.log(res)
             wx.hideLoading();
         });
     },
@@ -116,31 +113,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-        this.setData({
-            role: app.globalData.role
-        });
         this.getList();
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-
     },
 
     /**
@@ -155,12 +128,5 @@ Page({
             return false;
         }
         this.getList();
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
     }
 })

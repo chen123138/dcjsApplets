@@ -1,7 +1,7 @@
 <scroll-view class="container">
 	<view class="menu">
 	</view>
-	<view wx:if="{{role}}" class="worker-click">
+	<view class="worker-click">
 		<navigator url="/select/project?mean=task">
 			<image src='/images/add.png'></image>
 		</navigator>

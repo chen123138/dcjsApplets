@@ -12,7 +12,7 @@
 			<view class="companyImg">
 				<image src="/images/dachang.png" class="img"></image>
 				<!-- 职位 -->
-				<text class="name">现场经理</text>
+				<text class="name">{{role}}</text>
 			</view>
 		</view>
 	</view>

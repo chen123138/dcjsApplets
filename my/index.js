@@ -7,7 +7,8 @@ Page({
      */
     data: {
         // 用户信息展示
-        canIUse: wx.canIUse('button.open-type.getUserInfo')
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        role: app.globalData.role
     },
 
     /**
