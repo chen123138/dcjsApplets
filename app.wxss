@@ -70,7 +70,7 @@
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
-  position: relative;
+  /* position: absolute; */
 }
 
 .box_items {
@@ -113,6 +113,7 @@
 
 .info_enquiry {
   background-color: #ffffff;
+  position: relative;
 }
 
 .info_padding1 {
@@ -120,16 +121,14 @@
 
 }
 
-.info_enquiry image {
-  height: 50rpx;
-  width: 50rpx;
-  margin-right: 20rpx;
+.info_enquiry_padding {
+  padding: 0 32rpx;
 }
 
-.info_enquiry_padding {
-  font-size: 32rpx;
-  padding: 0 32rpx;
-
+.info_enquiry_padding .icon{
+  height: 32rpx;
+  width: 32rpx;
+  margin-right: 20rpx;
 }
 
 .info_padding {
@@ -162,7 +161,7 @@
 
 
 .progess-bar {
-  height: 70rpx;
+  height: 100%;
   width: 100%;
 }
 
@@ -175,7 +174,7 @@
 
 .progress {
   width: 4rpx;
-  height: 40rpx;
+  height: 80rpx;
   margin-left: 46rpx;
 }
 
@@ -198,13 +197,16 @@
 }
 
 .flow-detail-name {
-  margin-right: 32rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-right: 32rpx;
   width: auto;
-  height: auto;
+  height: auto; */
 }
 
 .active {
-  background-color: #FF5722
+  background-color: #7c7a7a
 }
 
 .negative {
@@ -213,32 +215,39 @@
 
 
 .approval_user {
-  width:120rpx;
-  position: absolute;
-  left: 0;
+  width:100%;
+  position: relative;
+  display: flex;
+  /* top: 32rpx; */
 }
 
 .approval_create_green {
   color:green;
   position: absolute;
-  right: 116rpx;
+  right: 32rpx;
 }
 
 .approval_create_grey{
   color:rgb(163, 163, 163);
   position: absolute;
-  right: 120rpx;
+  right: 32rpx;
 }
 
 .approval_create_red {
   color:red;
   position: absolute;
-  right: 116rpx;
+  right: 32rpx;
 }
 
 .buttons_mini {
   position: absolute;
-  right: 116rpx;
+  right: 32rpx;
+}
+.buttons_mini button {
+  margin-left: 20rpx;
+}
+.approval_name {
+  margin-left: 40rpx;
 }
 
 /* 状态栏 */
@@ -278,6 +287,34 @@
   font-size: 24rpx;
 }
 
+/* 添加按钮 */
+.worker-click{
+  height: 140rpx;
+  width: 140rpx;
+  /* background-color: #42a5f5; */
+  border-radius: 100%;
+  position: fixed;
+  bottom: 150rpx;
+  right: 20rpx;
+  display: flex;
+  z-index: 9;
+}
+.worker-click navigator{
+  font-size: 32rpx;
+  max-width: 80rpx;
+  color: #fff;
+  text-align: center;
+}
+.worker-click image {
+  width: 140rpx;
+  height: 140rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
 
 
 

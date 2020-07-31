@@ -1,11 +1,6 @@
 <!--purchase/enquiry/list.wxml-->
 <!--purchase/list/index.wxml-->
 <view class="container">
-	<view class="worker-click">
-		<navigator url='/select/project'>
-			<image src='/images/add.png'></image>
-		</navigator>
-	</view>
 	<scroll-view wx:if="{{list.length}}" scroll-y="true" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
 		<block wx:for="{{list}}" wx:key="item">
 			<view class="list_item" data-id="{{item.id}}" data-pid="{{item.project_purchase_product_ids}}" bindtap="bindItemTap">

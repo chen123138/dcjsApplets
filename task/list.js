@@ -13,7 +13,8 @@ Page({
         size: 10,
         total: 1,
         role: false,
-        isload: false
+        isload: false,
+        click: false
     },
 
     /**
@@ -50,6 +51,12 @@ Page({
     bindItemTap: function (e) {
         wx.navigateTo({
             url: './info?id=' + e.currentTarget.dataset.id
+        })
+    },
+    // 按钮点击事件
+    worker_click: function() {
+        this.setData({
+            click: !this.data.click
         })
     },
 

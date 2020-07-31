@@ -45,11 +45,9 @@
 				</view>
 			</view>
 			<!--  -->
-			<view class="weui-cell weui-cell_active weui-cell_input weui-cell_input-after">
-				<view class="weui-cell">
-					<view class="weui-cell__bd">
-						<input class="weui-input" bindinput="house" placeholder="请填写收货地址" />
-					</view>
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<input class="weui-input" bindinput="house" placeholder="请填写收货地址" />
 				</view>
 			</view>
 			<!--  -->
@@ -64,9 +62,9 @@
 
 
 		<!-- 材料详情 -->
-		<view class="padding">材料详情</view>
+		<view class="weui-cells__title">收货信息</view>
 		<block wx:for="{{list}}" wx:key="item.index">
-			<view class="product padding">
+			<view class="product padding cells">
 				<image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
 				<view class="product_title">
 					<view class="left_title">
@@ -77,11 +75,11 @@
 							<view class='brand'>
 								<!--品牌  -->
 								<view class="input">
-									<input placeholder="填写品牌" data-index="{{index}}" style="  text-align: center;" class="Underscore" bindblur='bindBlurBrand'></input>
+									<input placeholder="品牌" data-index="{{index}}" style="  text-align: center;" class="Underscore" bindblur='bindBlurBrand'></input>
 								</view>
 								<!-- 类型 -->
 								<view class="input">
-									<input placeholder="填写规格" data-index="{{index}}" style="  text-align: center;" class="Underscore" bindblur='bindBlurType'></input>
+									<input placeholder="型号" data-index="{{index}}" style="  text-align: center;" class="Underscore" bindblur='bindBlurType'></input>
 								</view>
 							</view>
 						</view>
@@ -90,24 +88,23 @@
 					<view class="product_main">
 						<!-- 数量 -->
 						<view class="input">
-							<input type='number' placeholder="输入数量" class="Underscore" style="  text-align: center;" data-index="{{index}}" bindblur='bindBlur'></input>{{item.uom_id[1]}}
+							<input type='number' placeholder="数量" class="Underscore" style="  text-align: center;" data-index="{{index}}" bindblur='bindBlur'></input>{{item.uom_id[1]}}
 						</view>
 						<view class="space"></view>
 						<!-- 到货时间 -->
 						<picker mode="date" value="{{date}}" data-index="{{index}}" style="  text-align: center;"start="2020-07-02" end="2020-12-31" bindchange="bindDateChangeDate">
 							<view class="picker">
-							<text style="  text-align: center;">{{item.date == undefind?'请选择到货时间':item.date}}</text>
+							<text style="  text-align: center;">{{item.date == undefind?'时间':item.date}}</text>
 								
 							</view>
 						</picker>
-						<view class="space"></view>
 					</view>
 				</view>
-				<view class="space"></view>
 			</view>
+			<view class="space"></view>
 		</block>
 
-			<view class="btnContainer">
+			<view class="buttons">
 				<!-- <button type="warn" size="mini" bindtap="Save">保存</button> -->
 				<button class="check_button" bindtap='Submit'>提交</button>
 			</view>

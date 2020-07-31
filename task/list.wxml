@@ -1,11 +1,23 @@
 <scroll-view class="container">
 	<view class="menu">
 	</view>
-	<view wx:if="{{role}}" class="worker-click">
-		<navigator url="/select/project?mean=task">
+	<!-- 添加按钮 -->
+	<view wx:if="{{role}}" bindtap="worker_click" class="worker-click">
 			<image src='/images/add.png'></image>
+	</view>
+	<!-- 分类按钮-任务 -->
+	<view class="worker-click-form" wx:if="{{click == true}}">
+	  <navigator url="/select/project?mean=task">
+			任务
 		</navigator>
 	</view>
+	<!-- 分类按钮-零星 -->
+	<view class="worker-click-simple" wx:if="{{click == true}}">
+	  <navigator url="./simple">
+		  零星
+		</navigator>
+	</view>
+	<!--  -->
 	<scroll-view wx:if="{{list.length}}" scroll-y="true" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
 		<block wx:for="{{list}}" wx:key="item">
 			<view class="list_item" data-id="{{item.id}}" bindtap="bindItemTap">

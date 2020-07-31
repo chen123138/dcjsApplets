@@ -58,42 +58,50 @@
 	<view>
 		<view class="weui-cells__title">审批流程</view>
 		<view class="info_enquiry ">
-			<view class="info_enquiry_padding">直接上级</view>
-			<view class="space"></view>
-			<block wx:for="{{approval_state}}" wx:key="item">
+			<view class="info_enquiry_padding">
+				<image class="icon" src="/images/approval.png"></image>审批人
+			</view>
+			<block wx:for="{{approval}}" wx:key="item">
 				<view class='approval_container'>
-					<!-- 					流程线 -->
-					<view class="progess-bar">
-						<view class="ball active">
+					<!-- 线 -->
+					<view class="progress active"></view>
+					<!-- 名字 -->
+					<view class="approval_user">
+						<view class="approval_name">{{item.user_id[1]}}</view>
+						<view class="approval_create_green" wx:if="{{item.state == '1'}}">已通过{{item.create_date}}</view>
+						<view class="approval_create_red" wx:if="{{item.state == '2'}}">已驳回{{item.create_date}}</view>
+						<view wx:if="{{(item.state == '0')}}" class="buttons_mini">
+							<button size="mini" style="line-height: 1; padding: 16rpx;" wx:if="{{(item.state == '0')&&(item.act_button=='Y')}}" type="primary" bindtap="ApprovalConfirm">同意</button>
+							<button size="mini" style="line-height: 1; padding: 16rpx;" type="warn" wx:if="{{(item.state == '0')&&(item.act_button=='Y') }}" bindtap="ApprovalReject">驳回</button>
 						</view>
+					</view>
+
+					<!-- <view class="progess-bar">
 						<view class="detail">
-							<!-- 名字 -->
 							<view class="flow-detail-name">
-								<view class="approval_user">{{item.user_id[1]}}</view>
-								<view class="approval_create_green" wx:if="{{item.state == '1'}}">已通过{{item.create_date}}</view>
-								<view class="approval_create_red" wx:if="{{item.state == '2'}}">已驳回{{item.create_date}}</view>
-								<view wx:if="{{(item.state == '0')}}">
-									<button class="buttons_mini" size="mini" style="line-height: 1;" wx:if="{{(item.state == '0')&&(item.act_button=='Y')}}" type="primary" bindtap="ApprovalConfirm">同意</button>
-									<button class="buttons_mini" size="mini" style="line-height: 1;" type="warn" wx:if="{{(item.state == '0')&&(item.act_button=='Y') }}" bindtap="ApprovalReject">驳回</button>
-								</view>
+
+
 							</view>
 						</view>
-						<view class="progress active"></view>
-					</view>
+					</view> -->
 				</view>
 			</block>
 			<!--     可见抄送 -->
-			<view class="info_enquiry_padding">抄送人
-
+			<view class="info_enquiry_padding">
+				<image class="icon" src="/images/visible.png"></image>抄送人
 			</view>
-			<view class="space"></view>
 			<block wx:for="{{approval_visible}}" wx:key="item">
 				<view class='approval_container'>
-					<!-- 					流程线 -->
-					<view class="progess-bar">
-						<view class="ball active"></view>
+					<!-- 线 -->
+					<view class="progress active"></view>
+					<!-- 名字 -->
+					<view class="approval_user">
+						<view class="approval_name">{{item.user_id[1]}}</view>
+						<view class="approval_create_grey">{{item.create_date}}</view>
+					</view>
+					
+					<!-- <view class="progess-bar">
 						<view class="detail">
-							<!-- 名字 -->
 							<view class="flow-detail-name ">
 								<view class="approval_user">{{item.user_id[1]}}</view>
 								<view class="approval_create_grey">{{item.create_date}}</view>
@@ -101,7 +109,7 @@
 						</view>
 						<view class="progress active">
 						</view>
-					</view>
+					</view> -->
 				</view>
 
 			</block>

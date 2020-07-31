@@ -1,34 +1,6 @@
 /**index.wxss**/
 
 
-.worker-click{
-  height: 120rpx;
-  width: 120rpx;
-  background-color: #42a5f5;
-  border-radius: 100%;
-  position: fixed;
-  bottom: 150rpx;
-  right: 20rpx;
-  display: flex;
-  z-index: 9;
-}
-.worker-click navigator{
-  font-size: 32rpx;
-  max-width: 80rpx;
-  color: #fff;
-  text-align: center;
-}
-.worker-click navigator image {
-  width: 80rpx;
-  height: 80rpx;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-}
-
 .no_list {
   position: relative;
   width: 100vw;
@@ -40,3 +12,37 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* 添加按钮-任务 */
+.worker-click-form {
+  color: #ffffff;
+  font-size: 30rpx;
+  height: 100rpx;
+  width: 100rpx;
+  background-color: #42a5f5;
+  border-radius: 100%;
+  position: fixed;
+  bottom: 170rpx;
+  right: 180rpx;
+  display: flex;
+  z-index: 9;
+  justify-content: center;
+  align-items: center;
+}
+/* 添加按钮-零星 */
+.worker-click-simple {
+  color: #ffffff;
+  font-size: 30rpx;
+  height: 100rpx;
+  width: 100rpx;
+  background-color: #42a5f5;
+  border-radius: 100%;
+  position: fixed;
+  bottom: 310rpx;
+  right: 40rpx;
+  display: flex;
+  z-index: 9;
+  justify-content: center;
+  align-items: center;
+}
+/*  */
