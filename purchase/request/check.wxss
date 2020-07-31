@@ -26,6 +26,8 @@
 .product {
   background-color: #ffffff;
   position: relative;
+  padding-top: 32rpx;
+  padding-bottom: 32rpx;
 }
 
 .cancel {
@@ -43,7 +45,7 @@
 .picker {
   color: #838383;
   border-bottom: 1px solid #c0c1c2;
-  width: 300rpx;
+  width: 200rpx;
 }
 
 .brand {
