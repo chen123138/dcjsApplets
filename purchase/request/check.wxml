@@ -22,35 +22,46 @@
 		<!-- 收货信息 -->
 		<view class="weui-cells__title">收货信息</view>
 		<view class="Receipt_box ">
-			<view class="weui-cells weui-cells_after-title">
-				<view class="weui-cell">
-					<view class="weui-cell__bd">
-						<input class="weui-input" bindinput="user" placeholder="请填写收货人" />
+			<!--  -->
+			<view class="weui-cell weui-cell_active weui-cell_input weui-cell_input-after">
+				<view class="weui-cell__bd">
+					<view class="weui-label">收货人</view>
+				</view>
+				<view class="weui-cell__ft">
+					<view class="weui-input" style="width:auto;">
+						<input placeholder="请输入" bindinput='user' />
 					</view>
 				</view>
-				<view class="weui-cell">
-					<view class="weui-cell__bd">
-						<input class="weui-input" bindinput="phone" type="number" placeholder="请填写联系电话" />
-					</view>
-				</view>
-				<view class="weui-cell">
-					<view class="weui-cell__bd">
-						<input class="weui-input" type="number" bindinput="house" placeholder="请填写收货地址" />
-					</view>
-				</view>
-				<view class="weui-cell">
-					<view class="weui-cell__bd">
-						<input class="weui-input" type="remarks" bindinput="phone" placeholder="备注信息" />
-					</view>
-				</view>
-				<view class="weui-cell">
-					<view class="weui-cell__bd">
-						<textarea class="weui-textarea" placeholder="备注信息" style="height: 3.3em" />
-						<view class="weui-textarea-counter">0/200</view>
-                </view>
-            </view>
 			</view>
+			<!--  -->
+			<view class="weui-cell weui-cell_active weui-cell_input weui-cell_input-after">
+				<view class="weui-cell__bd">
+					<view class="weui-label">收货电话</view>
+				</view>
+				<view class="weui-cell__ft">
+					<view class="weui-input" style="width:auto;">
+						<input placeholder="请输入" bindinput='phone' />
+					</view>
+				</view>
+			</view>
+			<!--  -->
+			<view class="weui-cell weui-cell_active weui-cell_input weui-cell_input-after">
+				<view class="weui-cell">
+					<view class="weui-cell__bd">
+						<input class="weui-input" bindinput="house" placeholder="请填写收货地址" />
+					</view>
+				</view>
+			</view>
+			<!--  -->
+			<view class="weui-cell weui-cell_active">
+				<view class="weui-cell__bd">
+					<textarea class="weui-textarea" placeholder="备注" style="height: 3.3em" data-tag="content" bindblur='remarks' />
+					<view class="weui-textarea-counter">200</view>
+      </view>
+			</view>
+			<!--  -->
 		</view>
+
 
 		<!-- 材料详情 -->
 		<view class="padding">材料详情</view>
