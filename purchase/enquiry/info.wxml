@@ -135,8 +135,8 @@
 	<view class="buttons" wx:if="{{approval[0].state !== '-1'}}" >
 		<button type="warn" wx:if="{{create == true}}" bindtap="cancel">取消</button>
 	</view>
-	<view class="buttons" wx:if="{{approval[0].state !== '-1'}}">
+	<!-- <view class="buttons" wx:if="{{approval[0].state !== '-1'}}">
 		<button type="warn" wx:if="{{enquiry == true}}" bindtap="submit">提交</button>
-	</view>
+	</view> -->
 
 </view>
