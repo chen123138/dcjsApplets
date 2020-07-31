@@ -68,16 +68,21 @@
 						<text>{{item.brand == false? "-": item.brand}}</text>
 						<text>{{item.type == false? "-": item.type}}</text>
 					</view>
-					<!-- 时间  数量单位-->
+					<!-- price  数量单位-->
 					<view class="info_receive">
-						<text>{{item.number}}X{{item.number}}{{item.pack}}=￥{{item.price}}</text>
-						<text class="box_items" wx:if="{{item.remarks==false}}">备注: 无</text>
+						<text>{{item.subtotal}} * {{item.number}}{{item.uom_id[1]}}=￥{{item.price}}</text>
+						<text>{{item.pack}}</text>
+					</view>
+						<!-- 时间  数量单位-->
+					<view class="info_receive">
+						<text>{{item.date}}</text>
+						<text>{{item.remarks}}</text>
 					</view>
 				</view>
 
 			</view>
+			<view class="space" wx:if="{{project_order_product_list.length>1}}"></view>
 		</block>
-		<view class="space" wx:if="{{project_order_product_list.length>1}}"></view>
 	</view>
 
 	<!-- 是否发货信息 -->

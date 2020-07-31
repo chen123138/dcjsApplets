@@ -150,11 +150,32 @@ Page({
   Submit: function () {
     console.log("data", this.data.list)
     let listData = this.data.list
-    let product = {}
     let productLists = []
+    // 表单验证
+    if(this.data.user =="") {
+      util.showText('请填写收货人')
+        return false
+    }else if(this.data.phone == "") {
+      util.showText('请填写收货电话')
+        return false
+    }else if(this.data.house == ""){
+      util.showText('请填写收货地址')
+        return false
+    }
     for (let i = 0; i < listData.length; i++) {
+      let product = {}
       product.brand = listData[i].brand
+      if(listData[i].date == undefined) {
+        let num = ++i
+        util.showText('请选择第' + num + '个材料到货时间')
+        return false
+      }
       product.date = listData[i].date
+      if(listData[i].number == 1) {
+        let num = ++i
+        util.showText('请选择第' + num + '个材料请购数量')
+        return false
+      }
       product.number = listData[i].number
       product.pack = listData[i].uom_id[1]
       product.project_id = listData[i].project_id[0]
@@ -169,7 +190,6 @@ Page({
     }
     console.log("productLists", productLists)
     console.log("listData", listData)
-
     let params = {
       buy_mode: this.data.mode || "1",
       project_id: Number(this.data.project_id),
@@ -181,6 +201,7 @@ Page({
       user_id: app.globalData.uid,
       remarks: this.data.remarks
     }
+
     console.log("这是params：", params)
     util.rpcCreate(1002, api.EngineerPurchase, [params]).then(function (res) {
       console.log(res)

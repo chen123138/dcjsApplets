@@ -109,7 +109,7 @@
   display: flex;
   background-color: #ffffff;
   justify-content: space-between;
-  line-height: 1.5em;
+  line-height: 2em;
 }
 
 .info_enquiry {

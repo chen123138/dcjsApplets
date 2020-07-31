@@ -131,12 +131,19 @@
 						<!-- 数量 -->
 						<view>{{item.number}} {{item.uom_id[1]}}</view>
 						<!-- 评论 -->
+						<view>{{item.pack}}</view>
+					</view>
+					<view class="info_receive ">
+						<!-- 时间 -->
+						<view>{{item.date}}</view>
+						<!-- pack -->
 						<view>{{item.remarks}}</view>
 					</view>
 				</view>
 			</view>
+			<view class="space"></view>
 		</block>
-		<view class="space"></view>
+		
 
 
 	</view>

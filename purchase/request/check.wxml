@@ -88,7 +88,7 @@
 							<view class='brand'>
 								<!-- 数量 -->
 						<view class="input">
-							<input type='number' placeholder="数量" class="Underscore" style="  text-align: center;" data-index="{{index}}" bindblur='bindBlur'></input>{{item.uom_id[1]}}
+							<input type='number' placeholder="1" class="Underscore" style="  text-align: center;" data-index="{{index}}" bindblur='bindBlur'></input>{{item.uom_id[1]}}
 						</view>
 								<!-- 包装 -->
 						<view class="input">
