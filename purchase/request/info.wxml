@@ -123,9 +123,9 @@
 					</view>
 					<!--品牌  -->
 					<view class="info_receive ">
-						<text > {{item.brand}}</text>
+						<text>{{item.brand == false? "-": item.brand}}</text>
 						<!-- 规格 -->
-						<text >{{item.type}}</text>
+						<text>{{item.type == false? "-": item.type}}</text>
 					</view>
 					<view class="info_receive ">
 						<!-- 数量 -->

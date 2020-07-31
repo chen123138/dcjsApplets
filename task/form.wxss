@@ -22,13 +22,13 @@
   position: relative;
 }
 
-.cancel {
+/* .cancel {
   position: absolute;
   height: 50rpx;
   width: 50rpx;
-  right: 0;
-  top: 0;
-}
+  right: 10rpx;
+  top: 10rpx;
+} */
 
 .input {
   display: flex;
