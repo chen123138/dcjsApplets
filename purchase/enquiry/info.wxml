@@ -50,8 +50,6 @@
 			</view>
 		</view>
 	</view>
-
-
 	<!-- 审批状态 -->
 
 	<!-- 审批流程 -->
@@ -91,9 +89,7 @@
 						<view class="approval_create_grey">{{item.create_date}}</view>
 					</view>
 				</view>
-
 			</block>
-
 		</view>
 	</view>
 
@@ -138,5 +134,4 @@
 	<!-- <view class="buttons" wx:if="{{approval[0].state !== '-1'}}">
 		<button type="warn" wx:if="{{enquiry == true}}" bindtap="submit">提交</button>
 	</view> -->
-
 </view>
