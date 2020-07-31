@@ -62,7 +62,7 @@
 
 
 		<!-- 材料详情 -->
-		<view class="weui-cells__title">收货信息</view>
+		<view class="weui-cells__title">材料明细</view>
 		<block wx:for="{{list}}" wx:key="item.index">
 			<view class="product padding cells">
 				<image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
@@ -92,7 +92,7 @@
 						</view>
 								<!-- 包装 -->
 						<view class="input">
-							<input type='number' placeholder="包装" class="Underscore" style="  text-align: center;" data-index="{{index}}" bindblur='bindBlurPiker'></input>
+							<input placeholder="包装" class="Underscore" value="{item.uom_id[1]}}" style="text-align: center;" data-index="{{index}}" bindblur='bindBlurPack'></input>
 						</view>
 							</view>
 						</view>

@@ -151,7 +151,7 @@
 
 
 
-	<view class="buttons" wx:if="{{approvalState == 3}}">
+	<view class="buttons" wx:if="{{list.act_cancel=='Y'}}">
 		<button type="warn" bindtap="cancel">取消</button>
 	</view>
 

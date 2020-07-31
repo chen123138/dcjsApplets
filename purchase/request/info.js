@@ -9,6 +9,7 @@ Page({
    */
   
   data: {
+      uid: 0,
     product_id: "",
     list: [],
     state: '',
@@ -51,6 +52,7 @@ Page({
     // 页面传值
     // console.log(options)
     this.setData({
+        uid: app.globalData.uid,
       product_id: options.id
     })
     // console.log("用户id", this.data.uid)

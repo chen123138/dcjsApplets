@@ -117,9 +117,9 @@ Page({
       console.log("类型", this.data.list)
   },
   // 包装信息
-  bindBlurPiker: function (e) {
+  bindBlurPack: function (e) {
     let list = this.data.list
-      list[e.currentTarget.dataset.index].piker = e.detail.value
+      list[e.currentTarget.dataset.index].pack = e.detail.value
       this.setData({
         list: list
       })
@@ -177,7 +177,7 @@ Page({
         return false
       }
       product.number = listData[i].number
-      product.pack = listData[i].uom_id[1]
+      product.pack = listData[i].pack
       product.project_id = listData[i].project_id[0]
       product.project_product_id = listData[i].id
       product.project_system_id = listData[i].project_system_id[0]
