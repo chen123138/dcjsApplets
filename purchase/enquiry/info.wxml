@@ -61,7 +61,7 @@
 			<view class="info_enquiry_padding">
 				<image class="icon" src="/images/approval.png"></image>审批人
 			</view>
-			<block wx:for="{{approval}}" wx:key="item">
+			<block wx:for="{{approval_state}}" wx:key="item">
 				<view class='approval_container'>
 					<!-- 线 -->
 					<view class="progress active"></view>
@@ -71,8 +71,8 @@
 						<view class="approval_create_green" wx:if="{{item.state == '1'}}">已通过{{item.create_date}}</view>
 						<view class="approval_create_red" wx:if="{{item.state == '2'}}">已驳回{{item.create_date}}</view>
 						<view wx:if="{{(item.state == '0')}}" class="buttons_mini">
-							<button size="mini" style="line-height: 1; padding: 16rpx;" wx:if="{{(item.state == '0')&&(item.act_button=='Y')}}" type="primary" bindtap="ApprovalConfirm">同意</button>
-							<button size="mini" style="line-height: 1; padding: 16rpx;" type="warn" wx:if="{{(item.state == '0')&&(item.act_button=='Y') }}" bindtap="ApprovalReject">驳回</button>
+							<button size="mini" style="line-height: 1; padding: 16rpx;" wx:if="{{(item.state == '0')&&(item.act_button=='Y')}}" data-id="{{item.id}}" type="primary" bindtap="ApprovalConfirm">同意</button>
+							<button size="mini" style="line-height: 1; padding: 16rpx;" type="warn" wx:if="{{(item.state == '0')&&(item.act_button=='Y') }}" data-id="{{item.id}}" bindtap="ApprovalReject">驳回</button>
 						</view>
 					</view>
 				</view>
@@ -132,11 +132,11 @@
 	</view>
 
 
-	<view class="buttons" wx:if="{{approval[0].state !== '2' && approval[0].state !== '3'}}">
-		<button type="warn" wx:if="{{approval[0].state !== '3'}}" bindtap="cancel">取消</button>
+	<view class="buttons" wx:if="{{approval[0].state !== '-1'}}" >
+		<button type="warn" wx:if="{{create == true}}" bindtap="cancel">取消</button>
 	</view>
-	<view class="buttons" wx:if="{{approval[0].state == '0'}}">
-		<button type="warn" bindtap="submit">提交</button>
+	<view class="buttons" wx:if="{{approval[0].state !== '-1'}}">
+		<button type="warn" wx:if="{{enquiry == true}}" bindtap="submit">提交</button>
 	</view>
 
 </view>
