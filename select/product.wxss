@@ -8,26 +8,27 @@
 }
 
 
-.select_box {
+/* .select_box {
   position: relative;
   top: 120rpx;
   display: flex;
-}
+} */
 
 .select {
   width: auto;
   position: fixed;
   height: 1000rpx;
-  top: 150rpx;
+  top: 120rpx;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   font-size: 30rpx;
 }
 
 .btn {
   padding: 20rpx 0 20rpx 20rpx;
   background-color: #ffffff;
+  margin-bottom: 5rpx;
 }
 
 .select_system {
@@ -39,7 +40,7 @@
   margin-right: 0;
   right: 0;
   width: 470rpx;
-  top: 20rpx;
+  top: 120rpx;
 }
 
 .project_item {

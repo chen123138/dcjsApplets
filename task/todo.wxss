@@ -1,12 +1,10 @@
 
-
-
 .no_list {
   position: relative;
   width: 100vw;
 }
 
-image {
+.img {
   position: relative;
   top: 50%;
   left: 50%;

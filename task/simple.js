@@ -145,10 +145,6 @@ Page({
             util.showText('请输入内容')
             return false;
         }
-        if (!task.hasOwnProperty('number') || task['number'] == "") {
-            util.showText('请输入数量')
-            return false;
-        }
         // 
         console.log(task);
         wx.showLoading({

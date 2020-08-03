@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    projectList: [],
+    project_list: [],
     mean: ''
   },
 
@@ -44,7 +44,7 @@ Page({
       console.log("项目列表：")
       console.log(res)
       that.setData({
-        projectList: res.records
+        project_list: res.records
       })
     })
   },

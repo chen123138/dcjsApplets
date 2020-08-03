@@ -16,24 +16,6 @@ Page({
     // 状态数据
     create: false,
     enquiry: false,
-    processData: [{
-      name: '起稿中',
-      start: '#fff',
-      end: '#EFF3F6',
-      icon: '/images/process_1.png'
-    },
-    {
-      name: '审批中',
-      start: '#EFF3F6',
-      end: '#EFF3F6',
-      icon: '/images/process_1.png'
-    },
-    {
-      name: '询价单',
-      start: '#EFF3F6',
-      end: '#fff',
-      icon: '/images/process_1.png'
-    }],
   },
 
 
@@ -247,59 +229,6 @@ Page({
         that.gitList()
       }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    // this.setPeocessIcon()
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   * 后
-   */
-  onShow: function () {
-  },
-  //进度条的状态
-  setPeocessIcon: function () {
-    console.log("状态栏打印list", this.data.approval[0])
-    let state = Number(this.data.approval[0].state)
-    let processData = this.data.processData
-    let that = this
-    if (state == '-1') {
-      let processData = [{
-        name: '审批中',
-        start: '#ffffff',
-        end: '#ffffff',
-        icon: '/images/process_0.png'
-      }]
-      that.setData({
-        processData: processData
-      })
-    } else {
-      for (let index1 = 0; index1 <= state; index1++) {
-        if (index1 == 0) {
-          processData[index1].icon = '/images/process_2.png'
-        } else if (index1 == 3) {
-          processData[index1].icon = '/images/process_2.png'
-          processData[index1].start = '#0288d1'
-          processData[index1 - 1].end = '#0288d1'
-
-        } else {
-          processData[index1 - 1].end = '#0288d1'
-          processData[index1].icon = '/images/process_2.png'
-          processData[index1].start = '#0288d1'
-        }
-        for (let index2 = 0; index2 < index1; index2++) {
-          processData[index2].icon = '/images/process_3.png'
-        }
-      }
-      that.setData({
-        processData: processData
-      })
-    }
   },
 
 })

@@ -10,6 +10,7 @@ Page({
     addimg: '../../images/icon/加号.png',
     searchstr: '',
     currentSelectTripName: '',
+    system_nameOne: '',
     project_name: "",
     project_id: '',
     ids: [],
@@ -54,16 +55,15 @@ Page({
   },
 
 
-  getListTask: function (project, system) {
+  getListTask: function (projectName, systemName) {
+
     let params = [
       "&",
       ["product_id", "like", this.data.searchstr],
       "&",
-      ["system_id", "like", system],
-      ["project_id", "like", project],
+      ["system_id", "like", systemName],
+      ["project_id", "like", projectName],
       ["stock", ">", 0],
-
-
     ]
     let fields = []
     let that = this;
@@ -76,13 +76,13 @@ Page({
 
     });
   },
-  getListPurchase: function (project, system) {
+  getListPurchase: function (projectName, systemName) {
     let params = [
       "&",
-      ["product_id", "like", this.data.searchstr],
+      ["name", "like", this.data.searchstr],
       "&",
-      ["system_id", "like", system],
-      ["project_id", "like", project],
+      ["system_id", "like", systemName],
+      ["project_id", "like", projectName],
     ]
     let fields = []
     let that = this;
@@ -92,7 +92,6 @@ Page({
       })
       wx.hideLoading();
       console.log(that.data.list)
-
     });
   },
 
@@ -107,8 +106,9 @@ Page({
       console.log("项目对应下的系统：")
       console.log(res.records)
       that.setData({
-        system_name: res.records
+        system_name: res.records,
       })
+
       switch (that.data.mean) {
         case "task":
           that.getListTask(that.data.project_name, that.data.system_name[0].name)
@@ -137,13 +137,6 @@ Page({
     });
     // 获取系统列表
     this.getSystemList()
-
-  },
-  onShow() {
-
-  },
-
-  tap(e) {
 
   },
 
@@ -192,8 +185,7 @@ Page({
     })
   },
   //清空搜索框
-  activity_clear(e) {
-
+  activity_clear() {
     this.setData({
       searchstr: ''
     })

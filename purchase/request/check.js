@@ -6,10 +6,6 @@ Page({
     data: {
         // 请购项目
         project_name: "",
-        // 请购人员
-        applicationUser: "",
-        // 请购状态
-        applicationStatus: "",
         // 请购材料id集合
         product_ids: [],
         // 请求所有材料合集

@@ -30,14 +30,6 @@
   padding-bottom: 32rpx;
 }
 
-/* .cancel {
-  position: absolute;
-  height: 50rpx;
-  width: 50rpx;
-  right: 0;
-  top: 0;
-} */
-
 .input {
   display: flex;
 }
