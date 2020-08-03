@@ -40,7 +40,7 @@
 				</view>
 				<view class="weui-cell__ft">
 					<view class="weui-input" style="width:auto;">
-						<input placeholder="请输入" bindinput='phone' />
+						<input placeholder="请输入" bindinput='phone' type="number"/>
 					</view>
 				</view>
 			</view>
@@ -88,11 +88,11 @@
 							<view class='brand'>
 								<!-- 数量 -->
 						<view class="input">
-							<input type='number' placeholder="1" class="Underscore" style="  text-align: center;" data-index="{{index}}" bindblur='bindBlur'></input>{{item.uom_id[1]}}
+							<input type='number' value="1" class="Underscore" style="  text-align: center;" data-index="{{index}}" bindblur='bindBlur'></input>{{item.uom_id[1]}}
 						</view>
 								<!-- 包装 -->
 						<view class="input">
-							<input placeholder="包装" class="Underscore" value="{item.uom_id[1]}}" style="text-align: center;" data-index="{{index}}" bindblur='bindBlurPack'></input>
+							<input class="Underscore" value="{{item.uom_id[1]}}" style="text-align: center;" data-index="{{index}}" bindblur='bindBlurPack'></input>
 						</view>
 							</view>
 						</view>

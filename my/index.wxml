@@ -19,11 +19,11 @@
 
 	<view class="container2">
 		<view class="body">
-			<view class="button" bindtap="request">采购申请</view>
-			<view class="button" bindtap="enquiry">采购询价</view>
-			<view class="button" bindtap="order">采购订单</view>
-			<view class="button" bindtap="task">任务工单</view>
-			<view class="button" bindtap="approve">审批记录</view>
+			<view class="button" bindtap="request">我的请购</view>
+			<view class="button" bindtap="enquiry">我的询价</view>
+			<view class="button" bindtap="order">我的订单</view>
+			<view class="button" bindtap="task">我的任务</view>
+			<view class="button" bindtap="approve">我的审批</view>
 			<view class="button">采购计划</view>
 			<!-- <view class="button">材料变更</view> -->
 

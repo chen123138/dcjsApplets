@@ -86,7 +86,7 @@
                 <view class="list_item_body">
                     <view style="float:left;">
                         <view style="display: flex;">
-                            <input style="width: 50px;text-align:center;border-bottom:1px solid #c0c1c2;" type='number' class="Underscore" data-index="{{index}}" bindblur='bindBlur'/>
+                            <input style="width: 50px;text-align:center;border-bottom:1px solid #c0c1c2;" value="1" type='number' class="Underscore" data-index="{{index}}" bindblur='bindBlur'/>
                             {{item.uom_id[1]}}
                         </view>
                     </view>

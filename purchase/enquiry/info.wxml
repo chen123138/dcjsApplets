@@ -17,9 +17,9 @@
 		<view class="info_code padding">
 			<view>{{item.code}}</view>
 			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='-1'}}">已取消</view>
-			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='0'}}">起稿中</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='0'}}">询问中</view>
 			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='1'}}">审批中</view>
-			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='2'}}">询价单</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{item.state=='2'}}">订货单</view>
 		</view>
 		<view class="info_product_code padding">
 			<view>{{item.display_name}}</view>
@@ -53,8 +53,8 @@
 	<!-- 审批状态 -->
 
 	<!-- 审批流程 -->
-	<view>
-		<view class="weui-cells__title">审批流程</view>
+	<view wx:if="{{item.approve_ids}}">
+		<view class="weui-cells__title">审批流程{{item.state}}</view>
 		<view class="info_enquiry ">
 			<view class="info_enquiry_padding">
 				<image class="icon" src="/images/approval.png"></image>审批人
