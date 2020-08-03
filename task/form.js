@@ -136,7 +136,7 @@ Page({
         let tag = e.target.dataset.tag
         let value = e.detail.value
         if (value == 0) return false
-        // console.log(tag + '选项改变，携带值为', value)
+        console.log(tag + '选项改变，携带值为', value)
         let task = this.data.task
         switch (tag) {
             case "start":
@@ -144,6 +144,12 @@ Page({
                 break;
             case "stop":
                 task['end_date'] = value
+                break;
+            case "unit":
+                this.setData({
+                    unit: value
+                });
+                task['project_unit_id'] = this.data.units[value][0];
                 break;
         }
         this.setData({
@@ -190,10 +196,9 @@ Page({
         let task = this.data.task
         let user_ids = this.data.user_ids
         let product_ids = this.data.product_ids
-        console.log("task:",task)
-        console.log("user_ids:",user_ids)
-        console.log("product_ids:",product_ids)
-
+        // console.log("task:",task)
+        // console.log("user_ids:",user_ids)
+        // console.log("product_ids:",product_ids)
         //
         if (!task.hasOwnProperty('project_id') || task['project_id'] == 0) {
             util.showText('请选择项目')
@@ -216,13 +221,17 @@ Page({
         if (task['cate'] == '1') {
             if (product_ids.length==0){
                 util.showText('请添加内容')
-                // return false;
-            }
-            else{
+                return false;
+            }else{
                 let worker_ids = []
                 for (let index in product_ids) {
                     let item = product_ids[index];
                     // console.log(item);
+                    // 
+                    if (!item.hasOwnProperty('guide')) {
+                        util.showText('请选择作业指导书')
+                        return false;
+                    }
                     let tmp = {}
                     Object.assign(tmp, item);
                     tmp['project_id'] = tmp['project_id'][0]
