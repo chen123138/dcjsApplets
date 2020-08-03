@@ -114,16 +114,16 @@ Page({
         let index = e.target.dataset.index;
         let value = e.detail.value;
         let product_ids = this.data.product_ids
+        console.log(tag)
         if (value == 0) return false;
         if (tag == "number") {
             value = parseFloat(value)
-            if (this.data.task.cate === '1') {
-                let product = product_ids[index]
-                let stock = product['stock']
-                if (value > stock) {
-                    util.showText('数量溢出，实际库存为' + stock + product['uom'] + '，请重试')
-                    return false
-                }
+            let product = product_ids[index]
+            let stock = product['stock']
+            console.log(product)
+            if (value > stock) {
+                util.showText('数量溢出，实际库存为' + stock + product['uom_id'][1] + '，请重试')
+                return false
             }
         }
         product_ids[index][tag] = value
@@ -226,12 +226,17 @@ Page({
                 let worker_ids = []
                 for (let index in product_ids) {
                     let item = product_ids[index];
-                    // console.log(item);
+                    console.log(item);
                     // 
                     if (!item.hasOwnProperty('guide')) {
                         util.showText('请选择作业指导书')
                         return false;
                     }
+                    // 
+                    if (!item.hasOwnProperty('number')) {
+                        item['number'] = 1
+                    }
+                    console.log(item);
                     let tmp = {}
                     Object.assign(tmp, item);
                     tmp['project_id'] = tmp['project_id'][0]

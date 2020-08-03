@@ -291,11 +291,13 @@ function _appLogin() {
                 wx.setStorageSync('uid', res.uid);
                 wx.setStorageSync('sid', res.sid);
                 wx.setStorageSync('key', res.key);
-                wx.setStorageSync('role', res.role);
+                wx.setStorageSync('name', res.name);
+                wx.setStorageSync('role', res.role);                
                 // 更新APP
                 app.globalData.uid = res.uid
                 app.globalData.sid = res.sid
                 app.globalData.key = res.key
+                app.globalData.name = res.name
                 app.globalData.role = res.role
                 resolve(true);
             }).catch((err) => {

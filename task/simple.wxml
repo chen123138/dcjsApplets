@@ -71,7 +71,7 @@
                 </view>
                 <view class="weui-cell__ft">
                     <view class="weui-input" style="width:auto;">
-                        <input type="digit" placeholder="请输入" data-tag="position" bindblur='bindInputChange'/>小时
+                        <input type="digit" placeholder="请输入" data-tag="number" bindblur='bindInputChange'/>小时
                     </view>
                 </view>
             </view>

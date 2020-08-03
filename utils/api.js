@@ -1,4 +1,5 @@
-const API_URL = 'http://47.114.165.246/';
+// const API_URL = 'http://47.114.165.246/';
+const API_URL = 'https://e.xiecd.com/';
 const API_URI = API_URL + 'web/dataset/';
 
 module.exports = {

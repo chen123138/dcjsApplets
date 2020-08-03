@@ -8,6 +8,7 @@ App({
             this.globalData.uid = wx.getStorageSync('uid');
             this.globalData.sid = wx.getStorageSync('sid');
             this.globalData.key = wx.getStorageSync('key');
+            this.globalData.name = wx.getStorageSync('name');
             this.globalData.role = wx.getStorageSync('role');
         }
     },
@@ -17,6 +18,7 @@ App({
         sid: null,
         key: null,
         user: null,
+        name: null,
         role: null
     },
 })

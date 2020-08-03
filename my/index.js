@@ -8,7 +8,8 @@ Page({
     data: {
         // 用户信息展示
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
-        position: ""
+        name: "",
+        role: ""
     },
 
     /**
@@ -30,7 +31,8 @@ Page({
         })
         // 
         this.setData({
-            position: app.globalData.role
+            name: app.globalData.name,
+            role: app.globalData.role
         });
     },
 
