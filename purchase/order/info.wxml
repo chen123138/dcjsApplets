@@ -16,8 +16,11 @@
 	<block>
 		<view class="info_code,padding">
 			<view>{{order_info.code}}</view>
-			<view style="float:right;font-size: 32rpx;" wx:if="{{order_info.buy_mode == 1}}">委托采购</view>
-			<view style="float:right;font-size: 32rpx;" wx:if="{{order_info.buy_mode == 2}}">现场采购</view>
+            <view style="float:right; font-size: 32rpx;" wx:if="{{order_info.state=='-1'}}">已取消</view>
+            <view style="float:right; font-size: 32rpx;" wx:if="{{order_info.state=='0'}}">待确认</view>
+            <view style="float:right; font-size: 32rpx;" wx:if="{{order_info.state=='1'}}">待发货</view>
+            <view style="float:right; font-size: 32rpx;" wx:if="{{order_info.state=='2'}}">运输中</view>
+            <view style="float:right; font-size: 32rpx;" wx:if="{{order_info.state=='3'}}">已签收</view>
 		</view>
 		<view class="info_product_code,padding">
 			<view>{{order_info.name}}</view>
@@ -91,9 +94,6 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="product_cells_container">
 				<view class="info_receive">
-					<text>已发货</text>
-				</view>
-				<view class="info_receive">
 					<text>{{order_info.logistic_number}}</text>
 					<text>{{order_info.logistic_freight}}</text>
 				</view>
@@ -144,11 +144,10 @@
 		</view>
 	</view>
 	<!-- 收货 -->
-
 	<view class="buttons">
-		<button class="btn" type="primary" wx:if="{{order_info.state == '0'}}" bindtap="goConfirm">确认</button>
-		<button class="btn" type="primary" wx:if="{{order_info.state == '1'}}" bindtap="goSend">发货</button>
-		<button class="btn" type="primary" wx:if="{{order_info.state == '2'}}" bindtap="goReceive">收货</button>
+		<button class="btn" type="primary" wx:if="{{order_info.state == '0' && order_info.user_id[0]== uid}}" bindtap="goConfirm">确认</button>
+		<button class="btn" type="primary" wx:if="{{order_info.state == '1' && order_info.user_id[0]== uid}}" bindtap="goSend">发货</button>
+		<button class="btn" type="primary" wx:if="{{order_info.state == '2' && order_info.user_id[0]== uid}}" bindtap="goReceive">收货</button>
 	</view>
 
 </view>

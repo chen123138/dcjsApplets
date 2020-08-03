@@ -8,6 +8,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        uid: 0,
         // 项目编号
         order_id: '',
         order_info: [],
@@ -61,6 +62,7 @@ Page({
         });
         console.log("当前id", e.id)
         this.setData({
+            uid: app.globalData.uid,
             order_id: Number(e.id)
         })
         console.log(this.data.order_info)
@@ -89,27 +91,8 @@ Page({
                     })
                 })
             }
-            // state流程图
-            // that.setPeocessIcon()
-            // 判断当前用户是否为创建用户
-            if (that.data.order_info.user_id[0] == app.globalData.uid) {
-                this.setData({
-                    isCreated: 1
-                })
-            }
         })
     },
-    // getProductList: function () {
-    //     let that = this
-    //     console.log(this.data.project_order_product_ids)
-    //     util.rpcRead(1000, api.EngineerOrderProduct, that.data.project_order_product_ids, []).then(function (res) {
-    //         console.log("材料列表：", res)
-    //         that.setData({
-    //             project_order_product_list: res
-    //         })
-    //     })
-    // },
-
     goConfirm: function () {
         console.log(this.data.order_info)
         let that = this
