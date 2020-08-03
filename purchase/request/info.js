@@ -16,34 +16,13 @@ Page({
     purchase: [],
     // 审批
     approval: [],
-    approvalId: '',
+    approval_id: '',
     // 审批流程数据
     uid: app.globalData.uid,
-    approvalState: 0,
+    approval_state: 0,
     // 抄送列表
     copy: [],
-    // 状态数据
-  //   processData: [{
-  //     name: '起稿中',
-  //     start: '#fff',
-  //     end: '#EFF3F6',
-  //     icon: '/images/process_1.png'
-  // },
-  // {
-  //     name: '审批中',
-  //     start: '#EFF3F6',
-  //     end: '#EFF3F6',
-  //     icon: '/images/process_1.png'
-  // },
-  // {
-  //     name: '询价单',
-  //     start: '#EFF3F6',
-  //     end: '#fff',
-  //     icon: '/images/process_1.png'
-  // }
-  // ],
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -92,12 +71,12 @@ Page({
             })
             console.log("材料列表：",res)
             if (that.data.uid == createdId) {
-              var arr = that.data.approvalState
+              var arr = that.data.approval_state
               arr = arr + 1
               that.setData({
-                approvalState: arr
+                approval_state: arr
               })
-              console.log("当前用户是创建人", that.data.approvalState)
+              console.log("当前用户是创建人", that.data.approval_state)
             }
           })
         }
@@ -117,14 +96,14 @@ Page({
               approvalIdList.push(arr[i].id)
             }
             if (approvalList.indexOf(that.data.uid) > -1) {
-              var arr2 = that.data.approvalState
+              var arr2 = that.data.approval_state
               arr2 = arr2 + 2
               that.setData({
-                approvalState: arr2,
-                approvalId: approvalIdList[approvalList.indexOf(that.data.uid)]
+                approval_state: arr2,
+                approval_id: approvalIdList[approvalList.indexOf(that.data.uid)]
               })
-              console.log("当前用户是审批人", that.data.approvalState)
-              console.log("审批人id", that.data.approvalId)
+              console.log("当前用户是审批人", that.data.approval_state)
+              console.log("审批人id", that.data.approval_id)
             }
           })
         }
@@ -146,7 +125,7 @@ Page({
   // 审核通过
   ApprovalConfirm: function () {
     let that = this
-    util.rpcWrite(1002, api.EngineerApprove, [this.data.approvalId], { 'state': '1' }).then(function (res) {
+    util.rpcWrite(1002, api.EngineerApprove, [this.data.approval_id], { 'state': '1' }).then(function (res) {
       console.log(res)
       wx.showToast({
         title: '审核通过'
@@ -157,7 +136,7 @@ Page({
   // 审核驳回
   ApprovalReject: function () {
     let that = this
-    util.rpcWrite(1002, api.EngineerApprove, [this.data.approvalId], { 'state': '2' }).then(function (res) {
+    util.rpcWrite(1002, api.EngineerApprove, [this.data.approval_id], { 'state': '2' }).then(function (res) {
       console.log(res)
       wx.showToast({
         title: '审核驳回'

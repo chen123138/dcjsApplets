@@ -11,7 +11,7 @@ Page({
 		list: [],
 		page: 1,
 		size: 10,
-        total: 1,
+    total: 1,
 		click: false
 	},
 

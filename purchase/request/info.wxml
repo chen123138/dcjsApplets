@@ -1,32 +1,21 @@
 <view class="container">
-	<!-- 状态栏 -->
-	<!-- <view class='order_process'>
-		<view class='process_wrap' wx:for="{{processData}}" wx:key="item">
-			<view class='process'>
-				<view class='process_line' style="background:{{item.start}}"></view>
-				<image class='process_icon' src="{{item.icon}}"></image>
-				<view class='process_line' style="background:{{item.end}}"></view>
-			</view>
-			<text class='process_name'>{{item.name}}</text>
-		</view>
-	</view>
-	<view class="space"></view> -->
 	<!-- 供应商信息 -->
 	<view class="info_code,padding">
 		<view>{{list.code}}</view>
-		<view style="float:right; font-size: 32rpx;" wx:if="{{list.state=='-1'}}">已取消</view>
-		<view style="float:right; font-size: 32rpx;" wx:if="{{list.state=='0'}}">起稿中</view>
-		<view style="float:right; font-size: 32rpx;" wx:if="{{list.state=='1'}}">审批中</view>
-		<view style="float:right; font-size: 32rpx;" wx:if="{{list.state=='2'}}">询价单</view>
+		<view wx:if="{{list.state=='-1'}}">已取消</view>
+		<view wx:if="{{list.state=='0'}}">起稿中</view>
+		<view wx:if="{{list.state=='1'}}">审批中</view>
+		<view wx:if="{{list.state=='2'}}">询价单</view>
 
 	</view>
-	<view class="info_product_code,padding">
+	<!-- 项目名 -->
+	<view class="info_product_code padding">
 		<view>{{list.project_id[1]}}</view>
-		<view style="float:right;font-size: 32rpx;" wx:if="{{list.buy_mode == 1}}">委托采购</view>
-		<view style="float:right;font-size: 32rpx;" wx:if="{{list.buy_mode == 2}}">现场采购</view>
-
+		<view  wx:if="{{list.buy_mode == 1}}">委托采购</view>
+		<view wx:if="{{list.buy_mode == 2}}">现场采购</view>
 	</view>
 
+<!-- 收货信息 -->
 	<view>
 		<view class="weui-cells__title">收货信息</view>
 		<view class="weui-cells weui-cells_after-title">
@@ -70,18 +59,10 @@
 							<button size="mini" style="line-height: 1; padding: 16rpx;" type="warn" wx:if="{{(item.state == '0')&&(item.act_button=='Y') }}" bindtap="ApprovalReject">驳回</button>
 						</view>
 					</view>
-
-					<!-- <view class="progess-bar">
-						<view class="detail">
-							<view class="flow-detail-name">
-
-
-							</view>
-						</view>
-					</view> -->
 				</view>
 			</block>
-			<!--     可见抄送 -->
+
+			<!-- 抄送 -->
 			<view class="info_enquiry_padding">
 				<image class="icon" src="/images/visible.png"></image>抄送人
 			</view>
@@ -94,7 +75,7 @@
 						<view class="approval_name">{{item.user_id[1]}}</view>
 						<view class="approval_create_grey">{{item.create_date}}</view>
 					</view>
-					
+
 					<!-- <view class="progess-bar">
 						<view class="detail">
 							<view class="flow-detail-name ">
@@ -143,16 +124,10 @@
 			</view>
 			<view class="space"></view>
 		</block>
-		
-
-
 	</view>
 
-
-
-
+<!-- 按钮 -->
 	<view class="buttons" wx:if="{{list.act_cancel=='Y'}}">
 		<button type="warn" bindtap="cancel">取消</button>
 	</view>
-
 </view>

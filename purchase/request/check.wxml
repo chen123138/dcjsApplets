@@ -62,7 +62,7 @@
 
 		<!-- 材料详情 -->
 		<view class="weui-cells__title">材料明细</view>
-		<block wx:for="{{list}}" wx:key="item.index">
+		<block wx:for="{{list}}" wx:key="item">
 			<view class="product padding cells">
 				<image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
 				<view class="product_title">

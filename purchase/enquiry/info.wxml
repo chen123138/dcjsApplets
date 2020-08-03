@@ -2,17 +2,6 @@
 <!--purchase/list_detaial/index.wxml-->
 <view class="container">
 	<!-- 状态栏 -->
-	<!-- <view class='order_process'>
-		<view class='process_wrap' wx:for="{{processData}}" wx:key="item">
-			<view class='process'>
-				<view class='process_line' style="background:{{item.start}}"></view>
-				<image class='process_icon' src="{{item.icon}}"></image>
-				<view class='process_line' style="background:{{item.end}}"></view>
-			</view>
-			<text class='process_name'>{{item.name}}</text>
-		</view>
-	</view>
-	<view class="space"></view> -->
 	<block wx:for="{{approval}}" wx:key="item">
 		<view class="info_code padding">
 			<view>{{item.code}}</view>

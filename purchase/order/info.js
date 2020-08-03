@@ -18,39 +18,13 @@ Page({
         // 收货信息-订单号
         tracking: '',
         // 收货信息-金额
-        trackingMent: '',
+        tracking_ment: '',
         showModal1: false,
         showModal2: false,
         // 签收信息
         signer_images: '',
         signer_time: '',
         signer_number: '',
-        // 进度条
-        processData: [{
-            name: '待确认',
-            start: '#fff',
-            end: '#EFF3F6',
-            icon: '/images/process_1.png'
-        },
-        {
-            name: '待发货',
-            start: '#EFF3F6',
-            end: '#EFF3F6',
-            icon: '/images/process_1.png'
-        },
-        {
-            name: '运输中',
-            start: '#EFF3F6',
-            end: '#EFF3F6',
-            icon: '/images/process_1.png'
-        },
-        {
-            name: '已签收',
-            start: '#EFF3F6',
-            end: '#fff',
-            icon: '/images/process_1.png'
-        }
-        ],
     },
 
     /**
@@ -144,9 +118,9 @@ Page({
     // 金额
     trackingMent: function (e) {
         this.setData({
-            trackingMent: e.detail.value
+            tracking_ment: e.detail.value
         })
-        console.log(this.data.trackingMent)
+        console.log(this.data.tracking_ment)
     },
     signer_number: function (e) {
         this.setData({
@@ -183,7 +157,7 @@ Page({
      */
     onConfirm: function () {
         let that = this
-        util.rpcWrite(1002, api.EngineerOrder, [this.data.order_info.id], { 'logistic_freight': this.data.trackingMent, 'logistic_number': this.data.tracking }).then(function (res) {
+        util.rpcWrite(1002, api.EngineerOrder, [this.data.order_info.id], { 'logistic_freight': this.data.tracking_ment, 'logistic_number': this.data.tracking }).then(function (res) {
             console.log("是否成功", res)
             if (res) {
                 wx.showToast({

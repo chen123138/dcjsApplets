@@ -1,14 +1,14 @@
 <view class="container">
-<!--  -->
+	<!--  -->
 	<scroll-view wx:if="{{list.length}}" scroll-y="true" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
 		<block wx:for="{{list}}" wx:key="item">
 			<view class="list_item" data-id="{{item.id}}" bindtap="bindItemTap">
-			<!-- name -->
+				<!-- name -->
 				<view class="list_item_title">
 					<view>{{item.name}}</view>
 				</view>
 				<!--  -->
-        <view class="space"></view>
+				<view class="space"></view>
 				<!-- body -->
 				<view class="list_item_body">
 					<view class="row_number">{{item.code}}</view>
@@ -21,11 +21,11 @@
 				</view>
 				<!--  -->
 			</view>
-      <view class="space"></view>
+			<view class="space"></view>
 		</block>
 	</scroll-view>
 	<!--  -->
-	<view wx:elif="{{list.length==0 && isload}}"style="height: 100vh;" class="no-list">
+	<view wx:elif="{{list.length==0 && isload}}" style="height: 100vh;" class="no-list">
 		<image class="img" src="/images/no-todo.png" style="width:109px;height:139px"></image>
 	</view>
 </view>
