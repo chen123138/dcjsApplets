@@ -168,12 +168,10 @@ Page({
             }
             product.date = listData[i].date
             if (listData[i].number == "") {
-                let num = ++i
-                util.showText('请选择第' + num + '个材料请购数量')
-                return false
+                listData[i].number = 1
             }
             product.number = listData[i].number
-            if (listData[i].pack == '') {
+            if (listData[i].pack == undefined) {
                 listData[i].pack = listData[i].uom_id[1]
             }
             product.pack = listData[i].pack

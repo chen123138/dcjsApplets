@@ -42,7 +42,7 @@
 	<!-- 审批状态 -->
 
 	<!-- 审批流程 -->
-	<view wx:if="{{item.approve_ids}}">
+	<view wx:if="{{approval[0].approve_ids}}">
 		<view class="weui-cells__title">审批流程{{item.state}}</view>
 		<view class="info_enquiry ">
 			<view class="info_enquiry_padding">
