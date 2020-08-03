@@ -10,6 +10,7 @@ Page({
     addimg: '../../images/icon/加号.png',
     searchstr: '',
     currentSelectTripName: '',
+    system_nameOne: '',
     project_name: "",
     project_id: '',
     ids: [],
@@ -107,8 +108,10 @@ Page({
       console.log("项目对应下的系统：")
       console.log(res.records)
       that.setData({
-        system_name: res.records
+        system_name: res.records,
+        system_nameOne: res.records[0].name
       })
+
       switch (that.data.mean) {
         case "task":
           that.getListTask(that.data.project_name, that.data.system_name[0].name)

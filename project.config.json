@@ -18,7 +18,7 @@
 		"scopeDataCheck": false,
 		"uglifyFileName": true,
 		"checkInvalidKey": true,
-		"checkSiteMap": true,
+		"checkSiteMap": false,
 		"uploadWithSourceMap": true,
 		"compileHotReLoad": false,
 		"babelSetting": {
