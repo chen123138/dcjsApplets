@@ -8,188 +8,127 @@ Page({
    * 页面的初始数据
    */
   data: {
-    product_id: "",
-    approval: [],    //询价信息
-    approval_state: [],  //状态
-    approval_product: [], //材料
-    approval_visible: [],  //抄送
+    id: "",
+    enquiry: [],    //询价信息
+    // 审批人列表
+    approval_list: [],
+    visible_list: [],  //抄送
+    product_list: [], //材料
     // 状态数据
-    create: false,
-    enquiry: false,
-  },
-
-
-  /**
-   * 生命周期函数--监听页面加载
-   * 前
-   */
-  onLoad: function (options) {
-    console.log(app.globalData.uid)
-    // 页面传值
-    console.log(options)
-    this.setData({
-      product_id: parseInt(options.id),
-    })
-    this.gitList()
-    console.log(this.data.product_id)
-  },
-  getGuideInfo: function (e) {
-    let id = e.target.dataset.id
-    wx.navigateTo({
-      url: '/guide/info?id=' + id
-    });
+    isCreate: false,
+    isEnquiry: false,
   },
 
   // 数据请求
-  gitList: function () {
+  getInfo: function () {
     wx.showLoading({
       title: '加载中...',
     })
-
     let that = this
     let fields = []
-
-    util.rpcRead(1000, api.EngineerEnquiry, [that.data.product_id], fields, 10, 'id DESC').then(function (res) {
+    util.rpcRead(1000, api.EngineerEnquiry, [that.data.id], fields, 10, 'id DESC').then(function (res) {
       let info = res[0]
       that.setData({
-        approval: res
+        enquiry: res[0]
       })
-      console.log("询价：", that.data.approval)
-      // that.setPeocessIcon()
+      // console.log(that.data.enquiry)
+      // 
       if (info.approve_ids.length > 0) {
         util.rpcRead(1005, api.EngineerApprove, info.approve_ids, []).then(function (res) {
           that.setData({
-            approval_state: res
+            approval_list: res
           })
-          console.log("审批状态：")
-          console.log(res)
-
         })
       }
       //材料
       if (info.project_enquiry_product_ids.length > 0) {
         util.rpcRead(1005, api.EngineerEnquiryProduct, info.project_enquiry_product_ids, []).then(function (res) {
           that.setData({
-            approval_product: res
+            product_list: res
           })
-
-          console.log("材料信息：")
-          console.log(res)
         })
       }
       //抄送
       if (info.visible_ids.length > 0) {
         util.rpcRead(1005, api.EngineerVisible, info.visible_ids, []).then(function (res) {
           that.setData({
-            approval_visible: res
+            visible_list: res
           })
-          console.log("可见抄送：")
-          console.log(res)
 
         })
       }
       // 创建者
-      if(info.create_uid[0] == app.globalData.uid) {
+      if (info.create_uid[0] == app.globalData.uid) {
         that.setData({
-          create: true
+          isCreate: true
         })
-        console.log("是否是创建者：",that.data.create)
       }
-      if(info.user_id[0] == app.globalData.uid){
+      if (info.user_id[0] == app.globalData.uid) {
         that.setData({
-          enquiry: true
+          isEnquiry: true
         })
-        console.log("是否是询价员：",that.data.enquiry)
       }
-
-
     })
     wx.hideLoading();
   },
-  //获取当前滑块的index
-  bindchange: function (e) {
-    const that = this;
-    that.setData({
-      currentData: e.detail.current
-    })
-  },
-  //点击切换，滑块index赋值
-  checkCurrent: function (e) {
-    const that = this;
-    if (that.data.currentData === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        currentData: e.target.dataset.current
-      })
-    }
-  },
-  //取消订单按钮 改变审批状态
+
+  //取消
   cancel: function (e) {
     let that = this
     wx.showModal({
       title: '是否取消？',
 
       success: function (res) {
-        if (res.confirm) { //这里是点击了确定以后
-          console.log('用户点击确定')
-          console.log(that.data.approval[0])
-          let detail = that.data.approval[0]
-
+        if (res.confirm) {
+          let detail = that.data.enquiry[0]
           if (detail.state == '1' || detail.state == '2') {
-            console.log(detail.state)
             util.rpcWrite(1002, api.EngineerEnquiry, [detail.id], {
               'state': '-1'
             }).then(function (res) {
               wx.showToast({
                 title: '取消成功'
               });
-              that.gitList()
-              console.log(res)
+              that.getInfo()
             });
           } else {
             util.showText('当前状态，不可取消');
           }
 
-        } else { //这里是点击了取消以后
+        } else {
           console.log('用户点击取消')
-
         }
       }
     })
   },
 
-  //审批确认按钮 改变审批状态
-  ApprovalConfirm: function (e) {
+  //审批确认
+  confirm: function (e) {
     let that = this
     console.log(e.currentTarget.dataset.id)
     wx.showModal({
       title: '确认同意?',
-
       success: function (res) {
-        if (res.confirm) { //这里是点击了确定以后
-
+        if (res.confirm) {
           util.rpcWrite(1002, api.EngineerApprove, [e.currentTarget.dataset.id], {
             'state': '1'
           }).then(function (res) {
-            console.log(res)
             if (res) {
               wx.showToast({
                 title: '审批通过'
               });
-              that.gitList()
+              that.getInfo()
             }
           });
 
-        } else { //这里是点击了取消以后
+        } else {
           console.log('用户点击取消')
         }
       }
     })
   },
 
-  //审批驳回按钮 改变审批状态
-  ApprovalReject: function (e) {
+  //审批驳回
+  reject: function (e) {
     let that = this
     wx.showModal({
       title: '确认驳回?',
@@ -202,10 +141,10 @@ Page({
             wx.showToast({
               title: '审批驳回'
             });
-            that.gitList()
+            that.getInfo()
           });
 
-        } else { //这里是点击了取消以后
+        } else {
           console.log('用户点击取消')
 
         }
@@ -213,22 +152,35 @@ Page({
     })
   },
 
-  // 提交按钮
+  // 提交
   submit: function () {
     let that = this
-    let params = [this.data.approval[0].id]
-    console.log(this.data.approval[0].id)
+    let params = [this.data.enquiry[0].id]
+    console.log(this.data.enquiry[0].id)
     util.rpcWrite(1002, api.EngineerEnquiry, params, {
       'state': '1'
     }).then(function (res) {
-      console.log("提交：", res)
       if (res) {
         wx.showToast({
           title: '提交成功'
         });
-        that.gitList()
+        that.getInfo()
       }
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   * 前
+   */
+  onLoad: function (options) {
+    console.log(app.globalData.uid)
+    // 页面传值
+    this.setData({
+      id: parseInt(options.id),
+    })
+    this.getInfo()
+    console.log(this.data.enquiry)
   },
 
 })

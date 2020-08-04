@@ -12,15 +12,20 @@ Page({
     mean: ''
   },
 
+  // 获取项目列表
+  getProjectList: function() {
+    let params = []
+    let fileds = ["id", "name"]
+    var that = this
+    util.rpcList(1000, api.EngineerProject, params, fileds, 100, '').then(function(res) {
+      that.setData({
+        project_list: res.records
+      })
+    })
+  },
 
-
-  // 选择材料
-  goApplication: function(e) {
-    console.log("传递项目id：")
-    console.log(e.currentTarget.dataset.id)
-    console.log("传递项目名：")
-    console.log(e.currentTarget.dataset.name)
-
+  // 选择项目
+  goSelectProduct: function(e) {
     wx.navigateTo({
       url: './product?projectName=' + e.currentTarget.dataset.name + '&projectId=' + e.currentTarget.dataset.id + '&mean=' + this.data.mean,
     })
@@ -31,70 +36,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    this.getProjectList()
+    // 项目来源--task or purchaser
     this.setData({
       mean: options.mean
     })
+    this.getProjectList()
   },
 
-  getProjectList: function() {
-    var that = this
-    util.rpcList(1000, api.EngineerProject, [], [], 100, '').then(function(res) {
-      console.log("项目列表：")
-      console.log(res)
-      that.setData({
-        project_list: res.records
-      })
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

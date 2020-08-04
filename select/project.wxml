@@ -1,7 +1,7 @@
 <!--requestBuy/project/index.wxml-->
 <view class="container">
   <block wx:for="{{project_list}}" wx:key="item">
-    <view class="list_item" data-id='{{item.id}}' data-name="{{item.name}}" bindtap="goApplication">
+    <view class="list_item" data-id='{{item.id}}' data-name="{{item.name}}" bindtap="goSelectProduct">
       <text class="list_item_title">{{item.name}}</text>
     </view>
     <view class="space"></view>

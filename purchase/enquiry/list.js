@@ -14,8 +14,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function () {
+    this.getList();
   },
+
+  // 询价列表
   getList: function () {
     wx.showLoading({
       title: '加载中...',
@@ -31,74 +34,16 @@ Page({
       that.setData({
         list: res.records
       })
-      console.log("res:", res)
+      // console.log("res:", res)
       wx.hideLoading();
     })
   },
 
-  // 点击事件
+  // 点击选择列表事件
   bindItemTap: function (e) {
-    console.log(e)
     wx.navigateTo({
-      url: 'info?id=' + e.currentTarget.dataset.id + '&pid=' + JSON.stringify(e.currentTarget.dataset.pid)
+      url: 'info?id=' + e.currentTarget.dataset.id
     })
   },
 
-
-
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.getList();
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    if (this.data.total > this.data.page) {
-      this.setData({
-        page: this.data.page + 1
-      });
-    } else {
-      return false;
-    }
-    this.getList();
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

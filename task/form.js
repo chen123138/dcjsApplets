@@ -26,7 +26,7 @@ Page({
         unit: 0
     },
     // 监听页面加载
-    onLoad: function (options) {
+    onLoad: function () {
         // TODO
         var pages = getCurrentPages();
         var prevPage = pages[pages.length - 2];
@@ -56,7 +56,7 @@ Page({
     // 材料
     getList: function (ids) {
         // 
-        let fields = ["project_id","name", "number", "project_system_id","brand", "type", "uom_id","stock"]
+        let fields = ["project_id", "name", "number", "project_system_id", "brand", "type", "uom_id", "stock"]
         let that = this;
         util.rpcRead(1000, api.EngineerProduct, ids, fields, 1000, '').then(function (res) {
             console.log("res", res)
@@ -204,11 +204,11 @@ Page({
             util.showText('请选择项目')
             return false;
         }
-        if (user_ids.length==0) {
+        if (user_ids.length == 0) {
             util.showText('请指派成员')
             return false;
-        }else{
-            task['project_task_user_ids']=user_ids
+        } else {
+            task['project_task_user_ids'] = user_ids
         }
         if (!task.hasOwnProperty('stt_date') || !task.hasOwnProperty('end_date')) {
             util.showText('请选择时间')
@@ -219,10 +219,10 @@ Page({
             return false;
         }
         if (task['cate'] == '1') {
-            if (product_ids.length==0){
+            if (product_ids.length == 0) {
                 util.showText('请添加内容')
                 return false;
-            }else{
+            } else {
                 let worker_ids = []
                 for (let index in product_ids) {
                     let item = product_ids[index];
@@ -251,8 +251,8 @@ Page({
                     delete tmp['type']
                     worker_ids[index] = [0, "virtual_2" + index, tmp]
                 }
-                task['project_task_product_ids']=worker_ids
-                console.log("task",task)
+                task['project_task_product_ids'] = worker_ids
+                console.log("task", task)
             }
         }
         if (task['cate'] == '2') {
@@ -265,27 +265,36 @@ Page({
                 return false;
             }
         }
-        
+
         console.log(task);
         wx.showLoading({
             title: '加载中...',
         });
         // let that = this;
-        util.rpcCreate(1002, api.EngineerTask, [task]).then(function(res) {
+        util.rpcCreate(1002, api.EngineerTask, [task]).then(function (res) {
             wx.hideLoading();
             wx.showToast({
                 title: '提交成功'
             });
             // that.init();
-            setTimeout(function () {
-                wx.redirectTo({
-                    url: './list'
-                })
-            }, 500);
+            if (task['cate'] == '1') {
+                setTimeout(function () {
+                    wx.navigateBack({
+                        delta: 3
+                    })
+                }, 500);
+            }else {
+                setTimeout(function () {
+                    wx.navigateBack({
+                        delta: 1
+                    })
+                }, 500);
+            }
+
         });
     },
 
-    
+
     // 选择材料数量
     bindBlur: function (e) {
         let product_ids = this.data.product_ids
@@ -299,7 +308,7 @@ Page({
             console.log("改变数量", this.data.product_ids)
         }
     },
-    
+
     // 取消按钮
     cancel: function (index) {
         console.log(index.currentTarget.dataset.index)

@@ -10,7 +10,7 @@ Page({
   
   data: {
       uid: 0,
-    product_id: "",
+    id: "",
     list: [],
     state: '',
     purchase: [],
@@ -32,23 +32,23 @@ Page({
     // console.log(options)
     this.setData({
         uid: app.globalData.uid,
-      product_id: options.id
+        id: options.id
     })
     // console.log("用户id", this.data.uid)
-    console.log("项目id", this.data.product_id)
+    console.log("项目id", this.data.id)
 
-    this.getList()
+    this.getInfo()
   },
 
   // 数据请求
-  getList: function () {
+  getInfo: function () {
     wx.showLoading({
       title: '加载中...',
     })
 
     let that = this
     let params = [
-      ["id", "=", that.data.product_id]
+      ["id", "=", that.data.id]
     ]
     let fields = []
     util.rpcList(1000, api.EngineerPurchase, params, fields, 1, 'id DESC').then(
@@ -57,12 +57,8 @@ Page({
         console.log("info：", info)
         that.setData({
           list: info,
-          //state: res.records[0].state
         })
-        // that.setPeocessIcon()
-        console.log("list",that.data.list)
-        console.log(typeof that.data.state)
-        
+        // 材料列表
         if (info.project_purchase_product_ids.length > 0) {
           util.rpcRead(1005, api.EngineerPurchaseProduct, info.project_purchase_product_ids, []).then(function (res) {
             var createdId = res[0].create_uid[0]
@@ -86,11 +82,10 @@ Page({
             that.setData({
               approval: res,
             })
-            console.log("审批人", that.data.approval)
+            // console.log("审批人", that.data.approval)
             var arr = that.data.approval
             var approvalList = []
             var approvalIdList = []
-            console.log(arr)
             for (var i = 0; i < arr.length; i++) {
               approvalList.push(arr[i].user_id[0])
               approvalIdList.push(arr[i].id)
@@ -102,8 +97,6 @@ Page({
                 approval_state: arr2,
                 approval_id: approvalIdList[approvalList.indexOf(that.data.uid)]
               })
-              console.log("当前用户是审批人", that.data.approval_state)
-              console.log("审批人id", that.data.approval_id)
             }
           })
         }
@@ -124,30 +117,46 @@ Page({
 
   // 审核通过
   ApprovalConfirm: function () {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    // 
     let that = this
     util.rpcWrite(1002, api.EngineerApprove, [this.data.approval_id], { 'state': '1' }).then(function (res) {
       console.log(res)
       wx.showToast({
         title: '审核通过'
       });
-      that.getList()
+      that.getInfo()
     })
+    // 
+    wx.hideLoading();
   },
   // 审核驳回
   ApprovalReject: function () {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    //
     let that = this
     util.rpcWrite(1002, api.EngineerApprove, [this.data.approval_id], { 'state': '2' }).then(function (res) {
       console.log(res)
       wx.showToast({
         title: '审核驳回'
       });
-      that.getList()
+      that.getInfo()
     })
+    // 
+    wx.hideLoading();
   },
   // 请购人员取消
   cancel: function () {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    //
     console.log("取消")
-    util.rpcWrite(1002, api.EngineerPurchase, [this.data.product_id], { 'state': '-1' }).then(function (res) {
+    util.rpcWrite(1002, api.EngineerPurchase, [this.data.id], { 'state': '-1' }).then(function (res) {
       console.log(res)
       wx.showToast({
         title: '取消成功'
@@ -158,58 +167,8 @@ Page({
         })
       }, 500);
     })
+    // 
+    wx.hideLoading();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-  //进度条的状态
-  setPeocessIcon: function () {
-    console.log("状态栏打印list",this.data.list)
-    let state = Number(this.data.list.state)
-    let processData = this.data.processData
-    let that = this
-    if(state == '-1') {
-      let processData = [{
-          name: '已取消',
-          start: '#ffffff',
-          end: '#ffffff',
-          icon: '/images/process_0.png'
-      }]
-      that.setData({
-        processData: processData
-    })
-    }else{
-      for (let index1 = 0; index1 <= state; index1++) {
-        if (index1 == 0) {
-            processData[index1].icon = '/images/process_2.png'
-        } else if (index1 == 2) {
-            processData[index1].icon = '/images/process_2.png'
-            processData[index1].start = '#0288d1'
-            processData[index1 - 1].end = '#0288d1'
-
-        } else {
-            processData[index1 - 1].end = '#0288d1'
-            processData[index1].icon = '/images/process_2.png'
-            processData[index1].start = '#0288d1'
-        }
-        for (let index2 = 0; index2 < index1; index2++) {
-            processData[index2].icon = '/images/process_3.png'
-        }
-    }
-    that.setData({
-        processData: processData
-    })
-    }
-},
 })

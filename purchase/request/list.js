@@ -11,12 +11,7 @@ Page({
         list: [],
     },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function(options) {
-    },
-
+    // 获取页面列表列表
     getList: function() {
         wx.showLoading({
             title: '加载中...',
@@ -27,7 +22,6 @@ Page({
             "&",
             ["visible_ids.project_purchase_id", "!=", ''],
             ["visible_ids.user_id.id", "=", app.globalData.uid]
-            
         ]
         let fields = []
         let that = this;
@@ -35,7 +29,6 @@ Page({
           that.setData({
             list: res.records
           })
-            console.log(res)
             wx.hideLoading();
         })
     },
@@ -49,23 +42,17 @@ Page({
     },
 
     /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function(options) {
+    },
+
+
+    /**
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
         this.getList();
     },
-
-    /**
-     * 页面上拉触底事件的处理函数 ??
-     */
-    onReachBottom: function() {
-        if (this.data.total > this.data.page) {
-            this.setData({
-                page: this.data.page + 1
-            });
-        } else {
-            return false;
-        }
-        this.getList();
-    },
+    
 })

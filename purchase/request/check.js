@@ -25,6 +25,7 @@ Page({
             { lable: '现场', value: "2" },
         ]
     },
+
     // 取消按钮
     cancel: function (index) {
         console.log(index.currentTarget.dataset.index)
@@ -34,17 +35,19 @@ Page({
             list: arr
         })
     },
+
     // 采购方式函数
     bindRadioChange: function (e) {
         this.setData({
             mode: e.detail.value
         })
     },
+
     onLoad: function () {
         wx.showLoading({
             title: '加载中...',
         });
-        // TODO
+
         var pages = getCurrentPages();
         var prevPage = pages[pages.length - 2];
         // 
@@ -62,6 +65,7 @@ Page({
         // 获取材料列表
         this.getList(product_ids)
     },
+
     // 材料
     getList: function (ids) {
         // 
@@ -76,6 +80,7 @@ Page({
             wx.hideLoading();
         });
     },
+
     // 选择材料数量
     bindBlur: function (e) {
         let list = this.data.list
@@ -85,6 +90,7 @@ Page({
         })
         console.log("改变数量", this.data.list)
     },
+
     // 选择到货时间
     bindDateChangeDate: function (e) {
         let list = this.data.list
@@ -94,6 +100,7 @@ Page({
         })
         console.log("改变时间", this.data.list)
     },
+
     // 选择品牌
     bindBlurBrand: function (e) {
         let list = this.data.list
@@ -103,6 +110,7 @@ Page({
         })
         console.log("品牌", this.data.list)
     },
+
     // 选择品牌类型
     bindBlurType: function (e) {
         let list = this.data.list
@@ -112,6 +120,7 @@ Page({
         })
         console.log("类型", this.data.list)
     },
+
     // 包装信息
     bindBlurPack: function (e) {
         let list = this.data.list
@@ -121,6 +130,7 @@ Page({
         })
         console.log("包装", this.data.list)
     },
+
     // 选择收货信息
     user: function (e) {
         this.setData({
@@ -144,7 +154,7 @@ Page({
     },
     // 提交信息
     Submit: function () {
-        console.log("data", this.data.list)
+        // console.("data", this.data.list)
         let listData = this.data.list
         let productLists = []
         // 表单验证
@@ -185,8 +195,6 @@ Page({
             console.log("product", product)
             productLists.push([0, "virtual_" + i, product])
         }
-        console.log("productLists", productLists)
-        console.log("listData", listData)
         let params = {
             buy_mode: this.data.mode || "1",
             project_id: Number(this.data.project_id),
@@ -200,16 +208,28 @@ Page({
         }
 
         console.log("这是params：", params)
+        wx.showLoading({
+            title: '加载中...',
+        });
+        setTimeout(function () {
+            wx.hideLoading()
+        }, 2000);
+
+        wx.showToast({
+            title: '提交成功'
+        }); 
         util.rpcCreate(1002, api.EngineerPurchase, [params]).then(function (res) {
             console.log(res)
-            wx.showToast({
-                title: '提交成功'
-            });
             setTimeout(function () {
-                wx.redirectTo({
-                    url: './list'
+                wx.showToast({
+                    title: '提交成功',
+                    icon: 'success',
+                    duration: 2000
+                });
+                wx.navigateBack({
+                    delta: 3
                 })
-            }, 500);
+            }, 3000);
 
         })
     },

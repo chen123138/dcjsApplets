@@ -107,7 +107,7 @@
 
 	<!-- 弹出框 -->
 	<!-- 发货 -->
-	<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+	<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal1}}"></view>
 	<view class="modal-dialog" wx:if="{{showModal1}}">
 		<view class="modal-title"> 发货信息 </view>
 		<view class="modal-content">
@@ -126,16 +126,22 @@
 	</view>
 
 	<!-- 收货 -->
-	<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+	<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal2}}"></view>
 	<view class="modal-dialog" wx:if="{{showModal2}}">
 		<view class="modal-title"> 收货信息 </view>
 		<view class="modal-content">
 			<view class="modal-input">
 				<input placeholder-class="input-holder" type="number" bindblur="signer_number" class="input" placeholder="签收数量"></input>
 			</view>
-			<view class="modal-input">
-				<input placeholder-class="input-holder" bindtap="signer_images" class="input" placeholder="签收截图"></input>
+			<view class="space"></view>
+			<view class="space"></view>
+			<text class="img">签收截图</text>
+			<view class="img_box">
+			  <image class="q-image" wx:if="{{image !== ''}}"  src="{{image}}" mode="aspectFill"></image>
+			  <image class="q-image" bindtap="signer_images" wx:if="{{image == ''}}" src="/images/addImg.png" mode="aspectFill"></image>
 			</view>
+			<!-- 缩略图 -->
+			
 		</view>
 		<view class="modal-footer">
 			<view class="btn-cancel" bindtap="onCancel" data - status="cancel"> 取消 </view>

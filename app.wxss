@@ -329,5 +329,8 @@
   top: 10rpx;
 }
 
+.state {
+  font-size: 32rpx;
+}
 
 
