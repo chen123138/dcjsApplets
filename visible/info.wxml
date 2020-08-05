@@ -1,0 +1,75 @@
+
+<view class="container">
+	<view>
+		<view class="info_code padding">
+			<view>{{enquiry.code}}</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{enquiry.state=='-1'}}">已取消</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{enquiry.state=='0'}}">询问中</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{enquiry.state=='1'}}">审批中</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{enquiry.state=='2'}}">订货单</view>
+		</view>
+		<view class="info_product_code padding">
+			<view>{{enquiry.display_name}}</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{enquiry.buy_mode == 1}}">委托采购</view>
+			<view style="float:right; font-size: 32rpx;" wx:if="{{enquiry.buy_mode == 2}}">现场采购</view>
+		</view>
+	</view>
+
+
+	<!-- 收货信息 -->
+	<view>
+		<view class="weui-cells__title">收货信息</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">收货人</view>
+				<view class="weui-cell__ft">{{enquiry.receive_user}}</view>
+			</view>
+			<view class="weui-cell">
+				<view class="weui-cell__bd">收货电话</view>
+				<view class="weui-cell__ft">{{enquiry.receive_phone}}</view>
+			</view>
+			<view class="weui-cell">
+				<view class="weui-cell__bd">收货地址</view>
+				<view class="weui-cell__ft">{{enquiry.receive_address}}</view>
+			</view>
+			<view class="weui-cell">
+				<view class="weui-cell__bd">备注</view>
+				<view class="weui-cell__ft">{{enquiry.remarks}}</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- 材料明细 -->
+	<view>
+		<view class="weui-cells__title">材料明细</view>
+
+		<block wx:for="{{product_list}}" wx:key="item">
+			<view class="weui-cells weui-cells_after-title">
+				<view class="product_cells_container">
+					<view class="info_receive">
+						<text>{{item.project_system_id[1]}}-{{item.project_product_id[1]}}</text>
+					</view>
+					<!--品牌  -->
+					<view class="info_receive ">
+						<text>{{item.brand == false? "-": item.brand}}</text>
+						<!-- 规格 -->
+						<text>{{item.type == false? "-": item.type}}</text>
+					</view>
+					<view class="info_receive ">
+						<!-- 数量 -->
+						<view>{{item.number}} {{item.uom_id[1]}}</view>
+						<!-- pack -->
+						<view>{{item.pack}}</view>
+					</view>
+					<view class="info_receive ">
+						<!-- 时间 -->
+						<view>{{item.date}}</view>
+						<!-- pack -->
+						<view>{{item.remarks}}</view>
+					</view>
+				</view>
+			</view>
+			<view class="space"></view>
+		</block>
+	</view>
+</view>

@@ -70,7 +70,7 @@ Page({
             that.setData({
                 list: res.records
             })
-            console.log("审核列表", that.data.list)
+            console.log(that.data.list)
             wx.hideLoading();
         })
     },
@@ -89,31 +89,23 @@ Page({
             that.setData({
                 list: res.records
             })
-            console.log("抄送列表", that.data.list)
             wx.hideLoading();
         })
     },
 
     // 点击事件
     bindItemTap: function (e) {
-        console.log(e.currentTarget.dataset.id)
-        console.log(e.currentTarget.dataset.type)
-        console.log(e.currentTarget.dataset.pid)
-        console.log(e.currentTarget.dataset.eid)
-        console.log(this.data.part)
         if (this.data.part == '0') {
             // 转向待办
             wx.navigateTo({
-                url: './info?id=' + e.currentTarget.dataset.id
+                url: '/task/info?id=' + e.currentTarget.dataset.id
             })
         } else if (this.data.part == '2') {
             // 转向抄送
-            console.log("转向抄送页面")
             wx.navigateTo({
                 url: '/visible/info?id=' + e.currentTarget.dataset.eid
             })
         } else if (this.data.part == '1') {
-            console.log("转向审批页面")
             switch (e.currentTarget.dataset.type) {
                 case 1:
                     // 请购流程

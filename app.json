@@ -1,10 +1,12 @@
 {
-  "pages": [    
+  "pages": [
     "page/load",
     "page/auth",
     "guide/list",
     "task/todo",
-    "my/index"
+    "my/index",
+    "visible/info",
+    "page/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -22,9 +24,9 @@
     "borderStyle": "white",
     "list": [
       {
-        "text": "待办",
+        "text": "首页",
         "iconPath": "/images/todo.png",
-        "pagePath": "task/todo",
+        "pagePath": "page/index",
         "selectedIconPath": "/images/todo_focus.png"
       },
       {

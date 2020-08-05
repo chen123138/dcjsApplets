@@ -21,7 +21,7 @@ Page({
         util.authorize().then((res) => {            
             if (app.globalData.uid){
                 that.data.hidden=true
-                wx.switchTab({ url: '/task/todo' });
+                wx.switchTab({ url: '/page/index' });
             }else{
                 wx.navigateTo({
                     url: '/page/auth'

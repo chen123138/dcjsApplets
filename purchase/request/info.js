@@ -34,9 +34,8 @@ Page({
         uid: app.globalData.uid,
         id: options.id
     })
-    // console.log("用户id", this.data.uid)
-    console.log("项目id", this.data.id)
 
+    console.log("项目id",typeof  this.data.id)
     this.getInfo()
   },
 
@@ -54,7 +53,7 @@ Page({
     util.rpcList(1000, api.EngineerPurchase, params, fields, 1, 'id DESC').then(
       function (res) {
         let info = res.records[0]
-        console.log("info：", info)
+        console.log("res:", res)
         that.setData({
           list: info,
         })

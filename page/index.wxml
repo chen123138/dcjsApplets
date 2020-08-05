@@ -1,9 +1,9 @@
 <view class="container">
 	<!-- 分区按钮 -->
 	<view class="part_container">
-	  <text class="{{part=='0'?'part':''}}" bindtap="selectPart" data-part="0">我的待办</text>
-	  <text class="{{part=='1'?'part':''}}"  bindtap="selectPart" data-part="1">我的审批</text>
-	  <text class="{{part=='2'?'part':''}}"  bindtap="selectPart" data-part="2">抄送我的</text>
+	  <view class="{{part=='0'?'part':''}}" bindtap="selectPart" data-part="0">我的待办</view>
+	  <view class="{{part=='1'?'part':''}}"  bindtap="selectPart" data-part="1">我的审批</view>
+	  <view class="{{part=='2'?'part':''}}"  bindtap="selectPart" data-part="2">抄送我的</view>
 	</view>
 	<!--  -->
 	<view class="space_for"></view>
@@ -22,13 +22,14 @@
 				<!-- body -->
 				<view class="list_item_body">
 					<view class="row_number" wx:if="{{ part == '0' }}">{{item.code}}</view>
-					<view class="row_number" wx:if="{{ part == '1' }}">{{item.flow_type_id[1]}}</view>
+					<view class="row_number" wx:if="{{ part == '1' && item.flow_type_id[0] == 1 }}">请购流程</view>
+          <view class="row_number" wx:if="{{ part == '1' && item.flow_type_id[0] == 2 }}">询价流程</view>
 					<view class="row_number" wx:if="{{ part == '2' }}">{{item.create_uid[1]}}</view>
-					<view class="row_state" wx:if="{{item.state==1}}">指派中</view>
-					<view class="row_state" wx:elif="{{item.state==2}}">进行中</view>
-					<view class="row_state" wx:elif="{{item.state==3}}">验收中</view>
-					<view class="row_state" wx:elif="{{item.state==4}}">已完成</view>
-					<view class="row_state" wx:elif="{{item.state==0}}">已取消</view>
+					<view class="row_state" wx:if="{{item.state==1 && part == '0'}}">指派中</view>
+					<view class="row_state" wx:elif="{{item.state==2 && part == '0'}}">进行中</view>
+					<view class="row_state" wx:elif="{{item.state==3 && part == '0'}}">验收中</view>
+					<view class="row_state" wx:elif="{{item.state==4 && part == '0'}}">已完成</view>
+					<view class="row_state" wx:elif="{{item.state==0 && part == '0'}}">已取消</view>
 					<view class="row_time" wx:if="{{ part == '0' }}">{{item.end_date}}</view>
 					<view class="row_time" wx:if="{{ part == '1' }}">{{item.create_date}}</view>
 					<view class="row_time" wx:if="{{ part == '2' }}">{{item.create_date}}</view>

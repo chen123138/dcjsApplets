@@ -23,7 +23,6 @@
 			<view class="button" bindtap="enquiry">我的询价</view>
 			<view class="button" bindtap="order">我的订单</view>
 			<view class="button" bindtap="task">我的施工</view>
-			<view class="button" bindtap="approve">我的审批</view>
 			<view class="button">采购计划</view>
 			<!-- <view class="button">材料变更</view> -->
 

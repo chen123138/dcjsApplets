@@ -40,6 +40,7 @@ module.exports = {
   EngineerOrderProduct: 'eng.project.order.product',
   // 审批
   EngineerApprove: 'eng.approve',
+  // 抄送
   EngineerVisible: 'eng.visible'
   //
 };
