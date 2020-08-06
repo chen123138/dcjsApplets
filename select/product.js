@@ -138,6 +138,9 @@ Page({
     // 获取系统列表
     this.getSystemList()
 
+    wx.setNavigationBarTitle({
+      title: '选择材料'
+    })
   },
 
   // 搜索框右侧 事件

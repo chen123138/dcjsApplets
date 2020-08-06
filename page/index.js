@@ -43,13 +43,12 @@ Page({
         // let fields = []
         let that = this;
         util.rpcList(1000, api.EngineerTask, params, fields, 10, 'id DESC').then(function (res) {
-            //
             that.setData({
                 list: res.records,
                 total: res.length,
                 isload: true
             });
-            // console.log("待办列表",that.data.list)
+            console.log("待办列表",that.data.list)
             wx.hideLoading();
         }).catch((e) => {
             console.log(e)
@@ -67,8 +66,13 @@ Page({
         let fields = []
         let that = this;
         util.rpcList(1000, api.EngineerApprove, params, fields, 10, 'id DESC').then(function (res) {
+            let info = res.records;
+            // for(let i = 0; i<info.length; i++) {
+            //     console.log(info[i].create_date.slice(5))
+            //     info[i].view_date = info[i].create_date.slice(5)
+            // }
             that.setData({
-                list: res.records
+                list: info
             })
             console.log(that.data.list)
             wx.hideLoading();
@@ -86,9 +90,15 @@ Page({
         let fields = []
         let that = this;
         util.rpcList(1000, api.EngineerVisible, params, fields, 10, 'id DESC').then(function (res) {
+            let info = res.records;
+            // for(let i = 0; i<info.length; i++) {
+            //     console.log(info[i].create_date.slice(5))
+            //     info[i].view_date = info[i].create_date.slice(5)
+            // }
             that.setData({
-                list: res.records
+                list: info
             })
+
             wx.hideLoading();
         })
     },

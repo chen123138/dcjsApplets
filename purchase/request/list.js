@@ -53,6 +53,9 @@ Page({
      */
     onShow: function() {
         this.getList();
-    },
-    
+
+        wx.setNavigationBarTitle({
+          title: '请购列表'
+        })
+    }
 })

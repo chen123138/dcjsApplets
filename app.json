@@ -10,7 +10,6 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarTitleText": "达昌技术",
     "navigationBarTextStyle": "white",
     "navigationBarBackgroundColor": "#42a5f5",
     "enablePullDownRefresh": false
@@ -25,9 +24,9 @@
     "list": [
       {
         "text": "首页",
-        "iconPath": "/images/todo.png",
+        "iconPath": "/images/index_foucs.png",
         "pagePath": "page/index",
-        "selectedIconPath": "/images/todo_focus.png"
+        "selectedIconPath": "images/index.png"
       },
       {
         "text": "文库",

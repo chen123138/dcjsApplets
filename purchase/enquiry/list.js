@@ -16,6 +16,9 @@ Page({
    */
   onLoad: function () {
     this.getList();
+    wx.setNavigationBarTitle({
+      title: '询价列表'
+    })
   },
 
   // 询价列表

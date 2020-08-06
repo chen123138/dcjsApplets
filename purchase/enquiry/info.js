@@ -181,6 +181,10 @@ Page({
     })
     this.getInfo()
     console.log(this.data.enquiry)
+    wx.setNavigationBarTitle({
+    title: '询价详情'
+  })
   },
+  
 
 })

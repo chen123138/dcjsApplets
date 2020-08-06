@@ -44,6 +44,9 @@ Page({
         this.getInfo()
         // 
         wx.hideLoading();
+        wx.setNavigationBarTitle({
+            title: '订单详情'
+          })
     },
 
     // 请求订单详情

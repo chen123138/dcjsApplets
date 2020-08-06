@@ -1,6 +1,4 @@
 <scroll-view class="container">
-    <view class="menu">
-    </view>
     <!-- 添加按钮 -->
     <view bindtap="worker_click" class="worker-click">
         <image src='/images/add.png'></image>
@@ -18,7 +16,7 @@
         </navigator>
     </view>
     <!--  -->
-    <scroll-view wx:if="{{list.length}}" scroll-y="true" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <scroll-view wx:if="{{list.length}}"   bindtap="worker_click_false" scroll-y="true" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
         <block wx:for="{{list}}" wx:key="item">
             <view class="list_item" data-id="{{item.id}}" bindtap="bindItemTap">
                 <view class="list_item_title">
@@ -39,7 +37,7 @@
         </block>
     </scroll-view>
 
-    <view wx:else class="no-list" style="height: 100vh;">
+    <view wx:else class="no-list" style="height: 100vh;"   bindtap="worker_click_false">
         <image class="image" src="/images/no-list.png" style="width:91px;height:120px"></image>
     </view>
 </scroll-view>

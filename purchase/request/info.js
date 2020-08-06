@@ -37,6 +37,10 @@ Page({
 
     console.log("项目id",typeof  this.data.id)
     this.getInfo()
+
+    wx.setNavigationBarTitle({
+      title: '我的审批'
+    })
   },
 
   // 数据请求
