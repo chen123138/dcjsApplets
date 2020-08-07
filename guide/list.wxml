@@ -6,6 +6,7 @@
     <block wx:for="{{list}}" wx:key="item">
             <view class="list_item" data-id="{{item.id}}" bindtap="bindItemTap">
                 <view class="list_item_title">
+                    <image class="icon_img" src="/images/task/guide_book.png"></image>
                     <view class="name">{{item.name}}</view>
                 </view>
             </view>

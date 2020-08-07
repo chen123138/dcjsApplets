@@ -25,6 +25,9 @@ Page({
             id: parseInt(options.id)
         });
         this.getDetail();
+        wx.setNavigationBarTitle({
+            title: '任务详情'
+          })
     },
     getDetail: function() {
         wx.showLoading({

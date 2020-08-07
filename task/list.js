@@ -19,6 +19,9 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function(options) {
+		wx.setNavigationBarTitle({
+			title: '工单'
+		})
 	},
 	getList: function() {
 		wx.showLoading({
@@ -56,6 +59,13 @@ Page({
 			click: !this.data.click
 		})
 	},
+
+	worker_click_false: function() {
+		this.setData({
+			click: false
+		})
+	},
+
 
 	upper: function() {
 		wx.showNavigationBarLoading()

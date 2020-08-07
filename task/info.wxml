@@ -17,7 +17,7 @@
 		</block>
 
         <view>
-            <view class="weui-cells__title">基本信息</view>
+            <view class="weui-cells__title title_container"><image class="icon_img" src="/images/task/jbxx.png"></image>基本信息</view>
             <view class="weui-cells weui-cells_after-title">
                 <view class="weui-cell">
                     <view class="weui-cell__bd">施工人员</view>
@@ -47,7 +47,7 @@
         </view>
 
         <!-- 零星说明 -->
-        <view class="weui-cells__title" wx:if="{{detail.cate=='2'}}">零星说明</view>
+        <view class="weui-cells__title title_container" wx:if="{{detail.cate=='2'}}"><image class="icon_img" src="/images/task/saw.png"></image>零星说明</view>
         <view class="weui-cells weui-cells_after-title" wx:if="{{detail.cate=='2'}}">
             <!-- 零星说明 -->
             <view class="weui-cell">
@@ -71,7 +71,7 @@
         </view>
 
         <!-- 施工材料 -->
-        <view class="weui-cells__title" wx:if="{{detail.cate=='1'}}">施工材料</view>
+        <view class="weui-cells__title title_container" wx:if="{{detail.cate=='1'}}"><image class="icon_img" src="/images/purchase/request/product.png"></image>施工材料</view>
 		<view>
             <block wx:for="{{product}}" wx:key="item" wx:if="{{detail.cate=='1'}}">
                 <view class="list_item">
@@ -104,7 +104,7 @@
             </block>
         </view>
         <!-- 施工日志 -->
-        <view class="weui-cells__title" wx:if="{{detail.state>2}}">施工日志</view>
+        <view class="weui-cells__title title_container" wx:if="{{detail.state>2}}"><image class="icon_img" src="/images/task/data.png"></image>施工日志</view>
         <view class="weui-cells weui-cells_after-title" wx:if="{{detail.state>2}}">
             <view class="weui-cell">
                 <view class="weui-cell__bd">
@@ -117,7 +117,7 @@
 		<form wx:if="{{user_ids[0]['user_id'][0]==uid || detail.create_uid[0]==uid}}" catchsubmit="formSubmit" catchreset="formReset">
 			<!-- 自检属性 -->
 			<view wx:if="{{user_ids[0]['user_id'][0]==uid && detail.state==2}}">
-                <view class="weui-cells__title"><i style="color:red">*</i>施工日志</view>
+                <view class="weui-cells__title title_container"><image class="icon_img" src="/images/task/zj.png"></image><i style="color:red">*</i>施工日志</view>
                 <view class="weui-cells weui-cells_after-title">
                     <view class="weui-cell weui-cell_active">
                         <view class="weui-cell__bd">

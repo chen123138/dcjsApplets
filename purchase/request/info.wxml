@@ -17,7 +17,7 @@
 
 <!-- 收货信息 -->
 	<view>
-		<view class="weui-cells__title">收货信息</view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/check_sh.png"></image>收货信息</view>
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">收货人</view>
@@ -40,7 +40,7 @@
 
 	<!-- 审批流程 -->
 	<view>
-		<view class="weui-cells__title">审批流程</view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/approval.png"></image>审批流程</view>
 		<view class="info_enquiry ">
 			<view class="info_enquiry_padding">
 				<image class="icon" src="/images/approval.png"></image>审批人
@@ -75,17 +75,6 @@
 						<view class="approval_name">{{item.user_id[1]}}</view>
 						<view class="approval_create_grey">{{item.create_date}}</view>
 					</view>
-
-					<!-- <view class="progess-bar">
-						<view class="detail">
-							<view class="flow-detail-name ">
-								<view class="approval_user">{{item.user_id[1]}}</view>
-								<view class="approval_create_grey">{{item.create_date}}</view>
-							</view>
-						</view>
-						<view class="progress active">
-						</view>
-					</view> -->
 				</view>
 
 			</block>
@@ -95,7 +84,7 @@
 
 	<!-- 材料明细 -->
 	<view>
-		<view class="weui-cells__title">材料明细</view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/product.png"></image>材料明细</view>
 		<block wx:for="{{purchase}}" wx:key="item">
 			<view class="weui-cells weui-cells_after-title">
 				<view class="product_cells_container">

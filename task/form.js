@@ -52,6 +52,9 @@ Page({
         this.getList(product_ids)
         // 获取文库
         this.getGuideList()
+        wx.setNavigationBarTitle({
+			title: '施工任务'
+		})
     },
     // 材料
     getList: function (ids) {

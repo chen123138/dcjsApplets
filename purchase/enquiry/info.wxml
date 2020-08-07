@@ -18,7 +18,7 @@
 
 	<!-- 收获信息 -->
 	<view>
-		<view class="weui-cells__title">收货信息</view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/check_sh.png"></image>收货信息</view>
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">收货人</view>
@@ -42,7 +42,7 @@
 
 	<!-- 审批流程 -->
 	<view wx:if="{{enquiry.approve_ids}}">
-		<view class="weui-cells__title">审批流程{{item.state}}</view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/approval.png"></image>审批流程{{item.state}}</view>
 		<view class="info_enquiry ">
 			<view class="info_enquiry_padding">
 				<image class="icon" src="/images/approval.png"></image>审批人
@@ -83,7 +83,7 @@
 
 	<!-- 材料明细 -->
 	<view>
-		<view class="weui-cells__title">材料明细</view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/product.png"></image>材料明细</view>
 
 		<block wx:for="{{product_list}}" wx:key="item">
 			<view class="weui-cells weui-cells_after-title">

@@ -37,6 +37,9 @@ Page({
     onLoad: function (options) {
         console.log('onLoad');
         this.getProjectList();
+        wx.setNavigationBarTitle({
+			title: '零星工程'
+		})
     },
     // 项目列表
     getProjectList: function () {

@@ -64,6 +64,9 @@ Page({
         });
         // 获取材料列表
         this.getList(product_ids)
+        wx.setNavigationBarTitle({
+            title: '请购信息'
+          })
     },
 
     // 材料

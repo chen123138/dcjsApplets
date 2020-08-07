@@ -598,7 +598,7 @@ input.weui-btn_mini {
   /* margin-top: 8px; */
   background-color: var(--weui-BG-2);
   line-height: 1.41176471;
-  font-size: 17px;
+  /* font-size: 17px; */
   overflow: hidden;
   position: relative
 }

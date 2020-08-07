@@ -3,7 +3,6 @@ var api = require('../utils/api.js')
 var util = require('../utils/util.js')
 
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -19,8 +18,25 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
-        this.getTaskList()
+    onLoad: function () {
+        // 登录判断
+        wx.showLoading({
+            title: '加载中...',
+        });
+        console.log('Session Loading');
+        let that = this
+        util.authorize().then((res) => {            
+            if (app.globalData.uid == null){
+                wx.navigateTo({
+                    url: '/page/auth'
+                })
+            }
+            this.getTaskList()
+        }).catch((err) => {
+            util.showError('稍后重试')
+        });
+        wx.hideLoading()
+        // 
     },
 
     // 获取工单列表
@@ -43,13 +59,12 @@ Page({
         // let fields = []
         let that = this;
         util.rpcList(1000, api.EngineerTask, params, fields, 10, 'id DESC').then(function (res) {
-            //
             that.setData({
                 list: res.records,
                 total: res.length,
                 isload: true
             });
-            // console.log("待办列表",that.data.list)
+            console.log("待办列表",that.data.list)
             wx.hideLoading();
         }).catch((e) => {
             console.log(e)
@@ -67,8 +82,9 @@ Page({
         let fields = []
         let that = this;
         util.rpcList(1000, api.EngineerApprove, params, fields, 10, 'id DESC').then(function (res) {
+            let info = res.records;
             that.setData({
-                list: res.records
+                list: info
             })
             console.log(that.data.list)
             wx.hideLoading();
@@ -86,15 +102,18 @@ Page({
         let fields = []
         let that = this;
         util.rpcList(1000, api.EngineerVisible, params, fields, 10, 'id DESC').then(function (res) {
+            let info = res.records;
             that.setData({
-                list: res.records
+                list: info
             })
+            console.log(that.data.list)
             wx.hideLoading();
         })
     },
 
     // 点击事件
     bindItemTap: function (e) {
+        console.log(e)
         if (this.data.part == '0') {
             // 转向待办
             wx.navigateTo({
@@ -102,10 +121,17 @@ Page({
             })
         } else if (this.data.part == '2') {
             // 转向抄送
-            wx.navigateTo({
-                url: '/visible/info?id=' + e.currentTarget.dataset.eid
-            })
+            if(e.currentTarget.dataset.eid) {
+                wx.navigateTo({
+                    url: '/purchase/enquiry/info?id=' + e.currentTarget.dataset.eid
+                })
+            }else {
+                wx.navigateTo({
+                    url: '/purchase/enquiry/info?id=' + e.currentTarget.dataset.pid
+                })
+            }
         } else if (this.data.part == '1') {
+            // 转向审批
             switch (e.currentTarget.dataset.type) {
                 case 1:
                     // 请购流程

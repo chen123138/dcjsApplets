@@ -3,7 +3,7 @@
 .all {
   width: 100%;
   height: auto;
-  
+
 }
 
 .container1 {
@@ -32,22 +32,45 @@
 }
 
 .body {
-  width: 95%;
+  width: 100%;
   height: auto;
   background-color: #ffffff;
   border-radius: 10rpx;
 }
 
 .button {
-  height: 100rpx;
-  width: 200rpx;
-  background-color: #42a5f5!important;
-  margin: 30rpx 19.5rpx;
-  float: left;
-  color: #ffffff;
+  height: 150rpx;
+  width: 150rpx;
+  background-color: #ffffff !important;
   border-radius: 10rpx;
-  text-align: center;
-  line-height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 30rpx;
+  border: 2px solid #5a99d8;
+}
+
+.container2 {
+  font-size: 32rpx;
+}
+
+.body_item {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: space-around;
+  margin-top: 40rpx;
+}
+
+.button_hover {
+  background-color: red;
+}
+
+
+.button .img {
+  height: 60rpx;
+  width: 60rpx;
 }
 
 /* 信息展示区 */
@@ -96,5 +119,3 @@
 .button {
   background-color: #0767c8;
 }
-
-

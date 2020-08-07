@@ -1,7 +1,7 @@
 <view class="container">
 	<block wx:for="{{list}}"  wx:key="item">
 		<view class="list_item" data-id="{{item.id}}" bindtap="goDetails">
-			<view class="list_item_title"><strong>{{item.name}}</strong></view>
+			<view class="list_item_title title_container"><image class="icon_img" src="/images/purchase/order/list.png"></image><strong>{{item.name}}</strong></view>
 			<view class="space"></view>
 			<view class="list_item_body">
 				<!-- 编号 -->

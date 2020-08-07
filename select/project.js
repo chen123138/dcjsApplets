@@ -41,6 +41,10 @@ Page({
       mean: options.mean
     })
     this.getProjectList()
+
+    wx.setNavigationBarTitle({
+      title: '选择项目'
+    })
   },
 
 })

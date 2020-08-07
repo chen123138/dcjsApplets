@@ -19,12 +19,33 @@
 
 	<view class="container2">
 		<view class="body">
-			<view class="button" bindtap="request">我的请购</view>
-			<view class="button" bindtap="enquiry">我的询价</view>
-			<view class="button" bindtap="order">我的订单</view>
-			<view class="button" bindtap="task">我的施工</view>
-			<view class="button">采购计划</view>
-			<!-- <view class="button">材料变更</view> -->
+		<!-- 第一行 -->
+			<view class="body_item">
+				<view class="button" bindtap="request">
+					<image class="img" src="/images/me/request.png"></image>
+					<text>请购</text>
+				</view>
+				<view class="button" bindtap="enquiry">
+					<image class="img" src="/images/me/enquiry.png"></image>
+					<text>询价</text>
+				</view>
+				<view class="button" bindtap="order">
+					<image class="img" src="/images/me/order.png"></image>
+					<text>订单</text>
+				</view>
+			</view>
+			<!-- 第二行 -->
+			<view class="body_item">
+				<view class="button" hover-class="button_hover" bindtap="task">
+					<image class="img" src="/images/me/task.png"></image>
+					<text>工单</text>
+				</view>
+				<view class="button" bindtap="request">
+					<image class="img" src="/images/me/play.png"></image>
+					<text>计划</text>
+				</view>
+				<view class="button" style="border: none;"></view>
+			</view>
 
 		</view>
 	</view>

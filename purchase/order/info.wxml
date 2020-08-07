@@ -2,17 +2,6 @@
 
 
 <view class="container">
-	<!-- <view class='order_process'>
-		<view class='process_wrap' wx:for="{{processData}}" wx:key="item">
-			<view class='process'>
-				<view class='process_line' style="background:{{item.start}}"></view>
-				<image class='process_icon' src="{{item.icon}}"></image>
-				<view class='process_line' style="background:{{item.end}}"></view>
-			</view>
-			<text class='process_name'>{{item.name}}</text>
-		</view>
-	</view>
-	<view class="space"></view> -->
 	<block>
 		<view class="info_code,padding">
 			<view>{{order_info.code}}</view>
@@ -31,7 +20,7 @@
 
 	<!-- 收货信息 -->
 	<view>
-		<view class="weui-cells__title">收货信息</view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/check_sh.png"></image>收货信息</view>
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">供应商</view>
@@ -58,7 +47,7 @@
 
 	<!-- 材料明细 -->
 	<view>
-		<view class="weui-cells__title">材料明细</view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/product.png"></image>材料明细</view>
 		<block wx:for="{{project_order_product_list}}" wx:key="item">
 			<view class="weui-cells weui-cells_after-title">
 				<view class="product_cells_container">
@@ -90,7 +79,7 @@
 
 	<!-- 是否发货信息 -->
 	<view wx:if="{{order_info.state == '2' || order_info.state == '3' }}">
-		<view class="weui-cells__title">发货信息</view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/order/wuliu.png"></image>发货信息</view>
 		<view class="weui-cells weui-cells_after-title">
 			<view class="product_cells_container">
 				<view class="info_receive">

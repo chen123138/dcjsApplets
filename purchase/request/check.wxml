@@ -19,7 +19,7 @@
 
 
 		<!-- 收货信息 -->
-		<view class="weui-cells__title">收货信息</view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/check_sh.png"></image>收货信息</view>
 		<view class="Receipt_box ">
 			<!--  -->
 			<view class="weui-cell weui-cell_active weui-cell_input weui-cell_input-after">
@@ -61,7 +61,7 @@
 
 
 		<!-- 材料详情 -->
-		<view class="weui-cells__title">材料明细</view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/product.png"></image>材料明细</view>
 		<block wx:for="{{list}}" wx:key="item">
 			<view class="product padding cells">
 				<image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>

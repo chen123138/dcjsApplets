@@ -3,7 +3,7 @@
 		<block wx:for="{{list}}" wx:key="item">
 			<view class="list_item" data-id="{{item.id}}" data-pid="{{item.project_purchase_product_ids}}" bindtap="bindItemTap">
 				<view class="list_item_title">
-					<view>{{item.display_name}}</view>
+					<view class="title_container"><image class="icon_img" src="/images/purchase/enquery/list.png"></image>{{item.display_name}}</view>
 				</view>
 				<view class="space"></view>
 				<view class="list_item_body">
