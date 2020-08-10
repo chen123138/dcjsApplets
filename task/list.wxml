@@ -19,8 +19,8 @@
     <scroll-view wx:if="{{list.length}}"   bindtap="worker_click_false" scroll-y="true" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
         <block wx:for="{{list}}" wx:key="item">
             <view class="list_item" data-id="{{item.id}}" bindtap="bindItemTap">
-                <view class="list_item_title title_container">
-                    <view><image src="/images/task/task1.png" class="icon_img"></image>{{item.name}}</view>
+                <view class="list_item_title">
+                    <view class="title_container"><image src="/images/task/task1.png" class="icon_img"></image>{{item.name}}</view>
                 </view>
                 <view class="space"></view>
                 <view class="list_item_body">

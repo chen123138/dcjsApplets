@@ -30,7 +30,7 @@
 }
 
 .part_container view {
-  flex-grow: 1;
+  width: 250rpx;
   height: 100rpx;
   display: flex;
   justify-content: center;
@@ -49,6 +49,7 @@
 @keyframes firstdiv {
   0% {
     height: 0;
+
     background-color: #42a5f5;
   }
 
