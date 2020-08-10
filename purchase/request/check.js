@@ -157,7 +157,7 @@ Page({
     },
     // 提交信息
     Submit: function () {
-        // console.("data", this.data.list)
+        console.log("data", this.data.list)
         let listData = this.data.list
         let productLists = []
         // 表单验证
@@ -174,6 +174,17 @@ Page({
         for (let i = 0; i < listData.length; i++) {
             let product = {}
             product.brand = listData[i].brand
+            if (listData[i].brand == false) {
+                let num = ++i
+                util.showText('请选择第' + num + '个材料到品牌')
+                return false
+            }
+            product.type = listData[i].type
+            if (listData[i].type == false) {
+                let num = ++i
+                util.showText('请选择第' + num + '个材料到品牌规格')
+                return false
+            }
             if (listData[i].date == undefined) {
                 let num = ++i
                 util.showText('请选择第' + num + '个材料到货时间')
@@ -193,7 +204,6 @@ Page({
             product.project_system_id = listData[i].project_system_id[0]
             product.remarks = listData[i].remarks
             product.sn = i + 1
-            product.type = listData[i].type
             product.uom_id = listData[i].uom_id[0]
             console.log("product", product)
             productLists.push([0, "virtual_" + i, product])
