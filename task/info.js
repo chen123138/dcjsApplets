@@ -26,7 +26,7 @@ Page({
         });
         this.getDetail();
         wx.setNavigationBarTitle({
-            title: '任务详情'
+            title: '详情'
           })
     },
     getDetail: function() {
@@ -180,12 +180,14 @@ Page({
             data['state'] = '4'
         }
         // console.log(data)
+        let that = this
         util.rpcWrite(1002, api.EngineerTask, [this.data.id], data).then(function(res) {
             wx.showToast({
                 title: '提交成功'
             });
             setTimeout(function () {
-                wx.switchTab({ url: './todo' });
+                that.getDetail()
+                // wx.switchTab({ url: '../page/index' });
             }, 500);
         });
     },
@@ -193,13 +195,15 @@ Page({
         let detail = this.data.detail
         console.log(detail)
         // 待确认、待自检模式下
+        let that = this
         if (detail.state=='1' || detail.state=='2'){
             util.rpcWrite(1002, api.EngineerTask, [this.data.id], {'state':'-1'}).then(function(res) {
                 wx.showToast({
                     title: '取消成功'
                 });
                 setTimeout(function () {
-                    wx.switchTab({ url: './todo' });
+                    that.getDetail()
+                    // wx.switchTab({ url: '../page/index' });
                 }, 500);
             });
         }else{

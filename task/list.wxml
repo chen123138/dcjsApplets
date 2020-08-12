@@ -20,7 +20,7 @@
         <block wx:for="{{list}}" wx:key="item">
             <view class="list_item" data-id="{{item.id}}" bindtap="bindItemTap">
                 <view class="list_item_title title_container">
-                    <view><image src="/images/task/task1.png" class="icon_img"></image>{{item.name}}</view>
+                    <view class="title_container"><image src="/images/task/task1.png" class="icon_img"></image>{{item.name}}</view>
                 </view>
                 <view class="space"></view>
                 <view class="list_item_body">

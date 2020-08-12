@@ -15,17 +15,23 @@
 				<!-- name -->
 				<view class="list_item_title">
 					<view class="title_container"><image wx:if="{{part == '0'}}" class="icon_img" src="/images/task/task1.png"></image><image wx:if="{{part == '1'}}" class="icon_img" src="/images/purchase/request/approval.png"></image><image wx:if="{{part == '2'}}" class="icon_img" src="/images/purchase/request/vis.png"></image>{{item.name}}</view>
-					<view wx:if="{{part == '2'}}">{{item.project_enquiry_id[1]}}</view>
+					<view wx:if="{{part == '2' && item.project_enquiry_id}}">{{item.project_enquiry_id[1]}}</view>
+                    <view wx:if="{{part == '2' && item.project_purchase_id}}">{{item.project_purchase_id[1]}}</view>
 				</view>
 				<!--  -->
 				<view class="space"></view>
 				<!-- body -->
 				<view class="list_item_body">
 					<view class="row_number" wx:if="{{ part == '0' }}">{{item.code}}</view>
+
 					<view class="row_number" wx:if="{{ part == '1' && item.flow_type_id[0] == 1 }}">请购流程</view>
-          <view class="row_number" wx:if="{{ part == '1' && item.flow_type_id[0] == 2 }}">询价流程</view>
-					<view class="row_number" wx:if="{{ part == '2' && item.project_purchase_id 	== false }}">询价流程</view>
-          <view class="row_number" wx:if="{{ part == '2' && item.project_enquiry_id == false }}">询价流程</view>
+                    <view class="row_number" wx:if="{{ part == '1' && item.flow_type_id[0] == 2 }}">询价流程</view>
+
+
+					<view class="row_number" wx:if="{{ part == '2' && item.project_purchase_id}}">请购流程</view>
+                    <view class="row_number" wx:if="{{ part == '2' && item.project_enquiry_id}}">询价流程</view>
+
+
 					<view class="row_state" wx:if="{{item.state==1 && part == '0'}}">指派中</view>
 					<view class="row_state" wx:elif="{{item.state==2 && part == '0'}}">进行中</view>
 					<view class="row_state" wx:elif="{{item.state==3 && part == '0'}}">验收中</view>
