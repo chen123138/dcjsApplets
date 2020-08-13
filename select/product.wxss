@@ -17,7 +17,6 @@
 .select {
   width: auto;
   position: fixed;
-  height: 1000rpx;
   top: 120rpx;
   display: flex;
   flex-direction: column;

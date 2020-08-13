@@ -10,28 +10,30 @@
 				<view class="btn {{currentSelectTripName == item.name?'select_system':'' }}" bindtap='selectSystem' data-name='{{item.name}}'>{{item.name}}</view>
 			</block>
 		</view>
-		<view class="search_menu">
-			<checkbox-group bindchange="checkboxChange">
-				<label wx:for="{{list}}" wx:key="item">
-					<view class="project_item">
-						<view class="item_wrap">
-							<checkbox value="{{item.id}}" checked="{{item.checked}}"/>
-							<view class="name_list padding">
-								<view class="name">{{item.product_id[1]}}</view>
-								<view class="brand">
-									<view class="name">{{item.brand == false? "-": item.brand}}</view>
-									<view class="name">{{item.type == false? "-": item.type}}</view>
+		<view >
+			<scroll-view class="search_menu" wx:if="{{list.length}}" scroll-y="true" style="height:100vh;" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+				<checkbox-group bindchange="checkboxChange">
+					<label wx:for="{{list}}" wx:key="item">
+						<view class="project_item">
+							<view class="item_wrap">
+								<checkbox value="{{item.id}}" checked="{{item.checked}}" />
+								<view class="name_list padding">
+									<view class="name">{{item.product_id[1]}}</view>
+									<view class="brand">
+										<view class="name">{{item.brand == false? "-": item.brand}}</view>
+										<view class="name">{{item.type == false? "-": item.type}}</view>
+									</view>
+									<view class="name">{{item.stock}} {{item.uom_id[1]}}</view>
 								</view>
-								<view class="name">{{item.stock}} {{item.uom_id[1]}}</view>
 							</view>
 						</view>
+						<view class="space"></view>
+					</label>
+					<view class="button">
+						<button class="btns" bindtap="goApplication">确定</button>
 					</view>
-					<view class="space"></view>
-				</label>
-				<view class="button">
-					<button class="btns" bindtap="goApplication">确定</button>
-				</view>
-			</checkbox-group>
+				</checkbox-group>
+			</scroll-view>
 		</view>
 	</view>
 </view>

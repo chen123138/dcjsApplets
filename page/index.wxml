@@ -8,7 +8,7 @@
 	<!--  -->
 	<view class="space_for"></view>
 	<!--  -->
-	<scroll-view wx:if="{{list.length}}" scroll-y="true" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower">
+	<scroll-view wx:if="{{list.length}}" scroll-y="true" bindscrolltoupper="upper" style="height:100vh; width: 100vw;" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower">
 		<block wx:for="{{list}}" wx:key="item">
 		<!--  -->
 			<view class="list_item" data-id="{{item.id}}"  data-pid="{{item.project_purchase_id[0]}}"   data-eid="{{item.project_enquiry_id[0]}}" data-type="{{item.flow_type_id[0]}}" bindtap="bindItemTap">

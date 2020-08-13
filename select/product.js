@@ -15,7 +15,9 @@ Page({
     project_id: '',
     ids: [],
     system_name: "",
-    mean: ''
+    mean: '',
+    purchase_size: 10,
+    task_size: 10
   },
 
 
@@ -66,8 +68,9 @@ Page({
       ["stock", ">", 0],
     ]
     let fields = []
+    let size = this.data.task_size
     let that = this;
-    util.rpcList(1000, api.EngineerProduct, params, fields, 1000, '').then(function (res) {
+    util.rpcList(1000, api.EngineerProduct, params, fields, size, '').then(function (res) {
       that.setData({
         list: res.records
       })
@@ -85,8 +88,9 @@ Page({
       ["project_id", "like", projectName],
     ]
     let fields = []
+    let size = this.data.purchase_size
     let that = this;
-    util.rpcList(1000, api.EngineerProduct, params, fields, 1000, '').then(function (res) {
+    util.rpcList(1000, api.EngineerProduct, params, fields, size, '').then(function (res) {
       that.setData({
         list: res.records
       })
@@ -200,6 +204,10 @@ Page({
       title: '加载中...',
     });
     console.log("选择系统：")
+    this.setData({
+      purchase_size: 10,
+      task_size: 10
+    })
     console.log(e.currentTarget.dataset.name)
     this.setData({
       currentSelectTripName: e.currentTarget.dataset.name
@@ -213,6 +221,78 @@ Page({
         this.getListPurchase(this.data.project_name, e.currentTarget.dataset.name)
         break;
     }
-  }
+  },
+
+  upper: function () {
+    console.log("upper");
+    wx.showNavigationBarLoading()
+    this.refresh();
+    setTimeout(function () {
+      wx.hideNavigationBarLoading();
+      wx.stopPullDownRefresh();
+    }, 2000);
+  },
+
+  lower: function (e) {
+    console.log("lower")
+    wx.showNavigationBarLoading();
+    var that = this;
+    setTimeout(function () {
+      wx.hideNavigationBarLoading();
+      that.nextLoad();
+    }, 1000);
+  },
+  // 刷新
+  refresh: function () {
+    let that = this
+    wx.showToast({
+      title: '刷新中',
+      icon: 'loading',
+      duration: 3000
+    });
+    console.log(this.data.size)
+    if (this.data.mean == "task") {
+      this.getListTask(this.data.project_name, this.data.currentSelectTripName)
+    } else {
+      this.getListPurchase(this.data.project_name, this.data.currentSelectTripName)
+    }
+    setTimeout(function () {
+      wx.showToast({
+        title: '刷新成功',
+        icon: 'success',
+        duration: 2000
+      })
+    }, 3000)
+  },
+
+  // 使用本地 fake 数据实现继续加载效果
+  nextLoad: function () {
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 4000
+    })
+    if (this.data.mean == "task") {
+      this.setData({
+        task_size: this.data.task_size + 5
+      })
+      this.getListTask(this.data.project_name, this.data.currentSelectTripName)
+    } else {
+      this.setData({
+        purchase_size: this.data.purchase_size + 5
+      })
+      this.getListPurchase(this.data.project_name, this.data.currentSelectTripName)
+    }
+
+    console.log(this.data.size)
+    setTimeout(function () {
+      wx.showToast({
+        title: '加载成功',
+        icon: 'success',
+        duration: 2000
+      })
+    }, 3000)
+  },
+
 
 })

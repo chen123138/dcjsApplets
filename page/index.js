@@ -10,6 +10,9 @@ Page({
         list: [],
         page: 1,
         size: 10,
+        task_size: 10,
+        approval_size: 10,
+        visible_size: 10,
         total: 1,
         isload: false,
         part: '0'
@@ -57,8 +60,9 @@ Page({
         ]
         let fields = ["code", "name", "state", "end_date"]
         // let fields = []
+        let size = this.data.task_size
         let that = this;
-        util.rpcList(1000, api.EngineerTask, params, fields, 10, 'id DESC').then(function (res) {
+        util.rpcList(1000, api.EngineerTask, params, fields, size, 'id DESC').then(function (res) {
             that.setData({
                 list: res.records,
                 total: res.length,
@@ -80,8 +84,9 @@ Page({
             ["user_id.id", "=", app.globalData.uid]
         ]
         let fields = []
+        let size = this.data.approval_size
         let that = this;
-        util.rpcList(1000, api.EngineerApprove, params, fields, 10, 'id DESC').then(function (res) {
+        util.rpcList(1000, api.EngineerApprove, params, fields, size, 'id DESC').then(function (res) {
             let info = res.records;
             that.setData({
                 list: info
@@ -100,8 +105,9 @@ Page({
             ["user_id.id", "=", app.globalData.uid]
         ]
         let fields = []
+        let size = this.data.visible_size
         let that = this;
-        util.rpcList(1000, api.EngineerVisible, params, fields, 10, 'id DESC').then(function (res) {
+        util.rpcList(1000, api.EngineerVisible, params, fields, size, 'id DESC').then(function (res) {
             let info = res.records;
             that.setData({
                 list: info
@@ -175,9 +181,9 @@ Page({
     },
 
     upper: function () {
+        console.log("upper");
         wx.showNavigationBarLoading()
         this.refresh();
-        console.log("upper");
         setTimeout(function () {
             wx.hideNavigationBarLoading();
             wx.stopPullDownRefresh();
@@ -185,61 +191,70 @@ Page({
     },
 
     lower: function (e) {
+        console.log("lower")
         wx.showNavigationBarLoading();
         var that = this;
         setTimeout(function () {
             wx.hideNavigationBarLoading();
             that.nextLoad();
         }, 1000);
-        console.log("lower")
+        
     },
 
     // 刷新
-    // refresh: function() {
-    //     wx.showToast({
-    //         title: '刷新中',
-    //         icon: 'loading',
-    //         duration: 3000
-    //     });
-    //     this.getList();
-    //     setTimeout(function() {
-    //         wx.showToast({
-    //             title: '刷新成功',
-    //             icon: 'success',
-    //             duration: 2000
-    //         })
-    //     }, 3000)
-    // },
+    refresh: function() {
+        let that = this
+        wx.showToast({
+            title: '刷新中',
+            icon: 'loading',
+            duration: 3000
+        });
+        if(this.data.part == '0') {
+            this.getTaskList();
+        }else if (this.data.part == '1') {
+            this.getApprovalList();
+        }else {
+            this.getVisibleList();
+        }
+        setTimeout(function() {
+            wx.showToast({
+                title: '刷新成功',
+                icon: 'success',
+                duration: 2000
+            })
+        }, 3000)
+    },
 
     // 使用本地 fake 数据实现继续加载效果
-    // nextLoad: function() {
-    //     wx.showToast({
-    //         title: '加载中',
-    //         icon: 'loading',
-    //         duration: 4000
-    //     })
-    //     this.getList();
-    //     setTimeout(function() {
-    //         wx.showToast({
-    //             title: '加载成功',
-    //             icon: 'success',
-    //             duration: 2000
-    //         })
-    //     }, 3000)
-    // },
+    nextLoad: function() {
+        wx.showToast({
+            title: '加载中',
+            icon: 'loading',
+            duration: 4000
+        })
+        if(this.data.part == '0') {
+            this.setData({
+                task_size: this.data.task_size + 5
+            })
+            this.getTaskList();
+        }else if (this.data.part == '1') {
+            this.setData({
+                approval_size: this.data.approval_size + 5
+            })
+            this.getApprovalList();
+        }else {
+            this.setData({
+                visible_size: this.data.visible_size + 5
+            })
+            this.getVisibleList();
+        }
+        setTimeout(function() {
+            wx.showToast({
+                title: '加载成功',
+                icon: 'success',
+                duration: 2000
+            })
+        }, 3000)
+    },
 
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    // onReachBottom: function() {
-    //     if (this.data.total > this.data.page) {
-    //         this.setData({
-    //             page: this.data.page + 1
-    //         });
-    //     } else {
-    //         return false;
-    //     }
-    //     this.getList();
-    // },
 })

@@ -58,6 +58,11 @@ Page({
         })
     },
     enquiry: function() {
+        wx.navigateTo({
+            url: '/purchase/enquiry/list',
+        })
+    },
+    plan: function() {
         wx.showToast({
           title: '敬请期待',
         })

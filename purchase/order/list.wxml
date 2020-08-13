@@ -1,21 +1,25 @@
 <view class="container">
-	<block wx:for="{{list}}"  wx:key="item">
-		<view class="list_item" data-id="{{item.id}}" bindtap="goDetails">
-			<view class="list_item_title title_container"><image class="icon_img" src="/images/purchase/order/list.png"></image><strong>{{item.name}}</strong></view>
-			<view class="space"></view>
-			<view class="list_item_body">
-				<!-- 编号 -->
-				<text class="row_number">{{item.code}}</text>
-				<!-- 状态 -->
-				<text class="row_state" wx:if="{{item.state == 0}}">待确认</text>
-				<text class="row_state" wx:if="{{item.state == 1}}">待发货</text>
-				<text class="row_state" wx:if="{{item.state == 2}}">运输中</text>
-				<text class="row_state" wx:if="{{item.state == 3}}">已签收</text>
-				<text class="row_state" wx:if="{{item.state == -1}}">已取消</text>
-				<!-- 时间 -->
-				<text class="row_time">{{item.create_date}}</text>
+	<scroll-view wx:if="{{list.length}}" scroll-y="true" style="width: 100vw; height: 100vh" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+		<block wx:for="{{list}}" wx:key="item">
+			<view class="list_item" data-id="{{item.id}}" bindtap="goDetails">
+				<view class="list_item_title title_container">
+					<image class="icon_img" src="/images/purchase/order/list.png"></image><strong>{{item.name}}</strong>
+				</view>
+				<view class="space"></view>
+				<view class="list_item_body">
+					<!-- 编号 -->
+					<text class="row_number">{{item.code}}</text>
+					<!-- 状态 -->
+					<text class="row_state" wx:if="{{item.state == 0}}">待确认</text>
+					<text class="row_state" wx:if="{{item.state == 1}}">待发货</text>
+					<text class="row_state" wx:if="{{item.state == 2}}">运输中</text>
+					<text class="row_state" wx:if="{{item.state == 3}}">已签收</text>
+					<text class="row_state" wx:if="{{item.state == -1}}">已取消</text>
+					<!-- 时间 -->
+					<text class="row_time">{{item.create_date}}</text>
+				</view>
 			</view>
-		</view>
-		<view class="space"></view>
-	</block>
+			<view class="space"></view>
+		</block>
+	</scroll-view>
 </view>

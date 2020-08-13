@@ -40,7 +40,7 @@
 					<image class="img" src="/images/me/task.png"></image>
 					<text>工单</text>
 				</view>
-				<view class="button" bindtap="request">
+				<view class="button" bindtap="plan">
 					<image class="img" src="/images/me/play.png"></image>
 					<text>计划</text>
 				</view>
