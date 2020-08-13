@@ -52,9 +52,12 @@ Page({
             url: '/purchase/order/list',
         })
     },
-    approve: function() {
-        wx.navigateTo({
-            url: '/approve/list',
+    plan: function() {
+        wx.showToast({
+            title: '敬请期待',
+        })
+    },
+    enquiry: function() {
         })
     },
     enquiry: function() {
@@ -66,6 +69,7 @@ Page({
         wx.showToast({
           title: '敬请期待',
         })
+        
     },
 
 })
