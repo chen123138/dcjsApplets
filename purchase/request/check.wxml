@@ -19,7 +19,9 @@
 
 
 		<!-- 收货信息 -->
-		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/check_sh.png"></image>收货信息</view>
+		<view class="weui-cells__title title_container">
+			<image class="icon_img" src="/images/purchase/request/check_sh.png"></image>收货信息
+		</view>
 		<view class="Receipt_box ">
 			<!--  -->
 			<view class="weui-cell weui-cell_active weui-cell_input weui-cell_input-after">
@@ -28,7 +30,11 @@
 				</view>
 				<view class="weui-cell__ft">
 					<view class="weui-input" style="width:auto;">
-						<input placeholder="请输入" bindinput='user' />
+						<picker bindchange="user" value="{{index}}" range="{{userList}}">
+							<view>
+								{{userList[index][1]}}
+							</view>
+						</picker>
 					</view>
 				</view>
 			</view>
@@ -39,7 +45,7 @@
 				</view>
 				<view class="weui-cell__ft">
 					<view class="weui-input" style="width:auto;">
-						<input placeholder="请输入" bindinput='phone' type="number"/>
+						<input placeholder="请输入" bindinput='phone' type="number" />
 					</view>
 				</view>
 			</view>
@@ -87,12 +93,29 @@
 							<view class='brand'>
 								<!-- 数量 -->
 						<view class="input">
-							<input type='number' value="1" class="Underscore" style="  text-align: center;" data-index="{{index}}" bindblur='bindBlur'></input>{{item.uom_id[1]}}
+							<input type='number' value="1" class="Underscore" style="  text-align: center;" data-index="{{index}}" bindblur='bindBlur'>
+							</input>{{item.uom_id[1]}}
 						</view>
-								<!-- 包装 -->
+
 						<view class="input">
-							<input class="Underscore" value="{{item.uom_id[1]}}" style="text-align: center;" data-index="{{index}}" bindblur='bindBlurPack'></input>
+							<input class="Underscore" value="{{item.uom_id[1]}}" style="text-align: center;" data-index="{{index}}" bindblur='bindBlurPack'>
+							</input>
 						</view>
+							</view>
+						</view>
+						<view class="space"></view>
+						<view class="right_title">
+							<view class='brand'>
+								<!-- 单价 -->
+								<view class="input">
+									<input placeholder="单价"  data-index="{{index}}" style="  text-align: center;" class="Underscore" bindblur='bindBlurPrice'></input>
+								</view>
+								<!-- 额外费用 -->
+								<picker range="{{array}}" data-index="{{extras_index}}" style="text-align: center;"bindchange="bindBlurExtras">
+							<view class="picker_conntainer">
+							<text style="  text-align: center;">{{array[extras_index]}}</text>
+							</view>
+						</picker>
 							</view>
 						</view>
 					</view>
@@ -100,7 +123,7 @@
 						<view class="space"></view>
 						<!-- 到货时间 -->
 						<picker mode="date" value="{{date}}" data-index="{{index}}" style="  text-align: center;"start="2020-07-02" end="2020-12-31" bindchange="bindDateChangeDate">
-							<view class="picker">
+							<view class="picker_conntainer">
 							<text style="  text-align: center;">{{item.date == undefind?'时间':item.date}}</text>
 								
 							</view>

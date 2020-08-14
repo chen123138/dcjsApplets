@@ -1,5 +1,4 @@
-// const API_URL = 'http://47.114.165.246/';
-const API_URL = 'https://e.xiecd.com/';
+const API_URL = 'http://47.114.165.246/';
 const API_URI = API_URL + 'web/dataset/';
 
 module.exports = {
@@ -17,6 +16,7 @@ module.exports = {
   DataCreate: API_URI + 'call_kw/%s/create',
   DataName: API_URI + 'call_kw/%s/name_search',
   // 
+  User: 'res.users',
   Uom: 'uom.uom',
   EngineerGuide: 'eng.guide',
   EngineerDivide: 'eng.divide',

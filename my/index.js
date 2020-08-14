@@ -52,24 +52,14 @@ Page({
             url: '/purchase/order/list',
         })
     },
-    plan: function() {
+    plan: function () {
         wx.showToast({
             title: '敬请期待',
         })
     },
-    enquiry: function() {
-        })
-    },
-    enquiry: function() {
+    enquiry: function () {
         wx.navigateTo({
             url: '/purchase/enquiry/list',
         })
     },
-    plan: function() {
-        wx.showToast({
-          title: '敬请期待',
-        })
-        
-    },
-
 })

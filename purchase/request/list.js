@@ -31,6 +31,7 @@ Page({
           that.setData({
             list: res.records
           })
+          console.log(that.data.list)
             wx.hideLoading();
         })
     },

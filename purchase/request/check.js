@@ -16,13 +16,24 @@ Page({
         project_id: 0,
         // 备注
         remarks: '',
+        extras: '',
+        price: '',
         // 收货信息
-        user: '',
+        index: '0',
         phone: '',
         house: '',
-        cates: [
-            { lable: '委托', value: "1", checked: 'true' },
-            { lable: '现场', value: "2" },
+        userList: [],
+        array: ['含税运费','含税不含运费', '不含税含运费','不含税不含运费'],
+        extras_index: '0',
+        cates: [{
+                lable: '委托',
+                value: "1",
+                checked: 'true'
+            },
+            {
+                lable: '现场',
+                value: "2"
+            },
         ]
     },
 
@@ -63,16 +74,18 @@ Page({
             project_id: project_id
         });
         // 获取材料列表
+
+        this.getUserList(Number(project_id))
         this.getList(product_ids)
         wx.setNavigationBarTitle({
             title: '请购信息'
-          })
+        })
     },
 
     // 材料
     getList: function (ids) {
         // 
-        let fields = ["project_id", "name", "number", "project_system_id", "brand", "type", "uom_id", "stock"]
+        let fields = ["project_id", "name", "number", "project_system_id", "brand", "type", "uom_id", "stock", "price", "exist"]
         let that = this;
         util.rpcRead(1000, api.EngineerProduct, ids, fields, 1000, '').then(function (res) {
             console.log("res", res)
@@ -80,6 +93,23 @@ Page({
             that.setData({
                 list: list
             })
+            wx.hideLoading();
+        });
+    },
+
+    // 人员
+    getUserList: function (project_id) {
+        wx.showLoading({
+            title: '加载中...',
+        });
+        let params = ["", [
+            ['project_id', '=', project_id]
+        ]];
+        let that = this;
+        util.rpcName(1005, api.EngineerUser, params).then(function (res) {
+            that.setData({
+                userList: res
+            });
             wx.hideLoading();
         });
     },
@@ -133,11 +163,31 @@ Page({
         })
         console.log("包装", this.data.list)
     },
+    // 单价信息
+    bindBlurPrice: function (e) {
+        let list = this.data.list
+        list[e.currentTarget.dataset.index].price = e.detail.value
+        this.setData({
+            list: list
+        })
+        console.log("单价", this.data.list)
+    },
+    // 额外费用信息
+    bindBlurExtras: function (e) {
+        let list = this.data.list
+        console.log("改变额外费用信息", e)
+        list[e.currentTarget.dataset.index].extras = Number(e.detail.value) + 1 +''
+        this.setData({
+            list: list
+        })
+        console.log("改变额外费用信息", this.data.list)
+    },
 
     // 选择收货信息
     user: function (e) {
+        console.log(e)
         this.setData({
-            user: e.detail.value
+            index: e.detail.value
         })
     },
     phone: function (e) {
@@ -162,7 +212,7 @@ Page({
         let productLists = []
         // 表单验证
         if (this.data.user == "") {
-            util.showText('请填写收货人')
+            util.showText('请选择收货人')
             return false
         } else if (this.data.phone == "") {
             util.showText('请填写收货电话')
@@ -174,22 +224,9 @@ Page({
         for (let i = 0; i < listData.length; i++) {
             let product = {}
             product.brand = listData[i].brand
-            if (listData[i].brand == false) {
-                let num = ++i
-                util.showText('请选择第' + num + '个材料到品牌')
-                return false
-            }
             product.type = listData[i].type
-            if (listData[i].type == false) {
-                let num = ++i
-                util.showText('请选择第' + num + '个材料到品牌规格')
-                return false
-            }
-            if (listData[i].date == undefined) {
-                let num = ++i
-                util.showText('请选择第' + num + '个材料到货时间')
-                return false
-            }
+            product.price = listData[i].price
+            product.extras = listData[i].extras
             product.date = listData[i].date
             if (listData[i].number == "") {
                 listData[i].number = 1
@@ -205,15 +242,21 @@ Page({
             product.remarks = listData[i].remarks
             product.sn = i + 1
             product.uom_id = listData[i].uom_id[0]
+            // 表单验证
+            if (listData[i].brand == false || listData[i].type == false || listData[i].date == undefined || listData[i].price == 0 || listData[i].extras == 0) {
+                let num = ++i
+                util.showText('请完善' + num + '个材料参数')
+                return false
+            }
             console.log("product", product)
             productLists.push([0, "virtual_" + i, product])
         }
         let params = {
             buy_mode: this.data.mode || "1",
             project_id: Number(this.data.project_id),
-            receive_address: this.data.house,
-            receive_phone: this.data.phone,
-            receive_user: this.data.user,
+            receive_add: this.data.house,
+            receive_tel: this.data.phone,
+            project_user_id: this.data.userList[this.data.index][0],
             project_purchase_product_ids: productLists,
             state: "1",
             user_id: app.globalData.uid,
@@ -230,7 +273,7 @@ Page({
 
         wx.showToast({
             title: '提交成功'
-        }); 
+        });
         util.rpcCreate(1002, api.EngineerPurchase, [params]).then(function (res) {
             console.log(res)
             setTimeout(function () {

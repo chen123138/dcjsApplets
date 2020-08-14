@@ -28,8 +28,9 @@ Page({
         });
         console.log('Session Loading');
         let that = this
+        console.log(app.globalData.uid)
         util.authorize().then((res) => {            
-            if (app.globalData.uid == null){
+            if (app.globalData.uid == false || app.globalData.uid == null){
                 wx.navigateTo({
                     url: '/page/auth'
                 })
