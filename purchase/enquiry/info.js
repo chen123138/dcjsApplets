@@ -31,7 +31,7 @@ Page({
       that.setData({
         enquiry: res[0]
       })
-      // console.log(that.data.enquiry)
+      console.log(that.data.enquiry)
       // 
       if (info.approve_ids.length > 0) {
         util.rpcRead(1005, api.EngineerApprove, info.approve_ids, []).then(function (res) {
@@ -46,6 +46,7 @@ Page({
           that.setData({
             product_list: res
           })
+          console.log("材料",res)
         })
       }
       //抄送
@@ -166,6 +167,10 @@ Page({
         });
         that.getInfo()
       }
+    }).catch(function(err) {
+      wx.showToast({
+        title: '请联系管理员'
+      });
     })
   },
 

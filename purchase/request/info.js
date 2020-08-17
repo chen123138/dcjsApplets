@@ -61,6 +61,7 @@ Page({
         that.setData({
           list: info,
         })
+        console.log(info)
         // 材料列表
         if (info.project_purchase_product_ids.length > 0) {
           util.rpcRead(1005, api.EngineerPurchaseProduct, info.project_purchase_product_ids, []).then(function (res) {

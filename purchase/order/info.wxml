@@ -28,15 +28,15 @@
 			</view>
 			<view class="weui-cell">
 				<view class="weui-cell__bd">收货人</view>
-				<view class="weui-cell__ft">{{order_info.receive_user}}</view>
+				<view class="weui-cell__ft">{{order_info.receive_uid[1]}}</view>
 			</view>
 			<view class="weui-cell">
 				<view class="weui-cell__bd">收货电话</view>
-				<view class="weui-cell__ft">{{order_info.receive_phone}}</view>
+				<view class="weui-cell__ft">{{order_info.receive_tel}}</view>
 			</view>
 			<view class="weui-cell">
 				<view class="weui-cell__bd">收货地址</view>
-				<view class="weui-cell__ft">{{order_info.receive_address}}</view>
+				<view class="weui-cell__ft">{{order_info.receive_add}}</view>
 			</view>
 			<view class="weui-cell">
 				<view class="weui-cell__bd">采购员</view>

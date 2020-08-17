@@ -21,15 +21,15 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">收货人</view>
-				<view class="weui-cell__ft">{{list.receive_user}}</view>
+				<view class="weui-cell__ft">{{list.receive_uid[1]}}</view>
 			</view>
 			<view class="weui-cell">
 				<view class="weui-cell__bd">收货电话</view>
-				<view class="weui-cell__ft">{{list.receive_phone}}</view>
+				<view class="weui-cell__ft">{{list.receive_tel}}</view>
 			</view>
 			<view class="weui-cell">
 				<view class="weui-cell__bd">收货地址</view>
-				<view class="weui-cell__ft">{{list.receive_address}}</view>
+				<view class="weui-cell__ft">{{list.receive_add}}</view>
 			</view>
 			<view class="weui-cell">
 				<view class="weui-cell__bd">备注</view>
@@ -100,8 +100,14 @@
 					<view class="info_receive ">
 						<!-- 数量 -->
 						<view>{{item.number}} {{item.uom_id[1]}}</view>
-						<!-- 评论 -->
+						<!-- 包装 -->
 						<view>{{item.pack}}</view>
+					</view>
+					<view class="info_receive ">
+						<!-- 单价 -->
+						<view>￥{{item.price}}/{{item.pack}}</view>
+						<!-- 额外费用 -->
+						<view>￥{{item.extras}}</view>
 					</view>
 					<view class="info_receive ">
 						<!-- 时间 -->
