@@ -31,7 +31,7 @@ Page({
         console.log(app.globalData.uid)
         util.authorize().then((res) => {            
             if (app.globalData.uid == false || app.globalData.uid == null){
-                wx.navigateTo({
+                wx.redirectTo({
                     url: '/page/auth'
                 })
             }

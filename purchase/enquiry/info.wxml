@@ -107,7 +107,10 @@
 						<!-- 单价 -->
 						<view>￥{{item.price}}/{{item.pack}}</view>
 						<!-- 额外费用 -->
-						<view>￥{{item.extras}}</view>
+						<view wx:if="{{item.extras == '1'}}">含税运费</view>
+					  <view wx:if="{{item.extras == '2'}}">含税不含运费</view>
+						<view wx:if="{{item.extras == '3'}}">不含税含运费</view>
+						<view wx:if="{{item.extras == '4'}}">不含税不含运费</view>
 					</view>
 					<view class="info_receive ">
 						<!-- 时间 -->
