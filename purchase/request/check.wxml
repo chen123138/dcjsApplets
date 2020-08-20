@@ -30,7 +30,7 @@
 				</view>
 				<view class="weui-cell__ft">
 					<view class="weui-input" style="width:auto;">
-						<picker bindchange="user" value="{{index}}" range="{{userList}}">
+						<picker bindchange="user" value="{{index}}" range="{{userList}}" range-key='1'>
 							<view>
 								{{userList[index][1]}}
 							</view>
@@ -111,9 +111,9 @@
 									<input placeholder="单价"  data-index="{{index}}" style="  text-align: center;" class="Underscore" bindblur='bindBlurPrice'></input>
 								</view>
 								<!-- 额外费用 -->
-								<picker range="{{array}}" data-index="{{extras_index}}" style="text-align: center;"bindchange="bindBlurExtras">
+								<picker range="{{array}}" data-index="{{index}}" style="text-align: center;"bindchange="bindBlurExtras">
 							<view class="picker_conntainer">
-							<text style="  text-align: center;">{{array[extras_index]}}</text>
+							    <text style="text-align: center;">{{array[item.extras] == undefind?'请选择':array[item.extras]}}</text>
 							</view>
 						</picker>
 							</view>

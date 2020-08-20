@@ -43,7 +43,7 @@
                 </view>
             </view>
             <!--  -->
-            <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after" wx-if="{{units.length>0}}">
+            <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after" wx-if="{{units.length>1}}">
                 <view class="weui-cell__bd">单位工程</view>
                 <view class="weui-cell__ft">
                     <picker bindchange="bindPickerChange" data-tag="unit" value="{{unit}}" range="{{units}}" range-key='1'>
