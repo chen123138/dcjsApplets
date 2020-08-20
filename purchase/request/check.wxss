@@ -37,7 +37,7 @@
 .picker_conntainer {
   color: #838383;
   border-bottom: 1px solid #c0c1c2;
-  width: 280rpx;
+  width: 300rpx;
 }
 
 .brand {
