@@ -23,7 +23,7 @@ Page({
         phone: '',
         house: '',
         userList: [],
-        array: ['请选择','含税运费','含税不含运费', '不含税含运费','不含税不含运费'],
+        array: ['请选择', '含税运费', '含税不含运费', '不含税含运费', '不含税不含运费'],
         extras_index: '0',
         cates: [{
                 lable: '委托',
@@ -65,7 +65,7 @@ Page({
         let data = prevPage.data
         let project_id = data.project_id;
         let project_name = data.project_name;
-        let product_ids = data.ids.map(Number);
+        let product_ids = data.ids.map(Number)
         // 
         console.log("获取上一页Ids", product_ids)
         // 更新数据
@@ -129,9 +129,10 @@ Page({
 
     // 选择到货时间
     bindDateChangeDate: function (e) {
+        console.log(e)
         let list = this.data.list
         list[e.currentTarget.dataset.index].date = e.detail.value
-        this.setData({
+        this.setData({                                             
             list: list
         })
         console.log("改变时间", this.data.list)
@@ -179,7 +180,7 @@ Page({
     bindBlurExtras: function (e) {
         let list = this.data.list
         console.log("改变额外费用信息", e)
-        list[e.currentTarget.dataset.index].extras =e.detail.value        
+        list[e.currentTarget.dataset.index].extras = e.detail.value
         this.setData({
             list: list
         })
@@ -248,7 +249,7 @@ Page({
             // 表单验证
             if (listData[i].brand == false || listData[i].type == false || listData[i].date == undefined || listData[i].price == 0 || listData[i].extras == 0) {
                 let num = ++i
-                util.showText('请填写第' + num + '条材料参数')
+                util.showText('请完成' + num + '号材料')
                 return false
             }
             console.log("product", product)

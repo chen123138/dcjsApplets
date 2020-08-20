@@ -31,8 +31,11 @@
 				<view class="weui-cell__ft">
 					<view class="weui-input" style="width:auto;">
 						<picker bindchange="user" value="{{index}}" range="{{userList}}" range-key='1'>
-							<view>
-								{{userList[index][1]}}
+							<view wx:if="{{index !== '0'}}">{{userList[index][1]}}
+								<image class="jiao" src="/images/check/jiao.png"></image>
+							</view>
+							<view wx:if="{{index == '0'}}">{{userList[index][1]}}
+								<image class="jiao" src="/images/check/jiao2.png"></image>
 							</view>
 						</picker>
 					</view>
@@ -68,9 +71,11 @@
 
 		<!-- 材料详情 -->
 		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/product.png"></image>材料明细</view>
-		<block wx:for="{{list}}" wx:key="item">
+		<block wx:for="{{list}}"  wx:for-index="index" wx:key="item">
 			<view class="product padding cells">
 				<image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
+				<image class="biao" src="/images/biao.png"></image>
+				<text class="biao_name">{{ index + 1 }}</text>
 				<view class="product_title">
 					<view class="left_title">
 						<!-- 产品 -->
@@ -108,12 +113,13 @@
 							<view class='brand'>
 								<!-- 单价 -->
 								<view class="input">
-									<input placeholder="单价"  data-index="{{index}}" style="  text-align: center;" class="Underscore" bindblur='bindBlurPrice'></input>
+									<input placeholder="单价"  data-index="{{index}}" style="text-align: center;" class="Underscore" bindblur='bindBlurPrice'></input>
 								</view>
 								<!-- 额外费用 -->
 								<picker range="{{array}}" data-index="{{index}}" style="text-align: center;"bindchange="bindBlurExtras">
 							<view class="picker_conntainer">
-							    <text style="text-align: center;">{{array[item.extras] == undefind?'请选择':array[item.extras]}}</text>
+							    <view  wx:if="{{array[item.extras] == undefind}}" style="text-align: center;">请选择    <image class="jiao" src="/images/check/jiao2.png"></image></view>
+									<view wx:if="{{array[item.extras] !== undefind}}"  style="text-align: center;">{{array[item.extras]}}   <image class="jiao" src="/images/check/jiao.png"></image></view>
 							</view>
 						</picker>
 							</view>
@@ -124,9 +130,9 @@
 						<!-- 到货时间 -->
 						<picker mode="date" value="{{date}}" data-index="{{index}}" style="  text-align: center;"start="2020-07-02" end="2020-12-31" bindchange="bindDateChangeDate">
 							<view class="picker_conntainer">
-							<text style="  text-align: center;">{{item.date == undefind?'时间':item.date}}</text>
-								
-							</view>
+							<view wx:if="{{item.date == undefind}}" style="text-align: center;">时间  <image  class="jiao" src="/images/check/jiao2.png"></image></view>
+							<view wx:if="{{item.date !== undefind}}" style="  text-align: center;">{{item.date}}  <image class="jiao" src="/images/check/jiao.png"></image></view>
+							</view>	
 						</picker>
 					</view>
 				</view>

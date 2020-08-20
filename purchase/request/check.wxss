@@ -26,7 +26,7 @@
 .product {
   background-color: #ffffff;
   position: relative;
-  padding-top: 32rpx;
+  padding-top: 50rpx;
   padding-bottom: 32rpx;
 }
 
@@ -37,7 +37,7 @@
 .picker_conntainer {
   color: #838383;
   border-bottom: 1px solid #c0c1c2;
-  width: 200rpx;
+  width: 280rpx;
 }
 
 .brand {
@@ -66,4 +66,32 @@
   border-bottom: 1px solid #c0c1c2;
   margin-bottom: 10rpx;
   width: 200rpx;
+}
+
+.cancel {
+  position: absolute;
+  height: 50rpx;
+  width: 50rpx;
+  right: 10rpx;
+  top: 10rpx;
+}
+
+.biao {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 80rpx;
+  width: 80rpx;
+}
+
+.biao_name {
+  position: absolute;
+  left: 7rpx;
+  top: 0rpx;
+  color: rgb(59, 230, 59);
+}
+
+.jiao {
+  height: 30rpx;
+  width: 30rpx;
 }
