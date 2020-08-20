@@ -1,17 +1,22 @@
 <!--page/material/material.wxml-->
-<!-- 搜索框 -->
+
 <view class="container">
+	<!-- 搜索框 -->
 	<view class="searchBar">
 		<SearchBar id="SearchBar" addflag="{{addflag}}" addimg="{{addimg}}" bind:addhandle="addhandle" searchstr="{{searchstr}}" bind:searchList="searchList" bind:endsearchList="endsearchList" bind:cancelsearch="cancelsearch" bind:activity_clear="activity_clear"></SearchBar>
 	</view>
+	<view class="main">
+	  <!-- 选择界面 -->
 	<view class="select_box">
-		<view class="select">
+		<!-- 选系统 -->
+		<scroll-view scroll-y="true" class="select">
 			<block wx:for="{{system_name}}" wx:key="item">
 				<view class="btn {{currentSelectTripName == item.name?'select_system':'' }}" bindtap='selectSystem' data-name='{{item.name}}'>{{item.name}}</view>
 			</block>
-		</view>
-		<view >
-			<scroll-view class="search_menu" wx:if="{{list.length}}" scroll-y="true" style="height:100vh;" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+		</scroll-view>
+		<!-- 选材料 -->
+		<view class="search_menu_container">
+			<scroll-view class="search_menu" wx:if="{{list.length}}" scroll-y="true" style="height:1000rpx;" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
 				<checkbox-group bindchange="checkboxChange">
 					<label wx:for="{{list}}" wx:key="item">
 						<view class="project_item">
@@ -29,11 +34,13 @@
 						</view>
 						<view class="space"></view>
 					</label>
-					<view class="button">
-						<button class="btns" bindtap="goApplication">确定</button>
-					</view>
 				</checkbox-group>
 			</scroll-view>
 		</view>
 	</view>
+	<view class="button">
+		<button class="btns" size="default" bindtap="goApplication">确定</button>
+	</view>
+	</view>
+	
 </view>

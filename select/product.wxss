@@ -5,22 +5,27 @@
   top: 0;
   width: 100%;
   z-index: 11;
+  height: 100rpx;
 }
 
-
-/* .select_box {
-  position: relative;
-  top: 120rpx;
-  display: flex;
-} */
-
-.select {
-  width: auto;
-  position: fixed;
-  top: 120rpx;
+.main {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
+}
+.select_box {
+  margin-top: 120rpx;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 150rpx;
+}
+
+.select {
+  width: 270rpx;
+  display: flex;
+  height: 1000rpx;
+  flex-direction: column;
   font-size: 30rpx;
 }
 
@@ -35,11 +40,7 @@
 }
 
 .search_menu {
-  position: absolute;
-  margin-right: 0;
-  right: 0;
-  width: 470rpx;
-  top: 120rpx;
+  width: 440rpx;
 }
 
 .project_item {
@@ -50,22 +51,36 @@
 
 .item_wrap {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   position: relative;
 }
 
-.button .btns {
+
+.button {
+  height: 150rpx;
+  width: 100%;
+  background-color: #ffffff;
   position: fixed;
   bottom: 0;
   right: 50%;
   transform: translateX(50%);
-  background-color: #42a5f5;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  box-shadow:5px 2px 6px #000
 }
 
-/* 选择框的修改 */
+.button .btns {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  background-color: #42a5f5;
+  padding: 10rpx 0;
+  width: 200rpx;
+}
+
 checkbox .wx-checkbox-input {
-  /* border: 1px solid red; */
+
   border: none;
   position: absolute;
   top: 0;
@@ -91,3 +106,72 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   display: flex;
   justify-content: space-between;
 }
+/* 
+
+
+.search_menu {
+  width: 470rpx;
+}
+
+.project_item {
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
+}
+
+.item_wrap {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.button {
+  height: 150rpx;
+  width: 100%;
+  background-color: #ffffff;
+  position: fixed;
+  bottom: 0;
+  right: 50%;
+  transform: translateX(50%);
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  box-shadow:5px 2px 6px #000
+}
+
+.button .btns {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  background-color: #42a5f5;
+  padding: 10rpx 0;
+  width: 200rpx;
+}
+
+checkbox .wx-checkbox-input {
+
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0rpx;
+  height: 30rpx;
+  width: 30rpx;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: #00b26a;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  color: #ffffff;
+}
+
+.name_list {
+  padding-right: 32rpx;
+  width: 100%;
+}
+
+.brand {
+  display: flex;
+  justify-content: space-between;
+} */
