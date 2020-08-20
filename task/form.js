@@ -59,7 +59,7 @@ Page({
     // 材料
     getList: function (ids) {
         // 
-        let fields = ["project_id", "name", "number", "project_system_id", "brand", "type", "uom_id", "stock"]
+        let fields = ["project_id", "name", "project_system_id", "brand", "type", "uom_id", "stock"]
         let that = this;
         util.rpcRead(1000, api.EngineerProduct, ids, fields, 1000, '').then(function (res) {
             console.log("res", res)

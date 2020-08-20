@@ -23,7 +23,7 @@ Page({
         phone: '',
         house: '',
         userList: [],
-        array: ['含税运费','含税不含运费', '不含税含运费','不含税不含运费'],
+        array: ['请选择','含税运费','含税不含运费', '不含税含运费','不含税不含运费'],
         extras_index: '0',
         cates: [{
                 lable: '委托',
@@ -107,8 +107,11 @@ Page({
         ]];
         let that = this;
         util.rpcName(1005, api.EngineerUser, params).then(function (res) {
+            let re = [
+                [0, "请选择"]
+            ];
             that.setData({
-                userList: res
+                userList: re.concat(res)
             });
             wx.hideLoading();
         });
@@ -176,7 +179,7 @@ Page({
     bindBlurExtras: function (e) {
         let list = this.data.list
         console.log("改变额外费用信息", e)
-        list[e.currentTarget.dataset.index].extras = Number(e.detail.value) + 1 +''
+        list[e.currentTarget.dataset.index].extras =e.detail.value        
         this.setData({
             list: list
         })
@@ -245,7 +248,7 @@ Page({
             // 表单验证
             if (listData[i].brand == false || listData[i].type == false || listData[i].date == undefined || listData[i].price == 0 || listData[i].extras == 0) {
                 let num = ++i
-                util.showText('请完善' + num + '个材料参数')
+                util.showText('请填写第' + num + '条材料参数')
                 return false
             }
             console.log("product", product)
