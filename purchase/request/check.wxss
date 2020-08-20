@@ -92,6 +92,12 @@
 }
 
 .jiao {
-  height: 30rpx;
-  width: 30rpx;
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.jiao_biao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

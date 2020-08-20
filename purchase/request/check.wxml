@@ -31,10 +31,11 @@
 				<view class="weui-cell__ft">
 					<view class="weui-input" style="width:auto;">
 						<picker bindchange="user" value="{{index}}" range="{{userList}}" range-key='1'>
-							<view wx:if="{{index !== '0'}}">{{userList[index][1]}}
+							<view wx:if="{{index !== '0'}}" class="jiao_biao">
+							<view>{{userList[index][1]}}</view>
 								<image class="jiao" src="/images/check/jiao.png"></image>
 							</view>
-							<view wx:if="{{index == '0'}}">{{userList[index][1]}}
+							<view wx:if="{{index == '0'}}" class="jiao_biao">{{userList[index][1]}}
 								<image class="jiao" src="/images/check/jiao2.png"></image>
 							</view>
 						</picker>
@@ -117,9 +118,12 @@
 								</view>
 								<!-- 额外费用 -->
 								<picker range="{{array}}" data-index="{{index}}" style="text-align: center;"bindchange="bindBlurExtras">
-							<view class="picker_conntainer">
-							    <view  wx:if="{{array[item.extras] == undefind}}" style="text-align: center;">请选择    <image class="jiao" src="/images/check/jiao2.png"></image></view>
-									<view wx:if="{{array[item.extras] !== undefind}}"  style="text-align: center;">{{array[item.extras]}}   <image class="jiao" src="/images/check/jiao.png"></image></view>
+							<view class="picker_conntainer" >
+							    <view  wx:if="{{array[item.extras] == undefind}}"  class="jiao_biao" style="text-align: center;">
+										<text>请选择</text>    
+									  <image class="jiao" src="/images/check/jiao2.png"></image></view>
+									  <view wx:if="{{array[item.extras] !== undefind}}"  style="text-align: center;"><text>{{array[item.extras]}}</text>   
+									  <image class="jiao" src="/images/check/jiao.png"></image></view>
 							</view>
 						</picker>
 							</view>
@@ -130,8 +134,8 @@
 						<!-- 到货时间 -->
 						<picker mode="date" value="{{date}}" data-index="{{index}}" style="  text-align: center;"start="2020-07-02" end="2020-12-31" bindchange="bindDateChangeDate">
 							<view class="picker_conntainer">
-							<view wx:if="{{item.date == undefind}}" style="text-align: center;">时间  <image  class="jiao" src="/images/check/jiao2.png"></image></view>
-							<view wx:if="{{item.date !== undefind}}" style="  text-align: center;">{{item.date}}  <image class="jiao" src="/images/check/jiao.png"></image></view>
+							<view wx:if="{{item.date == undefind}}" class="jiao_biao"><text>时间</text>  <image  class="jiao" src="/images/check/jiao2.png"></image></view>
+							<view wx:if="{{item.date !== undefind}}" class="jiao_biao"><text>{{item.date}}</text>  <image class="jiao" src="/images/check/jiao.png"></image></view>
 							</view>	
 						</picker>
 					</view>
