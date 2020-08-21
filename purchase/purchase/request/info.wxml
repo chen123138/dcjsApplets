@@ -1,0 +1,131 @@
+<view class="container">
+	<!-- 供应商信息 -->
+	<view class="info_code,padding">
+		<view>{{list.code}}</view>
+		<view class="state" wx:if="{{list.state=='-1'}}">已取消</view>
+		<view class="state" wx:if="{{list.state=='0'}}">起稿中</view>
+		<view class="state" wx:if="{{list.state=='1'}}">审批中</view>
+		<view class="state" wx:if="{{list.state=='2'}}">询价单</view>
+
+	</view>
+	<!-- 项目名 -->
+	<view class="info_product_code padding">
+		<view>{{list.project_id[1]}}</view>
+		<view class="state"   wx:if="{{list.buy_mode == 1}}">委托采购</view>
+		<view class="state"  wx:if="{{list.buy_mode == 2}}">现场采购</view>
+	</view>
+
+<!-- 收货信息 -->
+	<view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/check_sh.png"></image>收货信息</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">收货人</view>
+				<view class="weui-cell__ft">{{list.receive_uid[1]}}</view>
+			</view>
+			<view class="weui-cell">
+				<view class="weui-cell__bd">收货电话</view>
+				<view class="weui-cell__ft">{{list.receive_tel}}</view>
+			</view>
+			<view class="weui-cell">
+				<view class="weui-cell__bd">收货地址</view>
+				<view class="weui-cell__ft">{{list.receive_add}}</view>
+			</view>
+			<view class="weui-cell">
+				<view class="weui-cell__bd">备注</view>
+				<view class="weui-cell__ft">{{list.remarks}}</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- 审批流程 -->
+	<view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/approval.png"></image>审批流程</view>
+		<view class="info_enquiry ">
+			<view class="info_enquiry_padding">
+				<image class="icon" src="/images/approval.png"></image>审批人
+			</view>
+			<block wx:for="{{approval}}" wx:key="item">
+				<view class='approval_container'>
+					<!-- 线 -->
+					<view class="progress active"></view>
+					<!-- 名字 -->
+					<view class="approval_user">
+						<view class="approval_name">{{item.user_id[1]}}</view>
+						<view class="approval_create_green" wx:if="{{item.state == '1'}}">已通过{{item.create_date}}</view>
+						<view class="approval_create_red" wx:if="{{item.state == '2'}}">已驳回{{item.create_date}}</view>
+						<view wx:if="{{(item.state == '0')}}" class="buttons_mini">
+							<button size="mini" style="line-height: 1; padding: 16rpx;" wx:if="{{(item.state == '0')&&(item.act_button=='Y')}}" type="primary" bindtap="ApprovalConfirm">同意</button>
+							<button size="mini" style="line-height: 1; padding: 16rpx;" type="warn" wx:if="{{(item.state == '0')&&(item.act_button=='Y') }}" bindtap="ApprovalReject">驳回</button>
+						</view>
+					</view>
+				</view>
+			</block>
+
+			<!-- 抄送 -->
+			<view class="info_enquiry_padding">
+				<image class="icon" src="/images/visible.png"></image>抄送人
+			</view>
+			<block wx:for="{{copy}}" wx:key="item">
+				<view class='approval_container'>
+					<!-- 线 -->
+					<view class="progress active"></view>
+					<!-- 名字 -->
+					<view class="approval_user">
+						<view class="approval_name">{{item.user_id[1]}}</view>
+						<view class="approval_create_grey">{{item.create_date}}</view>
+					</view>
+				</view>
+
+			</block>
+
+		</view>
+	</view>
+
+	<!-- 材料明细 -->
+	<view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/product.png"></image>材料明细</view>
+		<block wx:for="{{purchase}}" wx:key="item">
+			<view class="weui-cells weui-cells_after-title">
+				<view class="product_cells_container">
+					<view class="info_receive">
+						<text>{{item.project_system_id[1]}}-{{item.project_product_id[1]}}</text>
+					</view>
+					<!--品牌  -->
+					<view class="info_receive ">
+						<text>{{item.brand == false? "-": item.brand}}</text>
+						<!-- 规格 -->
+						<text>{{item.type == false? "-": item.type}}</text>
+					</view>
+					<view class="info_receive ">
+						<!-- 数量 -->
+						<view>{{item.number}} {{item.uom_id[1]}}</view>
+						<!-- 包装 -->
+						<view>{{item.pack}}</view>
+					</view>
+					<view class="info_receive ">
+						<!-- 单价 -->
+						<view>￥{{item.price}}/{{item.pack}}</view>
+						<!-- 额外费用 -->
+						<view wx:if="{{item.extras == '1'}}">含税运费</view>
+					  <view wx:if="{{item.extras == '2'}}">含税不含运费</view>
+						<view wx:if="{{item.extras == '3'}}">不含税含运费</view>
+						<view wx:if="{{item.extras == '4'}}">不含税不含运费</view>
+					</view>
+					<view class="info_receive ">
+						<!-- 时间 -->
+						<view>{{item.date}}</view>
+						<!-- pack -->
+						<view>{{item.remarks}}</view>
+					</view>
+				</view>
+			</view>
+			<view class="space"></view>
+		</block>
+	</view>
+
+<!-- 按钮 -->
+	<view class="buttons" wx:if="{{list.act_cancel=='Y'}}">
+		<button type="warn" bindtap="cancel">取消</button>
+	</view>
+</view>

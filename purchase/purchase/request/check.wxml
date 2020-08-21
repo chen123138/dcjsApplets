@@ -1,0 +1,176 @@
+<!--application/index.wxml-->
+<view class="container">
+	<form catchsubmit="formSubmit">
+		<view class="check_container padding">
+			<view class="check_title">请购信息</view>
+			<view class="check_body">
+				<view class="check_label">{{project_name}}</view>
+				<view class="wrapper">
+					<view class="value">
+						<radio-group class="radio-group" bindchange="bindRadioChange">
+							<label class="radio" wx:for="{{cates}}" wx:key="item">
+								<radio value="{{item.value}}" checked="{{item.checked}}" />{{item.lable}}
+							</label>
+						</radio-group>
+					</view>
+				</view>
+			</view>
+		</view>
+
+
+		<!-- 收货信息 -->
+		<view class="weui-cells__title title_container">
+			<image class="icon_img" src="/images/purchase/request/check_sh.png"></image>收货信息
+		</view>
+		<view class="Receipt_box ">
+			<!--  -->
+			<view class="weui-cell weui-cell_active weui-cell_input weui-cell_input-after">
+				<view class="weui-cell__bd">
+					<view class="weui-label">收货人</view>
+				</view>
+				<view class="weui-cell__ft">
+					<view class="weui-input" style="width:auto;">
+						<picker bindchange="user" value="{{index}}" range="{{userList}}" range-key='1'>
+							<view wx:if="{{index !== '0'}}" class="jiao_biao">
+								<view>{{userList[index][1]}}</view>
+								<image class="jiao" src="/images/check/jiao.png"></image>
+							</view>
+							<view wx:if="{{index == '0'}}" class="jiao_biao">{{userList[index][1]}}
+								<image class="jiao" src="/images/check/jiao2.png"></image>
+							</view>
+						</picker>
+					</view>
+				</view>
+			</view>
+			<!--  -->
+			<view class="weui-cell weui-cell_active weui-cell_input weui-cell_input-after">
+				<view class="weui-cell__bd">
+					<view class="weui-label">收货电话</view>
+				</view>
+				<view class="weui-cell__ft">
+					<view class="weui-input" style="width:auto;">
+						<input placeholder="请输入" bindinput='phone' type="number" />
+					</view>
+				</view>
+			</view>
+			<!--  -->
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<input class="weui-input" bindinput="house" placeholder="请填写收货地址" />
+				</view>
+			</view>
+			<!--  -->
+			<view class="weui-cell weui-cell_active">
+				<view class="weui-cell__bd">
+					<textarea class="weui-textarea" placeholder="备注" style="height: 3.3em" data-tag="content" bindblur='remarks' />
+					<view class="weui-textarea-counter">200</view>
+      </view>
+			</view>
+			<!--  -->
+		</view>
+
+
+		<!-- 材料详情 -->
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/product.png"></image>材料明细</view>
+		<block wx:for="{{list}}"  wx:for-index="index" wx:key="item">
+			<view class="product padding cells">
+				<image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
+				<image class="biao" src="/images/biao.png"></image>
+				<text class="biao_name">{{ index + 1 }}</text>
+				<view class="product_title">
+					<view class="left_title">
+						<!-- 产品 -->
+						<text>{{item.project_system_id[1]}}-{{item.name}}</text>
+						<view class="space"></view>
+						<view class="right_title">
+							<view class='brand'>
+								<!--品牌  -->
+								<view class="input">
+								<view style="width: 50px;">品牌:</view>
+									<input placeholder="请输入" data-index="{{index}}" class="Underscore" style="text-align: center;" bindblur='bindBlurBrand'></input>
+								</view>
+								<!-- 类型 -->
+								<view class="input">
+								<text style="width: 50px;">型号:</text>
+									<input placeholder="请输入" data-index="{{index}}" class="Underscore" style="text-align: center;" bindblur='bindBlurType'></input>
+								</view>
+							</view>
+						</view>
+						<view class="space"></view>
+						<view class="right_title">
+							<view class='brand'>
+								<!-- 数量 -->
+						<view class="input">
+						<text style="width: 50px;">数量:</text>
+							<input type='number' value="1" class="Underscore" style="text-align: center;" data-index="{{index}}" bindblur='bindBlur'>
+							</input>
+							<!-- {{item.uom_id[1]}} -->
+						</view>
+
+						<!-- 单价 -->
+								<view class="input">
+								<text style="width: 50px;">单价:</text>
+									<input placeholder="请输入"  data-index="{{index}}" style="text-align: center;" class="Underscore" bindblur='bindBlurPrice'></input>
+								</view>
+							</view>
+						</view>
+						<view class="space"></view>
+						<view class="right_title">
+							<view class='brand'>
+								<!-- 包装 -->
+								<view class="input">
+								<text style="width: 50px;">包装:</text>
+							<input class="Underscore" value="{{item.uom_id[1]}}" style="text-align: center; width:80px;" data-index="{{index}}" bindblur='bindBlurPack'>
+							</input>
+						</view>
+								<!-- 额外费用 -->
+								
+								<view class="input">
+								<text style="width: 50px;">费用:</text>
+								  <picker range="{{array}}" class="Underscore" data-index="{{index}}" style="text-align: center; width: 150px; padding:0" bindchange="bindBlurExtras">
+							      <view class="picker_conntainer" >
+											<view  wx:if="{{array[item.extras] == undefind}}"  class="jiao_biao" style="text-align: center;">请选择
+											<image class="jiao" src="/images/check/jiao2.png"></image></view>
+											<view wx:if="{{array[item.extras] !== undefind}}" class="jiao_biao" style="text-align: center;"><text>{{array[item.extras]}}</text>   
+											<image class="jiao" src="/images/check/jiao.png"></image></view>
+							    </view>
+						    </picker>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="space"></view>
+					<view class="product_main">
+						<!-- 到货时间 -->
+						<view class="input">
+								<text style="width: 50px;">时间:</text>
+						  <picker mode="date" class="Underscore" value="{{date}}" data-index="{{index}}" style="text-align: center;width: 300rpx;" start="2020-07-02" end="2020-12-31" bindchange="bindDateChangeDate">
+							<view class="picker_conntainer">
+							<view wx:if="{{item.date == undefind}}" class="jiao_biao"><text>请选择</text>  <image  class="jiao" src="/images/check/jiao2.png"></image></view>
+							<view wx:if="{{item.date !== undefind}}" class="jiao_biao"><text>{{item.date}}</text>  <image class="jiao" src="/images/check/jiao.png"></image></view>
+							</view>	
+						</picker>
+						</view>
+						
+
+					</view>
+					<view class="space"></view>
+						<view class="product_main">
+						
+							<view class="input">
+							  <text style="width: 50px">备注:</text>
+							  <input class="Underscore" style="width:100%;" data-index="{{index}}" bindblur='bindBlurRemarks'>
+							  </input>
+						  </view>
+					</view>
+				</view>
+			</view>
+			<view class="space"></view>
+		</block>
+
+			<view class="buttons">
+				<!-- <button type="warn" size="mini" bindtap="Save">保存</button> -->
+				<button class="check_button" bindtap='Submit'>提交</button>
+			</view>
+	</form>
+</view>

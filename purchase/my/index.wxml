@@ -1,0 +1,52 @@
+<!--user/index/index.wxml-->
+<view class="all">
+	<view class="menu"></view>
+	<view class="container1">
+		<!-- 信息展示 -->
+		<view class="header">
+			<view class="userinfo">
+				<open-data type="userAvatarUrl" class="userinfo-avatar"></open-data>
+				<open-data type="userNickName" class="userinfo-nickname"></open-data>
+			</view>
+			<!-- 公司 -->
+			<view class="companyImg">
+				<image src="/images/dachang.png" class="img"></image>
+				<!-- 职位 -->
+				<text class="name">{{name}}</text>
+			</view>
+		</view>
+	</view>
+
+	<view class="container2">
+		<view class="body">
+		<!-- 第一行 -->
+			<view class="body_item">
+				<view class="button" bindtap="request">
+					<image class="img" src="/images/me/request.png"></image>
+					<text>请购</text>
+				</view>
+				<view class="button" bindtap="enquiry">
+					<image class="img" src="/images/me/enquiry.png"></image>
+					<text>询价</text>
+				</view>
+				<view class="button" bindtap="order">
+					<image class="img" src="/images/me/order.png"></image>
+					<text>订单</text>
+				</view>
+			</view>
+			<!-- 第二行 -->
+			<view class="body_item">
+				<view class="button" hover-class="button_hover" bindtap="task">
+					<image class="img" src="/images/me/task.png"></image>
+					<text>工单</text>
+				</view>
+				<view class="button" bindtap="plan">
+					<image class="img" src="/images/me/play.png"></image>
+					<text>计划</text>
+				</view>
+				<view class="button" style="border: none;"></view>
+			</view>
+
+		</view>
+	</view>
+</view>

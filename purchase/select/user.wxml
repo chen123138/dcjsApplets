@@ -1,0 +1,17 @@
+<view>
+    <view class="cells">
+        <button bindtap="bindPrevTap" type="primary" class='btn'>确认选择</button>
+    </view>
+    <view class="cells">
+        <checkbox-group bindchange="checkboxChange">
+            <label class="weui-cell " wx:for="{{list}}" wx:key="item">
+                <view>
+                    <checkbox value="{{item}}"/>
+                </view>
+                <view style="margin-left: 1.17647059em;">
+                    {{item[1]}}
+                </view>
+            </label>
+        </checkbox-group>
+    </view>
+</view>

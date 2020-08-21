@@ -1,0 +1,9 @@
+<!--requestBuy/project/index.wxml-->
+<view class="container">
+  <block wx:for="{{project_list}}" wx:key="item">
+    <view class="list_item" data-id='{{item.id}}' data-name="{{item.name}}" bindtap="goSelectProduct">
+      <view class="list_item_title"><image class="icon_img" src="/images/purchase/request/project.png"></image>{{item.name}}</view>
+    </view>
+    <view class="space"></view>
+  </block>
+</view>

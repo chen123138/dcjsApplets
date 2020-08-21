@@ -1,0 +1,155 @@
+<!--answer.wxml-->
+<view class="container">
+	<view>
+        <!-- 进度条 -->
+		<block>
+			<view class="info_code padding">
+				<view>{{detail.code}}</view>
+				<view class="info_code_name" wx:if="{{detail.state==1}}">指派中</view>
+				<view class="info_code_name" wx:elif="{{detail.state==2}}">进行中</view>
+				<view class="info_code_name" wx:elif="{{detail.state==3}}">验收中</view>
+				<view class="info_code_name" wx:elif="{{detail.state==4}}">已完成</view>
+				<view class="info_code_name" wx:elif="{{detail.state==0}}">已取消</view>
+			</view>
+			<view class="info_product_code padding">
+				<text >{{detail.name}}</text>
+			</view>
+		</block>
+
+        <view>
+            <view class="weui-cells__title title_container"><image class="icon_img" src="/images/task/jbxx.png"></image>基本信息</view>
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell">
+                    <view class="weui-cell__bd">施工人员</view>
+                    <view class="weui-cell__ft">
+                        <view wx:for="{{user_ids}}" wx:key="item" wx:for-index="key" style="float: left;">
+                            <i wx:if="{{key!=0}}">,</i>{{item.project_user_id[1]}}             
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-cell">
+                    <view class="weui-cell__bd">施工时间</view>
+                    <view class="weui-cell__ft">{{detail.date}}</view>
+                </view>
+                <view class="weui-cell" wx:if="{{detail.project_unit_id}}">
+                    <view class="weui-cell__bd">单位工程</view>
+                    <view class="weui-cell__ft">{{detail.project_unit_id[1]}}</view>
+                </view>
+                <view class="weui-cell">
+                    <view class="weui-cell__bd">施工部位</view>
+                    <view class="weui-cell__ft">{{detail.position}}</view>
+                </view>
+                <view class="weui-cell">
+                    <view class="weui-cell__bd">创建者</view>
+                    <view class="weui-cell__ft">{{detail.create_uid[1]}}</view>
+                </view>
+            </view>
+        </view>
+
+        <!-- 零星说明 -->
+        <view class="weui-cells__title title_container" wx:if="{{detail.cate=='2'}}"><image class="icon_img" src="/images/task/saw.png"></image>零星说明</view>
+        <view class="weui-cells weui-cells_after-title" wx:if="{{detail.cate=='2'}}">
+            <!-- 零星说明 -->
+            <view class="weui-cell">
+                <view class="weui-textarea">
+                    {{detail.content}}
+                </view>
+            </view>
+            <!-- 计量单位：可写 -->
+            <view class="weui-cell" wx:if="{{(user_ids[0]['user_id'][0]==uid && detail.state==2) || (detail.create_uid[0]==uid && detail.state==3)}}">
+                <view class="weui-cell__bd">核量<i style="color:red">*</i></view>
+                <view class="weui-cell__ft">
+                    <input type="number" data-tag="number" data-index="0" bindblur='bindInputChange' value="{{detail.number}}"/>
+                    {{detail.uom_id[1]}}
+                </view>
+            </view>
+            <!-- 计量单位：只读 -->
+            <view class="weui-cell" wx:else>
+                <view class="weui-cell__bd">数量</view>
+                <view class="weui-cell__ft">{{detail.number}}{{detail.uom_id[1]}}</view>
+            </view>
+        </view>
+
+        <!-- 施工材料 -->
+        <view class="weui-cells__title title_container" wx:if="{{detail.cate=='1'}}"><image class="icon_img" src="/images/purchase/request/product.png"></image>施工材料</view>
+		<view>
+            <block wx:for="{{product}}" wx:key="item" wx:if="{{detail.cate=='1'}}">
+                <view class="list_item">
+                    <!-- 系统&材料 -->
+                    <view class="list_item_title">{{item.project_system_id[1]}}-{{item.project_product_id[1]}}</view>
+                    <!-- 品牌&型号 -->
+                    <view class="list_item_body">
+                        <view style="float:left;">
+                            {{item.brand==false?' - ':item.brand}}
+                        </view>
+                        <view style="float:right;">
+                            {{item.type==false?' - ':item.type}}
+                        </view>                 
+                    </view>
+                    <!-- 数量&单位 -->
+                    <view class="list_item_body">
+                        <view style="float:left;" wx:if="{{(user_ids[0]['user_id'][0]==uid && detail.state==2) || (detail.create_uid[0]==uid && detail.state==3)}}">
+                            <view style="display: flex;">
+                                <i style="color:red">*</i>
+                                <input type="number" style="width: 50px;text-align:center;border-bottom:1px solid #c0c1c2;" data-tag="number" data-index="{{index}}" bindblur='bindInputChange' value="{{item.number}}"/>{{item.uom_id[1]}}
+                            </view>
+                        </view>
+                        <view style="float:left;" wx:else>{{item.number}}{{item.uom_id[1]}}</view>
+                        <view bindtap='getGuideInfo' data-id="{{item.guide_id[0]}}" style="color: royalblue;float:right;">
+                            {{item.guide_id[1]}}
+                        </view>
+                    </view>
+                </view>
+                <view class="space"></view>
+            </block>
+        </view>
+        <!-- 施工日志 -->
+        <view class="weui-cells__title title_container" wx:if="{{detail.state>2}}"><image class="icon_img" src="/images/task/data.png"></image>施工日志</view>
+        <view class="weui-cells weui-cells_after-title" wx:if="{{detail.state>2}}">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    {{detail.logs}}
+                </view>
+            </view>
+        </view>
+
+		<!-- action -->
+		<form wx:if="{{user_ids[0]['user_id'][0]==uid || detail.create_uid[0]==uid}}" catchsubmit="formSubmit" catchreset="formReset">
+			<!-- 自检属性 -->
+			<view wx:if="{{user_ids[0]['user_id'][0]==uid && detail.state==2}}">
+                <view class="weui-cells__title title_container"><image class="icon_img" src="/images/task/zj.png"></image><i style="color:red">*</i>施工日志</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_active">
+                        <view class="weui-cell__bd">
+                            <textarea name="logs" class="weui-textarea" placeholder="请输入" style="height: 3.3em" />
+                            <view class="weui-textarea-counter">200</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!-- 验收属性 -->
+            <view wx:if="{{detail.create_uid[0]==uid && detail.state==3}}">
+                <view class="weui-cells__title"><i style="color:red">*</i>考核规则</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_active">
+                        <view class="weui-cell__bd">
+                            <picker bindchange="bindPickerChange" data-tag="divide" value="{{divide}}" range="{{divides}}" range-key='1'>
+                                <view class="value">{{divides[divide][1]}}</view>
+                            </picker>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="buttons">
+                <button class="weui-btn weui-btn_primary" wx:if="{{user_ids[0]['user_id'][0]==uid && detail.state==1}}"  type="primary"  formType="submit">确认</button>
+
+                <button class="weui-btn weui-btn_primary" wx:elif="{{user_ids[0]['user_id'][0]==uid && detail.state==2}}" type="primary"  formType="submit">自检</button>
+
+                <button class="weui-btn weui-btn_primary" wx:elif="{{detail.create_uid[0]==uid && detail.state==3}}" type="primary"  formType="submit">验收</button>
+                                
+                <button class="weui-btn_warn" wx:if="{{detail.create_uid[0]==uid && (detail.state==1 || detail.state==2)}}" type="warn" bindtap='bindCancel'>取消</button>
+            </view>
+        </form>
+    </view>
+</view>
