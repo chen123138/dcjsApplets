@@ -148,6 +148,15 @@ Page({
         console.log("品牌", this.data.list)
     },
 
+    bindBlurRemarks: function (e) {
+        let list = this.data.list
+        list[e.currentTarget.dataset.index].remarks = e.detail.value
+        this.setData({
+            list: list
+        })
+        console.log("品牌", this.data.list)
+    },
+
     // 选择品牌类型
     bindBlurType: function (e) {
         let list = this.data.list

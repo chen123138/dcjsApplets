@@ -32,12 +32,14 @@
 
 .input {
   display: flex;
+  justify-content: start;
+  flex-wrap: nowrap;
 }
 
 .picker_conntainer {
   color: #838383;
-  border-bottom: 1px solid #c0c1c2;
-  width: 300rpx;
+  /* border-bottom: 1px solid #c0c1c2; */
+  width: 100%;
 }
 
 .brand {
@@ -65,7 +67,8 @@
 .Underscore {
   border-bottom: 1px solid #c0c1c2;
   margin-bottom: 10rpx;
-  width: 200rpx;
+  width: 100px;
+  padding-bottom: 10rpx;
 }
 
 .cancel {
