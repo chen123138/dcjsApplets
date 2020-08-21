@@ -64,8 +64,6 @@
   bottom: 0;
   right: 50%;
   transform: translateX(50%);
-  border-top-left-radius: 20rpx;
-  border-top-right-radius: 20rpx;
   box-shadow:5px 2px 6px #000
 }
 
@@ -75,8 +73,6 @@
   right: 50%;
   transform: translate(50%, -50%);
   background-color: #42a5f5;
-  padding: 10rpx 0;
-  width: 200rpx;
 }
 
 checkbox .wx-checkbox-input {
