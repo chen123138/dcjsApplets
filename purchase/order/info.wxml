@@ -80,8 +80,9 @@
 					<view class="info_receive">
 						<text>{{item.date}}</text>
 					</view>
-					<view class="info_receive">
-						<view>{{item.remarks==false?"-":item.remarks}}</view>
+					<view wx:if="{{item.remarks !== false}}" class="info_receive ">
+						<!-- pack -->
+						<view>{{item.remarks}}</view>
 					</view>
 				</view>
 

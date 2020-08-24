@@ -102,15 +102,21 @@
 								<!-- 数量 -->
 						<view class="input">
 						<text style="width: 50px;">数量:</text>
-							<input type='number' value="1" class="Underscore" style="text-align: center;" data-index="{{index}}" bindblur='bindBlur'>
+						<view class="Underscore_number">
+						  <input type='number' value="1" style="text-align: center;" data-index="{{index}}" bindblur='bindBlur'>
 							</input>
-							<!-- {{item.uom_id[1]}} -->
+							<text>{{item.uom_id[1]}}</text>
+						</view>
 						</view>
 
 						<!-- 单价 -->
 								<view class="input">
 								<text style="width: 50px;">单价:</text>
-									<input placeholder="请输入"  data-index="{{index}}" style="text-align: center;" class="Underscore" bindblur='bindBlurPrice'></input>
+								<view class="Underscore_number">
+								  <input placeholder="请输入"  data-index="{{index}}" style="text-align: center;"  bindblur='bindBlurPrice'></input>
+							<text>元</text>
+
+								</view>
 								</view>
 							</view>
 						</view>

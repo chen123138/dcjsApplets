@@ -71,6 +71,14 @@
   padding-bottom: 10rpx;
 }
 
+.Underscore_number {
+  border-bottom: 1px solid #c0c1c2;
+  margin-bottom: 10rpx;
+  width: 100px;
+  padding-bottom: 10rpx;
+  display: flex;
+}
+
 .cancel {
   position: absolute;
   height: 50rpx;

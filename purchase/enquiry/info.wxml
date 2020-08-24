@@ -117,9 +117,9 @@
 						<!-- 时间 -->
 						<view>{{item.date}}</view>
 					</view>
-					<view class="info_receive ">
+					<view wx:if="{{item.remarks !== false}}" class="info_receive ">
 						<!-- pack -->
-						<view>{{item.remarks==false?"-":item.remarks}}</view>
+						<view>{{item.remarks}}</view>
 					</view>
 				</view>
 			</view>
