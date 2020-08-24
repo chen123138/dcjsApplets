@@ -63,12 +63,13 @@
 					<!-- price  数量单位-->
 					<view class="info_receive">
 						<text>{{item.subtotal}} * {{item.number}}{{item.uom_id[1]}}=￥{{item.price}}</text>
-						<text>{{item.pack}}</text>
+						<!-- 单价 -->
+						<view>￥{{item.price}}/{{item.pack}}</view>
 					</view>
 					<!-- price  额外费用-->
 					<view class="info_receive ">
-						<!-- 单价 -->
-						<view>￥{{item.price}}/{{item.pack}}</view>
+						<!-- 包装 -->
+						<text>{{item.pack}}</text>
 						<!-- 额外费用 -->
 						<view wx:if="{{item.extras == '1'}}">含税运费</view>
 					  <view wx:if="{{item.extras == '2'}}">含税不含运费</view>
@@ -78,7 +79,9 @@
 						<!-- 时间  数量单位-->
 					<view class="info_receive">
 						<text>{{item.date}}</text>
-						<text>{{item.remarks}}</text>
+					</view>
+					<view class="info_receive">
+						<view>{{item.remarks==false?"-":item.remarks}}</view>
 					</view>
 				</view>
 

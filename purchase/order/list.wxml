@@ -22,4 +22,7 @@
 			<view class="space"></view>
 		</block>
 	</scroll-view>
+	<view wx:if="{{list.length==0}}" class="no-list" style="height: 100vh;"   bindtap="worker_click_false">
+		<image class="image" src="/images/no-list.png" style="width:91px;height:120px"></image>
+	</view>
 </view>

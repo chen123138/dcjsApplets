@@ -119,7 +119,7 @@
 
 					<view class="info_receive ">
 						<!-- pack -->
-						<view>{{item.remarks}}</view>
+						<view>{{item.remarks==false?"-":item.remarks}}</view>
 					</view>
 				</view>
 			</view>

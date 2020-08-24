@@ -30,7 +30,7 @@
 		</block>
 	</scroll-view>
 
-	<view wx:elif="{{list.length==0 && isload}}" class="no-list">
-		<image src="/images/no-list.png"></image>
+	<view wx:if="{{list.length==0}}" class="no-list" style="height: 100vh;"   bindtap="worker_click_false">
+		<image class="image" src="/images/no-list.png" style="width:91px;height:120px"></image>
 	</view>
 </view>
