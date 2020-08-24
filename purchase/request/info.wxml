@@ -101,11 +101,11 @@
 						<!-- 数量 -->
 						<view>{{item.number}} {{item.uom_id[1]}}</view>
 						<!-- 包装 -->
-						<view>{{item.pack}}</view>
+						<view>￥{{item.price}}/{{item.pack}}</view>
 					</view>
 					<view class="info_receive ">
 						<!-- 单价 -->
-						<view>￥{{item.price}}/{{item.pack}}</view>
+						<view>{{item.pack}}</view>
 						<!-- 额外费用 -->
 						<view wx:if="{{item.extras == '1'}}">含税运费</view>
 					  <view wx:if="{{item.extras == '2'}}">含税不含运费</view>
@@ -115,7 +115,10 @@
 					<view class="info_receive ">
 						<!-- 时间 -->
 						<view>{{item.date}}</view>
-						<!-- pack -->
+					</view>
+
+					<view wx:if="{{item.remarks !== false}}" class="info_receive ">
+						<!-- remarks -->
 						<view>{{item.remarks}}</view>
 					</view>
 				</view>

@@ -86,11 +86,13 @@
 							<view class='brand'>
 								<!--品牌  -->
 								<view class="input">
-									<input placeholder="品牌" data-index="{{index}}" style="  text-align: center;" class="Underscore" bindblur='bindBlurBrand'></input>
+								<view style="width: 50px;">品牌:</view>
+									<input placeholder="请输入" data-index="{{index}}" class="Underscore" style="text-align: center;" bindblur='bindBlurBrand'></input>
 								</view>
 								<!-- 类型 -->
 								<view class="input">
-									<input placeholder="型号" data-index="{{index}}" style="  text-align: center;" class="Underscore" bindblur='bindBlurType'></input>
+								<text style="width: 50px;">型号:</text>
+									<input placeholder="请输入" data-index="{{index}}" class="Underscore" style="text-align: center;" bindblur='bindBlurType'></input>
 								</view>
 							</view>
 						</view>
@@ -99,45 +101,73 @@
 							<view class='brand'>
 								<!-- 数量 -->
 						<view class="input">
-							<input type='number' value="1" class="Underscore" style="  text-align: center;" data-index="{{index}}" bindblur='bindBlur'>
-							</input>{{item.uom_id[1]}}
+						<text style="width: 50px;">数量:</text>
+						<view class="Underscore_number">
+						  <input type='number' value="1" style="text-align: center;" data-index="{{index}}" bindblur='bindBlur'>
+							</input>
+							<text>{{item.uom_id[1]}}</text>
+						</view>
 						</view>
 
-						<view class="input">
-							<input class="Underscore" value="{{item.uom_id[1]}}" style="text-align: center;" data-index="{{index}}" bindblur='bindBlurPack'>
-							</input>
-						</view>
+						<!-- 单价 -->
+								<view class="input">
+								<text style="width: 50px;">单价:</text>
+								<view class="Underscore_number">
+								  <input placeholder="请输入"  data-index="{{index}}" style="text-align: center;"  bindblur='bindBlurPrice'></input>
+							<text>元</text>
+
+								</view>
+								</view>
 							</view>
 						</view>
 						<view class="space"></view>
 						<view class="right_title">
 							<view class='brand'>
-								<!-- 单价 -->
+								<!-- 包装 -->
 								<view class="input">
-									<input placeholder="单价"  data-index="{{index}}" style="text-align: center;" class="Underscore" bindblur='bindBlurPrice'></input>
-								</view>
+								<text style="width: 50px;">包装:</text>
+							<input class="Underscore" value="{{item.uom_id[1]}}" style="text-align: center; width:80px;" data-index="{{index}}" bindblur='bindBlurPack'>
+							</input>
+						</view>
 								<!-- 额外费用 -->
-								<picker range="{{array}}" data-index="{{index}}" style="text-align: center;"bindchange="bindBlurExtras">
-							<view class="picker_conntainer" >
-							    <view  wx:if="{{array[item.extras] == undefind}}"  class="jiao_biao" style="text-align: center;">
-										<text>请选择</text>    
-									  <image class="jiao" src="/images/check/jiao2.png"></image></view>
-									  <view wx:if="{{array[item.extras] !== undefind}}" class="jiao_biao" style="text-align: center;"><text>{{array[item.extras]}}</text>   
-									  <image class="jiao" src="/images/check/jiao.png"></image></view>
-							</view>
-						</picker>
+								
+								<view class="input">
+								<text style="width: 50px;">费用:</text>
+								  <picker range="{{array}}" class="Underscore" data-index="{{index}}" style="text-align: center; width: 150px; padding:0" bindchange="bindBlurExtras">
+							      <view class="picker_conntainer" >
+											<view  wx:if="{{array[item.extras] == undefind}}"  class="jiao_biao" style="text-align: center;">请选择
+											<image class="jiao" src="/images/check/jiao2.png"></image></view>
+											<view wx:if="{{array[item.extras] !== undefind}}" class="jiao_biao" style="text-align: center;"><text>{{array[item.extras]}}</text>   
+											<image class="jiao" src="/images/check/jiao.png"></image></view>
+							    </view>
+						    </picker>
+								</view>
 							</view>
 						</view>
 					</view>
+					<view class="space"></view>
 					<view class="product_main">
-						<view class="space"></view>
 						<!-- 到货时间 -->
-						<picker mode="date" value="{{date}}" data-index="{{index}}" style="  text-align: center;"start="2020-07-02" end="2020-12-31" bindchange="bindDateChangeDate">
+						<view class="input">
+								<text style="width: 50px;">时间:</text>
+						  <picker mode="date" class="Underscore" value="{{date}}" data-index="{{index}}" style="text-align: center;width: 300rpx;" start="2020-07-02" end="2020-12-31" bindchange="bindDateChangeDate">
 							<view class="picker_conntainer">
-							<view wx:if="{{item.date == undefind}}" class="jiao_biao"><text>时间</text>  <image  class="jiao" src="/images/check/jiao2.png"></image></view>
+							<view wx:if="{{item.date == undefind}}" class="jiao_biao"><text>请选择</text>  <image  class="jiao" src="/images/check/jiao2.png"></image></view>
 							<view wx:if="{{item.date !== undefind}}" class="jiao_biao"><text>{{item.date}}</text>  <image class="jiao" src="/images/check/jiao.png"></image></view>
 							</view>	
 						</picker>
+						</view>
+						
+
+					</view>
+					<view class="space"></view>
+						<view class="product_main">
+						
+							<view class="input">
+							  <text style="width: 50px">备注:</text>
+							  <input class="Underscore" style="width:100%;" data-index="{{index}}" bindblur='bindBlurRemarks'>
+							  </input>
+						  </view>
 					</view>
 				</view>
 			</view>

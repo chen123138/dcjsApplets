@@ -16,7 +16,7 @@
 		</scroll-view>
 		<!-- 选材料 -->
 		<view class="search_menu_container">
-			<scroll-view class="search_menu" wx:if="{{list.length}}" scroll-y="true" style="height:1000rpx;" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+			<scroll-view class="search_menu" wx:if="{{list.length}}" scroll-y="true" style="height:1200rpx;" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
 				<checkbox-group bindchange="checkboxChange">
 					<label wx:for="{{list}}" wx:key="item">
 						<view class="project_item">

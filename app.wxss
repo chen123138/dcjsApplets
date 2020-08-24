@@ -20,6 +20,18 @@
   z-index: -10;
 }  
 
+.no_list {
+  position: relative;
+  width: 100vw;
+}
+
+.image {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .list_item {
   width: auto;
   background-color: #ffffff;

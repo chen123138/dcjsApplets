@@ -24,7 +24,7 @@
 .select {
   width: 270rpx;
   display: flex;
-  height: 1000rpx;
+  height: 1200rpx;
   flex-direction: column;
   font-size: 30rpx;
 }
