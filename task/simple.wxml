@@ -69,9 +69,10 @@
                 <view class="weui-cell__bd">
                     <view class="weui-label">所需时间</view>
                 </view>
-                <view class="weui-cell__ft">
-                    <view class="weui-input" style="width:auto;">
-                        <input type="digit" placeholder="请输入" data-tag="number" bindblur='bindInputChange'/>小时
+                <view class="weui-cell__ft" >
+                    <view class="weui-input" style="width:auto; display: flex;">
+                        <input type="digit" placeholder="请输入" data-tag="number" bindblur='bindInputChange'/>
+                        <text style="color: #000000;">小时</text>
                     </view>
                 </view>
             </view>
