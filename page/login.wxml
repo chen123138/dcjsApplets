@@ -1,0 +1,25 @@
+<view class="container">
+	<!-- <view class="userinfo">
+        <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
+        如果只是展示用户头像昵称，可以使用 <open-data /> 组件
+        <open-data type="userAvatarUrl" class="userinfo-avatar"></open-data>
+        <open-data type="userNickName" class="userinfo-nickname"></open-data>
+        需要使用 button 来授权登录
+        <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登记</button>
+        <view wx:else>请升级微信版本</view>
+    </view> -->
+
+	<!-- 认证 -->
+	<view class="title_box">
+		<text>达昌技术工程管理平台实名认证</text>
+	</view>
+	<!-- 认证区域 -->
+	<view class="box_body">
+		<text>请输入身份信息</text>
+		<view class="input_container">
+			<view class="input">姓名：<input type="text"></input></view>
+			<view class="input">身份证：<input type="number"></input></view>
+		</view>
+        <button class="auth">微信实名授权</button>
+	</view>
+</view>
