@@ -29,6 +29,7 @@ Page({
             }
             // 
         }).catch((err) => {
+            console.log("失败")
             util.showError('稍后重试')
         });
     },

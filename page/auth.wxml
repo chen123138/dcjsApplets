@@ -4,21 +4,17 @@
 		<image class="logo" src="/images/icon.png"></image>
 		<!-- text -->
 		<view class="text_box">
-			<text class="text">达昌技术发展有限公司成立于2010年，位于武汉市东湖新技术开发区。是一家致力于在机电安装工程、建筑装饰装修工程、建筑智能化工程、消防工程等领域为客户提供整体解决方案的专业公司。经过多年发展，达昌技术已涉足工业、酒店、商业、交通、医疗、教育、司法、文博、住宅、智慧及平安城市等行业，服务上百家企业，为客户提供了业界先进的解决方案。</text>
+			<text class="text">达昌技术发展有限公司成立于2010年，经过多年发展，达昌技术已涉足工业、酒店、商业、交通、医疗、教育、司法、文博、住宅、智慧及平安城市等行业，服务上百家企业，为客户提供了业界先进的解决方案。</text>
 		</view>
-        <!-- text_main -->
-              <view class="main"><text>请购管理</text><text>询价管理</text></view>
-              <view class="main"><text>订单管理</text><text>工程管理</text></view>
-
-        <button class="button" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登记</button>
-
-
-		<!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button> -->
-		<!-- 如果只是展示用户头像昵称，可以使用 <open-data /> 组件 -->
-		<!-- <open-data type="userAvatarUrl" class="userinfo-avatar"></open-data>
-		<open-data type="userNickName" class="userinfo-nickname"></open-data> -->
-		<!-- 需要使用 button 来授权登录 -->
-		<!-- <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登记</button> -->
-		<view wx:else>请升级微信版本</view>
+		<!-- text_main -->
+		<view class="main"><text>请购管理</text><text>询价管理</text></view>
+		<view class="main"><text>订单管理</text><text>工程管理</text></view>
+    <view class="tip">使用需要您同意使用您的以下权限</view>
+		<view wx:if="{{isGetuserInfo == false}}">
+		<button class="button" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权用户信息</button>
+		</view>
+		<view wx:if="{{isGetuserInfo == true}}">
+		<button class="button" wx:if="{{canIUse}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">授权手机号</button>
+		</view>
 	</view>
 </view>

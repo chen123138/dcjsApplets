@@ -263,8 +263,10 @@ function authorize() {
         } else {
             console.log('Session Cache Key: Null');
             return _appLogin().then(res => {
+                console.log(app.globalData.key)
                 resolve(true)
             });
+            console.log(app.globalData.key)
         }
     });
 }
