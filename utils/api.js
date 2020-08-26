@@ -46,6 +46,8 @@ module.exports = {
   // 审批
   EngineerApprove: 'eng.approve',
   // 抄送
-  EngineerVisible: 'eng.visible'
+  EngineerVisible: 'eng.visible',
   //
+
+  BindUser: API_URL + 'wechat/bind.user',
 };

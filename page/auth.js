@@ -40,12 +40,12 @@ Page({
                 'iv': e.detail.iv,
                 'key': app.globalData.key
             }
+            console.log(params)
             // let that = this
             util.post(api.UserInfo, "100", params).then(res => {
-                // util.showText("信息登记成功，请联系客服。")
-                console.log(res)
-                this.setData({
-                    isGetuserInfo: true
+                util.showText("信息登记成功，请联系客服。")
+                wx.redirectTo({
+                  url: './perfect',
                 })
             });
         }
@@ -56,19 +56,18 @@ Page({
         console.log(e.detail.errMsg == "getPhoneNumber:ok");
         if (e.detail.errMsg == "getPhoneNumber:ok") {
             console.log(e.detail.encryptedData)
-            wx.request({
-                url: 'http://localhost/index/users/decodePhone',
-                data: {
-                  encryptedData: e.detail.encryptedData,
-                  iv: e.detail.iv,
-                  sessionKey: that.data.session_key,
-                  uid: "",
-                },
-                method: "post",
-                success: function (res) {
-                  console.log(res);
-                }
-              })
+            let params = {
+                'data': e.detail.encryptedData,
+                'iv': e.detail.iv,
+                'key': app.globalData.key,
+                'oid': app.globalData.oid,
+                'name': app.globalData.name
+            }
+            console.log(params)
+            // let that = this
+            util.post(api.UserPhone, "100", params).then(res => {
+                console.log(res)
+            });
         }
     },
 

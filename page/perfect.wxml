@@ -1,0 +1,18 @@
+<view class="container">
+	<view class="box">
+		<!-- 认证 -->
+		<view class="title_box">
+			<text>达昌技术工程管理平台实名认证</text>
+		</view>
+		<!-- 认证区域 -->
+		<view class="box_body">
+			<text>请输入身份信息</text>
+			<view class="input_container">
+				<view class="input"><text>姓名：</text><input bindblur="name" type="text"></input></view>
+				<view class="input"><text>手机号：</text><input bindblur="phone" type="number"></input></view>
+			</view>
+			<button class="auth" bindtap="bindUser">微信实名授权</button>
+		</view>
+	</view>
+
+</view>

@@ -13,8 +13,8 @@
 		<view wx:if="{{isGetuserInfo == false}}">
 		<button class="button" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权用户信息</button>
 		</view>
-		<view wx:if="{{isGetuserInfo == true}}">
+		<!-- <view wx:if="{{isGetuserInfo == true}}">
 		<button class="button" wx:if="{{canIUse}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">授权手机号</button>
-		</view>
+		</view> -->
 	</view>
 </view>

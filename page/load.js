@@ -9,7 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        hidden: false
+        hiddenLoading: false
     },
 
     /**
@@ -18,14 +18,17 @@ Page({
     onLoad: function (options) {
         console.log('Session Loading');
         let that = this
-        util.authorize().then((res) => {            
-            if (app.globalData.uid){
-                that.data.hidden=true
-                wx.switchTab({ url: '/page/index' });
-            }else{
-                wx.navigateTo({
-                    url: '/page/auth'
-                })
+        util.authorize().then((res) => {
+            console.log(app.globalData.uid)
+            if (app.globalData.uid) {
+                // that.data.hidden = true
+                wx.switchTab({
+                    url: '/page/index'
+                });
+            } else {
+                wx.redirectTo({
+                    url: '/page/auth',
+                  })
             }
             // 
         }).catch((err) => {
