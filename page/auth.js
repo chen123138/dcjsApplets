@@ -30,7 +30,7 @@ Page({
         })
         // 
     },
-    bindGetUserInfo(e) {
+    getUserInfo(e) {
         // 
         if (e.detail.errMsg == "getUserInfo:ok") {
             let params = {
@@ -40,18 +40,29 @@ Page({
             }
             // let that = this
             util.post(api.UserInfo, "100", params).then(res => {
-                util.showText("信息登记成功，请联系客服。")
+                console.log(res)
             });
         }
     },
 
-    // getPhoneNumber: function (e) {
-    //     var that = this;
-    //     console.log(e.detail.errMsg == "getPhoneNumber:ok");
-    //     if (e.detail.errMsg == "getPhoneNumber:ok") {
-    //         console.log(e.detail.encryptedData)
-    //     }
-    // },
+    getPhoneNumber: function (e) {
+        var that = this;
+        console.log(e.detail.errMsg == "getPhoneNumber:ok");
+        if (e.detail.errMsg == "getPhoneNumber:ok") {
+            console.log(e.detail.encryptedData)
+            let params = {
+                'data': e.detail.encryptedData,
+                'iv': e.detail.iv,
+                'key': app.globalData.key,
+                'oid': app.globalData.oid,
+                'name': app.globalData.name
+            }
+            // let that = this
+            util.post(api.UserPhone, "100", params).then(res => {
+                console.log(res)
+            });
+        }
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成

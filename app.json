@@ -1,7 +1,7 @@
 {
   "pages": [
+    "page/load",
     "page/index",
-    "page/auth",
     "guide/list",
     "my/index"
     
