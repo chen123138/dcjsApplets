@@ -39,7 +39,7 @@ Page({
     this.getInfo()
 
     wx.setNavigationBarTitle({
-      title: '我的审批'
+      title: '请购详情'
     })
   },
 

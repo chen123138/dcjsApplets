@@ -290,12 +290,14 @@ function _appLogin() {
                 "code": code
             }).then(res => {
                 // 更新Cache
+                wx.setStorageSync('oid', res.oid);
                 wx.setStorageSync('uid', res.uid);
                 wx.setStorageSync('sid', res.sid);
                 wx.setStorageSync('key', res.key);
                 wx.setStorageSync('name', res.name);
                 wx.setStorageSync('role', res.role);                
                 // 更新APP
+                app.globalData.oid = res.oid
                 app.globalData.uid = res.uid
                 app.globalData.sid = res.sid
                 app.globalData.key = res.key

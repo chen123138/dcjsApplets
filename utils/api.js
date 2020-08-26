@@ -1,10 +1,15 @@
-const API_URL = 'http://47.114.165.246/';
+// wx60cfe8c86967aec7
+// const API_URL = 'http://47.114.165.246/';
+// wx53878cf5569da4ea
+const API_URL = 'https://e.xiecd.com/';
+// 
 const API_URI = API_URL + 'web/dataset/';
 
 module.exports = {
-  // 授权
+  // 登录
   Auth: API_URL + 'wechat/oauth.applet',
-  UserInfo: API_URL + 'wechat/decode.user.info',
+  UserInfo: API_URL + 'wechat/decode.user',
+  UserPhone: API_URL + 'wechat/decode.phone',
   // 
   AuthCorp: API_URL + 'wechat/corp/oauth.applet',
   // 
