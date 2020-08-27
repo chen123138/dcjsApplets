@@ -1,5 +1,7 @@
 {
   "pages": [
+
+    "page/auth",
     "page/load",
     "page/index",
     "guide/list",

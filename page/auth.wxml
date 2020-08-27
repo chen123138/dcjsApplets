@@ -7,11 +7,14 @@
 			<text class="text">达昌技术发展有限公司成立于2010年，经过多年发展，达昌技术已涉足工业、酒店、商业、交通、医疗、教育、司法、文博、住宅、智慧及平安城市等行业，服务上百家企业，为客户提供了业界先进的解决方案。</text>
 		</view>
 		<!-- text_main -->
-		<view class="main"><text>请购管理</text><text>询价管理</text></view>
-		<view class="main"><text>订单管理</text><text>工程管理</text></view>
-    <view class="tip">使用需要您同意使用您的以下权限</view>
+		<view>
+			<!-- <view class="main"><text>请购管理</text><text>询价管理</text></view> -->
+			<view class="main"><text>工程管理</text><text>工单管理</text></view>
+		</view>
+
+		<view class="tip">使用需要您同意使用您的以下权限</view>
 		<view wx:if="{{isGetuserInfo == false}}">
-		<button class="button" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权用户信息</button>
+			<button class="button" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权用户信息</button>
 		</view>
 		<!-- <view wx:if="{{isGetuserInfo == true}}">
 		<button class="button" wx:if="{{canIUse}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">授权手机号</button>

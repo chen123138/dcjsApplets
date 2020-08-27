@@ -43,7 +43,7 @@ Page({
             console.log(params)
             // let that = this
             util.post(api.UserInfo, "100", params).then(res => {
-                util.showText("信息登记成功，请联系客服。")
+                util.showText("请完善用户信息。")
                 wx.redirectTo({
                   url: './perfect',
                 })
