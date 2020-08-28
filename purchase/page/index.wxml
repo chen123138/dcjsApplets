@@ -1,0 +1,53 @@
+<view class="container">
+	<!-- 分区按钮 -->
+	<view class="part_container">
+	  <view class="{{part=='0'?'part':''}}" bindtap="selectPart" data-part="0">我的待办</view>
+	  <view class="{{part=='1'?'part':''}}"  bindtap="selectPart" data-part="1">我的审批</view>
+	  <view class="{{part=='2'?'part':''}}"  bindtap="selectPart" data-part="2">抄送我的</view>
+	</view>
+	<!--  -->
+	<view class="space_for"></view>
+	<!--  -->
+	<scroll-view wx:if="{{list.length}}" scroll-y="true" bindscrolltoupper="upper" style="height:100vh; width: 100vw;" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower">
+		<block wx:for="{{list}}" wx:key="item">
+		<!--  -->
+			<view class="list_item" data-id="{{item.id}}"  data-pid="{{item.project_purchase_id[0]}}"   data-eid="{{item.project_enquiry_id[0]}}" data-type="{{item.flow_type_id[0]}}" bindtap="bindItemTap">
+				<!-- name -->
+				<view class="list_item_title">
+					<view class="title_container"><image wx:if="{{part == '0'}}" class="icon_img" src="/images/task/task1.png"></image><image wx:if="{{part == '1'}}" class="icon_img" src="/images/purchase/request/approval.png"></image><image wx:if="{{part == '2'}}" class="icon_img" src="/images/purchase/request/vis.png"></image>{{item.name}}</view>
+					<view wx:if="{{part == '2' && item.project_enquiry_id}}">{{item.project_enquiry_id[1]}}</view>
+                    <view wx:if="{{part == '2' && item.project_purchase_id}}">{{item.project_purchase_id[1]}}</view>
+				</view>
+				<!--  -->
+				<view class="space"></view>
+				<!-- body -->
+				<view class="list_item_body">
+					<view class="row_number" wx:if="{{ part == '0' }}">{{item.code}}</view>
+
+					<view class="row_number" wx:if="{{ part == '1' && item.flow_type_id[0] == 1 }}">请购流程</view>
+                    <view class="row_number" wx:if="{{ part == '1' && item.flow_type_id[0] == 2 }}">询价流程</view>
+
+
+					<view class="row_number" wx:if="{{ part == '2' && item.project_purchase_id}}">请购流程</view>
+                    <view class="row_number" wx:if="{{ part == '2' && item.project_enquiry_id}}">询价流程</view>
+
+
+					<view class="row_state" wx:if="{{item.state==1 && part == '0'}}">指派中</view>
+					<view class="row_state" wx:elif="{{item.state==2 && part == '0'}}">进行中</view>
+					<view class="row_state" wx:elif="{{item.state==3 && part == '0'}}">验收中</view>
+					<view class="row_state" wx:elif="{{item.state==4 && part == '0'}}">已完成</view>
+					<view class="row_state" wx:elif="{{item.state==0 && part == '0'}}">已取消</view>
+					<view class="row_time" wx:if="{{ part == '0' }}">{{item.end_date}}</view>
+					<view class="row_time" wx:if="{{ part == '1' }}">{{item.create_date}}</view>
+					<view class="row_time" wx:if="{{ part == '2' }}">{{item.create_date}}</view>
+				</view>
+				<!--  -->
+			</view>
+			<view class="space"></view>
+		</block>
+	</scroll-view>
+	<!--  -->
+	<view wx:elif="{{list.length==0 && isload}}" style="height: 100vh;" class="no-list">
+		<image class="img" src="/images/no-todo.png" style="width:109px;height:139px"></image>
+	</view>
+</view>

@@ -1,0 +1,107 @@
+<view class="container">
+	<form catchsubmit="formSubmit">
+        <view class="weui-cells__title">施工任务</view>
+        <view class="weui-cells weui-cells_after-title">
+            <!--  -->
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <view class="weui-label">所属项目</view>
+                </view>
+                <view class="weui-cell__ft">
+                    {{project_name}}
+                </view>
+            </view>
+            <!--  -->
+            <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                <view class="weui-cell__bd">
+                    <view class="weui-label">施工人员</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <view class="weui-select" style="width:auto;" bindtap="bindUsersTap">{{users.length>0?users:'请选择'}}</view> 
+                </view>
+            </view>
+            <!--  -->
+            <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                <view class="weui-cell__bd">
+                    <view class="weui-label">预计开始</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <picker bindchange="bindPickerChange" mode="date" value="{{task.stt_date}}" data-tag="start" start="{{now_date}}">
+                        <view class="weui-select" style="width:auto;">{{task.stt_date?task.stt_date:'请选择'}}</view>
+                    </picker>
+                </view>
+            </view>
+            <!--  -->
+            <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                <view class="weui-cell__bd">
+                    <view class="weui-label">预计结束</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <picker bindchange="bindPickerChange" mode="date" value="{{task.end_date}}" data-tag="stop" start="{{now_date}}">
+                        <view class="weui-select" style="width:auto;">{{task.end_date?task.end_date:'请选择'}}</view>
+                    </picker>
+                </view>
+            </view>
+            <!--  -->
+            <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after" wx-if="{{units.length>1}}">
+                <view class="weui-cell__bd">单位工程</view>
+                <view class="weui-cell__ft">
+                    <picker bindchange="bindPickerChange" data-tag="unit" value="{{unit}}" range="{{units}}" range-key='1'>
+                        <view class="weui-select" style="width:auto;">{{unit?units[unit][1]:'请选择'}}</view>
+                    </picker>
+                </view>
+            </view>
+            <!--  -->
+            <view class="weui-cell weui-cell_active weui-cell_input weui-cell_input-after">
+                <view class="weui-cell__bd">
+                    <view class="weui-label">施工部位</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <view class="weui-input" style="width:auto;">
+                        <input placeholder="请输入" data-tag="position" bindblur='bindInputChange'/>
+                    </view> 
+                </view>
+            </view>
+        </view>
+        <!--  -->
+        <view class="weui-cells__title">施工材料</view>
+        <block wx:for="{{product_ids}}" wx:key="item">
+            <view class="list_item">
+                <!--  -->
+                <view>
+                <image class="cancel" bindtap="cancel" data-index="{{index}}" src="/images/cancel.png"></image>
+                </view>
+                <!-- 系统&材料 -->
+                <view class="list_item_title">{{item.project_system_id[1]}}-{{item.name}}</view>
+                <!-- 品牌&型号 -->
+                <view class="list_item_body">
+                    <view style="float:left;">
+                        {{item.brand==false?' - ':item.brand}}
+                    </view>
+                    <view style="float:right;">
+                        {{item.type==false?' - ':item.type}}
+                    </view>
+                </view>
+                <!-- 数量&单位 -->
+                <view class="list_item_body">
+                    <view style="float:left;">
+                        <view style="display: flex;">
+                            <input style="width: 50px;text-align:center;border-bottom:1px solid #c0c1c2;" value="1" type='number' data-tag="number" class="Underscore" data-index="{{index}}" bindblur='bindInputGroupChange'/>
+                            {{item.uom_id[1]}}
+                        </view>
+                    </view>
+                    <view style="color: royalblue;float:right;">
+                        <picker bindchange="bindPickerGroupChange" data-tag="guide" data-index="{{index}}" range="{{guides}}" range-key='1'>
+                            <view class="value">{{item.guide?item.guide:'请选择'}}</view>
+                        </picker>
+                    </view>
+                </view>
+            </view>
+            <view class="space"></view>
+        </block>
+        <view class="button-sp-area cell">
+            <view class="space"></view>
+			<button class="btn" type="primary" formType="submit">提交</button>
+		</view>
+	</form>
+</view>

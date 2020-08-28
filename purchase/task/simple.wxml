@@ -1,0 +1,94 @@
+<view class="container">
+	<form catchsubmit="formSubmit">
+        <view class="weui-cells__title">零星任务</view>
+        <view class="weui-cells weui-cells_after-title">
+            <!--  -->
+            <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                <view class="weui-cell__bd">
+                    <view class="weui-label">所属项目</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <picker bindchange="bindPickerChange" data-tag="project" value="{{project}}" range="{{projects}}" range-key='1'>
+                        <view class="weui-select" style="width:auto;">{{project?projects[project][1]:'请选择'}}</view>
+                    </picker>
+                </view>
+            </view>
+            <!--  -->
+            <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                <view class="weui-cell__bd">
+                    <view class="weui-label">施工人员</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <view class="weui-select" style="width:auto;" bindtap="bindUsersTap">{{users.length>0?users:'请选择'}}</view> 
+                </view>
+            </view>
+            <!--  -->
+            <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                <view class="weui-cell__bd">
+                    <view class="weui-label">预计开始</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <picker bindchange="bindPickerChange" mode="date" value="{{task.stt_date}}" data-tag="start" start="{{now_date}}">
+                        <view class="weui-select" style="width:auto;">{{task.stt_date?task.stt_date:'请选择'}}</view>
+                    </picker>
+                </view>
+            </view>
+            <!--  -->
+            <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                <view class="weui-cell__bd">
+                    <view class="weui-label">预计结束</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <picker bindchange="bindPickerChange" mode="date" value="{{task.end_date}}" data-tag="stop" start="{{now_date}}">
+                        <view class="weui-select" style="width:auto;">{{task.end_date?task.end_date:'请选择'}}</view>
+                    </picker>
+                </view>
+            </view>
+            <!--  -->
+            <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after" wx-if="{{units.length>1}}">
+                <view class="weui-cell__bd">单位工程</view>
+                <view class="weui-cell__ft">
+                    <picker bindchange="bindPickerChange" data-tag="unit" value="{{unit}}" range="{{units}}" range-key='1'>
+                        <view class="weui-select" style="width:auto;">{{unit?units[unit][1]:'请选择'}}</view>
+                    </picker>
+                </view>
+            </view>
+            <!--  -->
+            <view class="weui-cell weui-cell_active weui-cell_input weui-cell_input-after">
+                <view class="weui-cell__bd">
+                    <view class="weui-label">施工部位</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <view class="weui-input" style="width:auto;">
+                        <input placeholder="请输入" data-tag="position" bindblur='bindInputChange'/>
+                    </view> 
+                </view>
+            </view>
+            <!--  -->
+            <view class="weui-cell weui-cell_active weui-cell_input weui-cell_input-after">
+                <view class="weui-cell__bd">
+                    <view class="weui-label">所需时间</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <view class="weui-input" style="width:auto;">
+                        <input type="digit" placeholder="请输入" data-tag="number" bindblur='bindInputChange'/>小时
+                    </view>
+                </view>
+            </view>
+            <!-- 零星说明 -->
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_active">
+                    <view class="weui-cell__bd">
+                        <textarea class="weui-textarea" placeholder="请输入零星内容" style="height: 3.3em" data-tag="content" bindblur='bindInputChange'/>
+                        <view class="weui-textarea-counter">200</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+		<view class="button-sp-area cell">
+            <view class="space"></view>
+			<button class="weui-btn weui-btn_primary" type="primary" formType="submit">提交</button>
+		</view>
+	</form>
+</view>

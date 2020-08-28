@@ -1,0 +1,46 @@
+<!--page/material/material.wxml-->
+
+<view class="container">
+	<!-- 搜索框 -->
+	<view class="searchBar">
+		<SearchBar id="SearchBar" addflag="{{addflag}}" addimg="{{addimg}}" bind:addhandle="addhandle" searchstr="{{searchstr}}" bind:searchList="searchList" bind:endsearchList="endsearchList" bind:cancelsearch="cancelsearch" bind:activity_clear="activity_clear"></SearchBar>
+	</view>
+	<view class="main">
+	  <!-- 选择界面 -->
+	<view class="select_box">
+		<!-- 选系统 -->
+		<scroll-view scroll-y="true" class="select">
+			<block wx:for="{{system_name}}" wx:key="item">
+				<view class="btn {{currentSelectTripName == item.name?'select_system':'' }}" bindtap='selectSystem' data-name='{{item.name}}'>{{item.name}}</view>
+			</block>
+		</scroll-view>
+		<!-- 选材料 -->
+		<view class="search_menu_container">
+			<scroll-view class="search_menu" wx:if="{{list.length}}" scroll-y="true" style="height:1200rpx;" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+				<checkbox-group bindchange="checkboxChange">
+					<label wx:for="{{list}}" wx:key="item">
+						<view class="project_item">
+							<view class="item_wrap">
+								<checkbox value="{{item.id}}" checked="{{item.checked}}" />
+								<view class="name_list padding">
+									<view class="name">{{item.product_id[1]}}</view>
+									<view class="brand">
+										<view class="name">{{item.brand == false? "-": item.brand}}</view>
+										<view class="name">{{item.type == false? "-": item.type}}</view>
+									</view>
+									<view class="name">{{item.stock}} {{item.uom_id[1]}}</view>
+								</view>
+							</view>
+						</view>
+						<view class="space"></view>
+					</label>
+				</checkbox-group>
+			</scroll-view>
+		</view>
+	</view>
+	<view class="button">
+		<button class="btns" size="default" bindtap="goApplication">确定</button>
+	</view>
+	</view>
+	
+</view>

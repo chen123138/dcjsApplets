@@ -1,0 +1,5 @@
+/* task/guide/index.wxss */
+
+.padding {
+  box-sizing: border-box;
+}

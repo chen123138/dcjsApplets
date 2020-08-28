@@ -1,0 +1,158 @@
+<!--purchase/order_details/index.wxml-->
+
+
+<view class="container">
+	<block>
+		<view class="info_code,padding">
+			<view>{{order_info.code}}</view>
+            <view style="float:right; font-size: 32rpx;" wx:if="{{order_info.state=='-1'}}">已取消</view>
+            <view style="float:right; font-size: 32rpx;" wx:if="{{order_info.state=='0'}}">待确认</view>
+            <view style="float:right; font-size: 32rpx;" wx:if="{{order_info.state=='1'}}">待发货</view>
+            <view style="float:right; font-size: 32rpx;" wx:if="{{order_info.state=='2'}}">运输中</view>
+            <view style="float:right; font-size: 32rpx;" wx:if="{{order_info.state=='3'}}">已签收</view>
+		</view>
+		<view class="info_product_code,padding">
+			<view>{{order_info.name}}</view>
+		</view>
+
+
+	</block>
+
+	<!-- 收货信息 -->
+	<view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/check_sh.png"></image>收货信息</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">供应商</view>
+				<view class="weui-cell__ft">{{order_info.partner_id[1]}}</view>
+			</view>
+			<view class="weui-cell">
+				<view class="weui-cell__bd">收货人</view>
+				<view class="weui-cell__ft">{{order_info.receive_uid[1]}}</view>
+			</view>
+			<view class="weui-cell">
+				<view class="weui-cell__bd">收货电话</view>
+				<view class="weui-cell__ft">{{order_info.receive_tel}}</view>
+			</view>
+			<view class="weui-cell">
+				<view class="weui-cell__bd">收货地址</view>
+				<view class="weui-cell__ft">{{order_info.receive_add}}</view>
+			</view>
+			<view class="weui-cell">
+				<view class="weui-cell__bd">采购员</view>
+				<view class="weui-cell__ft">{{order_info.user_id[1]}}</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- 材料明细 -->
+	<view>
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/request/product.png"></image>材料明细</view>
+		<block wx:for="{{project_order_product_list}}" wx:key="item">
+			<view class="weui-cells weui-cells_after-title">
+				<view class="product_cells_container">
+					<!-- 系统材料 -->
+					<view class="info_receive">
+						<text>{{item.project_system_id[1]}}-{{item.project_product_id[1]}}</text>
+					</view>
+					<!-- 品牌型号 -->
+					<view class="info_receive">
+						<text>{{item.brand == false? "-": item.brand}}</text>
+						<text>{{item.type == false? "-": item.type}}</text>
+					</view>
+					<!-- price  数量单位-->
+					<view class="info_receive">
+						<text>{{item.subtotal}} * {{item.number}}{{item.uom_id[1]}}=￥{{item.price}}</text>
+						<text>{{item.pack}}</text>
+					</view>
+					<!-- price  额外费用-->
+					<view class="info_receive ">
+						<!-- 单价 -->
+						<view>￥{{item.price}}/{{item.pack}}</view>
+						<!-- 额外费用 -->
+						<view wx:if="{{item.extras == '1'}}">含税运费</view>
+					  <view wx:if="{{item.extras == '2'}}">含税不含运费</view>
+						<view wx:if="{{item.extras == '3'}}">不含税含运费</view>
+						<view wx:if="{{item.extras == '4'}}">不含税不含运费</view>
+					</view>
+						<!-- 时间  数量单位-->
+					<view class="info_receive">
+						<text>{{item.date}}</text>
+						<text>{{item.remarks}}</text>
+					</view>
+				</view>
+
+			</view>
+			<view class="space" wx:if="{{project_order_product_list.length>1}}"></view>
+		</block>
+	</view>
+
+	<!-- 是否发货信息 -->
+	<view wx:if="{{order_info.state == '2' || order_info.state == '3' }}">
+		<view class="weui-cells__title title_container"><image class="icon_img" src="/images/purchase/order/wuliu.png"></image>发货信息</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="product_cells_container">
+				<view class="info_receive">
+					<text>{{order_info.logistic_number}}</text>
+					<text>{{order_info.logistic_freight}}</text>
+				</view>
+				<view class="info_receive">
+					<text>{{order_info.logistic_time}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+
+
+	<!-- 弹出框 -->
+	<!-- 发货 -->
+	<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal1}}"></view>
+	<view class="modal-dialog" wx:if="{{showModal1}}">
+		<view class="modal-title"> 发货信息 </view>
+		<view class="modal-content">
+			<view class="modal-input">
+				<input placeholder-class="input-holder" bindinput="tracking" class="input" placeholder="物流单号"></input>
+			</view>
+			<view class="modal-input">
+				<input placeholder-class="input-holder" type="number" bindinput="trackingMent" class="input" placeholder="物流费用"></input>
+			</view>
+		</view>
+		<view class="modal-footer">
+			<view class="btn-cancel" bindtap="onCancel" data - status="cancel"> 取消 </view>
+			<view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定
+			</view>
+		</view>
+	</view>
+
+	<!-- 收货 -->
+	<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal2}}"></view>
+	<view class="modal-dialog" wx:if="{{showModal2}}">
+		<view class="modal-title"> 收货信息 </view>
+		<view class="modal-content">
+			<view class="modal-input">
+				<input placeholder-class="input-holder" type="number" bindblur="signer_number" class="input" placeholder="签收数量"></input>
+			</view>
+			<view class="space"></view>
+			<view class="space"></view>
+			<text class="img">签收截图</text>
+			<view class="img_box">
+			  <image class="q-image" wx:if="{{image !== ''}}"  src="{{image}}" mode="aspectFill"></image>
+			  <image class="q-image" bindtap="signer_images" wx:if="{{image == ''}}" src="/images/addImg.png" mode="aspectFill"></image>
+			</view>
+			<!-- 缩略图 -->
+			
+		</view>
+		<view class="modal-footer">
+			<view class="btn-cancel" bindtap="onCancel" data - status="cancel"> 取消 </view>
+			<view class="btn-confirm" bindtap="bindtracking" data-status="confirm">确定
+			</view>
+		</view>
+	</view>
+	<!-- 收货 -->
+	<view class="buttons">
+		<button class="btn" type="primary" wx:if="{{order_info.state == '0' && order_info.user_id[0]== uid}}" bindtap="goConfirm">确认</button>
+		<button class="btn" type="primary" wx:if="{{order_info.state == '1' && order_info.user_id[0]== uid}}" bindtap="goSend">发货</button>
+		<button class="btn" type="primary" wx:if="{{order_info.state == '2' && order_info.user_id[0]== uid}}" bindtap="goReceive">收货</button>
+	</view>
+
+</view>

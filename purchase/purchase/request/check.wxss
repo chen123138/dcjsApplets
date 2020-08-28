@@ -1,0 +1,106 @@
+.check_title {
+  font-size: 54rpx;
+}
+
+.check_container {
+  background-color: #ffffff;
+}
+
+.check_label {
+  font-size: 40rpx;
+}
+
+.check_body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Receipt_box {
+  background-color: #ffffff;
+}
+
+.label {
+  display: flex;
+}
+
+.product {
+  background-color: #ffffff;
+  position: relative;
+  padding-top: 50rpx;
+  padding-bottom: 32rpx;
+}
+
+.input {
+  display: flex;
+  justify-content: start;
+  flex-wrap: nowrap;
+}
+
+.picker_conntainer {
+  color: #838383;
+  /* border-bottom: 1px solid #c0c1c2; */
+  width: 100%;
+}
+
+.brand {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Receipt_box_item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnContainer {
+  width: 100%;
+  position: relative;
+}
+
+.check_button {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  background-color: #42a5f5;
+}
+
+.Underscore {
+  border-bottom: 1px solid #c0c1c2;
+  margin-bottom: 10rpx;
+  width: 100px;
+  padding-bottom: 10rpx;
+}
+
+.cancel {
+  position: absolute;
+  height: 50rpx;
+  width: 50rpx;
+  right: 10rpx;
+  top: 10rpx;
+}
+
+.biao {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 80rpx;
+  width: 80rpx;
+}
+
+.biao_name {
+  position: absolute;
+  left: 7rpx;
+  top: 0rpx;
+  color: rgb(59, 230, 59);
+}
+
+.jiao {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.jiao_biao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

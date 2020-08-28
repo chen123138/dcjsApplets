@@ -1,0 +1,73 @@
+.arrow {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.task_item {
+  font-size: 54rpx;
+}
+
+.header {
+  background-color: #ffffff;
+}
+
+.arrow_container {
+  background-color: #ffffff;
+}
+
+/* 材料 */
+.product {
+  background-color: #ffffff;
+  position: relative;
+}
+
+/* .cancel {
+  position: absolute;
+  height: 50rpx;
+  width: 50rpx;
+  right: 10rpx;
+  top: 10rpx;
+} */
+
+.input {
+  display: flex;
+}
+
+.picker {
+  display: flex;
+  color: #838383;
+  border-bottom: 1px solid #c0c1c2;
+  width: 250rpx;
+}
+
+.brand {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Receipt_box_item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnContainer {
+  height: 200rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.check_button {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  background-color: #42a5f5;
+}
+
+.Underscore {
+  border-bottom: 1px solid #c0c1c2;
+  margin-bottom: 10rpx;
+  width: 200rpx;
+}
